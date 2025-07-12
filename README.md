@@ -1,6 +1,6 @@
 # FTN Documentation
 
-To get started developing with FoodTruckNerdz, go to the organization's [profile page](<https://www.github.com/FoodTruckNerds/>) on GitHub.
+To get started developing with FoodTruckNerdz, go to the organization's [Profile page](<https://www.github.com/FoodTruckNerds/>) on GitHub.
 
 The `obsidian` folder is an Obsidian docs hive. We will be moving away from Obsidian, due to its proprietary nature.
 
