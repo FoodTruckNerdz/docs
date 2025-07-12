@@ -1,4 +1,4 @@
-# FTN Documentation
+# Documentation
 
 To get started developing with FoodTruckNerdz, go to the organization's [Profile page](<https://www.github.com/FoodTruckNerds/>) on GitHub.
 
