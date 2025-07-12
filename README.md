@@ -1,6 +1,6 @@
 # Documentation
 
-This repository contains extended documentation about the projects in any number of formats.
+This repository contains extended documentation in any number of formats.
 
 To start developing with FoodTruckNerdz, go to the organization's [Profile page](<https://www.github.com/FoodTruckNerds/>) on GitHub.
 
