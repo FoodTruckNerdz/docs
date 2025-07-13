@@ -1,0 +1,15 @@
+# Copy this file to new repositories
+
+# We use this file to tell git how to format line endings (LF vs CRLF)
+# so that macOS people and Windows people don't keep committing different
+# line endings that conflict with each other.
+
+# https://docs.github.com/en/get-started/git-basics/configuring-git-to-handle-line-endings
+
+# .gitattributes is a file that tells Git how to handle specific files based
+# on their patterns or extensions. It's used to define attributes like line
+# ending styles, whether a file is binary, or how to perform custom 
+# diffs/merges.
+
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
