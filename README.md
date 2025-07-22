@@ -9,6 +9,6 @@ Organization's GitHub [Profile page](<https://www.github.com/FoodTruckNerds/>).
 
 The `obsidian` folder is an Obsidian notebook. We will be moving away from Obsidian, due to its proprietary nature. We are aiming to use a documentation framework that uses Markdown files to produce a static doc websites. Some options:
 
-- Nextra - https://nextra.site/ - best option
+- Nextra - <https://nextra.site/> - best option
 - Starlight (similar to Astro but for React and Tailwind).
 - Docusaurus
