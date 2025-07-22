@@ -1,11 +1,14 @@
 # Documentation
 
-> [!Note]
+This repository contains extended documentation in any number of formats. Before consulting these docs, see the following to start developing with FoodTruckNerdz:
+
+Organization's GitHub [Profile page](<https://www.github.com/FoodTruckNerds/>).
+
+> [!Warning]
 > I may have misunderstood the purpose of creating a `docs` repository in our organization. One way to look at it is: we only need a docs repository if we are publishing docs for users of our software. Our developer documentation might be better off in the Wiki section of the `FoodTruckNerdz` repository. -Ryan
 
-This repository contains extended documentation in any number of formats.
+The `obsidian` folder is an Obsidian notebook. We will be moving away from Obsidian, due to its proprietary nature. We are aiming to use a documentation framework that uses Markdown files to produce a static doc websites. Some options:
 
-To start developing with FoodTruckNerdz go to the organization's [Profile page](<https://www.github.com/FoodTruckNerds/>) on GitHub.
-
-- The `obsidian` folder is an Obsidian notebook. We will be moving away from Obsidian, due to its proprietary nature.
-- There are various documentation apps and frameworks that produce static doc websites from Markdown content. That is the kind of thing we are aiming to use. Chances are we will use Docusaurus. If not Docusaurus, then an older project called Jekyll will be good. Jekyll is written in Ruby, which is not a fast language. If we like its format, we should consider Hakyll (a Haskell-based rewrite of Ruby).
+- Nextra - https://nextra.site/ - best option
+- Starlight (similar to Astro but for React and Tailwind).
+- Docusaurus
