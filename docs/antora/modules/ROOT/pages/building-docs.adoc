@@ -1,0 +1,186 @@
+= Building the Antora Documentation Site Locally
+
+This guide explains how to build the Antora documentation site locally for development and testing purposes.
+
+== Prerequisites
+
+* Node.js (LTS version recommended)
+* pnpm package manager
+* All component repositories cloned locally in the parent directory
+
+== Quick Start
+
+. Navigate to the `site` folder in the `docs` repository:
++
+[source,bash]
+----
+cd docs/site
+----
+
+. Install dependencies:
++
+[source,bash]
+----
+pnpm install
+----
+
+. Build the site locally:
++
+[source,bash]
+----
+npx antora antora-local-playbook.yml
+----
++
+Or build from GitHub sources (standard playbook):
++
+[source,bash]
+----
+npx antora antora-playbook.yml
+----
+
+. Preview the site:
++
+The site is generated in `build/site/`. You can:
++
+* Open `build/site/index.html` directly in your browser
+* Or use a local server:
++
+[source,bash]
+----
+npx http-server build/site -c-1 -p 8080
+----
+
+== Playbook Files
+
+The documentation repository contains two Antora playbook files:
+
+=== antora-playbook.yml (GitHub URLs)
+
+This is the standard Antora playbook that uses GitHub URLs, following Antora's conventional naming:
+
+[source,yaml]
+----
+content:
+  sources:
+    - url: https://github.com/FoodTruckNerds/common.git
+      branches: HEAD
+      start_path: docs/antora
+    # ... other sources
+----
+
+**Use this for:**
+* CI/CD builds
+* Production deployments
+* When you want to build from the latest published content on GitHub
+* Following Antora's standard tutorial conventions
+
+**Limitations:**
+* Requires network access to clone repositories
+* Slower builds (clones repositories)
+* May not work if local repository remotes don't match the GitHub URLs
+
+=== antora-local-playbook.yml (Local Paths)
+
+This is the local development playbook that uses local filesystem paths:
+
+[source,yaml]
+----
+content:
+  sources:
+    - url: ../common
+      branches: HEAD
+      start_path: docs/antora
+    # ... other sources
+----
+
+**Use this for:**
+* Local development and testing
+* Faster builds (no cloning needed)
+* Offline development
+* Working with uncommitted changes
+
+**Advantages:**
+* Faster builds (uses local files directly)
+* Works offline
+* Reflects your current working directory state
+* Better for iterative development
+
+== Why Two Playbooks?
+
+The two playbook files serve different purposes:
+
+. **Standard Convention**: The `antora-playbook.yml` follows Antora's standard naming convention and uses GitHub URLs, matching Antora tutorials and CI/CD workflows.
+
+. **Local Development**: The `antora-local-playbook.yml` uses local paths for faster iteration and testing of documentation changes without needing to commit and push to GitHub.
+
+. **Repository Structure**: Some local repositories may have different remote URLs than what's specified in the GitHub playbook (e.g., `common` repository might point to `workspace-settings.git`). The local playbook works around this by using filesystem paths.
+
+== Building with GitHub URLs
+
+[NOTE]
+====
+For GitHub URLs to work locally, your local repositories must have matching remote URLs. If they don't match, Antora will attempt to clone from GitHub, which requires network access.
+====
+
+To build using GitHub URLs (standard playbook):
+
+[source,bash]
+----
+npx antora antora-playbook.yml
+----
+
+This will:
+* Clone repositories from GitHub if they don't exist locally
+* Use local git repositories if they match the remote URL
+* Fail if repositories don't exist locally and network access is unavailable
+
+TIP: The `antora-playbook.yml` file follows Antora's standard naming convention used in official tutorials.
+
+== Troubleshooting
+
+=== Missing antora.yml in Components
+
+If you see an error like `antora.yml not found`, ensure each component repository has an `antora.yml` file in its `docs/antora/` directory.
+
+=== Extension Errors
+
+If you encounter errors about AsciiDoc extensions (like `asciidoctor-emoji`), the extension may need to be installed separately or the configuration may need adjustment. Check the playbook's `asciidoc.extensions` section.
+
+=== Broken Cross-References
+
+Warnings about missing xref targets indicate broken cross-references in the documentation. These are documentation issues, not build failures, but should be fixed for better documentation quality.
+
+== File Structure
+
+The build process creates the following structure:
+
+[source]
+----
+docs/
+├── site/                       # Antora documentation site folder
+│   ├── antora-playbook.yml     # Standard playbook (GitHub URLs)
+│   ├── antora-local-playbook.yml # Local development playbook
+│   ├── antora/                 # Component documentation
+│   │   ├── antora.yml          # Component descriptor
+│   │   └── modules/
+│   ├── build/
+│   │   └── site/               # Generated site output
+│   │       ├── index.html
+│   │       ├── common/
+│   │       ├── food-truck-api/
+│   │       └── ...
+│   ├── supplemental-ui/        # Custom UI overrides
+│   ├── package.json            # Antora dependencies
+│   └── pnpm-lock.yaml          # Lock file
+├── docs.code-workspace         # VSCode workspace file
+└── README.adoc                 # Repository README
+----
+
+== Next Steps
+
+After building locally:
+* Review the generated site in `build/site/`
+* Make changes to AsciiDoc files in component repositories
+* Rebuild to see changes
+* Commit and push changes when ready
+

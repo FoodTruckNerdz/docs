@@ -1,0 +1,58 @@
+= FoodTruckNerdz Documentation Site
+
+This repository contains the Antora documentation site configuration and build system for the FoodTruckNerdz project documentation.
+
+== Overview
+
+The documentation site aggregates content from multiple component repositories into a single, unified documentation site using Antora. This allows each repository to maintain its own documentation while presenting it as a cohesive whole.
+
+== What's Included
+
+This repository contains:
+
+* Antora playbook files for building the documentation site
+* Configuration for aggregating documentation from component repositories
+* Custom UI overrides and supplemental files
+* Documentation about building and maintaining the documentation site itself
+
+== Component Repositories
+
+The documentation site includes content from:
+
+* `common` - Workspace setup, development guides, and shared configuration
+* `food-truck-api` - Backend API documentation
+* `ftn-site-vercel` - Next.js site documentation
+* `FoodTruckNerdzSite` - Legacy website documentation
+* `docs` - Internal team documentation (this repository)
+* `help` - Customer-facing help documentation
+* `developer-portal` - External developer API documentation
+
+== Getting Started
+
+To build and preview the documentation site locally, see the xref:building-docs.adoc[Building Docs Locally] guide.
+
+The site can be built using either:
+
+* `antora-playbook.yml` - Standard playbook (uses GitHub URLs, suitable for CI/CD)
+* `antora-local-playbook.yml` - Local development playbook (uses local paths, faster builds)
+
+== Site Structure
+
+The generated documentation site is output to `build/site/` and includes:
+
+* Unified navigation across all component repositories
+* Cross-references between components
+* Search functionality
+* Responsive design for all devices
+
+== Contributing
+
+When adding or updating documentation:
+
+1. Make changes in the appropriate component repository's `docs/antora/` directory
+2. Build the site locally using `antora-local-playbook.yml` to preview changes
+3. Commit changes to the component repository
+4. The documentation site will automatically rebuild when the component repository is updated
+
+For more information about building and maintaining the documentation site, see xref:building-docs.adoc[Building Docs Locally].
+

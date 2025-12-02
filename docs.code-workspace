@@ -1,0 +1,37 @@
+{
+  "folders": [
+    {
+      "path": ".",
+      "name": "Antora Docs Site"
+    },
+    {
+      "path": "../food-truck-api/docs/antora",
+      "name": "food-truck-api/docs"
+    },
+    {
+      "path": "../ftn-site-vercel/docs/antora",
+      "name": "ftn-site-vercel/docs"
+    },
+    {
+      "path": "../FoodTruckNerdzSite/docs/antora",
+      "name": "FoodTruckNerdzSite/docs"
+    },
+    {
+      "path": "../onboarding/docs/antora",
+      "name": "onboarding/docs"
+    },
+    {
+      "path": "../workspaces/docs/antora",
+      "name": "workspaces/docs"
+    },
+    {
+      "path": "../help/docs/antora",
+      "name": "help/docs"
+    },
+    {
+      "path": "../developer-portal/docs/antora",
+      "name": "developer-portal/docs"
+    }
+  ]
+}
+

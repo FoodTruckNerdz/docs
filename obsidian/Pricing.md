@@ -1,1 +1,0 @@
-Every food truck owner gets 6 months free.

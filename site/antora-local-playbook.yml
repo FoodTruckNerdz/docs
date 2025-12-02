@@ -1,0 +1,38 @@
+site:
+  title: FoodTruckNerdz Documentation
+  url: https://docs.foodtrucknerdz.com
+  start_page: onboarding::index.adoc
+content:
+  sources:
+    - url: ../../onboarding
+      branches: HEAD
+      start_path: docs/antora
+    - url: ../../workspaces
+      branches: HEAD
+      start_path: docs/antora
+    - url: ../../food-truck-api
+      branches: HEAD
+      start_path: docs/antora
+    - url: ../../ftn-site-vercel
+      branches: HEAD
+      start_path: docs/antora
+    - url: ../../FoodTruckNerdzSite
+      branches: HEAD
+      start_path: docs/antora
+    - url: ..
+      branches: HEAD
+      start_path: docs/antora
+    - url: ../../help
+      branches: HEAD
+      start_path: docs/antora
+    - url: ../../developer-portal
+      branches: HEAD
+      start_path: docs/antora
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+  supplemental_files: ./supplemental-ui
+# asciidoc:
+#   extensions:
+#     - require: asciidoctor-emoji
