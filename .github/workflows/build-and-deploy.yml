@@ -29,8 +29,15 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Enable Corepack
-        run: corepack enable
+      - name: Enable Corepack and prepare pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@10.24.0 --activate
+
+      - name: Configure PNPM_HOME and add to PATH
+        run: |
+          echo "PNPM_HOME=${HOME}/.local/share/pnpm" >> $GITHUB_ENV
+          echo "${HOME}/.local/share/pnpm" >> $GITHUB_PATH
 
       - name: Setup pnpm global bin directory
         run: pnpm setup
