@@ -52,7 +52,7 @@ jobs:
       - name: Build Antora site
         working-directory: ./site
         env:
-          GIT_CREDENTIALS: ${{ secrets.ANTORA_GITHUB_TOKEN }}
+          GIT_CREDENTIALS: "x-access-token:${{ secrets.ANTORA_GITHUB_TOKEN }}"
         run: pnpm exec antora --stacktrace antora-playbook.yml
 
       - name: Upload artifact
