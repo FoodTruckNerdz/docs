@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      ANTORA_GITHUB_TOKEN: ${{ secrets.ANTORA_GITHUB_TOKEN }}
+      GIT_CREDENTIALS: ${{ secrets.ANTORA_GITHUB_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -50,9 +50,6 @@ jobs:
       - name: Install dependencies
         working-directory: ./site
         run: pnpm install
-
-      - name: Configure git to use the token for GitHub
-        run: git config --global url."https://${ANTORA_GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
 
       - name: Build Antora site
         working-directory: ./site
