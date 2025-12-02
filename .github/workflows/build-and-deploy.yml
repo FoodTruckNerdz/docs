@@ -37,7 +37,7 @@ jobs:
 
       - name: Build Antora site
         working-directory: ./site
-        run: npx antora antora-playbook.yml
+        run: pnpm exec antora --stacktrace antora-playbook.yml
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
