@@ -32,6 +32,9 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
+      - name: Install Antora
+        run: pnpm add -g antora
+
       - name: Install dependencies
         working-directory: ./site
         run: pnpm install
