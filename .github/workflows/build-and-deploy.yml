@@ -17,8 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      GIT_CREDENTIALS: ${{ secrets.ANTORA_GITHUB_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -53,6 +51,8 @@ jobs:
 
       - name: Build Antora site
         working-directory: ./site
+        env:
+          GIT_CREDENTIALS: ${{ secrets.ANTORA_GITHUB_TOKEN }}
         run: pnpm exec antora --stacktrace antora-playbook.yml
 
       - name: Upload artifact
