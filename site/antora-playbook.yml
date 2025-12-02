@@ -35,4 +35,4 @@ ui:
   supplemental_files: ./supplemental-ui
 asciidoc:
   extensions:
-    - require: asciidoctor-emoji
+    - asciidoctor-emoji
