@@ -2,7 +2,7 @@
   "folders": [
     {
       "path": ".",
-      "name": "Antora Docs Site"
+      "name": "FTN Docs"
     },
     {
       "path": "../food-truck-api/docs/antora",
@@ -31,7 +31,14 @@
     {
       "path": "../developer-portal/docs/antora",
       "name": "developer-portal/docs"
+    },
+    {
+      "path": "../../amdphreak/antora",
+      "name": "antora"
     }
-  ]
+  ],
+  "settings": {
+    "powershell.cwd": "Antora Docs Site"
+  }
 }
 
