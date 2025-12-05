@@ -16,6 +16,9 @@ concurrency:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        node-version: [20]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -24,16 +27,12 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
-      - name: Install Node.js
+      - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v5
         with:
-          node-version: '20'
-
-      - name: Enable Corepack and prepare pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@10.24.0 --activate
-
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+          cache-dependency-path: 'site/pnpm-lock.yaml'
       - name: Configure PNPM_HOME and add to PATH
         run: |
           echo "PNPM_HOME=${HOME}/.local/share/pnpm" >> $GITHUB_ENV
@@ -47,12 +46,19 @@ jobs:
 
       - name: Install dependencies
         working-directory: ./site
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build Antora site
         working-directory: ./site
         env:
-          GIT_CREDENTIALS: "x-access-token:${{ secrets.ANTORA_GITHUB_TOKEN }}"
+          # Antora requires git credentials to be stored in GIT_CREDENTIALS environment variable
+          # When Antora tries to access a private GitHub repository, it has to make a call to 
+          # using the standard URL format:
+          #   https://<username>:<password>@github.com
+          # and GitHub specifies using "x-access-token" as the username. For the password,
+          # we use the Personal Access Token (PAT) saved into the repository's Secrets manager on
+          # GitHub. In this case, secrets.FTN_GITHUB_TOKEN_ANTORADOCS
+          GIT_CREDENTIALS: "https://x-access-token:${{ secrets.FTN_GITHUB_TOKEN }}@github.com"
         run: pnpm exec antora --stacktrace antora-playbook.yml
 
       - name: Upload artifact
