@@ -7,17 +7,18 @@ settings:
 overrides:
   inflight: npm:lru-cache@^10.0.0
   glob: ^10.0.0
+  punycode: ^2.3.1
 
 importers:
 
   .:
-    dependencies:
-      '@antora/site-generator':
-        specifier: ^3.1.14
-        version: 3.1.14
+    devDependencies:
       '@asciidoctor/core':
         specifier: ^3.0.4
         version: 3.0.4
+      antora:
+        specifier: ^3.1.14
+        version: 3.1.14
       asciidoctor-emoji:
         specifier: ^0.5.0
         version: 0.5.0(@asciidoctor/core@3.0.4)
@@ -27,6 +28,11 @@ packages:
   '@antora/asciidoc-loader@3.1.14':
     resolution: {integrity: sha512-4xxisnoBFrlLNY6f3xZtyyfgm+tBLsqesTcEStfc8jtXUMYJ4b2DWIzo1vULmxvZ7yY5+Q7YqEvS5o6kIWAG0A==}
     engines: {node: '>=16.0.0'}
+
+  '@antora/cli@3.1.14':
+    resolution: {integrity: sha512-I6WcygMU2bFInjdURJjkYjo7K5M8B3lBB53v9OO0IcY0LhEY8Wa7IlZ7wVinf5qEjHvaYzRGTZVl6RsJtVt7Sw==}
+    engines: {node: '>=16.0.0'}
+    hasBin: true
 
   '@antora/content-aggregator@3.1.14':
     resolution: {integrity: sha512-FVuBgnrGPiktYqK1WHbGF8O8l4m5KHlkxoJumrbacgFo8SKuiRFEo31zalxrCUsv8QM3UBEgX+LdHrve/9CGLg==}
@@ -143,6 +149,11 @@ packages:
     resolution: {integrity: sha512-4Dj6M28JB+oAH8kFkTLUo+a2jwOFkuqb3yucU0CANcRRUbxS0cP0nZYCGjcc3BNXwRIsUVmDGgzawme7zvJHvg==}
     engines: {node: '>=12'}
 
+  antora@3.1.14:
+    resolution: {integrity: sha512-z8HshJsT6pUfdDOUJ15RGtpOM9LmL6JXU5JBshoR/9/xd+1qLmKPkOnUv+HrijAk93r1imxZOdkmIqhLcv8B8A==}
+    engines: {node: '>=16.0.0'}
+    hasBin: true
+
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
 
@@ -233,6 +244,10 @@ packages:
 
   colorette@2.0.20:
     resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
+
+  commander@11.1.0:
+    resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
+    engines: {node: '>=16'}
 
   convict@6.2.4:
     resolution: {integrity: sha512-qN60BAwdMVdofckX7AlohVJ2x9UvjTNoKVXCL2LxFk1l7757EJqf1nySdMkPQer0bt8kQ5lQiyZ9/2NvrFBuwQ==}
@@ -763,6 +778,13 @@ snapshots:
       '@antora/user-require-helper': 3.0.0
       '@asciidoctor/core': 2.2.8
 
+  '@antora/cli@3.1.14':
+    dependencies:
+      '@antora/logger': 3.1.14
+      '@antora/playbook-builder': 3.1.14
+      '@antora/user-require-helper': 3.0.0
+      commander: 11.1.0
+
   '@antora/content-aggregator@3.1.14':
     dependencies:
       '@antora/expand-path-helper': 3.0.0
@@ -952,6 +974,14 @@ snapshots:
 
   ansi-styles@6.2.3: {}
 
+  antora@3.1.14:
+    dependencies:
+      '@antora/cli': 3.1.14
+      '@antora/site-generator': 3.1.14
+    transitivePeerDependencies:
+      - bare-abort-controller
+      - react-native-b4a
+
   argparse@2.0.1: {}
 
   asciidoctor-emoji@0.5.0(@asciidoctor/core@3.0.4):
@@ -1026,6 +1056,8 @@ snapshots:
   color-name@1.1.4: {}
 
   colorette@2.0.20: {}
+
+  commander@11.1.0: {}
 
   convict@6.2.4:
     dependencies:
