@@ -38,7 +38,7 @@
     }
   ],
   "settings": {
-    "powershell.cwd": "Antora Docs Site"
+    "powershell.cwd": "Antora Docs Site",
   }
 }
 
