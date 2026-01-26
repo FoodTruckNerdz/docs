@@ -76,7 +76,8 @@ html.dark-theme .toc.sidebar a {
 }
 
 html.dark-theme .toc .title,
-html.dark-theme .toc .title a {
+html.dark-theme .toc .title a,
+html.dark-theme .toc .toc-menu h3 {
   color: #ffffff;
 }
 
