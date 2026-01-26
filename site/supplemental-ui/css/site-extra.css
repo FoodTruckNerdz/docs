@@ -1,0 +1,203 @@
+/* Dark mode styles for Antora default UI */
+html.dark-theme,
+html.dark-theme body {
+  background-color: #1a1b1e;
+  color: #c1c2c5;
+}
+
+html.dark-theme a {
+  color: #4dabf7;
+}
+
+html.dark-theme a:hover,
+html.dark-theme a:focus {
+  color: #74c0fc;
+}
+
+html.dark-theme .navbar {
+  background-color: #141517;
+  color: #f1f3f5;
+}
+
+html.dark-theme .navbar a,
+html.dark-theme .navbar .navbar-item,
+html.dark-theme .navbar .navbar-link {
+  color: #f1f3f5;
+}
+
+html.dark-theme .navbar .navbar-item:hover,
+html.dark-theme .navbar .navbar-link:hover {
+  background-color: #1f2125;
+}
+
+html.dark-theme .navbar .navbar-menu {
+  background-color: #25262b;
+  border-color: #373a40;
+}
+
+html.dark-theme .navbar .navbar-dropdown {
+  background-color: #25262b;
+  border-color: #373a40;
+}
+
+html.dark-theme .navbar .navbar-dropdown .navbar-item:hover {
+  background-color: #2c2e33;
+}
+
+html.dark-theme .navbar .button,
+html.dark-theme .navbar .button.is-primary {
+  background-color: #2c2e33;
+  border-color: #373a40;
+  color: #f1f3f5;
+}
+
+html.dark-theme .navbar .button:hover,
+html.dark-theme .navbar .button.is-primary:hover {
+  background-color: #3b3d42;
+}
+
+html.dark-theme .nav,
+html.dark-theme .nav-panel-menu,
+html.dark-theme .nav-panel-explore,
+html.dark-theme .toolbar,
+html.dark-theme .toc.sidebar {
+  background-color: #25262b;
+  border-color: #373a40;
+  color: #c1c2c5;
+}
+
+html.dark-theme .nav .title,
+html.dark-theme .nav .title a,
+html.dark-theme .nav .nav-link,
+html.dark-theme .nav .nav-text,
+html.dark-theme .toc.sidebar,
+html.dark-theme .toc.sidebar a {
+  color: #c1c2c5;
+}
+
+html.dark-theme .toc .title,
+html.dark-theme .toc .title a {
+  color: #ffffff;
+}
+
+html.dark-theme .nav .nav-item.is-current-page > .nav-link {
+  color: #ffffff;
+}
+
+html.dark-theme .content,
+html.dark-theme .doc {
+  color: #c1c2c5;
+}
+
+html.dark-theme .doc h1,
+html.dark-theme .doc h2,
+html.dark-theme .doc h3,
+html.dark-theme .doc h4,
+html.dark-theme .doc h5,
+html.dark-theme .doc h6,
+html.dark-theme .doc .title,
+html.dark-theme .doc .heading {
+  color: #ffffff;
+}
+
+html.dark-theme .doc .sect1,
+html.dark-theme .doc .sect2,
+html.dark-theme .doc .sect3,
+html.dark-theme .doc .sect4 {
+  border-color: #373a40;
+}
+
+html.dark-theme .admonitionblock,
+html.dark-theme .exampleblock,
+html.dark-theme .sidebarblock,
+html.dark-theme .quoteblock,
+html.dark-theme .literalblock,
+html.dark-theme .listingblock,
+html.dark-theme .openblock,
+html.dark-theme .tableblock {
+  background-color: #25262b;
+  border-color: #373a40;
+}
+
+html.dark-theme .quoteblock blockquote,
+html.dark-theme .quoteblock p {
+  color: #adb5bd;
+}
+
+html.dark-theme code,
+html.dark-theme pre,
+html.dark-theme pre code {
+  background-color: #141517;
+  color: #e9ecef;
+  border-color: #373a40;
+}
+
+html.dark-theme table {
+  border-color: #373a40;
+}
+
+html.dark-theme table thead,
+html.dark-theme table tfoot {
+  background-color: #1f2125;
+}
+
+html.dark-theme table tbody tr:nth-child(even) {
+  background-color: #1f2125;
+}
+
+html.dark-theme .footer {
+  background-color: #141517;
+  color: #909296;
+}
+
+html.dark-theme .footer a {
+  color: #f1f3f5;
+}
+
+html.dark-theme #search-input {
+  background-color: #2c2e33;
+  color: #ffffff;
+  border-color: #373a40;
+}
+
+html.dark-theme .home-link {
+  color: #ffffff;
+}
+
+/* Toggle button styles */
+.theme-toggle {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  font-size: 0.9rem;
+  height: 100%;
+}
+
+.navbar .theme-toggle {
+  text-transform: none;
+}
+
+.theme-toggle:hover {
+  background-color: #1f2125;
+}
+
+.theme-toggle .theme-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme-toggle .theme-icon path,
+.theme-toggle .theme-icon circle {
+  fill: none;
+}
