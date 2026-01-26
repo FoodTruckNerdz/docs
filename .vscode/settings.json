@@ -1,6 +1,26 @@
 {
-    "search.exclude": {
-        "**/node_modules": true,
-        "**/*.code-search": true
-    }
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/*.code-search": true,
+    "**/.git": true
+  },
+  "files.exclude": {
+    "**/.git": true
+  },
+  "editor.tabSize": 2,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[markdown]": {
+    "editor.wordWrap": "on"
+  },
+  "[asciidoc]": {
+    "editor.formatOnSave": true
+  },
+  "markdownlint.config": {
+    "MD033": false
+  },
+  "git.autoRepositoryDetection": false,
+  "git.scanRepositories": [
+    "."
+  ]
 }

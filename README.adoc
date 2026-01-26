@@ -40,15 +40,15 @@ docker run --rm -v "$PWD:/antora" -u "$(id -u):$(id -g)" antora/antora antora-pl
 
 == Structure
 
-This playbook coordinates documentation from multiple repositories. Each repository contains its own documentation component in a `docs/antora/` folder:
+This playbook coordinates documentation from multiple repositories. Each repository contains its own Antora documentation component in a `docs/` folder:
 
-* **common** - Located in the `common` repository (`docs/antora/`)
-* **food-truck-api** - Located in the `food-truck-api` repository (`docs/antora/`)
-* **ftn-site-vercel** - Located in the `ftn-site-vercel` repository (`docs/antora/`)
-* **foodtrucknerdzsite** - Located in the `FoodTruckNerdzSite` repository (`docs/antora/`)
-* **docs** - Internal team documentation (this repository, `docs/antora/`)
-* **help** - Customer-facing help documentation (`docs/antora/`)
-* **developer-portal** - External developer API documentation (`docs/antora/`)
+* **food-truck-api** - Located in the `food-truck-api` repository (`docs/`)
+* **ftn-site-vercel** - Located in the `ftn-site-vercel` repository (`docs/`)
+* **foodtrucknerdzsite** - Located in the `FoodTruckNerdzSite` repository (`docs/`)
+* **docs** - Internal team documentation (this repository, `docs/`)
+* **help** - Customer-facing help documentation (`docs/`)
+* **developer-portal** - External developer API documentation (`docs/`)
+* **Standard Templates** - Industry-standard project and workspace templates (available at link:https://github.com/the-dev-center/templates[the-dev-center/templates])
 
 Each component contains an `antora.yml` descriptor file (which defines the component name) and its documentation pages organized in the `modules/ROOT/` structure. The playbook pulls from each repository's Git source to build the unified documentation site.
 

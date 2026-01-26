@@ -1,0 +1,605 @@
+= GitHub Action Includes Reference
+:navtitle: Action Includes Reference
+:description: Detailed reference for all GitHub Actions used in the Antora documentation build workflow
+:keywords: github actions, actions, checkout, setup-node, pnpm, deploy-pages
+:icons: font
+:source-highlighter: highlight.js
+
+This reference documents each GitHub Action used in the FoodTruckNerdz documentation build workflow, explaining what each action does, its key inputs, and links to official documentation.
+
+== Actions Overview
+
+[cols="2,3,1"]
+|===
+|Action |Purpose |Version
+
+|<<checkout,actions/checkout>>
+|Clone repository to runner
+|v4
+
+|<<configure-pages,actions/configure-pages>>
+|Configure GitHub Pages
+|v5
+
+|<<pnpm-setup,pnpm/action-setup>>
+|Install pnpm package manager
+|v4
+
+|<<setup-node,actions/setup-node>>
+|Set up Node.js environment
+|v4
+
+|<<upload-pages,actions/upload-pages-artifact>>
+|Upload built site artifact
+|v3
+
+|<<deploy-pages,actions/deploy-pages>>
+|Deploy to GitHub Pages
+|v4
+|===
+
+[#checkout]
+== actions/checkout
+
+[cols="1,3"]
+|===
+|Repository |https://github.com/actions/checkout[actions/checkout^]
+|Documentation |https://github.com/actions/checkout#readme[README^]
+|Current Version |v4
+|===
+
+=== What It Does
+
+The `checkout` action clones your repository onto the GitHub Actions runner, making your code available for subsequent workflow steps. Without this action, your workflow wouldn't have access to any of your repository's files.
+
+=== How It Works
+
+. Creates a shallow clone (by default) of your repository
+. Checks out the ref (branch/tag/SHA) that triggered the workflow
+. Configures git authentication for any subsequent git operations
+. Places the repository contents in `$GITHUB_WORKSPACE`
+
+[plantuml, checkout-flow, svg]
+----
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+
+rectangle "GitHub Repository\n(remote)" as remote
+rectangle "Runner Workspace\n($GITHUB_WORKSPACE)" as workspace
+
+remote -down-> workspace : git clone\n(shallow by default)
+
+note right of workspace
+  Your repository files are now
+  available at $GITHUB_WORKSPACE
+  (typically /home/runner/work/repo/repo)
+end note
+
+@enduml
+----
+
+=== Usage in Our Workflow
+
+[source,yaml]
+----
+- name: Checkout repository
+  uses: actions/checkout@v4
+----
+
+We use the simplest form since we only need the current repository's code. The default settings are sufficient because:
+
+* We don't need full git history (shallow clone is fine)
+* We're checking out the branch that triggered the workflow
+* We don't need submodules
+
+=== Key Inputs
+
+[cols="1,1,3"]
+|===
+|Input |Default |Description
+
+|`repository`
+|Current repo
+|Repository to checkout (owner/repo format)
+
+|`ref`
+|Triggering ref
+|Branch, tag, or SHA to checkout
+
+|`token`
+|`${{ github.token }}`
+|PAT for authentication (useful for private repos)
+
+|`fetch-depth`
+|`1`
+|Number of commits to fetch (0 for full history)
+
+|`submodules`
+|`false`
+|Whether to checkout submodules
+|===
+
+=== When You'd Use Advanced Options
+
+[source,yaml]
+----
+# Example: Checkout with full history for version calculations
+- uses: actions/checkout@v4
+  with:
+    fetch-depth: 0
+
+# Example: Checkout a different branch
+- uses: actions/checkout@v4
+  with:
+    ref: develop
+
+# Example: Checkout a private repository
+- uses: actions/checkout@v4
+  with:
+    repository: org/private-repo
+    token: ${{ secrets.PAT }}
+----
+
+---
+
+[#configure-pages]
+== actions/configure-pages
+
+[cols="1,3"]
+|===
+|Repository |https://github.com/actions/configure-pages[actions/configure-pages^]
+|Documentation |https://github.com/actions/configure-pages#readme[README^]
+|Current Version |v5
+|===
+
+=== What It Does
+
+The `configure-pages` action prepares your repository for GitHub Pages deployment by:
+
+* Extracting metadata about your Pages configuration
+* Enabling Pages for the repository (if not already enabled)
+* Setting up the required token for Pages deployments
+* Providing outputs for subsequent deployment steps
+
+=== How It Works
+
+. Queries the GitHub Pages API for your repository's configuration
+. Extracts the base URL, path, and CNAME (if configured)
+. Makes this information available as outputs for later steps
+. Ensures the repository is configured for Pages deployment
+
+=== Usage in Our Workflow
+
+[source,yaml]
+----
+- name: Configure Pages
+  uses: actions/configure-pages@v5
+----
+
+This step runs early in the workflow to ensure GitHub Pages is properly configured before we build and deploy.
+
+=== Key Outputs
+
+[cols="1,3"]
+|===
+|Output |Description
+
+|`base_url`
+|The base URL for GitHub Pages (e.g., `https://user.github.io/repo`)
+
+|`base_path`
+|The base path if the site is not at root (e.g., `/repo`)
+
+|`origin`
+|The origin URL (e.g., `https://user.github.io`)
+
+|`host`
+|The host (e.g., `user.github.io` or custom domain)
+|===
+
+=== When You'd Use the Outputs
+
+[source,yaml]
+----
+- name: Configure Pages
+  id: pages
+  uses: actions/configure-pages@v5
+
+- name: Build site
+  run: |
+    echo "Building for base URL: ${{ steps.pages.outputs.base_url }}"
+    # Pass base URL to your build tool if needed
+----
+
+---
+
+[#pnpm-setup]
+== pnpm/action-setup
+
+[cols="1,3"]
+|===
+|Repository |https://github.com/pnpm/action-setup[pnpm/action-setup^]
+|Documentation |https://github.com/pnpm/action-setup#readme[README^]
+|Current Version |v4
+|===
+
+=== What It Does
+
+This action installs the https://pnpm.io/[pnpm package manager^] on the GitHub Actions runner. pnpm is a fast, disk-efficient package manager that's particularly good for monorepos and workspaces.
+
+=== How It Works
+
+. Reads the `packageManager` field from your `package.json` (if present)
+. Downloads and installs the specified version of pnpm
+. Adds pnpm to the PATH for subsequent steps
+. Optionally runs `pnpm install` automatically
+
+=== Usage in Our Workflow
+
+[source,yaml]
+----
+- name: Install pnpm
+  uses: pnpm/action-setup@v4
+  with:
+    package_json_file: 'site/package.json'
+----
+
+We specify `package_json_file` to point to our package.json since it's in a subdirectory. The action reads the `packageManager` field from this file to determine which pnpm version to install.
+
+[TIP]
+====
+**Why specify `package_json_file`?**
+
+Our Antora site configuration lives in the `site/` subdirectory, not the repository root. By pointing to the correct `package.json`, the action can read the exact pnpm version we want.
+====
+
+=== Key Inputs
+
+[cols="1,1,3"]
+|===
+|Input |Default |Description
+
+|`version`
+|From `package.json`
+|The version of pnpm to install
+
+|`package_json_file`
+|`package.json`
+|Path to package.json (for reading `packageManager`)
+
+|`run_install`
+|`false`
+|Whether to run `pnpm install` automatically
+
+|`standalone`
+|`false`
+|Install without Node.js (use with `actions/setup-node`)
+|===
+
+=== Version Detection
+
+The action determines the pnpm version in this order:
+
+. Explicit `version` input
+. `packageManager` field in `package.json`:
++
+[source,json]
+----
+{
+  "packageManager": "pnpm@9.1.0"
+}
+----
+
+. Falls back to latest version
+
+---
+
+[#setup-node]
+== actions/setup-node
+
+[cols="1,3"]
+|===
+|Repository |https://github.com/actions/setup-node[actions/setup-node^]
+|Documentation |https://github.com/actions/setup-node#readme[README^]
+|Current Version |v4
+|===
+
+=== What It Does
+
+This action sets up a Node.js environment on the GitHub Actions runner. It can:
+
+* Install a specific Node.js version
+* Set up caching for package manager dependencies
+* Configure the registry for npm/pnpm/yarn
+
+=== How It Works
+
+. Downloads and installs the specified Node.js version
+. Adds Node.js to the PATH
+. Optionally configures dependency caching
+. Optionally sets up registry authentication
+
+=== Usage in Our Workflow
+
+[source,yaml]
+----
+- name: Set up Node.js ${{ matrix.node-version }}
+  uses: actions/setup-node@v4
+  with:
+    node-version: ${{ matrix.node-version }}
+    cache: 'pnpm'
+    cache-dependency-path: 'site/pnpm-lock.yaml'
+----
+
+We configure:
+
+* `node-version`: Uses the version from our build matrix (Node.js 20)
+* `cache: 'pnpm'`: Enables caching for pnpm dependencies
+* `cache-dependency-path`: Points to our lock file location
+
+=== Why Caching Matters
+
+[plantuml, cache-benefit, svg]
+----
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+
+rectangle "Without Cache" as nocache {
+  rectangle "pnpm install" as install1
+  note right: ~45-60 seconds\nDownloads all packages
+}
+
+rectangle "With Cache" as withcache {
+  rectangle "pnpm install" as install2
+  note right: ~5-10 seconds\nRestores from cache
+}
+
+@enduml
+----
+
+Caching can reduce `pnpm install` time from 45-60 seconds to under 10 seconds by:
+
+* Storing downloaded packages in GitHub's cache
+* Restoring them on subsequent runs
+* Only downloading new/updated packages
+
+=== Key Inputs
+
+[cols="1,1,3"]
+|===
+|Input |Default |Description
+
+|`node-version`
+|None (required)
+|Node.js version to install (e.g., `20`, `20.x`, `lts/*`)
+
+|`cache`
+|None
+|Package manager for caching: `npm`, `yarn`, or `pnpm`
+
+|`cache-dependency-path`
+|Auto-detected
+|Path to dependency lock file(s) for cache key
+
+|`registry-url`
+|None
+|Optional registry URL (for private packages)
+|===
+
+=== Version Specification
+
+[source,yaml]
+----
+# Specific version
+node-version: '20.10.0'
+
+# Major version (latest minor/patch)
+node-version: '20'
+
+# Major.minor (latest patch)
+node-version: '20.10'
+
+# Semantic version range
+node-version: '>=18'
+
+# LTS version
+node-version: 'lts/*'
+
+# From .nvmrc or .node-version file
+node-version-file: '.nvmrc'
+----
+
+---
+
+[#upload-pages]
+== actions/upload-pages-artifact
+
+[cols="1,3"]
+|===
+|Repository |https://github.com/actions/upload-pages-artifact[actions/upload-pages-artifact^]
+|Documentation |https://github.com/actions/upload-pages-artifact#readme[README^]
+|Current Version |v3
+|===
+
+=== What It Does
+
+This action packages your built static site and uploads it as a GitHub Actions artifact, specifically formatted for GitHub Pages deployment.
+
+=== How It Works
+
+. Creates a tar archive of your site directory
+. Applies compression to reduce size
+. Uploads the archive as a workflow artifact named `github-pages`
+. Calculates and reports the artifact size
+
+[plantuml, upload-artifact-flow, svg]
+----
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+
+rectangle "Build Output\n(site/build/site/)" as build
+rectangle "Tar Archive" as tar
+rectangle "GitHub Artifact\n(github-pages)" as artifact
+rectangle "Deploy Step" as deploy
+
+build -right-> tar : package
+tar -right-> artifact : upload
+artifact -right-> deploy : download
+
+@enduml
+----
+
+=== Usage in Our Workflow
+
+[source,yaml]
+----
+- name: Upload artifact
+  uses: actions/upload-pages-artifact@v3
+  with:
+    path: site/build/site
+----
+
+We specify the exact path where Antora outputs the built site.
+
+=== Key Inputs
+
+[cols="1,1,3"]
+|===
+|Input |Default |Description
+
+|`path`
+|None (required)
+|Path to the directory to upload
+
+|`retention-days`
+|`1`
+|How long to keep the artifact
+|===
+
+=== Important Notes
+
+[NOTE]
+====
+**Artifact Name**: This action always creates an artifact named `github-pages`. This specific name is required by `actions/deploy-pages`.
+
+**Size Limits**: GitHub Pages has a size limit of 1GB for the deployed site. Large sites may need optimization.
+====
+
+---
+
+[#deploy-pages]
+== actions/deploy-pages
+
+[cols="1,3"]
+|===
+|Repository |https://github.com/actions/deploy-pages[actions/deploy-pages^]
+|Documentation |https://github.com/actions/deploy-pages#readme[README^]
+|Current Version |v4
+|===
+
+=== What It Does
+
+This action deploys the uploaded artifact to GitHub Pages. It's the final step that makes your site live.
+
+=== How It Works
+
+. Downloads the `github-pages` artifact from the upload step
+. Extracts the contents
+. Deploys to GitHub Pages using the Pages API
+. Reports the deployment URL
+
+=== Usage in Our Workflow
+
+[source,yaml]
+----
+deploy:
+  runs-on: ubuntu-latest
+  needs: build  # <1>
+  environment:
+    name: github-pages
+    url: ${{ steps.deployment.outputs.page_url }}  # <2>
+  steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+----
+
+<1> `needs: build` ensures this job waits for the build job to complete
+<2> The deployed URL is available as an output
+
+=== Key Requirements
+
+[cols="1,3"]
+|===
+|Requirement |Description
+
+|**Permissions**
+|The workflow needs `pages: write` and `id-token: write` permissions
+
+|**Environment**
+|Should specify `environment: name: github-pages` for proper deployment tracking
+
+|**Artifact**
+|Requires the `github-pages` artifact from `upload-pages-artifact`
+|===
+
+=== Outputs
+
+[cols="1,3"]
+|===
+|Output |Description
+
+|`page_url`
+|The URL of the deployed site (e.g., `https://docs.foodtrucknerdz.com`)
+|===
+
+== Complete Workflow Reference
+
+Here's how all the actions work together:
+
+[plantuml, complete-workflow, svg]
+----
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+skinparam defaultFontName Segoe UI
+
+title Complete GitHub Actions Workflow
+
+|Build Job|
+start
+:actions/checkout@v4;
+note right: Clone repository
+:actions/configure-pages@v5;
+note right: Configure Pages settings
+:pnpm/action-setup@v4;
+note right: Install pnpm
+:actions/setup-node@v4;
+note right: Install Node.js + cache
+:pnpm install;
+:pnpm exec antora;
+note right: Build site
+:actions/upload-pages-artifact@v3;
+note right: Package & upload
+
+|Deploy Job|
+:actions/deploy-pages@v4;
+note right: Deploy to Pages
+
+stop
+
+@enduml
+----
+
+== Related Documentation
+
+* xref:github-actions-antora-setup.adoc[] — Complete CI/CD setup tutorial
+* xref:troubleshooting-antora-builds.adoc[] — Troubleshooting build errors
+* https://docs.github.com/en/actions[GitHub Actions Documentation^]
+* https://pnpm.io/[pnpm Documentation^]
+
+
+

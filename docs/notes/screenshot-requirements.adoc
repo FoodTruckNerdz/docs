@@ -1,0 +1,305 @@
+= Screenshot Requirements Report
+:description: List of screenshots needed for Antora CI/CD documentation
+:date: 2024-12-07
+
+This document lists screenshots and images that should be added to improve the documentation. These placeholders were identified while creating the GitHub Actions and Antora troubleshooting guides.
+
+[IMPORTANT]
+====
+**This file is NOT included in the Antora documentation site.**
+
+It exists in the `docs/notes/` folder for internal reference only. Once screenshots are obtained, add them to `docs/modules/ROOT/images/` and update the corresponding documentation pages.
+====
+
+== Priority: High
+
+These screenshots significantly reduce cognitive overhead for readers:
+
+=== 1. GitHub PAT Creation (Fine-Grained)
+
+**File**: `github-actions-antora-setup.adoc`
+**Section**: Step 1: Create a Personal Access Token
+
+**Screenshots Needed**:
+
+* [ ] GitHub Settings → Developer settings → Personal access tokens (fine-grained) page
+* [ ] "Generate new token" dialog with recommended settings filled in:
+** Token name: `antora-docs-builder`
+** Expiration: 90 days
+** Resource owner: FoodTruckNerds
+** Repository access: All repositories
+* [ ] Repository permissions expanded showing:
+** Contents: Read-only
+** Metadata: Read-only (auto-selected)
+* [ ] Generated token success screen (with token value blurred/redacted)
+
+**Recommended filename**: `pat-creation-*.png` (e.g., `pat-creation-permissions.png`)
+
+---
+
+=== 2. GitHub Repository Secrets
+
+**File**: `github-actions-antora-setup.adoc`
+**Section**: Step 2: Add the PAT as a Repository Secret
+
+**Screenshots Needed**:
+
+* [ ] Repository → Settings → Secrets and variables → Actions page
+* [ ] "New repository secret" dialog with:
+** Name: `FTN_GITHUB_TOKEN`
+** Secret: (placeholder asterisks shown)
+* [ ] Successfully added secret in the list
+
+**Recommended filename**: `repo-secrets-*.png`
+
+---
+
+=== 3. GitHub Actions Workflow Run
+
+**File**: `github-actions-antora-setup.adoc`
+**Section**: Verifying Your Setup
+
+**Screenshots Needed**:
+
+* [ ] Actions tab showing "Build and Deploy Documentation" workflow
+* [ ] Successful workflow run with all jobs completed (green checkmarks)
+* [ ] Failed workflow run showing error in the "Build Antora site" step
+* [ ] Workflow run details showing "Run workflow" button (workflow_dispatch)
+
+**Recommended filename**: `actions-workflow-*.png`
+
+---
+
+=== 4. Start Path Error in Action Logs
+
+**File**: `troubleshooting-antora-builds.adoc`
+**Section**: The "Start Path Does Not Exist" Error
+
+**Screenshots Needed**:
+
+* [ ] GitHub Actions log showing the FATAL error:
++
+----
+[05:20:21.257] FATAL (antora): the start path 'docs' does not exist...
+----
+
+* [ ] Expanded error details in the Actions UI
+
+**Recommended filename**: `error-start-path-*.png`
+
+---
+
+=== 5. Repository Browser - Verifying Paths
+
+**File**: `troubleshooting-antora-builds.adoc`
+**Section**: Step 2: Verify the Path Exists Remotely
+
+**Screenshots Needed**:
+
+* [ ] GitHub repository file browser showing `docs/` directory structure
+* [ ] Repository with missing `docs/` folder (showing only other folders)
+* [ ] Branch selector dropdown showing available branches
+
+**Recommended filename**: `repo-browser-*.png`
+
+---
+
+== Priority: Medium
+
+These would enhance understanding but aren't critical:
+
+=== 6. GitHub Pages Settings
+
+**File**: `github-actions-antora-setup.adoc`
+
+**Screenshots Needed**:
+
+* [ ] Repository Settings → Pages showing "GitHub Actions" as source
+* [ ] Deployment history showing successful deployments
+
+**Recommended filename**: `pages-settings-*.png`
+
+---
+
+=== 7. VSCode Workspace with Multiple Repos
+
+**File**: `troubleshooting-antora-builds.adoc`
+**Section**: Multi-Repository Sync Issues
+
+**Screenshots Needed**:
+
+* [ ] VSCode workspace showing multiple FTN repositories
+* [ ] Source Control panel showing uncommitted changes
+
+**Recommended filename**: `vscode-workspace-*.png`
+
+---
+
+=== 8. Branch Protection Rules
+
+**File**: `troubleshooting-antora-builds.adoc`
+**Section**: Prevention Strategies
+
+**Screenshots Needed**:
+
+* [ ] Repository Settings → Branches → Branch protection rules
+* [ ] "Require status checks to pass" configuration
+
+**Recommended filename**: `branch-protection-*.png`
+
+---
+
+== Priority: Low
+
+Nice-to-have visual aids:
+
+=== 9. Classic PAT Creation
+
+**File**: `github-actions-antora-setup.adoc`
+**Section**: Alternative: Classic PAT
+
+**Screenshots Needed**:
+
+* [ ] Classic PAT creation page with `repo` scope selected
+
+**Recommended filename**: `pat-classic-*.png`
+
+---
+
+=== 10. pnpm/Node.js Installation Logs
+
+**File**: `action-includes-reference.adoc`
+
+**Screenshots Needed**:
+
+* [ ] Actions log showing pnpm installation step
+* [ ] Actions log showing Node.js setup with cache hit
+
+**Recommended filename**: `actions-pnpm-*.png`
+
+---
+
+== How to Capture Screenshots
+
+=== Recommended Tools
+
+* **Windows**: Snipping Tool (Win+Shift+S) or ShareX
+* **macOS**: Screenshot (Cmd+Shift+4) or CleanShot X
+* **Browser**: Built-in DevTools screenshot (Ctrl+Shift+P → "Capture screenshot")
+
+=== Guidelines
+
+. **Resolution**: Capture at 2x resolution if possible (retina/HiDPI displays)
+. **Format**: PNG for screenshots with UI elements, SVG for diagrams
+. **Dimensions**: Aim for 800-1200px width
+. **Annotations**: Use red boxes/arrows sparingly to highlight key areas
+. **Privacy**: Blur/redact any sensitive information (tokens, personal data)
+
+=== File Naming Convention
+
+----
+{topic}-{specific-element}-{optional-number}.png
+
+Examples:
+  pat-creation-permissions.png
+  repo-secrets-add-dialog.png
+  actions-workflow-success.png
+  error-start-path-logs.png
+----
+
+=== Adding to Documentation
+
+. Save screenshots to: `docs/modules/ROOT/images/`
+. Reference in AsciiDoc:
++
+[source,asciidoc]
+----
+image::pat-creation-permissions.png[Creating a fine-grained PAT,width=600]
+----
+
+. For full-width images:
++
+[source,asciidoc]
+----
+.GitHub Actions workflow run
+image::actions-workflow-success.png[Successful workflow run]
+----
+
+---
+
+== Diagram Updates
+
+The documentation includes PlantUML diagrams that render as SVG. If PlantUML isn't configured:
+
+=== Option 1: Use Kroki (Recommended)
+
+Add to `antora-playbook.yml`:
+
+[source,yaml]
+----
+asciidoc:
+  extensions:
+    - asciidoctor-kroki
+----
+
+=== Option 2: Pre-render Diagrams
+
+. Install PlantUML locally
+. Render diagrams to SVG
+. Save to `images/` folder
+. Replace PlantUML blocks with image references
+
+=== Diagrams in Documentation
+
+[cols="1,2,1"]
+|===
+|Diagram ID |Description |File
+
+|`github-actions-antora-flow`
+|CI/CD pipeline authentication flow
+|`github-actions-antora-setup.adoc`
+
+|`troubleshooting-flowchart`
+|Error diagnosis decision tree
+|`troubleshooting-antora-builds.adoc`
+
+|`multi-repo-sync`
+|Multi-repository sync problem illustration
+|`troubleshooting-antora-builds.adoc`
+
+|`checkout-flow`
+|How checkout action works
+|`action-includes-reference.adoc`
+
+|`cache-benefit`
+|Caching benefit visualization
+|`action-includes-reference.adoc`
+
+|`upload-artifact-flow`
+|Artifact packaging flow
+|`action-includes-reference.adoc`
+
+|`complete-workflow`
+|Complete workflow overview
+|`action-includes-reference.adoc`
+|===
+
+---
+
+== Completion Checklist
+
+Once screenshots are added:
+
+* [ ] All high-priority screenshots captured and added
+* [ ] Screenshots referenced in documentation with `image::` macro
+* [ ] Alt text provided for accessibility
+* [ ] File sizes optimized (use TinyPNG or similar)
+* [ ] This report updated to mark completed items
+* [ ] Pull request created with screenshot additions
+
+---
+
+_Last updated: {date}_
+
+
+

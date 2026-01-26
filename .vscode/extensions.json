@@ -1,0 +1,19 @@
+{
+  "recommendations": [
+    // Documentation (Asciidoc & Markdown)
+    "asciidoctor.asciidoctor-vscode",
+    "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
+    "bierner.markdown-mermaid",
+
+    // Git & Collaboration
+    "github.vscode-pull-request-github",
+    "mhutchie.git-graph",
+    "eamodio.gitlens",
+
+    // Core Formatters
+    "esbenp.prettier-vscode",
+
+    // Utilities
+    "henoc.svgeditor"
+  ]
+}

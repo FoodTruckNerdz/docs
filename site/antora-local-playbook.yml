@@ -6,28 +6,25 @@ content:
   sources:
     - url: ../../onboarding
       branches: HEAD
-      start_path: docs/antora
-    - url: ../../workspaces
-      branches: HEAD
-      start_path: docs/antora
+      start_path: docs
     - url: ../../food-truck-api
       branches: HEAD
-      start_path: docs/antora
+      start_path: docs
     - url: ../../ftn-site-vercel
       branches: HEAD
-      start_path: docs/antora
+      start_path: docs
     - url: ../../FoodTruckNerdzSite
       branches: HEAD
-      start_path: docs/antora
+      start_path: docs
     - url: ..
       branches: HEAD
-      start_path: docs/antora
+      start_path: docs
     - url: ../../help
       branches: HEAD
-      start_path: docs/antora
+      start_path: docs
     - url: ../../developer-portal
       branches: HEAD
-      start_path: docs/antora
+      start_path: docs
 ui:
   bundle:
     url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable

@@ -19,13 +19,13 @@ This repository contains:
 
 The documentation site includes content from:
 
-* `common` - Workspace setup, development guides, and shared configuration
 * `food-truck-api` - Backend API documentation
 * `ftn-site-vercel` - Next.js site documentation
 * `FoodTruckNerdzSite` - Legacy website documentation
 * `docs` - Internal team documentation (this repository)
 * `help` - Customer-facing help documentation
 * `developer-portal` - External developer API documentation
+* `Standard Templates` - Generic project templates and workspace settings (available at link:https://github.com/the-dev-center/templates[the-dev-center/templates])
 
 == Getting Started
 
@@ -35,6 +35,15 @@ The site can be built using either:
 
 * `antora-playbook.yml` - Standard playbook (uses GitHub URLs, suitable for CI/CD)
 * `antora-local-playbook.yml` - Local development playbook (uses local paths, faster builds)
+
+== CI/CD & Deployment
+
+The documentation site is automatically built and deployed via GitHub Actions:
+
+* xref:github-actions-antora-setup.adoc[GitHub Actions Setup] — Complete guide for configuring CI/CD with private repository access
+* xref:action-includes-reference.adoc[Action Includes Reference] — Detailed documentation for each GitHub Action used
+
+Having build issues? See xref:troubleshooting-antora-builds.adoc[Troubleshooting Antora Builds] for common errors and solutions.
 
 == Site Structure
 

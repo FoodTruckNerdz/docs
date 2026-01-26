@@ -1,0 +1,525 @@
+= Troubleshooting Antora Build Errors
+:navtitle: Troubleshooting Builds
+:description: Diagnosing and debugging common Antora build errors, especially path and repository issues
+:keywords: antora, troubleshooting, debugging, errors, pnpm, build failures
+:icons: font
+:source-highlighter: highlight.js
+
+This guide helps you diagnose and fix common errors when running `pnpm exec antora` builds, particularly issues involving incorrect paths, missing documentation, or repository synchronization problems.
+
+== Quick Diagnosis Flowchart
+
+Use this flowchart to quickly identify the type of error you're experiencing:
+
+[plantuml, troubleshooting-flowchart, svg]
+----
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+skinparam defaultFontName Segoe UI
+
+title Antora Build Error Diagnosis
+
+start
+
+:Build fails with error;
+
+if (Error mentions\n"start path does not exist"?) then (yes)
+  :Go to **Path Does Not Exist**\nsection below;
+  stop
+elseif (Error mentions\n"authentication" or\n"could not read Username"?) then (yes)
+  :Check **GIT_CREDENTIALS**\nin your workflow;
+  :See xref:github-actions-antora-setup.adoc[];
+  stop
+elseif (Error mentions\n"antora.yml not found"?) then (yes)
+  :Go to **Missing antora.yml**\nsection below;
+  stop
+elseif (Error mentions\n"could not resolve"?) then (yes)
+  :Go to **Branch/Tag Resolution**\nsection below;
+  stop
+else (other)
+  :Check the **Other Errors**\nsection below;
+  stop
+endif
+
+@enduml
+----
+
+== The "Start Path Does Not Exist" Error
+
+This is the most common error in multi-repository Antora setups:
+
+[source]
+----
+[05:20:21.257] FATAL (antora): the start path 'docs' does not exist in https://github.com/FoodTruckNerds/ftn-site-vercel.git (branch: main)
+----
+
+=== What This Error Means
+
+Antora is trying to fetch documentation from a repository, but the specified `start_path` directory doesn't exist in that repository at the specified branch.
+
+=== Common Causes
+
+[cols="1,2,2"]
+|===
+|Cause |Description |Solution
+
+|**Unpushed changes**
+|A team member created the `docs` folder locally but hasn't pushed to the remote branch
+|Push local changes to the repository
+
+|**Wrong branch**
+|The playbook specifies a branch that doesn't have the documentation (e.g., `main` vs `develop`)
+|Update the playbook or push docs to the correct branch
+
+|**Typo in path**
+|The `start_path` in the playbook doesn't match the actual directory name
+|Correct the path in `antora-playbook.yml`
+
+|**Repository reorganization**
+|The documentation was moved to a different location
+|Update the `start_path` in the playbook
+
+|**Missing directory**
+|The `docs` structure was never created in that repository
+|Create the required Antora component structure
+|===
+
+=== Diagnosis Steps
+
+==== Step 1: Identify the Failing Repository
+
+From the error message, note:
+
+* **Repository**: `https://github.com/FoodTruckNerds/ftn-site-vercel.git`
+* **Branch**: `main`
+* **Path**: `docs`
+
+==== Step 2: Verify the Path Exists Remotely
+
+[tabs]
+======
+GitHub Web UI::
++
+. Go to the repository: https://github.com/FoodTruckNerds/ftn-site-vercel
+. Switch to the branch mentioned in the error (`main`)
+. Navigate to `docs/`
+. Verify the `antora.yml` file exists
+
+Command Line::
++
+[source,bash]
+----
+# List the remote branch contents directly
+git ls-remote --heads https://github.com/FoodTruckNerds/ftn-site-vercel.git main
+
+# Or clone and check
+git clone --depth 1 --branch main https://github.com/FoodTruckNerds/ftn-site-vercel.git temp-check
+ls temp-check/docs/
+----
+======
+
+==== Step 3: Check for Local vs Remote Mismatch
+
+If you have the repository cloned locally:
+
+[source,bash]
+----
+# Navigate to the repository
+cd path/to/ftn-site-vercel
+
+# Check if local docs exist
+ls -la docs/
+
+# Check if local changes are pushed
+git status
+git log origin/main..HEAD --oneline
+----
+
+If `git status` shows uncommitted changes or `git log` shows unpushed commits that include the docs folder, you've found the problem.
+
+==== Step 4: Verify Playbook Configuration
+
+Check your `antora-playbook.yml`:
+
+[source,yaml]
+----
+content:
+  sources:
+    - url: https://github.com/FoodTruckNerds/ftn-site-vercel.git
+      branches: HEAD  # <1>
+      start_path: docs  # <2>
+----
+
+<1> `HEAD` means "default branch" — verify this is the branch with your docs
+<2> Ensure this path exactly matches the directory structure (case-sensitive!)
+
+=== Fix: Push Missing Changes
+
+If a team member has local changes:
+
+[source,bash]
+----
+cd path/to/repository
+
+# Stage and commit docs
+git add docs/
+git commit -m "Add Antora documentation component"
+
+# Push to main
+git push origin main
+----
+
+=== Fix: Create Missing Antora Structure
+
+If the repository truly doesn't have the documentation structure:
+
+[source,bash]
+----
+cd path/to/repository
+
+# Create the Antora component structure
+mkdir -p docs/modules/ROOT/pages
+
+# Create minimal antora.yml
+cat > docs/antora.yml << 'EOF'
+name: your-component-name
+version: '1.0'
+title: Your Component Title
+nav:
+- modules/ROOT/nav.adoc
+EOF
+
+# Create navigation
+cat > docs/modules/ROOT/nav.adoc << 'EOF'
+* xref:index.adoc[Home]
+EOF
+
+# Create index page
+cat > docs/modules/ROOT/pages/index.adoc << 'EOF'
+= Component Documentation
+
+Welcome to the documentation.
+EOF
+
+# Commit and push
+git add docs/
+git commit -m "Initialize Antora documentation structure"
+git push origin main
+----
+
+== Branch/Tag Resolution Errors
+
+[source]
+----
+FATAL (antora): could not resolve reference 'refs/heads/main' for https://github.com/org/repo.git
+----
+
+=== Causes
+
+* The specified branch doesn't exist
+* The branch was renamed (e.g., `master` → `main`)
+* Network issues prevented fetching the branch
+
+=== Diagnosis
+
+[source,bash]
+----
+# List all remote branches
+git ls-remote --heads https://github.com/org/repo.git
+
+# Check if branch exists
+git ls-remote --heads https://github.com/org/repo.git main
+----
+
+=== Fix
+
+Update your playbook to use the correct branch:
+
+[source,yaml]
+----
+content:
+  sources:
+    - url: https://github.com/org/repo.git
+      branches: main  # or whatever the correct branch is
+----
+
+[TIP]
+====
+Using `branches: HEAD` tells Antora to use the repository's default branch, which adapts automatically if the default branch is renamed.
+====
+
+== Missing `antora.yml` Error
+
+[source]
+----
+FATAL (antora): antora.yml not found in https://github.com/org/repo.git at path docs
+----
+
+=== What This Means
+
+The directory exists, but Antora can't find the required `antora.yml` component descriptor file.
+
+=== Diagnosis
+
+. Verify the file exists at `docs/antora.yml`
+. Check for case sensitivity issues (`Antora.yml` vs `antora.yml`)
+. Ensure the file is committed and pushed
+
+=== Fix
+
+Create the component descriptor:
+
+[source,yaml]
+----
+# docs/antora.yml
+name: component-name  # Unique identifier, lowercase, no spaces
+version: '1.0'        # Version string (quoted to prevent YAML issues)
+title: Component Title
+nav:
+- modules/ROOT/nav.adoc
+----
+
+== Authentication Errors
+
+[source]
+----
+fatal: could not read Username for 'https://github.com': terminal prompts disabled
+----
+
+This indicates the `GIT_CREDENTIALS` environment variable is missing or incorrectly formatted.
+
+See xref:github-actions-antora-setup.adoc#understanding-the-git_credentials-format[Understanding the GIT_CREDENTIALS Format] for the correct setup.
+
+== Multi-Repository Sync Issues
+
+When your Antora site aggregates documentation from multiple repositories, keeping them in sync becomes critical.
+
+=== The Sync Problem
+
+[plantuml, multi-repo-sync, svg]
+----
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+skinparam defaultFontName Segoe UI
+
+title Multi-Repository Synchronization
+
+rectangle "CI/CD Build" as ci {
+  rectangle "antora-playbook.yml" as playbook
+}
+
+rectangle "GitHub Repositories" as repos {
+  rectangle "onboarding\nmain: docs ✓" as repo1 #lightgreen
+  rectangle "ftn-site-vercel\nmain: docs ✗" as repo3 #lightcoral
+  rectangle "food-truck-api\nmain: docs ✓" as repo4 #lightgreen
+}
+
+playbook --> repo1 : fetch
+playbook --> repo3 : fetch\n**FAILS**
+playbook --> repo4 : fetch
+
+note bottom of repo3
+  Team member working locally
+  but hasn't pushed changes yet
+end note
+
+@enduml
+----
+
+=== Prevention Strategies
+
+==== 1. Use Branch Protection Rules
+
+Configure branch protection on your repositories to require:
+
+* Pull request reviews before merging
+* Status checks to pass (including Antora build verification)
+
+==== 2. Set Up Repository-Level Antora Checks
+
+Add a simple check workflow to each component repository:
+
+[source,yaml]
+----
+# .github/workflows/verify-docs.yml
+name: Verify Documentation
+
+on:
+  push:
+    paths:
+      - 'docs/**'
+  pull_request:
+    paths:
+      - 'docs/**'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Verify antora.yml exists
+        run: |
+          if [ ! -f "docs/antora.yml" ]; then
+            echo "::error::Missing docs/antora.yml"
+            exit 1
+          fi
+          
+      - name: Verify required structure
+        run: |
+          required_paths=(
+            "docs/modules/ROOT/pages"
+            "docs/modules/ROOT/nav.adoc"
+          )
+          for path in "${required_paths[@]}"; do
+            if [ ! -e "$path" ]; then
+              echo "::error::Missing required path: $path"
+              exit 1
+            fi
+          done
+          echo "Documentation structure verified ✓"
+----
+
+==== 3. Use Scheduled Builds
+
+Run your documentation build on a schedule to catch sync issues early:
+
+[source,yaml]
+----
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 6 * * *'  # Daily at 6 AM UTC
+  workflow_dispatch:
+----
+
+== Debugging with Stack Traces
+
+Always use the `--stacktrace` flag when debugging:
+
+[source,bash]
+----
+pnpm exec antora --stacktrace antora-playbook.yml
+----
+
+This provides detailed error information including:
+
+* The full call stack
+* The exact step that failed
+* Additional context about the operation
+
+=== Understanding Stack Traces
+
+A typical Antora stack trace:
+
+[source]
+----
+[10:23:45.123] FATAL (antora): the start path 'docs' does not exist in https://github.com/FoodTruckNerds/ftn-site-vercel.git (branch: main)
+    at validateStartPath (/node_modules/@antora/content-aggregator/lib/aggregate-content.js:234:11)
+    at processContentSource (/node_modules/@antora/content-aggregator/lib/aggregate-content.js:167:5)
+    at async aggregateContent (/node_modules/@antora/content-aggregator/lib/aggregate-content.js:45:3)
+----
+
+Key information:
+
+* **FATAL**: This is a critical error that stops the build
+* **the start path...**: The specific error message
+* **validateStartPath**: The function that detected the error
+* **aggregate-content.js**: The Antora module involved
+
+== Common Error Reference Table
+
+[cols="2,3,2"]
+|===
+|Error Message Pattern |Likely Cause |Solution
+
+|`start path 'X' does not exist`
+|Path missing from repository
+|Push changes or fix `start_path`
+
+|`could not resolve reference`
+|Branch/tag doesn't exist
+|Check branch name, use `HEAD`
+
+|`antora.yml not found`
+|Missing component descriptor
+|Create `antora.yml` file
+
+|`could not read Username`
+|Missing or wrong `GIT_CREDENTIALS`
+|Fix credentials format
+
+|`ECONNREFUSED` or `ETIMEDOUT`
+|Network issue
+|Check connectivity, retry
+
+|`permission denied`
+|PAT lacks required permissions
+|Update PAT scopes
+
+|`duplicate component version`
+|Same component/version in multiple sources
+|Use unique versions or components
+|===
+
+== Quick Reference: Verification Commands
+
+=== Check All Remote Repositories
+
+[source,bash]
+----
+#!/bin/bash
+# verify-repos.sh - Check if all repos have the expected docs structure
+
+repos=(
+  "onboarding"
+  "food-truck-api"
+  "ftn-site-vercel"
+  "FoodTruckNerdzSite"
+  "docs"
+  "help"
+  "developer-portal"
+)
+
+org="FoodTruckNerds"
+path="docs/antora.yml"
+
+echo "Checking documentation structure in all repositories..."
+echo "========================================================"
+
+for repo in "${repos[@]}"; do
+  url="https://raw.githubusercontent.com/$org/$repo/main/$path"
+  if curl --silent --fail "$url" > /dev/null 2>&1; then
+    echo "✓ $repo - docs/antora.yml exists"
+  else
+    echo "✗ $repo - MISSING docs/antora.yml"
+  fi
+done
+----
+
+=== Check Local vs Remote Sync
+
+[source,bash]
+----
+# Run in each component repository
+git fetch origin
+echo "Commits not pushed to origin/main:"
+git log origin/main..HEAD --oneline
+
+echo "Uncommitted changes:"
+git status --short
+----
+
+== Related Documentation
+
+* xref:github-actions-antora-setup.adoc[] — Complete CI/CD setup guide
+* xref:action-includes-reference.adoc[] — GitHub Action details
+* xref:building-docs.adoc[] — Local build instructions
+* https://docs.antora.org/antora/latest/playbook/content-source-url/[Antora: URLs for Content Sources^]
+* https://docs.antora.org/antora/latest/component-version-start-path/[Antora: Component Version Start Path^]
+
+
+

@@ -1,0 +1,442 @@
+= Setting Up GitHub Actions for Antora with Private Repositories
+:navtitle: GitHub Actions CI/CD Setup
+:description: Complete guide for configuring GitHub Actions to build an Antora site that accesses private repositories using secrets
+:keywords: github actions, antora, ci/cd, private repositories, secrets, PAT
+:icons: font
+:source-highlighter: highlight.js
+
+This tutorial walks you through setting up a GitHub Actions workflow to automatically build and deploy an Antora documentation site that pulls content from private repositories.
+
+== Overview
+
+When your Antora playbook references private GitHub repositories, the GitHub Actions workflow needs authentication to access them. This guide covers:
+
+* Creating a Personal Access Token (PAT) with correct permissions
+* Storing the PAT as a GitHub repository secret
+* Configuring the workflow to use the secret with Antora
+* Common gotchas and how to avoid them
+
+[TIP]
+====
+This guide assumes you have an existing Antora playbook that references private repositories. If you're new to Antora, see the https://docs.antora.org/antora/latest/[official Antora documentation^] first.
+====
+
+== Architecture Overview
+
+The following diagram shows how the CI/CD pipeline authenticates to access private repositories:
+
+[plantuml, github-actions-antora-flow, svg]
+----
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+skinparam defaultFontName Segoe UI
+
+title GitHub Actions Antora Build Flow
+
+actor Developer as dev
+participant "GitHub\nRepository" as repo
+participant "GitHub Actions\nRunner" as runner
+participant "Private Repos\n(content sources)" as private
+participant "GitHub Pages" as pages
+
+dev -> repo : Push to main branch
+activate repo
+repo -> runner : Trigger workflow
+activate runner
+
+runner -> runner : Checkout repository
+runner -> runner : Install pnpm & dependencies
+runner -> private : Fetch content\n(using GIT_CREDENTIALS)
+note right: PAT stored in\nGIT_CREDENTIALS env var
+private --> runner : Return content sources
+
+runner -> runner : Build Antora site
+runner -> pages : Deploy artifact
+
+pages --> dev : Site available at\ndocs.foodtrucknerdz.com
+
+deactivate runner
+deactivate repo
+@enduml
+----
+
+[NOTE]
+====
+If PlantUML diagrams don't render, the flow is:
+
+. Developer pushes to main branch
+. GitHub Actions runner is triggered
+. Runner checks out code and installs dependencies
+. Runner fetches content from private repos using `GIT_CREDENTIALS` environment variable
+. Runner builds Antora site
+. Site is deployed to GitHub Pages
+====
+
+== Prerequisites
+
+Before you begin, ensure you have:
+
+* [ ] A GitHub repository containing your Antora playbook
+* [ ] One or more private repositories containing Antora component documentation
+* [ ] A GitHub account with permission to create Personal Access Tokens
+* [ ] Repository admin access to add secrets
+
+== Step 1: Create a Personal Access Token (PAT)
+
+GitHub Actions needs a Personal Access Token to authenticate when accessing private repositories. The default `GITHUB_TOKEN` provided by Actions only has access to the repository running the workflow, not other private repositories.
+
+=== Creating a Fine-Grained PAT (Recommended)
+
+Fine-grained PATs offer more control over permissions and are the recommended approach:
+
+. Navigate to https://github.com/settings/tokens?type=beta[GitHub Personal Access Tokens (fine-grained)^]
+. Click **Generate new token**
+. Configure the token:
++
+[cols="1,2"]
+|===
+|Setting |Value
+
+|**Token name**
+|`antora-docs-builder` (or similar descriptive name)
+
+|**Expiration**
+|Set based on your security requirements (90 days recommended)
+
+|**Resource owner**
+|Select your organization (e.g., `FoodTruckNerds`)
+
+|**Repository access**
+|Select **All repositories** or choose specific repositories that Antora needs to access
+|===
+
+. Under **Permissions**, expand **Repository permissions** and set:
++
+[cols="1,1,2"]
+|===
+|Permission |Access Level |Purpose
+
+|**Contents**
+|Read-only
+|Required to clone and read repository content
+
+|**Metadata**
+|Read-only
+|Required for repository access (automatically selected)
+|===
+
+. Click **Generate token**
+. **Copy the token immediately** — you won't be able to see it again!
+
+[CAUTION]
+====
+**Security Best Practice**: Never commit tokens to your repository. Always use GitHub Secrets.
+
+The token you create should have the *minimum permissions necessary*. Only grant access to the specific repositories your Antora playbook references.
+====
+
+=== Alternative: Classic PAT
+
+If fine-grained PATs aren't available for your organization:
+
+. Navigate to https://github.com/settings/tokens[GitHub Personal Access Tokens (classic)^]
+. Click **Generate new token (classic)**
+. Set a descriptive name and expiration
+. Select the `repo` scope (full control of private repositories)
+. Generate and copy the token
+
+[WARNING]
+====
+Classic PATs with `repo` scope grant broad access. Use fine-grained PATs when possible.
+====
+
+== Step 2: Add the PAT as a Repository Secret
+
+Store the PAT securely in your repository's secrets:
+
+. Navigate to your docs repository on GitHub
+. Go to **Settings** → **Secrets and variables** → **Actions**
+. Click **New repository secret**
+. Configure the secret:
++
+[cols="1,2"]
+|===
+|Field |Value
+
+|**Name**
+|`FTN_GITHUB_TOKEN` (or your preferred name)
+
+|**Secret**
+|Paste your Personal Access Token
+|===
+
+. Click **Add secret**
+
+[TIP]
+====
+**Naming Convention**: Use a clear, descriptive name for your secret that indicates its purpose. Examples:
+
+* `FTN_GITHUB_TOKEN` — Organization-specific token
+* `ANTORA_DOCS_PAT` — Purpose-specific token
+* `PRIVATE_REPOS_TOKEN` — Generic descriptive name
+====
+
+== Step 3: Configure the GitHub Actions Workflow
+
+Create or update your workflow file at `.github/workflows/build-and-deploy.yml`:
+
+[source,yaml]
+----
+name: Build and Deploy Documentation
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # <1>
+
+permissions:  # <2>
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:  # <3>
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        node-version: [20]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4  # <4>
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5  # <5>
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4  # <6>
+        with:
+          package_json_file: 'site/package.json'
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4  # <7>
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+          cache-dependency-path: 'site/pnpm-lock.yaml'
+
+      - name: Install dependencies
+        working-directory: ./site
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Antora site
+        working-directory: ./site
+        env:
+          GIT_CREDENTIALS: "https://x-access-token:${{ secrets.FTN_GITHUB_TOKEN }}@github.com"  # <8>
+        run: pnpm exec antora --stacktrace antora-playbook.yml
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3  # <9>
+        with:
+          path: site/build/site
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4  # <10>
+----
+
+<1> `workflow_dispatch` allows manual triggering from the GitHub UI
+<2> Required permissions for GitHub Pages deployment
+<3> Prevents concurrent deployments that could conflict
+<4> xref:action-includes-reference.adoc#checkout[actions/checkout] — Clones your repository
+<5> xref:action-includes-reference.adoc#configure-pages[actions/configure-pages] — Configures GitHub Pages
+<6> xref:action-includes-reference.adoc#pnpm-setup[pnpm/action-setup] — Installs pnpm package manager
+<7> xref:action-includes-reference.adoc#setup-node[actions/setup-node] — Sets up Node.js with caching
+<8> **Critical**: The `GIT_CREDENTIALS` format Antora expects
+<9> xref:action-includes-reference.adoc#upload-pages[actions/upload-pages-artifact] — Uploads the built site
+<10> xref:action-includes-reference.adoc#deploy-pages[actions/deploy-pages] — Deploys to GitHub Pages
+
+== Understanding the GIT_CREDENTIALS Format
+
+The `GIT_CREDENTIALS` environment variable is how Antora authenticates to access private repositories. The format is critical:
+
+[source]
+----
+https://x-access-token:<YOUR_PAT>@github.com
+----
+
+[cols="1,3"]
+|===
+|Component |Description
+
+|`https://`
+|Protocol (must be HTTPS for GitHub)
+
+|`x-access-token`
+|Username — GitHub requires this literal string when using PATs
+
+|`<YOUR_PAT>`
+|Your Personal Access Token (from secrets)
+
+|`@github.com`
+|The hostname (no trailing path)
+|===
+
+[IMPORTANT]
+====
+**Common Mistake**: Using your GitHub username instead of `x-access-token`.
+
+*Wrong*: `https://myusername:${{ secrets.TOKEN }}@github.com`
+
+*Correct*: `https://x-access-token:${{ secrets.TOKEN }}@github.com`
+
+GitHub's authentication system specifically requires `x-access-token` as the username when authenticating with a PAT.
+====
+
+=== How Antora Uses GIT_CREDENTIALS
+
+When Antora encounters a private repository URL in your playbook, it:
+
+. Parses the `GIT_CREDENTIALS` environment variable
+. Matches the hostname (`github.com`) to the repository URL
+. Injects the credentials into the Git clone operation
+. Clones the repository content
+
+For detailed technical information, see the https://docs.antora.org/antora/latest/playbook/private-repository-auth/[Antora Private Repository Authentication documentation^].
+
+== Gotchas and Common Issues
+
+Based on our experience setting up this pipeline, here are the issues you're most likely to encounter:
+
+=== Gotcha 1: Using `GITHUB_TOKEN` Instead of a PAT
+
+The built-in `GITHUB_TOKEN` secret *cannot* access other private repositories:
+
+[source,yaml]
+----
+# ❌ WRONG - This will fail for private repos
+env:
+  GIT_CREDENTIALS: "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com"
+----
+
+[source,yaml]
+----
+# ✅ CORRECT - Use a custom PAT stored in secrets
+env:
+  GIT_CREDENTIALS: "https://x-access-token:${{ secrets.FTN_GITHUB_TOKEN }}@github.com"
+----
+
+**Why**: `GITHUB_TOKEN` is scoped to only the repository running the workflow. It cannot authenticate to other repositories, even within the same organization.
+
+=== Gotcha 2: Wrong Username in Credentials
+
+[source,yaml]
+----
+# ❌ WRONG - Using personal username
+GIT_CREDENTIALS: "https://myusername:${{ secrets.TOKEN }}@github.com"
+
+# ✅ CORRECT - Using x-access-token
+GIT_CREDENTIALS: "https://x-access-token:${{ secrets.TOKEN }}@github.com"
+----
+
+**Why**: GitHub's authentication API expects the literal string `x-access-token` as the username when using Personal Access Tokens.
+
+=== Gotcha 3: Secret Not Available in Workflow
+
+If your workflow can't find the secret:
+
+. Verify the secret name matches exactly (case-sensitive)
+. Check the secret is in the correct repository
+. For organization secrets, ensure your repository has access
+. Fork repositories don't have access to secrets from the upstream repo
+
+=== Gotcha 4: PAT Permissions Too Restrictive
+
+If you get authentication errors despite correct credentials:
+
+[source]
+----
+fatal: could not read Username for 'https://github.com': terminal prompts disabled
+----
+
+Your PAT may lack required permissions. Ensure:
+
+* Fine-grained PAT: **Contents** read access on all required repositories
+* Classic PAT: `repo` scope selected
+
+=== Gotcha 5: Path Doesn't Exist in Repository
+
+[source]
+----
+[05:20:21.257] FATAL (antora): the start path 'docs' does not exist in https://github.com/FoodTruckNerds/ftn-site-vercel.git (branch: main)
+----
+
+This usually means someone on your team hasn't pushed their changes. See xref:troubleshooting-antora-builds.adoc[Troubleshooting Antora Builds] for detailed diagnosis steps.
+
+== Verifying Your Setup
+
+After committing your workflow:
+
+. Go to your repository's **Actions** tab
+. You should see "Build and Deploy Documentation" workflow
+. Either push a change to `main` or click **Run workflow** (if `workflow_dispatch` is enabled)
+. Monitor the workflow run for any errors
+. Once successful, visit your GitHub Pages URL
+
+=== Testing Locally First
+
+Before relying on CI/CD, test your playbook locally:
+
+[source,bash]
+----
+cd site
+
+# Set credentials for local testing
+export GIT_CREDENTIALS="https://x-access-token:YOUR_PAT_HERE@github.com"
+
+# Run Antora with stack trace for debugging
+pnpm exec antora --stacktrace antora-playbook.yml
+----
+
+[WARNING]
+====
+**Never commit your PAT to the repository!** When testing locally, set the environment variable temporarily or use a `.env` file that's in `.gitignore`.
+====
+
+== References
+
+=== Antora Documentation
+
+* https://docs.antora.org/antora/latest/playbook/private-repository-auth/[Private Repository Authentication^]
+* https://docs.antora.org/antora/latest/playbook/git-credentials-path-and-contents/[Git Credentials Path and Contents^]
+* https://docs.antora.org/antora/latest/playbook/content-source-url/[URLs for Content Sources^]
+
+=== GitHub Documentation
+
+* https://docs.github.com/en/actions/security-guides/encrypted-secrets[Using secrets in GitHub Actions^]
+* https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens[Managing Personal Access Tokens^]
+* https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site[Configuring GitHub Pages^]
+
+=== Action Includes Reference
+
+For detailed information about each GitHub Action used in this workflow, see xref:action-includes-reference.adoc[].
+
+== Next Steps
+
+* xref:troubleshooting-antora-builds.adoc[Troubleshooting Antora Builds] — Diagnose common build errors
+* xref:action-includes-reference.adoc[Action Includes Reference] — Understand each action in the workflow
+* xref:building-docs.adoc[Building Docs Locally] — Test changes before pushing
+
+
+

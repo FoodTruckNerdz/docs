@@ -1,0 +1,16 @@
+= Documentation
+
+This folder is an Antora documentation component for the main docs repository.
+
+== Structure
+
+* `antora.yml` - Component descriptor defining name, version, and navigation
+* `modules/` - Documentation modules (typically ROOT)
+** `modules/ROOT/pages/` - AsciiDoc documentation pages
+** `modules/ROOT/nav.adoc` - Navigation structure
+
+== Antora Integration
+
+This documentation, along with components from other FoodTruckNerds repositories, is aggregated into the unified documentation site via the playbooks in the `site/` folder.
+
+Published site: https://foodtrucknerds.github.io/docs
