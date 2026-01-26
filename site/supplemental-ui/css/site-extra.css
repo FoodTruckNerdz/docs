@@ -120,6 +120,151 @@ html.dark-theme .tableblock {
   border-color: #373a40;
 }
 
+/* All block types - more specific selectors for Antora */
+html.dark-theme .doc .sidebarblock,
+html.dark-theme .doc .sidebarblock > .content {
+  background-color: #25262b !important;
+  background: #25262b !important;
+  border-color: #373a40;
+}
+
+html.dark-theme .doc .exampleblock,
+html.dark-theme .doc .exampleblock > .content {
+  background-color: #1f2125 !important;
+  background: #1f2125 !important;
+  border-color: #373a40;
+}
+
+html.dark-theme .doc .quoteblock,
+html.dark-theme .doc .quoteblock blockquote,
+html.dark-theme .doc .quoteblock > blockquote {
+  background-color: #1f2125 !important;
+  background: #1f2125 !important;
+  border-color: #4dabf7;
+}
+
+html.dark-theme .doc .quoteblock .attribution,
+html.dark-theme .doc .quoteblock cite {
+  color: #909296;
+}
+
+html.dark-theme .doc .verseblock,
+html.dark-theme .doc .verseblock pre,
+html.dark-theme .doc .verseblock > pre {
+  background-color: #1f2125 !important;
+  background: #1f2125 !important;
+  border-color: #373a40;
+  color: #c1c2c5;
+}
+
+html.dark-theme .doc .literalblock,
+html.dark-theme .doc .literalblock > .content,
+html.dark-theme .doc .literalblock pre {
+  background-color: #141517 !important;
+  background: #141517 !important;
+  border-color: #373a40;
+}
+
+html.dark-theme .doc .listingblock,
+html.dark-theme .doc .listingblock > .content {
+  background-color: #141517 !important;
+  background: #141517 !important;
+  border-color: #373a40;
+}
+
+html.dark-theme .doc .openblock,
+html.dark-theme .doc .openblock > .content {
+  background-color: transparent !important;
+  background: transparent !important;
+  border-color: #373a40;
+}
+
+/* Collapsible blocks (details/summary) */
+html.dark-theme .doc details,
+html.dark-theme .doc details[open],
+html.dark-theme .doc .exampleblock[%collapsible],
+html.dark-theme .doc details > summary {
+  background-color: #1f2125 !important;
+  background: #1f2125 !important;
+  border-color: #373a40;
+  color: #c1c2c5;
+}
+
+html.dark-theme .doc details > summary {
+  cursor: pointer;
+}
+
+html.dark-theme .doc details > .content {
+  background-color: #1f2125 !important;
+  background: #1f2125 !important;
+}
+
+/* Block titles */
+html.dark-theme .doc .sidebarblock > .content > .title,
+html.dark-theme .doc .exampleblock > .content > .title,
+html.dark-theme .doc .quoteblock > .title,
+html.dark-theme .doc .verseblock > .title,
+html.dark-theme .doc .literalblock > .title,
+html.dark-theme .doc .listingblock > .title,
+html.dark-theme .doc .openblock > .title {
+  color: #ffffff;
+}
+
+/* Admonition blocks - more specific selectors */
+html.dark-theme .doc .admonitionblock,
+html.dark-theme .doc .admonitionblock > table,
+html.dark-theme .doc .admonitionblock > table > tbody > tr,
+html.dark-theme .doc .admonitionblock > table > tbody > tr > td,
+html.dark-theme .doc .admonitionblock > table > tbody > tr > td.content,
+html.dark-theme .doc .admonitionblock > table > tbody > tr > td.icon {
+  background-color: #25262b !important;
+  background: #25262b !important;
+}
+
+html.dark-theme .doc .admonitionblock td.content {
+  color: #c1c2c5;
+}
+
+html.dark-theme .doc .admonitionblock .title {
+  color: #ffffff;
+}
+
+/* Specific admonition types with subtle accent colors */
+html.dark-theme .doc .admonitionblock.tip > table,
+html.dark-theme .doc .admonitionblock.tip > table > tbody > tr,
+html.dark-theme .doc .admonitionblock.tip > table > tbody > tr > td {
+  background-color: #1a2a1a !important;
+  background: #1a2a1a !important;
+}
+
+html.dark-theme .doc .admonitionblock.note > table,
+html.dark-theme .doc .admonitionblock.note > table > tbody > tr,
+html.dark-theme .doc .admonitionblock.note > table > tbody > tr > td {
+  background-color: #1a1a2a !important;
+  background: #1a1a2a !important;
+}
+
+html.dark-theme .doc .admonitionblock.warning > table,
+html.dark-theme .doc .admonitionblock.warning > table > tbody > tr,
+html.dark-theme .doc .admonitionblock.warning > table > tbody > tr > td {
+  background-color: #2a2a1a !important;
+  background: #2a2a1a !important;
+}
+
+html.dark-theme .doc .admonitionblock.caution > table,
+html.dark-theme .doc .admonitionblock.caution > table > tbody > tr,
+html.dark-theme .doc .admonitionblock.caution > table > tbody > tr > td {
+  background-color: #2a1a1a !important;
+  background: #2a1a1a !important;
+}
+
+html.dark-theme .doc .admonitionblock.important > table,
+html.dark-theme .doc .admonitionblock.important > table > tbody > tr,
+html.dark-theme .doc .admonitionblock.important > table > tbody > tr > td {
+  background-color: #2a1a2a !important;
+  background: #2a1a2a !important;
+}
+
 html.dark-theme .quoteblock blockquote,
 html.dark-theme .quoteblock p {
   color: #adb5bd;
@@ -131,6 +276,89 @@ html.dark-theme pre code {
   background-color: #141517;
   color: #e9ecef;
   border-color: #373a40;
+}
+
+/* Code blocks - more specific selectors for Antora */
+html.dark-theme .doc code,
+html.dark-theme .doc pre,
+html.dark-theme .doc .listingblock pre,
+html.dark-theme .doc .listingblock pre.highlight,
+html.dark-theme .doc .listingblock pre.highlight code,
+html.dark-theme .doc .literalblock pre,
+html.dark-theme .doc pre.content,
+html.dark-theme .doc pre.pygments,
+html.dark-theme .doc pre.rouge,
+html.dark-theme .doc pre.CodeMirror,
+html.dark-theme .doc .highlight pre,
+html.dark-theme .doc .highlight code {
+  background-color: #141517 !important;
+  color: #e9ecef;
+  border-color: #373a40;
+}
+
+html.dark-theme .doc .listingblock .content,
+html.dark-theme .doc .literalblock .content {
+  background-color: #141517;
+}
+
+/* Inline code */
+html.dark-theme .doc p code,
+html.dark-theme .doc td code,
+html.dark-theme .doc li code {
+  background-color: #2c2e33;
+  color: #ff6b6b;
+  border-color: #373a40;
+}
+
+/* Syntax highlighting colors for dark mode */
+html.dark-theme .doc .hljs,
+html.dark-theme .doc .highlight {
+  background-color: #141517 !important;
+}
+
+html.dark-theme .doc .hljs-keyword,
+html.dark-theme .doc .hljs-selector-tag,
+html.dark-theme .doc .hljs-literal,
+html.dark-theme .doc .hljs-section,
+html.dark-theme .doc .hljs-link {
+  color: #c678dd;
+}
+
+html.dark-theme .doc .hljs-string,
+html.dark-theme .doc .hljs-title,
+html.dark-theme .doc .hljs-name,
+html.dark-theme .doc .hljs-type,
+html.dark-theme .doc .hljs-attribute,
+html.dark-theme .doc .hljs-symbol,
+html.dark-theme .doc .hljs-bullet,
+html.dark-theme .doc .hljs-addition,
+html.dark-theme .doc .hljs-variable,
+html.dark-theme .doc .hljs-template-tag,
+html.dark-theme .doc .hljs-template-variable {
+  color: #98c379;
+}
+
+html.dark-theme .doc .hljs-comment,
+html.dark-theme .doc .hljs-quote,
+html.dark-theme .doc .hljs-deletion,
+html.dark-theme .doc .hljs-meta {
+  color: #5c6370;
+}
+
+html.dark-theme .doc .hljs-number,
+html.dark-theme .doc .hljs-regexp,
+html.dark-theme .doc .hljs-literal,
+html.dark-theme .doc .hljs-link {
+  color: #d19a66;
+}
+
+html.dark-theme .doc .hljs-built_in,
+html.dark-theme .doc .hljs-builtin-name {
+  color: #e6c07b;
+}
+
+html.dark-theme .doc .hljs-function {
+  color: #61afef;
 }
 
 html.dark-theme table {
