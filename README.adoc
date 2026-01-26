@@ -21,13 +21,13 @@ cd site
 pnpm install
 
 # Build using local playbook (for local development)
-npx antora antora-local-playbook.yml
+pnpm exec antora antora-local-playbook.yml
 
 # Or build using standard playbook (uses GitHub URLs)
-npx antora antora-playbook.yml
+pnpm exec antora antora-playbook.yml
 
 # Preview the site
-npx http-server build/site -c-1 -p 8080
+pnpm exec http-server build/site -c-1 -p 8080
 ----
 
 Or use the Antora Docker image:
