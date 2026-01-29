@@ -2,32 +2,32 @@
   "folders": [
     {
       "path": ".",
-      "name": "FTN Docs"
+      "name": "FTN Docs",
     },
     {
       "path": "../food-truck-api/docs",
-      "name": "food-truck-api docs"
+      "name": "food-truck-api docs",
     },
     {
       "path": "../ftn-site-vercel/docs",
-      "name": "ftn-site-vercel docs"
+      "name": "ftn-site-vercel docs",
     },
     {
       "path": "../FoodTruckNerdzSite/docs",
-      "name": "FoodTruckNerdzSite docs"
+      "name": "FoodTruckNerdzSite docs",
     },
     {
       "path": "../onboarding/docs",
-      "name": "onboarding docs"
+      "name": "onboarding docs",
     },
     {
       "path": "../help/docs",
-      "name": "help docs"
+      "name": "help docs",
     },
     {
       "path": "../developer-portal/docs",
-      "name": "developer-portal docs"
-    }
+      "name": "developer-portal docs",
+    },
   ],
 
   "extensions": {
@@ -37,17 +37,10 @@
       "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
       "bierner.markdown-mermaid",
 
-      // Git & Collaboration
-      "github.vscode-pull-request-github",
-      "mhutchie.git-graph",
-      "eamodio.gitlens",
-
       // Core Formatters
       "esbenp.prettier-vscode",
-
-      // Utilities
-      "henoc.svgeditor"
-    ]
+      "biomejs.biome",
+    ],
   },
 
   "settings": {
@@ -56,15 +49,15 @@
     "editor.formatOnSave": true,
 
     "[markdown]": {
-      "editor.wordWrap": "on"
+      "editor.wordWrap": "on",
     },
 
     "[asciidoc]": {
-      "editor.formatOnSave": true
+      "editor.formatOnSave": true,
     },
 
     "markdownlint.config": {
-      "MD033": false
+      "MD033": false,
     },
 
     // Git: scan parent repos so Source Control panel can commit to each
@@ -76,10 +69,9 @@
       "../FoodTruckNerdzSite",
       "../onboarding",
       "../help",
-      "../developer-portal"
+      "../developer-portal",
     ],
 
-    "powershell.cwd": "Antora Docs Site"
-  }
+    "powershell.cwd": "Antora Docs Site",
+  },
 }
-
