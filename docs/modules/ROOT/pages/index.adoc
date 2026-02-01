@@ -40,6 +40,7 @@ The site can be built using either:
 
 The documentation site is automatically built and deployed via GitHub Actions:
 
+* xref:redeploying-docs.adoc[Redeploying the Site] — Instructions for manually updating the documentation site after content changes
 * xref:github-actions-antora-setup.adoc[GitHub Actions Setup] — Complete guide for configuring CI/CD with private repository access
 * xref:action-includes-reference.adoc[Action Includes Reference] — Detailed documentation for each GitHub Action used
 
@@ -61,7 +62,7 @@ When adding or updating documentation:
 1. Make changes in the appropriate component repository's `docs/antora/` directory
 2. Build the site locally using `antora-local-playbook.yml` to preview changes
 3. Commit changes to the component repository
-4. The documentation site will automatically rebuild when the component repository is updated
+4. Manually trigger a site redeploy (see xref:redeploying-docs.adoc[Redeploying the Site]) to see your changes online
 
 For more information about building and maintaining the documentation site, see xref:building-docs.adoc[Building Docs Locally].
 

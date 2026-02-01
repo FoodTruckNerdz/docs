@@ -1,0 +1,30 @@
+= Redeploying the Documentation Site
+
+This guide explains how to redeploy the FoodTruckNerdz documentation site after committing and pushing changes to any of the content repositories.
+
+== Automatic Redeployment
+
+Currently, the documentation site automatically rebuilds and redeploys when changes are pushed to the `main` branch of the *docs* repository (this repository).
+
+Changes to other content repositories (such as `ftn-site`, `food-truck-api`, etc.) do not currently trigger an automatic rebuild of the documentation site. This is a known limitation that will be addressed with webhooks in the future.
+
+== Manual Redeployment
+
+To update the documentation site with changes from a content repository, you must manually trigger the deployment workflow in the `docs` repository.
+
+.  Navigate to the **FoodTruckNerds/docs** repository on GitHub.
+.  Click on the **Actions** tab at the top of the page.
+.  In the list of workflows on the left, select **Build and Deploy Documentation**.
+.  Click the **Run workflow** dropdown button.
+.  Ensure the **Branch** is set to `main`.
+.  Click the green **Run workflow** button.
+
+The site will take a few minutes to build and deploy. You can monitor the progress on the Actions page. Once completed, your changes will be live at https://docs.foodtrucknerdz.com.
+
+== When to Redeploy
+
+You should redeploy the documentation site whenever:
+
+* You have pushed significant documentation changes to a content repository's `main` branch.
+* You have added a new component or module to the `antora-playbook.yml`.
+* You have updated the documentation site UI or configuration.
