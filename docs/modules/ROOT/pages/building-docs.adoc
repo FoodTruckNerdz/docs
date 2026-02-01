@@ -62,7 +62,7 @@ This is the standard Antora playbook that uses GitHub URLs, following Antora's c
 ----
 content:
   sources:
-    - url: https://github.com/FoodTruckNerds/onboarding.git
+    - url: https://github.com/FoodTruckNerds/docs.git
       branches: HEAD
       start_path: docs
     # ... other sources
@@ -87,7 +87,7 @@ This is the local development playbook that uses local filesystem paths:
 ----
 content:
   sources:
-    - url: ../onboarding
+    - url: ..
       branches: HEAD
       start_path: docs
     # ... other sources
