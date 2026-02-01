@@ -21,7 +21,7 @@ cd site
 pnpm install
 
 # Build using local playbook (for local development)
-pnpm exec antora antora-local-playbook.yml
+pnpm exec antora antora-playbook-local.yml
 
 # Or build using standard playbook (uses GitHub URLs)
 pnpm exec antora antora-playbook.yml

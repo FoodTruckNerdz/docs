@@ -22,7 +22,7 @@ To build and preview the documentation site locally, see the xref:building-docs.
 The site can be built using either:
 
 * `antora-playbook.yml` - Standard playbook (uses GitHub URLs, suitable for CI/CD)
-* `antora-local-playbook.yml` - Local development playbook (uses local paths, faster builds)
+* `antora-playbook-local.yml` - Local development playbook (uses local paths, faster builds)
 
 == CI/CD & Deployment
 
@@ -47,7 +47,7 @@ The generated documentation site is output to `build/site/` and includes:
 
 When adding or updating documentation:
 
-1. Make changes in the appropriate component repository's `docs/antora/` directory
-2. Build the site locally using `antora-local-playbook.yml` to preview changes
+1. Make changes in the appropriate component repository's `docs/` directory
+2. Build the site locally using `antora-playbook-local.yml` to preview changes
 3. Commit changes to the component repository
 4. Manually trigger a site redeploy (see xref:redeploying-docs.adoc[Redeploying the Site]) to see your changes online

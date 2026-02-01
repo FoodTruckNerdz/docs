@@ -28,7 +28,7 @@ pnpm install
 +
 [source,bash]
 ----
-npx antora antora-local-playbook.yml
+npx antora antora-playbook-local.yml
 ----
 +
 Or build from GitHub sources (standard playbook):
@@ -64,7 +64,7 @@ content:
   sources:
     - url: https://github.com/FoodTruckNerds/onboarding.git
       branches: HEAD
-      start_path: docs/antora
+      start_path: docs
     # ... other sources
 ----
 
@@ -79,7 +79,7 @@ content:
 * Slower builds (clones repositories)
 * May not work if local repository remotes don't match the GitHub URLs
 
-=== antora-local-playbook.yml (Local Paths)
+=== antora-playbook-local.yml (Local Paths)
 
 This is the local development playbook that uses local filesystem paths:
 
@@ -89,7 +89,7 @@ content:
   sources:
     - url: ../onboarding
       branches: HEAD
-      start_path: docs/antora
+      start_path: docs
     # ... other sources
 ----
 
@@ -111,7 +111,7 @@ The two playbook files serve different purposes:
 
 . **Standard Convention**: The `antora-playbook.yml` follows Antora's standard naming convention and uses GitHub URLs, matching Antora tutorials and CI/CD workflows.
 
-. **Local Development**: The `antora-local-playbook.yml` uses local paths for faster iteration and testing of documentation changes without needing to commit and push to GitHub.
+. **Local Development**: The `antora-playbook-local.yml` uses local paths for faster iteration and testing of documentation changes without needing to commit and push to GitHub.
 
 . **Repository Structure**: Some local repositories may have different remote URLs than what's specified in the GitHub playbook. The local playbook works around this by using filesystem paths.
 
@@ -140,7 +140,7 @@ TIP: The `antora-playbook.yml` file follows Antora's standard naming convention 
 
 === Missing antora.yml in Components
 
-If you see an error like `antora.yml not found`, ensure each component repository has an `antora.yml` file in its `docs/antora/` directory.
+If you see an error like `antora.yml not found`, ensure each component repository has an `antora.yml` file in its `docs/` directory.
 
 === Extension Errors
 
@@ -159,10 +159,7 @@ The build process creates the following structure:
 docs/
 ├── site/                       # Antora documentation site folder
 │   ├── antora-playbook.yml     # Standard playbook (GitHub URLs)
-│   ├── antora-local-playbook.yml # Local development playbook
-│   ├── antora/                 # Component documentation
-│   │   ├── antora.yml          # Component descriptor
-│   │   └── modules/
+│   ├── antora-playbook-local.yml # Local development playbook
 │   ├── build/
 │   │   └── site/               # Generated site output
 │   │       ├── index.html
@@ -172,6 +169,9 @@ docs/
 │   ├── supplemental-ui/        # Custom UI overrides
 │   ├── package.json            # Antora dependencies
 │   └── pnpm-lock.yaml          # Lock file
+├── docs/                       # Internal team documentation component
+│   ├── antora.yml              # Component descriptor
+│   └── modules/
 ├── docs.code-workspace         # VSCode workspace file
 └── README.adoc                 # Repository README
 ----
