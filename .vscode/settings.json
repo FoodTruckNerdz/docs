@@ -1,26 +1,57 @@
+// This template file is provided by https://github.com/the-dev-center/templates/
 {
+  // The following folders will be hidden in VSCode to remove visual clutter
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.git": true,
+    "**/.next": true
+  },
+
+  // hidden from search to improve performance in VScode
   "search.exclude": {
     "**/node_modules": true,
-    "**/*.code-search": true,
-    "**/.git": true
+    "**/.git": true,
+    "**/.next": true
   },
-  "files.exclude": {
-    "**/.git": true
-  },
+
+  //
+	// ~~~~~~~~~ Code formatting and linting ~~~~~~~~~~~
+  
   "editor.tabSize": 2,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // We use Prettier as our default formatter with TypeScript addon support
+  "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnSave": true,
+
+  //
+  // Language settings
   "[markdown]": {
-    "editor.wordWrap": "on"
+	  "editor.wordWrap": "on", // Displays text wrapping by default. users can still change the wrapping on each file.
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+    "editor.formatOnSave": true,
+	},
+  // Preferentially Biome for JS/TS/JSX,JSON,CSS, and GraphQL
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
   },
-  "[asciidoc]": {
-    "editor.formatOnSave": true
+  "[code-workspace]": {
+    "editor.defaultFormatter": "biomejs.biome"
   },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+
   "markdownlint.config": {
-    "MD033": false
+    // We still need markdownlint because it provides error
+    // highlighting (diagnostics) in the editor,
+    // while Markdown All-in-one and Biome do not.
+    "MD033": false // Allow HTML in markdown files
   },
-  "git.autoRepositoryDetection": false,
-  "git.scanRepositories": [
-    "."
-  ]
+
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  // configure the source control management interface
+  "scm.alwaysShowRepositories": true,
+  "scm.providerCountBadge": "auto",
+  "git.closeDiffOnOperation": true, // This closes the code 'diff' after you add it to a commit
 }

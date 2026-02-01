@@ -1,19 +1,32 @@
+// This template file is provided by https://github.com/the-dev-center/templates
+// NOTE: These extensions all come from the community-run OpenVSX marketplace (https://open-vsx.org)
+// so they can be installed in Cursor and other third-party VS Code forks.
 {
   "recommendations": [
-    // Documentation (Asciidoc & Markdown)
+    // Core Formatters & Linters & Syntax highlighters
+    "biomejs.biome", // High-speed formatter for JS/JSX/TS/TSX/JSON/JSONC/CSS/GraphQL/HTML files
+    // Markdown
+    "DavidAnson.vscode-markdownlint", // provides error highlighting in the editor.
+    "yzhang.markdown-all-in-one", // productivity suite focused on formatting and snippets.
+    "bpruitt-goddard.mermaid-markdown-syntax-highlighting", // provides syntax highlighting for mermaid diagrams.
+    "bierner.markdown-mermaid", // provides syntax highlighting for mermaid diagrams.
+    // ASCIIdoc - Better alternative to Markdown for technical writing. This is our main documentation format.
     "asciidoctor.asciidoctor-vscode",
-    "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
-    "bierner.markdown-mermaid",
+    // YAML - Yet Another Markup Language
+    "redhat.vscode-yaml",
+
+    // Next.js & React
+    //"nrjdalal.nextjs-assistant",
+    //"marcbruederlin.next-icons",
+    //"HareeshBhittam.next-js-snippets-latest",
+    //"kristiyanvelkov.nextjs-file-gelenator",
+
+    // Media
+    //"henoc.svgeditor",
 
     // Git & Collaboration
-    "github.vscode-pull-request-github",
-    "mhutchie.git-graph",
+    //"github.vscode-pull-request-github",
+    //"mhutchie.git-graph",
     "eamodio.gitlens",
-
-    // Core Formatters
-    "esbenp.prettier-vscode",
-
-    // Utilities
-    "henoc.svgeditor"
-  ]
+  ],
 }

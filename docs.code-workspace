@@ -30,36 +30,21 @@
     },
   ],
 
-  "extensions": {
-    "recommendations": [
-      // Documentation (Asciidoc & Markdown)
-      "asciidoctor.asciidoctor-vscode",
-      "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
-      "bierner.markdown-mermaid",
-
-      // Core Formatters
-      "esbenp.prettier-vscode",
-      "biomejs.biome",
-    ],
-  },
+  // Look in .vscode/extensions.json for extensions recommendations.
 
   "settings": {
-    "editor.tabSize": 2,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
+    // See `.vscode/settings.json` and `.vscode/extensions.json` for more settings.
 
-    "[markdown]": {
-      "editor.wordWrap": "on",
+    // Tell the YAML parser to not lint the GitHub FUNDING.yml file.
+    "yaml.schemas": {
+      "https://json.schemastore.org/github-funding.json": "/.github/FUNDING.yml",
     },
 
-    "[asciidoc]": {
-      "editor.formatOnSave": true,
+    // Change merge editor colors to not be so jarring
+    "workbench.colorCustomizations": {
+      "mergeEditor.conflict.unhandledFocused.border": "#00945b",
+      "mergeEditor.conflict.unhandledUnfocused.border": "#00784a",
     },
-
-    "markdownlint.config": {
-      "MD033": false,
-    },
-
     // Git: scan parent repos so Source Control panel can commit to each
     "git.autoRepositoryDetection": false,
     "git.scanRepositories": [
