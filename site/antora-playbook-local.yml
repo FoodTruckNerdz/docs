@@ -1,7 +1,7 @@
 site:
   title: FoodTruckNerdz Documentation
   url: https://docs.foodtrucknerdz.com
-  start_page: onboarding::index.adoc
+  start_page: docs::index.adoc
 content:
   sources:
     - url: ../../onboarding
@@ -29,6 +29,7 @@ ui:
   bundle:
     url: https://github.com/the-dev-center/antora-dark-theme/releases/latest/download/ui-bundle.zip
     snapshot: true
+  supplemental_files: ./supplemental-ui
 asciidoc:
   extensions:
     - asciidoctor-emoji

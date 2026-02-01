@@ -1,68 +1,71 @@
-= FoodTruckNerdz Documentation Site
+= FoodTruckNerdz Documentation
 
-This repository contains the Antora documentation site configuration and build system for the FoodTruckNerdz project documentation.
+Welcome to the central documentation hub for FoodTruckNerdz. Here you can find technical documentation, user guides, and project information for all our services.
 
-== Overview
+[.cards]
+== Project Documentation
 
-The documentation site aggregates content from multiple component repositories into a single, unified documentation site using Antora. This allows each repository to maintain its own documentation while presenting it as a cohesive whole.
+[.tile]
+--
+[.title]
+🚀 Onboarding
 
-== What's Included
+Everything you need to get started as a contributor.
 
-This repository contains:
+xref:onboarding::index.adoc[Get Started]
+--
 
-* Antora playbook files for building the documentation site
-* Configuration for aggregating documentation from component repositories
-* Custom UI overrides and supplemental files
-* Documentation about building and maintaining the documentation site itself
+[.tile]
+--
+[.title]
+⚙️ Food Truck API
 
-== Component Repositories
+Backend API documentation, endpoints, and data models.
 
-The documentation site includes content from:
+xref:food-truck-api::index.adoc[API Reference]
+--
 
-* `food-truck-api` - Backend API documentation
-* `ftn-site-vercel` - Next.js site documentation
-* `FoodTruckNerdzSite` - Legacy website documentation
-* `docs` - Internal team documentation (this repository)
-* `help` - Customer-facing help documentation
-* `developer-portal` - External developer API documentation
-* `Standard Templates` - Generic project templates and workspace settings (available at link:https://github.com/the-dev-center/templates[the-dev-center/templates])
+[.tile]
+--
+[.title]
+🌐 Site (Vercel)
 
-== Getting Started
+Documentation for the Next.js frontend and Vercel deployment.
 
-To build and preview the documentation site locally, see the xref:building-docs.adoc[Building Docs Locally] guide.
+xref:ftn-site-vercel::index.adoc[Frontend Docs]
+--
 
-The site can be built using either:
+[.tile]
+--
+[.title]
+📖 Web Site (Legacy)
 
-* `antora-playbook.yml` - Standard playbook (uses GitHub URLs, suitable for CI/CD)
-* `antora-local-playbook.yml` - Local development playbook (uses local paths, faster builds)
+Documentation for the legacy FoodTruckNerdzSite.
 
-== CI/CD & Deployment
+xref:FoodTruckNerdzSite::index.adoc[Legacy Site Docs]
+--
 
-The documentation site is automatically built and deployed via GitHub Actions:
+[.tile]
+--
+[.title]
+🆘 Help Center
 
-* xref:redeploying-docs.adoc[Redeploying the Site] — Instructions for manually updating the documentation site after content changes
-* xref:github-actions-antora-setup.adoc[GitHub Actions Setup] — Complete guide for configuring CI/CD with private repository access
-* xref:action-includes-reference.adoc[Action Includes Reference] — Detailed documentation for each GitHub Action used
+Customer-facing help articles and troubleshooting guides.
 
-Having build issues? See xref:troubleshooting-antora-builds.adoc[Troubleshooting Antora Builds] for common errors and solutions.
+xref:help::index.adoc[Help Documentation]
+--
 
-== Site Structure
+[.tile]
+--
+[.title]
+👨‍💻 Developer Portal
 
-The generated documentation site is output to `build/site/` and includes:
+Resources for external developers integrating with our platform.
 
-* Unified navigation across all component repositories
-* Cross-references between components
-* Search functionality
-* Responsive design for all devices
+xref:developer-portal::index.adoc[Developer Portal]
+--
 
-== Contributing
+== Documentation Site
 
-When adding or updating documentation:
-
-1. Make changes in the appropriate component repository's `docs/antora/` directory
-2. Build the site locally using `antora-local-playbook.yml` to preview changes
-3. Commit changes to the component repository
-4. Manually trigger a site redeploy (see xref:redeploying-docs.adoc[Redeploying the Site]) to see your changes online
-
-For more information about building and maintaining the documentation site, see xref:building-docs.adoc[Building Docs Locally].
+Specifics about how this documentation site is built and maintained, including local development and CI/CD, can be found on the xref:docs-site-management.adoc[Documentation Site Management] page.
 

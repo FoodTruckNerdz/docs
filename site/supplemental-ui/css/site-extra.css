@@ -1,0 +1,68 @@
+/* Custom styles for the landing page cards/tiles */
+.doc .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.doc .tile {
+  background: var(--panel-background, #1e1e1e);
+  border: 1px solid var(--panel-border-color, #333);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.doc .tile:hover {
+  transform: translateY(-5px);
+  border-color: var(--link-color, #4facfe);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.doc .tile .title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--link-color, #4facfe);
+  display: block;
+}
+
+.doc .tile p {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  color: var(--text-color, #e0e0e0);
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.doc .tile .xref {
+  display: inline-block;
+  background: var(--link-color, #4facfe);
+  color: #fff !important;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  align-self: flex-start;
+  transition: opacity 0.2s ease;
+}
+
+.doc .tile .xref:hover {
+  opacity: 0.9;
+}
+
+/* Glassmorphism effect if supported */
+@supports (backdrop-filter: blur(10px)) {
+  .doc .tile {
+    background: rgba(30, 30, 30, 0.7);
+    backdrop-filter: blur(10px);
+  }
+}

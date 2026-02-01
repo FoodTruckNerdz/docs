@@ -1,9 +1,11 @@
-* xref:index.adoc[Documentation Site]
-* xref:building-docs.adoc[Building Docs Locally]
-* xref:vscode-extensions.adoc[Recommended VS Code Extensions]
-* xref:partners.adoc[Partners & Complementary Services]
-* CI/CD & Deployment
+* xref:index.adoc[Project Hub]
+* xref:partners.adoc[Partners & Services]
+* xref:vscode-extensions.adoc[VS Code Extensions]
+* Documentation Site
+** xref:docs-site-management.adoc[Site Management Overview]
+** xref:building-docs.adoc[Building Locally]
 ** xref:redeploying-docs.adoc[Redeploying the Site]
-** xref:github-actions-antora-setup.adoc[GitHub Actions Setup]
-** xref:action-includes-reference.adoc[Action Includes Reference]
-* xref:troubleshooting-antora-builds.adoc[Troubleshooting Builds]
+** xref:troubleshooting-antora-builds.adoc[Troubleshooting Builds]
+** CI/CD Details
+*** xref:github-actions-antora-setup.adoc[GitHub Actions Setup]
+*** xref:action-includes-reference.adoc[Action Includes Reference]
