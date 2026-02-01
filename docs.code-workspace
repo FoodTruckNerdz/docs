@@ -2,19 +2,19 @@
   "folders": [
     {
       "path": ".",
-      "name": "FTN Docs",
+      "name": "FTN Docs Site",
     },
     {
       "path": "../food-truck-api/docs",
       "name": "food-truck-api docs",
     },
     {
-      "path": "../ftn-site-vercel/docs",
-      "name": "ftn-site-vercel docs",
+      "path": "../ftn-site/docs",
+      "name": "ftn-site docs",
     },
     {
-      "path": "../FoodTruckNerdzSite/docs",
-      "name": "FoodTruckNerdzSite docs",
+      "path": "../ftn-site-old/docs",
+      "name": "ftn-site-old docs",
     },
     {
       "path": "../onboarding/docs",
@@ -50,8 +50,8 @@
     "git.scanRepositories": [
       ".",
       "../food-truck-api",
-      "../ftn-site-vercel",
-      "../FoodTruckNerdzSite",
+      "../ftn-site",
+      "../ftn-site-old",
       "../onboarding",
       "../help",
       "../developer-portal",

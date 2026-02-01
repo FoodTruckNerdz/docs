@@ -26,7 +26,7 @@
   //
   // Language settings
   "[markdown]": {
-	  "editor.wordWrap": "on", // Displays text wrapping by default. users can still change the wrapping on each file.
+	  "editor.wordWrap": "off", // Displays text wrapping by default. users can still change the wrapping on each file.
     "editor.defaultFormatter": "yzhang.markdown-all-in-one",
     "editor.formatOnSave": true,
 	},
