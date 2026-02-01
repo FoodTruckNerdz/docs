@@ -1,0 +1,69 @@
+= Partners & Complementary Services
+:description: A list of potential partners and complementary services for the Food Truck Nerds app.
+
+To provide a comprehensive experience for food truck operators and customers, the Food Truck Nerds (FTN) app can integrate with various third-party services. These partnerships enhance operational efficiency, marketing reach, and customer satisfaction.
+
+== Point of Sale (POS) Systems
+
+POS integrations are critical for synchronizing menu items, inventory, and sales data directly with the FTN tracker.
+
+=== Lavu
+[cols="1,3"]
+|===
+| **Website** | link:https://lavu.com[lavu.com]
+| **Features** | Mobile hardware bundles (3G/4G), online ordering, inventory management ("86" countdown), and Marty AI for analytics.
+| **Benefits** | Specifically designed for mobile environments like food trucks; reliable cloud connectivity and robust reporting.
+|===
+
+=== Square
+[cols="1,3"]
+|===
+| **Website** | link:https://squareup.com[squareup.com]
+| **Features** | Easy setup, transparent pricing, and extensive third-party app marketplace.
+| **Benefits** | Highly portable hardware and a massive existing user base among small vendors.
+|===
+
+=== Toast
+[cols="1,3"]
+|===
+| **Website** | link:https://pos.toasttab.com[toasttab.com]
+| **Features** | Built-in loyalty programs, online ordering, and delivery integration.
+| **Benefits** | Highly optimized for restaurant workflows and high-volume service.
+|===
+
+=== Clover
+[cols="1,3"]
+|===
+| **Website** | link:https://clover.com[clover.com]
+| **Features** | Compact hardware (Clover Flex/Mini), LTE connectivity, and a robust third-party app market.
+| **Benefits** | Highly portable for outside service and easily scales with additional software modules.
+|===
+
+== Online Ordering & Delivery
+
+Expanding reach beyond the truck's physical location through delivery platforms.
+
+* **DoorDash / Uber Eats / Grubhub:** Direct integration allows orders to flow into the truck's POS.
+* **ShipDay:** Commission-free delivery management for trucks using their own drivers.
+
+== Location & Fleet Management
+
+Ensuring accurate tracking and efficient movement of trucks.
+
+* **Roaming Hunger:** A popular platform for booking and discovery that can complement FTN's tracking.
+* **Route4Me:** Optimizer for fleet routing if managing multiple trucks.
+
+== Marketing & Customer Loyalty
+
+Engaging with the community and rewarding frequent flyers.
+
+* **Stamp Me / Yollty:** Digital loyalty card solutions that work via mobile wallets.
+* **Instagram / TikTok:** Essential for real-time updates; FTN can hook into these APIs to pull live content.
+* **Braze / Klaviyo:** Lifecycle marketing tools for sending geo-fenced push notifications or emails.
+
+== Event Organizers & Local Businesses
+
+Partnerships for consistent placement and high traffic.
+
+* **Local Breweries & Taprooms:** Mutually beneficial partnerships where trucks provide food for drink-only establishments.
+* **Corporate Campuses:** Scheduled rotations through services like link:https://roaminghunger.com[Roaming Hunger] or link:https://bestfoodtrucks.com[Best Food Trucks].
