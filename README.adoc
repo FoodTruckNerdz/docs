@@ -43,8 +43,8 @@ docker run --rm -v "$PWD:/antora" -u "$(id -u):$(id -g)" antora/antora antora-pl
 This playbook coordinates documentation from multiple repositories. Each repository contains its own Antora documentation component in a `docs/` folder:
 
 * **food-truck-api** - Located in the `food-truck-api` repository (`docs/`)
-* **ftn-site-vercel** - Located in the `ftn-site-vercel` repository (`docs/`)
-* **foodtrucknerdzsite** - Located in the `FoodTruckNerdzSite` repository (`docs/`)
+* **ftn-site** - Located in the `ftn-site` repository (`docs/`)
+* **ftn-site-old** - Located in the `ftn-site-old` repository (`docs/`)
 * **docs** - Internal team documentation (this repository, `docs/`)
 * **help** - Customer-facing help documentation (`docs/`)
 * **developer-portal** - External developer API documentation (`docs/`)

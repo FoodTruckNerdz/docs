@@ -1,0 +1,346 @@
+= Using Antora Attributes
+:navtitle: Antora Attributes
+:description: Guide to using global attributes in FoodTruckNerds documentation for consistent repository and URL references
+:keywords: antora, attributes, asciidoc, documentation, configuration
+:icons: font
+:source-highlighter: highlight.js
+
+This guide explains how to use global Antora attributes in the FoodTruckNerds documentation to maintain consistent references to repositories, URLs, and organization information.
+
+== What Are Antora Attributes?
+
+Antora attributes are variables defined in the playbook that can be referenced throughout your documentation. They provide a single source of truth for commonly used values like repository URLs, organization names, and site URLs.
+
+=== Benefits
+
+* **Consistency**: All documentation uses the same values
+* **Maintainability**: Update once in the playbook, changes apply everywhere
+* **Flexibility**: Easy to change organization names, URLs, or repository names
+* **DRY Principle**: Don't Repeat Yourself - define values once
+
+== Available Global Attributes
+
+The following attributes are defined in both `antora-playbook.yml` and `antora-playbook-local.yml`:
+
+=== Organization Attributes
+
+[cols="1,2,2"]
+|===
+|Attribute |Value |Usage
+
+|`\{github-org}`
+|`FoodTruckNerds`
+|Organization name only
+
+|`\{github-org-url}`
+|`https://github.com/FoodTruckNerds`
+|Full organization URL
+
+|`\{docs-site-url}`
+|`https://docs.foodtrucknerdz.com`
+|Documentation site URL
+|===
+
+=== Repository Name Attributes
+
+[cols="1,2,2"]
+|===
+|Attribute |Value |Purpose
+
+|`\{repo-docs}`
+|`docs`
+|Main documentation repository
+
+|`\{repo-ftn-site}`
+|`ftn-site`
+|Main Next.js web application
+
+|`\{repo-food-truck-api}`
+|`food-truck-api`
+|Food Truck API repository
+
+|`\{repo-onboarding}`
+|`onboarding`
+|Developer onboarding repository
+
+|`\{repo-help}`
+|`help`
+|Help documentation repository
+
+|`\{repo-developer-portal}`
+|`developer-portal`
+|Developer portal repository
+
+|`\{repo-ftn-site-old}`
+|`ftn-site-old`
+|Legacy website repository
+|===
+
+== How to Use Attributes
+
+=== Basic Syntax
+
+Attributes are referenced using curly braces:
+
+[source,asciidoc]
+----
+{attribute-name}
+----
+
+=== In Links
+
+==== Simple Link
+
+[source,asciidoc]
+----
+Visit the {github-org-url}[FoodTruckNerds organization] on GitHub.
+----
+
+**Renders as**: Visit the https://github.com/FoodTruckNerds[FoodTruckNerds organization] on GitHub.
+
+==== Repository Link
+
+[source,asciidoc]
+----
+Clone from {github-org-url}/{repo-ftn-site}[ftn-site repository].
+----
+
+**Renders as**: Clone from https://github.com/FoodTruckNerds/ftn-site[ftn-site repository].
+
+==== Documentation Site Link
+
+[source,asciidoc]
+----
+See the {docs-site-url}[documentation site] for more information.
+----
+
+**Renders as**: See the https://docs.foodtrucknerdz.com[documentation site] for more information.
+
+=== In Code Blocks
+
+Attributes work in code blocks too:
+
+[source,asciidoc]
+....
+[source,bash]
+----
+git clone {github-org-url}/{repo-ftn-site}.git
+cd {repo-ftn-site}
+----
+....
+
+**Renders as**:
+
+[source,bash]
+----
+git clone https://github.com/FoodTruckNerds/ftn-site.git
+cd ftn-site
+----
+
+=== In Text
+
+[source,asciidoc]
+----
+The `{repo-ftn-site}` repository contains the main web application.
+----
+
+**Renders as**: The `ftn-site` repository contains the main web application.
+
+== Common Patterns
+
+=== Repository References
+
+When mentioning a repository:
+
+[source,asciidoc]
+----
+For setup instructions, see the {github-org-url}/{repo-onboarding}[onboarding repository].
+----
+
+=== Git Commands
+
+When showing git commands:
+
+[source,asciidoc]
+------
+[source,bash]
+----
+# Clone the repository
+git clone {github-org-url}/{repo-ftn-site}.git
+
+# Add upstream remote
+git remote add upstream {github-org-url}/{repo-ftn-site}.git
+----
+------
+
+=== Cross-References to Documentation
+
+When linking to other documentation pages:
+
+[source,asciidoc]
+----
+Visit {docs-site-url}/docs/getting-started.html for setup instructions.
+----
+
+== Best Practices
+
+=== DO: Use Attributes for Repository References
+
+✅ **Good**:
+[source,asciidoc]
+----
+Clone from {github-org-url}/{repo-ftn-site}.git
+----
+
+❌ **Avoid**:
+[source,asciidoc]
+----
+Clone from https://github.com/FoodTruckNerds/ftn-site.git
+----
+
+=== DO: Use Attributes for Organization URLs
+
+✅ **Good**:
+[source,asciidoc]
+----
+Visit {github-org-url} to see all repositories.
+----
+
+❌ **Avoid**:
+[source,asciidoc]
+----
+Visit https://github.com/FoodTruckNerds to see all repositories.
+----
+
+=== DO: Use Attributes for Documentation Site URLs
+
+✅ **Good**:
+[source,asciidoc]
+----
+See {docs-site-url}/docs/troubleshooting.html
+----
+
+❌ **Avoid**:
+[source,asciidoc]
+----
+See https://docs.foodtrucknerdz.com/docs/troubleshooting.html
+----
+
+=== DON'T: Use Attributes in Example Error Messages
+
+When showing example error output, use literal values for clarity:
+
+✅ **Good** (example error message):
+[source,asciidoc]
+----
+[source]
+----
+FATAL: the start path 'docs' does not exist in https://github.com/FoodTruckNerds/ftn-site.git
+----
+----
+
+This helps readers recognize the error pattern.
+
+== Adding New Attributes
+
+If you need to add a new global attribute:
+
+. Open both playbook files:
++
+* `site/antora-playbook.yml`
+* `site/antora-playbook-local.yml`
+
+. Add the attribute under `asciidoc.attributes`:
++
+[source,yaml]
+----
+asciidoc:
+  attributes:
+    # Existing attributes...
+    new-attribute-name: value
+----
+
+. Use the attribute in documentation:
++
+[source,asciidoc]
+----
+{new-attribute-name}
+----
+
+. Commit both playbook files together to keep them in sync
+
+[IMPORTANT]
+====
+**Always update both playbooks**: Changes to attributes must be made in both `antora-playbook.yml` and `antora-playbook-local.yml` to ensure consistency between CI/CD builds and local development.
+====
+
+== Troubleshooting
+
+=== Attribute Not Resolving
+
+If an attribute shows as `\{attribute-name}` instead of its value:
+
+. **Check spelling**: Attribute names are case-sensitive
+. **Verify definition**: Ensure the attribute is defined in the playbook
+. **Rebuild**: Run `pnpm exec antora` again to pick up changes
+. **Check scope**: Attributes defined in the playbook are available globally
+
+=== Attribute Shows Wrong Value
+
+. **Check playbook file**: Verify you're using the correct playbook (`antora-playbook.yml` vs `antora-playbook-local.yml`)
+. **Clear cache**: Delete `build/` directory and rebuild
+. **Verify YAML syntax**: Ensure proper indentation in the playbook
+
+=== Attribute Not Working in Code Blocks
+
+Attributes work in code blocks, but:
+
+* They must be on their own line or properly spaced
+* They expand at build time, not runtime
+* Verify the code block syntax is correct
+
+== Examples from Our Documentation
+
+=== Example 1: Repository Link in README
+
+From `ftn-site/docs/README.adoc`:
+
+[source,asciidoc]
+----
+This documentation is aggregated into the unified FoodTruckNerds 
+documentation site via the playbook in the 
+{github-org-url}/{repo-docs}[docs repository].
+
+Published site: {docs-site-url}
+----
+
+=== Example 2: Git Commands in Deployment Guide
+
+From `ftn-site/docs/deployment.adoc`:
+
+[source,asciidoc]
+------
+[source,bash]
+----
+# Set upstream to the original repository
+git remote set-url upstream {github-org-url}/{repo-ftn-site}.git
+----
+------
+
+=== Example 3: Troubleshooting Documentation
+
+From `docs/troubleshooting-antora-builds.adoc`:
+
+[source,asciidoc]
+----
+. Go to the repository: {github-org-url}/{repo-ftn-site}
+. Switch to the branch mentioned in the error (`main`)
+. Navigate to `docs/`
+----
+
+== Related Documentation
+
+* xref:building-docs.adoc[] — Building the documentation site locally
+* xref:github-actions-antora-setup.adoc[] — CI/CD setup with GitHub Actions
+* https://docs.antora.org/antora/latest/playbook/asciidoc-attributes/[Antora: AsciiDoc Attributes^]
+* https://docs.asciidoctor.org/asciidoc/latest/attributes/document-attributes/[AsciiDoc: Document Attributes^]

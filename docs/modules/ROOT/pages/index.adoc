@@ -2,67 +2,69 @@
 
 Welcome to the central documentation hub for FoodTruckNerdz. Here you can find technical documentation, user guides, and project information for all our services.
 
-[.cards]
 == Project Documentation
 
-[.tile]
+[.cards]
 --
+[.tile]
+====
 [.title]
 🚀 Onboarding
 
 Everything you need to get started as a contributor.
 
 xref:onboarding::index.adoc[Get Started]
---
+====
 
 [.tile]
---
+====
 [.title]
 ⚙️ Food Truck API
 
 Backend API documentation, endpoints, and data models.
 
 xref:food-truck-api::index.adoc[API Reference]
---
+====
 
 [.tile]
---
+====
 [.title]
 🌐 Site (Vercel)
 
 Documentation for the Next.js frontend and Vercel deployment.
 
-xref:ftn-site-vercel::index.adoc[Frontend Docs]
---
+xref:ftn-site::index.adoc[Frontend Docs]
+====
 
 [.tile]
---
+====
 [.title]
-📖 Web Site (Legacy)
+📖 Legacy Website
 
-Documentation for the legacy FoodTruckNerdzSite.
+Documentation for the legacy ftn-site-old website.
 
-xref:FoodTruckNerdzSite::index.adoc[Legacy Site Docs]
---
+xref:ftn-site-old::index.adoc[Legacy Site Docs]
+====
 
 [.tile]
---
+====
 [.title]
 🆘 Help Center
 
 Customer-facing help articles and troubleshooting guides.
 
 xref:help::index.adoc[Help Documentation]
---
+====
 
 [.tile]
---
+====
 [.title]
 👨‍💻 Developer Portal
 
 Resources for external developers integrating with our platform.
 
 xref:developer-portal::index.adoc[Developer Portal]
+====
 --
 
 == Documentation Site

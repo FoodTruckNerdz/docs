@@ -5,6 +5,7 @@
 ** xref:docs-site-management.adoc[Site Management Overview]
 ** xref:building-docs.adoc[Building Locally]
 ** xref:redeploying-docs.adoc[Redeploying the Site]
+** xref:antora-attributes.adoc[Using Antora Attributes]
 ** xref:troubleshooting-antora-builds.adoc[Troubleshooting Builds]
 ** CI/CD Details
 *** xref:github-actions-antora-setup.adoc[GitHub Actions Setup]

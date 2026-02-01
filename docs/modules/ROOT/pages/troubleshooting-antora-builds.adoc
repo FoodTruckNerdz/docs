@@ -51,7 +51,7 @@ This is the most common error in multi-repository Antora setups:
 
 [source]
 ----
-[05:20:21.257] FATAL (antora): the start path 'docs' does not exist in https://github.com/FoodTruckNerds/ftn-site-vercel.git (branch: main)
+[05:20:21.257] FATAL (antora): the start path 'docs' does not exist in {github-org-url}/{repo-ftn-site}.git (branch: main)
 ----
 
 === What This Error Means
@@ -91,7 +91,7 @@ Antora is trying to fetch documentation from a repository, but the specified `st
 
 From the error message, note:
 
-* **Repository**: `https://github.com/FoodTruckNerds/ftn-site-vercel.git`
+* **Repository**: `{github-org-url}/ftn.git`
 * **Branch**: `main`
 * **Path**: `docs`
 
@@ -101,7 +101,7 @@ From the error message, note:
 ======
 GitHub Web UI::
 +
-. Go to the repository: https://github.com/FoodTruckNerds/ftn-site-vercel
+. Go to the repository: {github-org-url}/{repo-ftn-site}
 . Switch to the branch mentioned in the error (`main`)
 . Navigate to `docs/`
 . Verify the `antora.yml` file exists
@@ -111,10 +111,10 @@ Command Line::
 [source,bash]
 ----
 # List the remote branch contents directly
-git ls-remote --heads https://github.com/FoodTruckNerds/ftn-site-vercel.git main
+git ls-remote --heads {github-org-url}/{repo-ftn-site}.git main
 
 # Or clone and check
-git clone --depth 1 --branch main https://github.com/FoodTruckNerds/ftn-site-vercel.git temp-check
+git clone --depth 1 --branch main {github-org-url}/{repo-ftn-site}.git temp-check
 ls temp-check/docs/
 ----
 ======
@@ -126,7 +126,7 @@ If you have the repository cloned locally:
 [source,bash]
 ----
 # Navigate to the repository
-cd path/to/ftn-site-vercel
+cd path/to/ftn-site
 
 # Check if local docs exist
 ls -la docs/
@@ -146,7 +146,7 @@ Check your `antora-playbook.yml`:
 ----
 content:
   sources:
-    - url: https://github.com/FoodTruckNerds/ftn-site-vercel.git
+    - url: {github-org-url}/{repo-ftn-site}.git
       branches: HEAD  # <1>
       start_path: docs  # <2>
 ----
@@ -312,7 +312,7 @@ rectangle "CI/CD Build" as ci {
 
 rectangle "GitHub Repositories" as repos {
   rectangle "onboarding\nmain: docs ✓" as repo1 #lightgreen
-  rectangle "ftn-site-vercel\nmain: docs ✗" as repo3 #lightcoral
+  rectangle "ftn-site\nmain: docs ✗" as repo3 #lightcoral
   rectangle "food-truck-api\nmain: docs ✓" as repo4 #lightgreen
 }
 
@@ -417,7 +417,7 @@ A typical Antora stack trace:
 
 [source]
 ----
-[10:23:45.123] FATAL (antora): the start path 'docs' does not exist in https://github.com/FoodTruckNerds/ftn-site-vercel.git (branch: main)
+[10:23:45.123] FATAL (antora): the start path 'docs' does not exist in {github-org-url}/{repo-ftn-site}.git (branch: main)
     at validateStartPath (/node_modules/@antora/content-aggregator/lib/aggregate-content.js:234:11)
     at processContentSource (/node_modules/@antora/content-aggregator/lib/aggregate-content.js:167:5)
     at async aggregateContent (/node_modules/@antora/content-aggregator/lib/aggregate-content.js:45:3)
@@ -477,8 +477,8 @@ Key information:
 repos=(
   "onboarding"
   "food-truck-api"
-  "ftn-site-vercel"
-  "FoodTruckNerdzSite"
+  "ftn-site"
+  "ftn-site-old"
   "docs"
   "help"
   "developer-portal"

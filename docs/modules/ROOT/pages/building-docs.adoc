@@ -62,7 +62,7 @@ This is the standard Antora playbook that uses GitHub URLs, following Antora's c
 ----
 content:
   sources:
-    - url: https://github.com/FoodTruckNerds/example-component.git
+    - url: {github-org-url}/example-component.git
       branches: HEAD
       start_path: docs
     # ... other sources

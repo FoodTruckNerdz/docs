@@ -1,68 +1,95 @@
 /* Custom styles for the landing page cards/tiles */
-.doc .cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+
+/* Ensure proper block layout for containers */
+.doc .sect1:has(.openblock.cards),
+.doc .sectionbody:has(.openblock.cards),
+.doc .openblock.cards {
+  display: block !important;
 }
 
-.doc .tile {
-  background: var(--panel-background, #1e1e1e);
-  border: 1px solid var(--panel-border-color, #333);
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* The .cards container's content div - single column list */
+.doc .openblock.cards > .content {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.75rem !important;
+  margin: 1rem 0 0 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
 }
 
-.doc .tile:hover {
-  transform: translateY(-5px);
-  border-color: var(--link-color, #4facfe);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+/* Each tile */
+.doc .openblock.cards > .content > .exampleblock.tile {
+  display: flex !important;
+  flex-direction: column !important;
+  background: var(--panel-background, #f8f8f8) !important;
+  border: 1px solid var(--panel-border-color, #ddd) !important;
+  border-radius: 6px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: auto !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.doc .tile .title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-  color: var(--link-color, #4facfe);
-  display: block;
-}
-
-.doc .tile p {
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-  color: var(--text-color, #e0e0e0);
-  line-height: 1.6;
+.doc .openblock.cards > .content > .exampleblock.tile > .content {
+  display: flex !important;
+  flex-direction: column !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 1.25rem !important;
+  margin: 0 !important;
   flex-grow: 1;
 }
 
-.doc .tile .xref {
-  display: inline-block;
-  background: var(--link-color, #4facfe);
-  color: #fff !important;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  text-decoration: none !important;
+.doc .openblock.cards > .content > .exampleblock.tile:hover {
+  border-color: var(--link-color, #1565c0) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Title */
+.doc .openblock.cards .exampleblock.tile .paragraph.title {
+  font-size: 1.1rem;
   font-weight: 600;
+  margin: 0 0 0.5rem 0 !important;
+  color: var(--heading-font-color, #333);
+}
+
+.doc .openblock.cards .exampleblock.tile .paragraph.title p {
+  margin: 0 !important;
+}
+
+/* Description */
+.doc .openblock.cards .exampleblock.tile .paragraph:not(.title):not(:last-child) {
+  margin: 0 0 1rem 0 !important;
   font-size: 0.9rem;
-  align-self: flex-start;
-  transition: opacity 0.2s ease;
+  color: var(--body-font-color, #555);
+  line-height: 1.5;
+  flex-grow: 1;
 }
 
-.doc .tile .xref:hover {
-  opacity: 0.9;
+.doc .openblock.cards .exampleblock.tile .paragraph:not(.title):not(:last-child) p {
+  margin: 0 !important;
 }
 
-/* Glassmorphism effect if supported */
-@supports (backdrop-filter: blur(10px)) {
-  .doc .tile {
-    background: rgba(30, 30, 30, 0.7);
-    backdrop-filter: blur(10px);
-  }
+/* Link container */
+.doc .openblock.cards .exampleblock.tile .paragraph:last-child {
+  margin: auto 0 0 0 !important;
 }
+
+.doc .openblock.cards .exampleblock.tile .paragraph:last-child p {
+  margin: 0 !important;
+}
+
+/* Link styling - simple text link */
+.doc .openblock.cards .exampleblock.tile a {
+  color: var(--link-color, #1565c0);
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.doc .openblock.cards .exampleblock.tile a:hover {
+  text-decoration: underline;
+}
+
+

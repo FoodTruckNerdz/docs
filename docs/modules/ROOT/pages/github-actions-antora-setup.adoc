@@ -379,7 +379,7 @@ Your PAT may lack required permissions. Ensure:
 
 [source]
 ----
-[05:20:21.257] FATAL (antora): the start path 'docs' does not exist in https://github.com/FoodTruckNerds/ftn-site-vercel.git (branch: main)
+[05:20:21.257] FATAL (antora): the start path 'docs' does not exist in {github-org-url}/{repo-ftn-site}.git (branch: main)
 ----
 
 This usually means someone on your team hasn't pushed their changes. See xref:troubleshooting-antora-builds.adoc[Troubleshooting Antora Builds] for detailed diagnosis steps.

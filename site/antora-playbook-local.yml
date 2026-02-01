@@ -10,10 +10,10 @@ content:
     - url: ../../food-truck-api
       branches: HEAD
       start_path: docs
-    - url: ../../ftn-site-vercel
+    - url: ../../ftn-site
       branches: HEAD
       start_path: docs
-    - url: ../../FoodTruckNerdzSite
+    - url: ../../ftn-site-old
       branches: HEAD
       start_path: docs
     - url: ..
@@ -33,3 +33,16 @@ ui:
 asciidoc:
   extensions:
     - asciidoctor-emoji
+  attributes:
+    # Organization URLs
+    github-org: FoodTruckNerds
+    github-org-url: https://github.com/FoodTruckNerds
+    docs-site-url: https://docs.foodtrucknerdz.com
+    # Repository names
+    repo-docs: docs
+    repo-ftn-site: ftn-site
+    repo-food-truck-api: food-truck-api
+    repo-onboarding: onboarding
+    repo-help: help
+    repo-developer-portal: developer-portal
+    repo-ftn-site-old: ftn-site-old
