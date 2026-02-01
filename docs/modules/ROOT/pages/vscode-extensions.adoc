@@ -1,0 +1,47 @@
+= Recommended VS Code Extensions
+:navtitle: VS Code Extensions
+
+This article covers recommended VS Code extensions that enhance your development workflow. While some projects have specific requirements (e.g., xref:building-docs.adoc[Asciidoctor for documentation]), these extensions are generally useful across all FoodTruckNerds and internal projects.
+
+== Standard Recommendations
+
+These recommendations are gathered from global templates and project workspaces.
+
+include::partial$recommended-extensions.adoc[]
+
+== Conflict Analysis & Performance
+
+When using multiple extensions, especially those that provide similar functionality, you may encounter performance degradation or conflicting behavior.
+
+=== Git Extensions
+The following extensions have overlapping features:
+* `eamodio.gitlens`
+* `mhutchie.git-graph`
+* `github.vscode-pull-request-github`
+
+**Potential Conflicts:**
+- **UI Clutter**: Multiple blame annotations or history views.
+- **Performance**: GitLens is a heavy extension. If you experience lag in large repositories, consider disabling "Current Line Blame" or other real-time features.
+
+=== Formatters and Linters
+Conflicts often arise between Biome and Prettier.
+
+**Analysis:**
+- `biomejs.biome` is extremely fast and is the preferred formatter for JSON, JSONC, and `.code-workspace` files.
+- `esbenp.prettier-vscode` is used for most other languages (JS, TS, CSS, etc.).
+
+**Resolution:**
+The `.code-workspace` files in our repositories are configured to handle this automatically:
+[source,json]
+----
+"[json]": {
+  "editor.defaultFormatter": "biomejs.biome"
+},
+"[typescript]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
+----
+Avoid installing conflicting global formatters that override these project-specific settings.
+
+=== Markdown Tools
+`bierner.markdown-mermaid` and `bpruitt-goddard.mermaid-markdown-syntax-highlighting` work together: one provides the preview, the other provides the editor syntax highlighting. There are no known performance issues with using both.

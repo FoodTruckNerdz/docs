@@ -1,0 +1,30 @@
+// Recommended VS Code Extensions Partial
+// This file is included in various articles
+
+=== Git & Collaboration
+
+* `github.vscode-pull-request-github` — *GitHub Pull Requests and Issues*. Lets you review and manage GitHub PRs and issues directly from VS Code.
+* `eamodio.gitlens` — *GitLens — Git supercharged*. Provides powerful visualization of git history, blame annotations, and more.
+* `mhutchie.git-graph` — *Git Graph*. View a Git Graph of your repository, and easily perform Git actions from the graph.
+
+=== Formatting & Linting
+
+* `esbenp.prettier-vscode` — *Prettier - Code formatter*. Industry-standard opinionated code formatter.
+* `biomejs.biome` — *Biome*. A fast toolchain for web projects (formatting, linting, and more).
+* `rvest.vs-code-prettier-eslint` — *Prettier-ESlint*. Integrates Prettier formatting with ESLint rules.
+
+=== Documentation
+
+* `bierner.markdown-mermaid` — *Markdown Preview Mermaid Support*. Adds Mermaid diagram support to VS Code's built-in markdown preview.
+* `bpruitt-goddard.mermaid-markdown-syntax-highlighting` — *Mermaid Markdown Syntax Highlighting*. Provides syntax highlighting for Mermaid diagrams in markdown files.
+
+=== Support for Languages & Frameworks
+
+* `redhat.vscode-yaml` — *YAML*. provides comprehensive YAML language support.
+* `rust-lang.rust-analyzer` — *rust-analyzer*. A fast and feature-complete Rust language support extension.
+* `tamasfe.even-better-toml` — *Even Better TOML*. Fully-featured TOML support.
+* `bradlc.vscode-tailwindcss` — *Tailwind CSS IntelliSense*. Autocomplete and syntax highlighting for Tailwind CSS.
+
+=== Utilities
+
+* `henoc.svgeditor` — *SVG Editor*. A simple editor for SVG files.
