@@ -1,18 +1,19 @@
-# Package manager artifacts (accidental installs at repo root)
+# Package manager artifacts
 node_modules/
-package.json
-pnpm-lock.yaml
-package-lock.json
-yarn.lock
-bun.lockb
 .pnpm-store/
 
 # Build output
+build/
 site/build/
 site/node_modules/
 site/package.json
 site/pnpm-lock.yaml
 site/package-lock.json
+
+# Local Antora configs
+antora-playbook-offline.yml
+antora-playbook-offline-*.yml
+!antora-playbook-offline*.example.yml
 
 # Editor/IDE
 .idea/

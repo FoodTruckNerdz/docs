@@ -8,20 +8,18 @@ The published documentation is available at: https://docs.foodtrucknerdz.com
 
 == Building the Documentation
 
-The Antora documentation site files are located in the `site/` folder.
-
 To build and preview the documentation locally:
 
 [source,bash]
 ----
-# Navigate to the site folder
-cd site
-
 # Install dependencies
 pnpm install
 
-# Build using local playbook (for local development)
-pnpm exec antora antora-playbook-local.yml
+# Setup local playback (creates antora-playbook-offline.yml from example)
+cp antora-playbook-offline.example.yml antora-playbook-offline.yml
+
+# Build using offline playbook (uses local folder references)
+pnpm exec antora antora-playbook-offline.yml
 
 # Or build using standard playbook (uses GitHub URLs)
 pnpm exec antora antora-playbook.yml
@@ -34,8 +32,7 @@ Or use the Antora Docker image:
 
 [source,bash]
 ----
-cd site
-docker run --rm -v "$PWD:/antora" -u "$(id -u):$(id -g)" antora/antora antora-playbook.yml
+docker run --rm -v "${PWD}:/antora" -u "$(id -u):$(id -g)" antora/antora antora-playbook.yml
 ----
 
 == Structure

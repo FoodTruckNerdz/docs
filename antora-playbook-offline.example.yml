@@ -4,32 +4,32 @@ site:
   start_page: docs::index.adoc
 content:
   sources:
-    - url: ../../onboarding
+    - url: ../onboarding
       branches: HEAD
       start_path: docs
-    - url: ../../food-truck-api
+    - url: ../food-truck-api
       branches: HEAD
       start_path: docs
-    - url: ../../ftn-site
+    - url: ../ftn-site
       branches: HEAD
       start_path: docs
-    - url: ../../ftn-site-old
+    - url: ../ftn-site-old
       branches: HEAD
       start_path: docs
-    - url: ..
+    - url: .
       branches: HEAD
       start_path: docs
-    - url: ../../help
+    - url: ../help
       branches: HEAD
       start_path: docs
-    - url: ../../developer-portal
+    - url: ../developer-portal
       branches: HEAD
       start_path: docs
 ui:
   bundle:
     url: https://github.com/the-dev-center/antora-dark-theme/releases/latest/download/ui-bundle.zip
     snapshot: true
-  supplemental_files: ./supplemental-ui
+  supplemental_files: ./site/supplemental-ui
 asciidoc:
   extensions:
     - asciidoctor-emoji

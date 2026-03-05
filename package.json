@@ -1,0 +1,19 @@
+{
+  "devDependencies": {
+    "@asciidoctor/core": "^3.0.4",
+    "antora": "^3.1.14",
+    "asciidoctor-emoji": "^0.5.0"
+  },
+  "scripts": {
+    "build": "antora antora-playbook.yml",
+    "build:offline": "antora --fetch antora-playbook-offline.yml"
+  },
+  "packageManager": "pnpm@10.24.0+sha512.01ff8ae71b4419903b65c60fb2dc9d34cf8bb6e06d03bde112ef38f7a34d6904c424ba66bea5cdcf12890230bf39f9580473140ed9c946fef328b6e5238a345a",
+  "pnpm": {
+    "overrides": {
+      "inflight": "npm:lru-cache@^10.0.0",
+      "glob": "^10.0.0",
+      "punycode": "^2.3.1"
+    }
+  }
+}

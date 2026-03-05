@@ -1,0 +1,13 @@
+{
+  "extends": ["development"]
+}
+
+/*
+.hintrc is a configuration file used by webhint, a linting tool that 
+helps you improve the quality, accessibility, and performance of your websites.
+
+The extends property with the value "development" means that your .hintrc file 
+is inheriting a predefined set of webhint rules and configurations designed for 
+a "development" environment. This allows you to quickly set up common best 
+practices without having to configure every rule individually.
+*/

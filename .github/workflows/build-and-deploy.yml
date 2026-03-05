@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -30,21 +30,20 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup/@v4
         with:
-          package_json_file: 'site/package.json'
+          version: 10
+          package_json_file: "package.json"
 
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v5
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
-          cache-dependency-path: 'site/pnpm-lock.yaml'
+          cache: "pnpm"
+          cache-dependency-path: "pnpm-lock.yaml"
 
       - name: Install dependencies
-        working-directory: ./site
         run: pnpm install --frozen-lockfile
 
       - name: Build Antora site
-        working-directory: ./site
         env:
           # Antora requires git credentials to be stored in GIT_CREDENTIALS environment variable
           # When Antora tries to access a private GitHub repository, it has to make a call to 
@@ -56,21 +55,11 @@ jobs:
           GIT_CREDENTIALS: "https://x-access-token:${{ secrets.FTN_GITHUB_TOKEN }}@github.com"
         run: pnpm exec antora --stacktrace antora-playbook.yml
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: site/build/site
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-
-
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/site
+          publish_branch: gh-pages
+          commit_message: ${{ github.event.head_commit.message }}
