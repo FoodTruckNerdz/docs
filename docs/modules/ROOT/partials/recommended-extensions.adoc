@@ -1,5 +1,6 @@
 // Recommended VS Code Extensions Partial
-// This file is included in various articles
+// This file is included in various articles.
+// WARNING: May be out of date. Canonical source: dev-centr/templates workspaces/_common/common.code-workspace
 
 === Git & Collaboration
 
@@ -9,9 +10,8 @@
 
 === Formatting & Linting
 
-* `esbenp.prettier-vscode` — *Prettier - Code formatter*. Industry-standard opinionated code formatter.
-* `biomejs.biome` — *Biome*. A fast toolchain for web projects (formatting, linting, and more).
-* `rvest.vs-code-prettier-eslint` — *Prettier-ESlint*. Integrates Prettier formatting with ESLint rules.
+* `dprint.dprint` — *dprint*. Fast, pluggable formatter (default for most languages in our templates).
+* `biomejs.biome` — *Biome*. Fast toolchain for web projects (linting; may format where configured).
 
 === Documentation
 

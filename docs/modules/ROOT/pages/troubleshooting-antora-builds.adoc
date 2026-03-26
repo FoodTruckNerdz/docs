@@ -484,7 +484,7 @@ repos=(
   "developer-portal"
 )
 
-org="FoodTruckNerds"
+org="FoodTruckNerdz"
 path="docs/antora.yml"
 
 echo "Checking documentation structure in all repositories..."

@@ -35,11 +35,11 @@ asciidoc:
     - asciidoctor-emoji
   attributes:
     # Organization URLs
-    github-org: FoodTruckNerds
-    github-org-url: https://github.com/FoodTruckNerds
+    github-org: FoodTruckNerdz
+    github-org-url: https://github.com/FoodTruckNerdz
     docs-site-url: https://docs.foodtrucknerdz.com
     # Repository names
-    repo-docs: docs
+    repo-docs: docs-site-site
     repo-ftn-site: ftn-site
     repo-food-truck-api: food-truck-api
     repo-onboarding: onboarding

@@ -105,7 +105,7 @@ Fine-grained PATs offer more control over permissions and are the recommended ap
 |Set based on your security requirements (90 days recommended)
 
 |**Resource owner**
-|Select your organization (e.g., `FoodTruckNerds`)
+|Select your organization (e.g., `FoodTruckNerdz`)
 
 |**Repository access**
 |Select **All repositories** or choose specific repositories that Antora needs to access

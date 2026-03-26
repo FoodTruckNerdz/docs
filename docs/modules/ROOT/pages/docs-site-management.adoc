@@ -6,6 +6,10 @@ This page provides information about how the FoodTruckNerdz documentation site i
 
 The documentation site aggregates content from multiple component repositories into a single, unified documentation site using Antora. This allows each repository to maintain its own documentation while presenting it as a cohesive whole.
 
+== Reference: Antora Supplemental
+
+For canonical Antora setup guidance (Root vs. Subfolder strategy, GitHub Pages, private repos), see link:https://antora-supplemental.github.io/docs[antora-supplemental.github.io/docs]. A comparison of FTN's current setup with that reference is at xref:antora-supplemental-comparison.adoc[Antora Supplemental Comparison].
+
 == Site Specifics
 
 This repository (`docs`) contains the core configuration for the documentation site:

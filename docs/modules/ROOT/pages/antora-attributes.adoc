@@ -1,11 +1,11 @@
 = Using Antora Attributes
 :navtitle: Antora Attributes
-:description: Guide to using global attributes in FoodTruckNerds documentation for consistent repository and URL references
+:description: Guide to using global attributes in FoodTruckNerdz documentation for consistent repository and URL references
 :keywords: antora, attributes, asciidoc, documentation, configuration
 :icons: font
 :source-highlighter: highlight.js
 
-This guide explains how to use global Antora attributes in the FoodTruckNerds documentation to maintain consistent references to repositories, URLs, and organization information.
+This guide explains how to use global Antora attributes in the FoodTruckNerdz documentation to maintain consistent references to repositories, URLs, and organization information.
 
 == What Are Antora Attributes?
 
@@ -29,11 +29,11 @@ The following attributes are defined in both `antora-playbook.yml` and `antora-p
 |Attribute |Value |Usage
 
 |`\{github-org}`
-|`FoodTruckNerds`
+|`FoodTruckNerdz`
 |Organization name only
 
 |`\{github-org-url}`
-|`https://github.com/FoodTruckNerds`
+|`https://github.com/FoodTruckNerdz`
 |Full organization URL
 
 |`\{docs-site-url}`
@@ -48,7 +48,7 @@ The following attributes are defined in both `antora-playbook.yml` and `antora-p
 |Attribute |Value |Purpose
 
 |`\{repo-docs}`
-|`docs`
+|`docs-site`
 |Main documentation repository
 
 |`\{repo-ftn-site}`
@@ -93,10 +93,10 @@ Attributes are referenced using curly braces:
 
 [source,asciidoc]
 ----
-Visit the {github-org-url}[FoodTruckNerds organization] on GitHub.
+Visit the {github-org-url}[FoodTruckNerdz organization] on GitHub.
 ----
 
-**Renders as**: Visit the https://github.com/FoodTruckNerds[FoodTruckNerds organization] on GitHub.
+**Renders as**: Visit the https://github.com/FoodTruckNerdz[FoodTruckNerdz organization] on GitHub.
 
 ==== Repository Link
 
@@ -105,7 +105,7 @@ Visit the {github-org-url}[FoodTruckNerds organization] on GitHub.
 Clone from {github-org-url}/{repo-ftn-site}[ftn-site repository].
 ----
 
-**Renders as**: Clone from https://github.com/FoodTruckNerds/ftn-site[ftn-site repository].
+**Renders as**: Clone from https://github.com/FoodTruckNerdz/ftn-site[ftn-site repository].
 
 ==== Documentation Site Link
 
@@ -133,7 +133,7 @@ cd {repo-ftn-site}
 
 [source,bash]
 ----
-git clone https://github.com/FoodTruckNerds/ftn-site.git
+git clone https://github.com/FoodTruckNerdz/ftn-site.git
 cd ftn-site
 ----
 
@@ -195,7 +195,7 @@ Clone from {github-org-url}/{repo-ftn-site}.git
 ❌ **Avoid**:
 [source,asciidoc]
 ----
-Clone from https://github.com/FoodTruckNerds/ftn-site.git
+Clone from https://github.com/FoodTruckNerdz/ftn-site.git
 ----
 
 === DO: Use Attributes for Organization URLs
@@ -209,7 +209,7 @@ Visit {github-org-url} to see all repositories.
 ❌ **Avoid**:
 [source,asciidoc]
 ----
-Visit https://github.com/FoodTruckNerds to see all repositories.
+Visit https://github.com/FoodTruckNerdz to see all repositories.
 ----
 
 === DO: Use Attributes for Documentation Site URLs
@@ -235,7 +235,7 @@ When showing example error output, use literal values for clarity:
 ----
 [source]
 ----
-FATAL: the start path 'docs' does not exist in https://github.com/FoodTruckNerds/ftn-site.git
+FATAL: the start path 'docs' does not exist in https://github.com/FoodTruckNerdz/ftn-site.git
 ----
 ----
 
@@ -307,7 +307,7 @@ From `ftn-site/docs/README.adoc`:
 
 [source,asciidoc]
 ----
-This documentation is aggregated into the unified FoodTruckNerds 
+This documentation is aggregated into the unified FoodTruckNerdz 
 documentation site via the playbook in the 
 {github-org-url}/{repo-docs}[docs repository].
 

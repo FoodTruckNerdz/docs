@@ -1,0 +1,59 @@
+= FTN Antora Setup vs. Antora Supplemental Reference
+:navtitle: Antora Supplemental Comparison
+:description: Comparison of FTN's Antora setup with the canonical antora-supplemental reference; links and alignment notes
+
+This page compares FoodTruckNerdz's Antora documentation setup with the canonical reference maintained by the Antora Supplemental organization. Use it to align FTN's approach with recommended practices and to find the authoritative documentation.
+
+== Reference Documentation
+
+* *Live site:* link:https://antora-supplemental.github.io/docs[antora-supplemental.github.io/docs]
+* *Source (GitHub):* link:https://github.com/antora-supplemental/docs[github.com/antora-supplemental/docs]
+* *Modules:* link:https://github.com/antora-supplemental/docs/tree/main/docs/modules[Antora Supplemental docs/modules]
+
+== Key Comparisons
+
+=== Playbook Location: Root vs. Subfolder Strategy
+
+| Aspect | FTN (current) | Antora Supplemental (recommended) |
+|--------|----------------|----------------------------------|
+| Playbook location | `site/antora-playbook.yml` (Subfolder Strategy) | `antora-playbook.yml` at repo root (Root Strategy) |
+| Local playbook | `site/antora-playbook-local.yml` | `antora-playbook-local.yml` at root (git-ignored) |
+| CI path handling | `working-directory: ./site`; paths relative to site/ | `antora antora-playbook.yml` from repo root; no path ambiguity |
+
+*Recommendation:* Antora Supplemental recommends the Root Strategy for CI simplicity. FTN's Subfolder Strategy works but adds complexity (see xref:antora-deployment.adoc[] in DevCentr docs or the antora-supplemental deployment guide). Migrating to Root Strategy would align with the reference; until then, the current setup is functional.
+
+=== Private Repo Authentication
+
+| Aspect | FTN | Antora Supplemental |
+|--------|-----|---------------------|
+| Method | `GIT_CREDENTIALS` env var with `x-access-token` | Same; also documents `git config --global url` as Option A |
+| PAT storage | `FTN_GITHUB_TOKEN` (or org-specific name) | `ANTORA_READ_TOKEN` or `REPO_ACCESS_TOKEN` |
+| Gotcha coverage | Documents GITHUB_TOKEN vs PAT, x-access-token | Same; see antora-deployment.adoc "Private repos" section |
+
+*Alignment:* FTN's github-actions-antora-setup is aligned with antora-supplemental guidance. Both correctly document PAT requirement for private content sources.
+
+=== GitHub Pages Deployment
+
+| Aspect | FTN | Antora Supplemental |
+|--------|-----|---------------------|
+| Pattern | Actions-based (`upload-pages-artifact` + `deploy-pages`) | Same (recommended) |
+| Build action | Inline `pnpm exec antora` in workflow | Recommends `antora-build-action` or inline |
+| Package manager | pnpm, `site/package.json` | pnpm; `antora-build-action` uses `pnpm dlx antora` (no package.json required) |
+
+*Note:* antora-supplemental's `antora-build-action` simplifies the build step. FTN uses a manual install + run; both are valid.
+
+=== Package Manager Commands
+
+FTN uses `npx antora` in building-docs; antora-supplemental recommends `pnpm dlx antora` for one-off runs or `pnpm exec antora` when Antora is in package.json. See antora-deployment.adoc "Package manager run commands" for pnpm vs npm vs yarn.
+
+== Inconsistencies to Resolve
+
+1. *npx vs pnpm:* building-docs.adoc uses `npx antora`; the workflow uses `pnpm exec antora`. Prefer `pnpm exec` or `pnpm dlx` for consistency with org standards.
+2. *Playbook path:* building-docs states playbooks live in `site/`; verify actual repo layout (antora-playbook.yml may be at docs root).
+3. *Local playbook extension:* antora-supplemental's "Best of Both Worlds" uses `extends: ./antora-playbook.yml` for local overrides; FTN's antora-playbook-local.yml—if it duplicates sources—could be refactored to extend the main playbook.
+
+== Related FTN Pages
+
+* xref:github-actions-antora-setup.adoc[GitHub Actions Setup] — PAT, GIT_CREDENTIALS, workflow
+* xref:building-docs.adoc[Building Locally] — Local build steps
+* xref:docs-site-management.adoc[Documentation Site Management] — Site overview

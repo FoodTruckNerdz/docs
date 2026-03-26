@@ -26,7 +26,7 @@ These screenshots significantly reduce cognitive overhead for readers:
 * [ ] "Generate new token" dialog with recommended settings filled in:
 ** Token name: `antora-docs-builder`
 ** Expiration: 90 days
-** Resource owner: FoodTruckNerds
+** Resource owner: FoodTruckNerdz
 ** Repository access: All repositories
 * [ ] Repository permissions expanded showing:
 ** Contents: Read-only

@@ -11,6 +11,6 @@ This folder is an Antora documentation component for the main docs repository.
 
 == Antora Integration
 
-This documentation, along with components from other FoodTruckNerds repositories, is aggregated into the unified documentation site via the playbooks in the `site/` folder.
+This documentation, along with components from other FoodTruckNerdz repositories, is aggregated into the unified documentation site via the playbooks in the `site/` folder.
 
-Published site: https://foodtrucknerds.github.io/docs
+Published site: https://foodtrucknerdz.github.io/docs-site

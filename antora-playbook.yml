@@ -4,25 +4,25 @@ site:
   start_page: docs::index.adoc
 content:
   sources:
-    - url: https://github.com/FoodTruckNerds/onboarding.git
+    - url: https://github.com/FoodTruckNerdz/onboarding.git
       branches: HEAD
       start_path: docs
-    - url: https://github.com/FoodTruckNerds/food-truck-api.git
+    - url: https://github.com/FoodTruckNerdz/food-truck-api.git
       branches: HEAD
       start_path: docs
-    - url: https://github.com/FoodTruckNerds/ftn-site.git
+    - url: https://github.com/FoodTruckNerdz/ftn-site.git
       branches: HEAD
       start_path: docs
-    - url: https://github.com/FoodTruckNerds/ftn-site-old.git
+    - url: https://github.com/FoodTruckNerdz/ftn-site-old.git
       branches: HEAD
       start_path: docs
-    - url: https://github.com/FoodTruckNerds/docs.git
+    - url: https://github.com/FoodTruckNerdz/docs-site.git
       branches: HEAD
       start_path: docs
-    - url: https://github.com/FoodTruckNerds/help.git
+    - url: https://github.com/FoodTruckNerdz/help.git
       branches: HEAD
       start_path: docs
-    - url: https://github.com/FoodTruckNerds/developer-portal.git
+    - url: https://github.com/FoodTruckNerdz/developer-portal.git
       branches: HEAD
       start_path: docs
 ui:
@@ -35,11 +35,11 @@ asciidoc:
     - asciidoctor-emoji
   attributes:
     # Organization URLs
-    github-org: FoodTruckNerds
-    github-org-url: https://github.com/FoodTruckNerds
+    github-org: FoodTruckNerdz
+    github-org-url: https://github.com/FoodTruckNerdz
     docs-site-url: https://docs.foodtrucknerdz.com
     # Repository names
-    repo-docs: docs
+    repo-docs: docs-site
     repo-ftn-site: ftn-site
     repo-food-truck-api: food-truck-api
     repo-onboarding: onboarding
