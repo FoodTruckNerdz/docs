@@ -172,7 +172,8 @@ docs/
 ├── docs/                       # Internal team documentation component
 │   ├── antora.yml              # Component descriptor
 │   └── modules/
-├── docs.code-workspace         # VSCode workspace file
+├── ftn-docs.code-workspace     # Multi-root folder list only (tooling in `.vscode/`)
+├── .vscode/                    # Editor settings & extension recommendations (playbook root only)
 └── README.adoc                 # Repository README
 ----
 
