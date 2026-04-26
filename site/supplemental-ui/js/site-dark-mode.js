@@ -106,21 +106,69 @@
     updateToggleLabel();
   }
 
-  function detectVcsProvider(repoUrl) {
-    if (!repoUrl) return null;
+  /**
+   * Icon basename under img/vcs/*.svg (white artwork; CSS may filter in header / mast).
+   */
+  function vcsIconIdFromUrl(url) {
+    if (!url) return "code";
+    let host;
     try {
-      const host = new URL(repoUrl).hostname.toLowerCase();
-      if (host === "github.com") return "github";
-      if (host.includes("gitlab")) return "gitlab";
-      if (host === "bitbucket.org") return "bitbucket";
-      if (host.includes("gitea")) return "gitea";
-      if (host === "codeberg.org") return "codeberg";
-      if (host.includes("forgejo")) return "forgejo";
-      if (host.includes("sourcehut") || host.endsWith("sr.ht")) return "sourcehut";
-      return "repo";
+      host = new URL(url).hostname.toLowerCase();
     } catch {
-      return null;
+      return "code";
     }
+    if (host === "github.com" || host === "raw.githubusercontent.com" || host === "github.dev" || host.endsWith(".github.com")) {
+      return "github";
+    }
+    if (host === "bitbucket.org" || host.includes("bitbucket.")) return "bitbucket";
+    if (host.includes("gitlab")) return "gitlab";
+    if (host === "codeberg.org" || host.endsWith(".codeberg.page") || host.endsWith(".codeberg.org")) {
+      return "codeberg";
+    }
+    if (host.includes("gitea")) return "gitea";
+    if (host.includes("forgejo")) return "forgejo";
+    if (host.includes("sourcehut") || host.endsWith("sr.ht") || host === "git.sr.ht") {
+      return "sourcehut";
+    }
+    if (host === "dev.azure.com" || host === "dev.azure" || host.endsWith("visualstudio.com") || host.includes("vssps.visualstudio.com")) {
+      return "code";
+    }
+    return "code";
+  }
+
+  function vcsIconUrl(base, id) {
+    const root = (base || ".").replace(/\/?$/, "/");
+    return `${root}img/vcs/${id}.svg`;
+  }
+
+  function applyVcsIcons() {
+    const base = getUiBase();
+    function setVcsImage(img, href) {
+      if (!img || !href) return;
+      const id = vcsIconIdFromUrl(href);
+      const primary = vcsIconUrl(base, id);
+      img.onerror = function ftnVcsOerr() {
+        img.onerror = null;
+        if (img.getAttribute("data-ftn-vcs-tried") === "1") return;
+        img.setAttribute("data-ftn-vcs-tried", "1");
+        if (!img.src || img.src.indexOf("code.svg") < 0) {
+          img.src = vcsIconUrl(base, "code");
+        }
+      };
+      img.src = primary;
+    }
+    document.querySelectorAll("a.ftn-edit-inline-link[href]").forEach((a) => {
+      const img = a.querySelector("img.ftn-vcs-icon-img, img.ftn-edit-vcs-img");
+      setVcsImage(img, a.href);
+    });
+    document.querySelectorAll("a.ftn-header-vcs[href] img.ftn-header-vcs-img").forEach((img) => {
+      const a = img.closest("a");
+      if (a) setVcsImage(img, a.href);
+    });
+    document.querySelectorAll("a.vcs-repo-link[href] img.vcs-logo-img").forEach((img) => {
+      const a = img.closest("a");
+      if (a) setVcsImage(img, a.href);
+    });
   }
 
   function getRepoUrl() {
@@ -166,9 +214,8 @@
     return ".";
   }
 
-  function buildVcsLogoWidget(repoUrl, provider, base) {
-    const logoFile = provider ? `${provider}.svg` : "repo.svg";
-    const logoUrl = `${base}/img/vcs/${logoFile}`;
+  function buildVcsLogoWidget(repoUrl, id, base) {
+    const logoUrl = vcsIconUrl(base, id || "code");
     const wrapper = document.createElement("div");
     wrapper.className = "navbar-item vcs-repo-logo";
     const a = document.createElement("a");
@@ -187,13 +234,14 @@
     img.src = logoUrl;
     img.onerror = function () {
       this.onerror = null;
-      var dataRoot = document.querySelector("#site-script")?.dataset?.uiRootPath;
-      var fallback = (dataRoot || ".") + "/img/vcs/" + (provider ? provider + ".svg" : "repo.svg");
-      if (fallback !== logoUrl) {
-        this.src = fallback;
-      } else if (!dataRoot) {
-        this.src = "img/vcs/repo.svg";
+      const dataRoot = document.querySelector("#site-script")?.dataset?.uiRootPath;
+      const root = (dataRoot || ".").replace(/\/?$/, "/");
+      const tryCode = `${root}img/vcs/code.svg`;
+      if (this.src && !this.src.includes("code.svg")) {
+        this.src = tryCode;
+        return;
       }
+      this.src = `${root}img/vcs/repo.svg`;
     };
     logo.appendChild(img);
     a.appendChild(logo);
@@ -209,11 +257,11 @@
     const isDownload = /Download/i.test(downloadLink.textContent || "");
     if (!isDownload) return;
     const repoUrl = getRepoUrl();
-    const provider = repoUrl ? detectVcsProvider(repoUrl) : null;
+    const iconId = repoUrl ? vcsIconIdFromUrl(repoUrl) : "code";
     const navbarEnd = document.querySelector(".navbar .navbar-end");
     if (!navbarEnd) return;
     const base = getUiBase();
-    const widget = buildVcsLogoWidget(repoUrl, provider, base);
+    const widget = buildVcsLogoWidget(repoUrl, iconId, base);
     const toReplace = downloadLink.closest(".control") || downloadLink.closest(".navbar-item") || downloadLink;
     toReplace.parentNode.replaceChild(widget, toReplace);
   }
@@ -222,6 +270,7 @@
     applyInitialTheme();
     ensureToggleButton();
     replaceDownloadWithVcsLogo();
+    applyVcsIcons();
   }
 
   if (document.readyState === "loading") {

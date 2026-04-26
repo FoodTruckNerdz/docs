@@ -17,7 +17,8 @@
   --ftn-header-bar-fg: #1a1a1a;
   --ftn-header-bar-border: #d8d8d8;
   --ftn-header-bar-hover: rgba(0, 0, 0, 0.07);
-  --ftn-header-github-icon-filter: brightness(0) opacity(0.92);
+  /* Raster/SVG VCS marks (white in file): invert for light top bar. */
+  --ftn-header-vcs-icon-filter: brightness(0) opacity(0.92);
   /* Top rails (nav is outside main; .content is main > .content):
      - --ftn-global-rail-top: shared baseline (nav + main row).
      - --ftn-content-rail-top: optional *extra* top padding for .content only (0 = nav and .content
@@ -36,7 +37,7 @@ html.dark-theme {
   --ftn-header-bar-fg: #f1f3f5;
   --ftn-header-bar-border: #2c2e33;
   --ftn-header-bar-hover: rgba(255, 255, 255, 0.1);
-  --ftn-header-github-icon-filter: none;
+  --ftn-header-vcs-icon-filter: none;
 }
 
 html {
@@ -233,16 +234,16 @@ a.ftn-header-title:focus {
   outline-offset: 2px;
 }
 
-/* GitHub mark in light mode needs filter; theme icons use currentColor. */
-.ftn-header-github .ftn-header-github-img,
-.ftn-header-icon-btn.ftn-header-github .ftn-header-github-img {
+/* VCS mark in file is white: filter on light top bar, none on dark. */
+.ftn-header-vcs .ftn-header-vcs-img,
+.ftn-header-icon-btn.ftn-header-vcs .ftn-header-vcs-img {
   width: 24px;
   height: 24px;
   display: block;
   object-fit: contain;
   flex-shrink: 0;
   pointer-events: none;
-  filter: var(--ftn-header-github-icon-filter, none);
+  filter: var(--ftn-header-vcs-icon-filter, none);
 }
 
 .header.ftn-header .ftn-header-icon-btn .theme-icon {
@@ -473,18 +474,6 @@ html.dark-theme .ftn-breadcrumb-trail-text {
   list-style: none;
 }
 
-.ftn-breadcrumb-edit::before {
-  content: "\00b7";
-  margin-right: 0.35rem;
-  color: #888;
-  font-weight: 400;
-  user-select: none;
-}
-
-html.dark-theme .ftn-breadcrumb-edit::before {
-  color: #6b6b6b;
-}
-
 .ftn-breadcrumb-edit .ftn-edit-inline-link {
   display: inline-flex;
   align-items: center;
@@ -507,10 +496,19 @@ html.dark-theme .ftn-breadcrumb-edit .ftn-edit-inline-link {
   color: #4dabf7;
 }
 
-.ftn-breadcrumb-edit .ftn-edit-github-icon .ftn-ico-github {
-  width: 0.9em;
-  height: 0.9em;
+/* White VCS assets: dark silhouette on light mast; full color on dark mast */
+.ftn-breadcrumb-edit .ftn-edit-vcs-img {
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
+  object-fit: contain;
+  filter: brightness(0) opacity(0.55);
+  vertical-align: middle;
+}
+
+html.dark-theme .ftn-breadcrumb-edit .ftn-edit-vcs-img {
+  filter: none;
+  opacity: 0.95;
 }
 
 .ftn-bc-menu-item a,
