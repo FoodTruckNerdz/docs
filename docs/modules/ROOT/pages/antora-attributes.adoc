@@ -1,11 +1,11 @@
 = Using Antora Attributes
 :navtitle: Antora Attributes
-:description: Guide to using global attributes in FoodTruckNerdz documentation for consistent repository and URL references
+:description: Guide to using global Antora attributes for consistent repository and URL references
 :keywords: antora, attributes, asciidoc, documentation, configuration
 :icons: font
 :source-highlighter: highlight.js
 
-This guide explains how to use global Antora attributes in the FoodTruckNerdz documentation to maintain consistent references to repositories, URLs, and organization information.
+This guide explains how to use global Antora attributes in this documentation to maintain consistent references to repositories, URLs, and organization information.
 
 == What Are Antora Attributes?
 
@@ -48,16 +48,16 @@ The following attributes are defined in both `antora-playbook.yml` and `antora-p
 |Attribute |Value |Purpose
 
 |`\{repo-docs}`
-|`docs-site`
-|Main documentation repository
+|`docs`
+|Antora coordination repository (this playbook)
 
 |`\{repo-ftn-site}`
 |`ftn-site`
-|Main Next.js web application
+|Public website monorepo (SolidStart and Next.js; Antora *Website* component)
 
 |`\{repo-food-truck-api}`
 |`food-truck-api`
-|Food Truck API repository
+|API service repository
 
 |`\{repo-onboarding}`
 |`onboarding`
@@ -70,10 +70,6 @@ The following attributes are defined in both `antora-playbook.yml` and `antora-p
 |`\{repo-developer-portal}`
 |`developer-portal`
 |Developer portal repository
-
-|`\{repo-ftn-site-old}`
-|`ftn-site-old`
-|Legacy website repository
 |===
 
 == How to Use Attributes
@@ -93,10 +89,10 @@ Attributes are referenced using curly braces:
 
 [source,asciidoc]
 ----
-Visit the {github-org-url}[FoodTruckNerdz organization] on GitHub.
+Visit the {github-org-url}[GitHub organization].
 ----
 
-**Renders as**: Visit the https://github.com/FoodTruckNerdz[FoodTruckNerdz organization] on GitHub.
+**Renders as**: Visit the https://github.com/FoodTruckNerdz[GitHub organization].
 
 ==== Repository Link
 
@@ -307,7 +303,7 @@ From `ftn-site/docs/README.adoc`:
 
 [source,asciidoc]
 ----
-This documentation is aggregated into the unified FoodTruckNerdz 
+This documentation is aggregated into the unified
 documentation site via the playbook in the 
 {github-org-url}/{repo-docs}[docs repository].
 

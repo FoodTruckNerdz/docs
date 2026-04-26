@@ -1,6 +1,6 @@
 = Redeploying the Documentation Site
 
-This guide explains how to redeploy the FoodTruckNerdz documentation site after committing and pushing changes to any of the content repositories.
+This guide explains how to redeploy the documentation site after committing and pushing changes to any of the content repositories.
 
 == Automatic Redeployment
 
@@ -12,7 +12,7 @@ Changes to other content repositories (such as `ftn-site`, `food-truck-api`, etc
 
 To update the documentation site with changes from a content repository, you must manually trigger the deployment workflow in the `docs` repository.
 
-.  Navigate to the **FoodTruckNerdz/docs-site** repository on GitHub.
+.  Navigate to the **FoodTruckNerdz/docs** repository on GitHub.
 .  Click on the **Actions** tab at the top of the page.
 .  In the list of workflows on the left, select **Build and Deploy Documentation**.
 .  Click the **Run workflow** dropdown button.

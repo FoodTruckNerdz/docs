@@ -1,8 +1,8 @@
-* xref:index.adoc[Project Hub]
+* xref:index.adoc[Home]
 * xref:partners.adoc[Partners & Services]
 * xref:vscode-extensions.adoc[VS Code Extensions]
-* Documentation Site
-** xref:docs-site-management.adoc[Site Management Overview]
+* Site build
+** xref:docs-site-management.adoc[Site management overview]
 ** xref:antora-supplemental-comparison.adoc[Antora Supplemental Comparison]
 ** xref:building-docs.adoc[Building Locally]
 ** xref:redeploying-docs.adoc[Redeploying the Site]

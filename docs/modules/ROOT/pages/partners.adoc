@@ -1,7 +1,7 @@
 = Partners & Complementary Services
-:description: A list of potential partners and complementary services for the Food Truck Nerds app.
+:description: A list of potential partners and complementary services for the Food Truck Nerdz app.
 
-To provide a comprehensive experience for food truck operators and customers, the Food Truck Nerds (FTN) app can integrate with various third-party services. These partnerships enhance operational efficiency, marketing reach, and customer satisfaction.
+To provide a comprehensive experience for food truck operators and customers, the Food Truck Nerdz (FTN) app can integrate with various third-party services. These partnerships enhance operational efficiency, marketing reach, and customer satisfaction.
 
 == Point of Sale (POS) Systems
 

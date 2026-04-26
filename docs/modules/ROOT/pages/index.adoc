@@ -1,8 +1,8 @@
-= FoodTruckNerdz Documentation
+= Home
 
-Welcome to the central documentation hub for FoodTruckNerdz. Here you can find technical documentation, user guides, and project information for all our services.
+Welcome to the central documentation hub. Here you can find technical documentation, user guides, and project information.
 
-== Project Documentation
+== Project documentation
 
 [.cards]
 --
@@ -13,61 +13,50 @@ Welcome to the central documentation hub for FoodTruckNerdz. Here you can find t
 
 Everything you need to get started as a contributor.
 
-xref:onboarding::index.adoc[Get Started]
+xref:onboarding::index.adoc[Get started]
 ====
 
 [.tile]
 ====
 [.title]
-⚙️ Food Truck API
+⚙️ API
 
 Backend API documentation, endpoints, and data models.
 
-xref:food-truck-api::index.adoc[API Reference]
+xref:food-truck-api::index.adoc[API reference]
 ====
 
 [.tile]
 ====
 [.title]
-🌐 Site (Vercel)
+🌐 Website
 
-Documentation for the Next.js frontend and Vercel deployment.
+Documentation for the public site (SolidStart and Next.js in the `ftn-site` repo) and Vercel deployment. Historical notes for the retired stack: xref:website:old-website:index.adoc[Old website].
 
-xref:ftn-site::index.adoc[Frontend Docs]
+xref:website::index.adoc[Website docs]
 ====
 
 [.tile]
 ====
 [.title]
-📖 Legacy Website
-
-Documentation for the legacy ftn-site-old website.
-
-xref:ftn-site-old::index.adoc[Legacy Site Docs]
-====
-
-[.tile]
-====
-[.title]
-🆘 Help Center
+🆘 Help
 
 Customer-facing help articles and troubleshooting guides.
 
-xref:help::index.adoc[Help Documentation]
+xref:help::index.adoc[Help]
 ====
 
 [.tile]
 ====
 [.title]
-👨‍💻 Developer Portal
+👨‍💻 Developer portal
 
-Resources for external developers integrating with our platform.
+Resources for external developers integrating with the platform.
 
-xref:developer-portal::index.adoc[Developer Portal]
+xref:developer-portal::index.adoc[Developer portal]
 ====
 --
 
-== Documentation Site
+== Docs tooling
 
-Specifics about how this documentation site is built and maintained, including local development and CI/CD, can be found on the xref:docs-site-management.adoc[Documentation Site Management] page.
-
+How this site is built and maintained, including local development and CI/CD, is covered on the xref:docs-site-management.adoc[documentation site management] page.

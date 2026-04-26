@@ -478,7 +478,6 @@ repos=(
   "onboarding"
   "food-truck-api"
   "ftn-site"
-  "ftn-site-old"
   "docs"
   "help"
   "developer-portal"
