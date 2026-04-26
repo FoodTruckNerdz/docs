@@ -559,7 +559,12 @@ html.dark-theme .ftn-bc-sep {
   text-overflow: ellipsis;
 }
 
-.ftn-bc-dropdown[hidden] {
+/* [hidden] must win over #ftn-bc-proj / #ftn-bc-ver (ID + display:block !important from layout fixes) */
+.ftn-bc-dropdown[hidden],
+#ftn-bc-proj[hidden],
+#ftn-bc-ver[hidden],
+.ftn-bc-dropdown--components[hidden],
+.ftn-bc-dropdown--version[hidden] {
   display: none !important;
 }
 
