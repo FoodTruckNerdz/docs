@@ -33,6 +33,9 @@
 
   function toggleTheme() {
     setTheme(isDark() ? "light" : "dark");
+    // Avoid :focus “stuck” hover look after mouse click (button stays focused)
+    const toggle = document.getElementById("theme-toggle");
+    if (toggle) toggle.blur();
   }
 
   function applyInitialTheme() {

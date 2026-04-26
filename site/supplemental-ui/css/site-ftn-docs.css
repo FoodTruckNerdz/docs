@@ -43,6 +43,12 @@ html {
   font-family: var(--ftn-font);
 }
 
+/* Default UI: body { padding-top: var(--navbar-height) } for a fixed, separate top .navbar. FTN uses
+   a single in-flow .header; that padding leaves an empty 3.5rem gap—remove it. */
+html body {
+  padding-top: 0 !important;
+}
+
 body,
 button,
 input,
@@ -210,11 +216,21 @@ a.ftn-header-title:focus {
   cursor: pointer;
 }
 
-.header.ftn-header .navbar .navbar-end .ftn-header-icon-btn:hover,
-.header.ftn-header .navbar .navbar-end .ftn-header-icon-btn:focus {
+/* :focus (mouse click) would keep the “hover” fill until click-away—use :focus-visible for keyboard. */
+.header.ftn-header .navbar .navbar-end .ftn-header-icon-btn:hover {
   background: var(--ftn-header-bar-hover) !important;
   text-decoration: none;
+}
+
+.header.ftn-header .navbar .navbar-end .ftn-header-icon-btn:focus {
   outline: none;
+  background: transparent !important;
+}
+
+.header.ftn-header .navbar .navbar-end .ftn-header-icon-btn:focus-visible {
+  background: var(--ftn-header-bar-hover) !important;
+  outline: 2px solid var(--ftn-header-bar-fg);
+  outline-offset: 2px;
 }
 
 /* GitHub mark in light mode needs filter; theme icons use currentColor. */
