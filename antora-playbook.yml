@@ -1,14 +1,16 @@
 site:
-  title: FoodTruckNerdz Documentation
+  title: Documentation
   url: https://docs.foodtrucknerdz.com
   start_page: docs::index.adoc
   keys:
-    site_description: "Food Truck Nerdz documentation (multi-component Antora site)"
+    site_description: "Multi-component Antora site (unified project documentation)"
     github_profile_url: "https://github.com/FoodTruckNerdz"
     foodtrucknerdz_com: "https://foodtrucknerdz.com"
     # Shown in footer; match ui.bundle in this file (becomes site.keys.uiBundle* in the UI model).
     ui_bundle_name: "antora-dark-theme"
     ui_bundle_url: "https://github.com/antora-supplemental/antora-dark-theme"
+    # Browser tab (head-title partial): last segment; middle = each component’s antora.yml `title` (e.g. ftn-site uses "Docs").
+    title_bar_brand: "Food Truck Nerdz"
 content:
   sources:
     - url: https://github.com/FoodTruckNerdz/onboarding.git
@@ -20,7 +22,7 @@ content:
     - url: https://github.com/FoodTruckNerdz/ftn-site.git
       branches: HEAD
       start_path: docs
-    - url: https://github.com/FoodTruckNerdz/ftn-site-old.git
+    - url: https://github.com/FoodTruckNerdz/ftn-app.git
       branches: HEAD
       start_path: docs
     - url: https://github.com/FoodTruckNerdz/help.git
@@ -45,8 +47,8 @@ asciidoc:
     # Repository names
     repo-docs: docs
     repo-ftn-site: ftn-site
+    repo-ftn-app: ftn-app
     repo-food-truck-api: food-truck-api
     repo-onboarding: onboarding
     repo-help: help
     repo-developer-portal: developer-portal
-    repo-ftn-site-old: ftn-site-old
