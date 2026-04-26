@@ -207,10 +207,17 @@ pre,
   object-fit: contain;
 }
 
-/* logo.svg uses currentColor; raster <img> does not inherit — default paint reads as dark on dark bar */
-html.dark-theme .adt-header-logo {
-  filter: brightness(0) invert(1);
-  opacity: 0.92;
+/* FTN header mark is a fixed-palette SVG (not currentColor). Do not use CSS invert — use a light tile
+   on the dark top bar until a dedicated light/dark asset exists. */
+html.dark-theme .adt-header-logo-item {
+  background: #eef0f3;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+
+html.dark-theme .adt-header-logo-item:hover,
+html.dark-theme .adt-header-logo-item:focus {
+  background: #e2e5ea;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.14);
 }
 
 a.adt-header-title,
