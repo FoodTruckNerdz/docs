@@ -18,10 +18,12 @@
   --ftn-header-bar-border: #d8d8d8;
   --ftn-header-bar-hover: rgba(0, 0, 0, 0.07);
   --ftn-header-github-icon-filter: brightness(0) opacity(0.92);
-  /* Page title (left) + “Contents” TOC label (right): one inset — default Antora uses a fixed
-     .toc.sidebar .toc-menu h3 { height: 2.5rem; flex-end } instead of margin; that won’t line up
-     with a real margin. Tweak the variable, both rails update. */
+  /* All three columns (nav component title, page title, “Contents” h3): one top inset.
+     Default nav stacks .nav-menu padding (smaller top than sides) with .nav-menu h3.title
+     padding-top — drop that; set outer top here only. Tweak the variable once. */
   --ftn-content-rail-top: 0.75rem;
+  /* Keep nav horizontal padding aligned to the original UI’s side value (0.5 top was smaller). */
+  --ftn-content-rail-hpad: 0.75rem;
 }
 
 html.dark-theme {
@@ -691,6 +693,18 @@ html.dark-theme .ftn-bc-menu-item a.is-current {
 .ftn-bc-version-pill.is-missing {
   opacity: 0.5;
   pointer-events: none;
+}
+
+/* ——— Nav rail: first line lines up with page title + Contents (see --ftn-content-rail-top) ——— */
+body.ftn-body .nav .nav-menu.ftn-nav-tree-only {
+  padding: var(--ftn-content-rail-top) var(--ftn-content-rail-hpad) 0.5rem var(--ftn-content-rail-hpad);
+  box-sizing: border-box;
+}
+
+/* Antora: .nav-menu h3.title { padding: 0.25em 0 0.125em } “compensated” the thin top — remove it */
+body.ftn-body .nav .nav-menu.ftn-nav-tree-only h3.title {
+  margin: 0;
+  padding: 0;
 }
 
 /* ——— Sidebar: component root + tree; hide legacy explore ——— */
