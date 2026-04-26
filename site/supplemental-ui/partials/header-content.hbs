@@ -1,12 +1,18 @@
 <header class="header ftn-header">
-  <nav class="navbar" aria-label="Site">
+  <nav class="navbar ftn-site-navbar" aria-label="Site">
     <div class="navbar-brand ftn-header-brand">
-      <a class="navbar-item" href="{{{or site.url siteRootPath}}}">{{site.title}}</a>
+      <a class="ftn-header-logo-item" href="{{{or (lookup site.keys 'foodtrucknerdz_com') 'https://foodtrucknerdz.com'}}}" rel="noopener" target="_blank" title="foodtrucknerdz.com" aria-label="foodtrucknerdz.com — open in new tab">
+        <img class="ftn-header-logo" src="{{{uiRootPath}}}/img/foodtrucknerdz.svg" width="34" height="34" alt="" />
+      </a>
+      <a class="navbar-item ftn-header-title" href="{{{or site.url siteRootPath}}}">Documentation</a>
     </div>
-    <div id="topbar-nav" class="navbar-menu ftn-topbar">
+    <div id="topbar-nav" class="navbar-menu ftn-topbar" role="navigation" aria-label="External links">
       <div class="navbar-end ftn-header-actions">
-        <a class="navbar-item ftn-external-link ftn-external-link-primary" href="{{{or (lookup site.keys 'foodtrucknerdz_com') 'https://foodtrucknerdz.com'}}}" rel="noopener" target="_blank" title="foodtrucknerdz.com">foodtrucknerdz.com</a>
+        <a class="navbar-item ftn-header-github" href="{{{or (lookup site.keys 'github_profile_url') 'https://github.com/FoodTruckNerdz'}}}" rel="noopener" target="_blank" title="Food Truck Nerdz on GitHub" aria-label="Food Truck Nerdz on GitHub">
+          <span class="ftn-header-github-icon" aria-hidden="true">{{> ftn-icon-github-inline}}</span>
+        </a>
       </div>
     </div>
   </nav>
+  {{> ftn-doc-mast}}
 </header>

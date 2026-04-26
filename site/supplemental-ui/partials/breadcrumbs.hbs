@@ -42,11 +42,11 @@
     </li>
     {{#if page.breadcrumbs}}
     {{#each page.breadcrumbs}}
-    <li>
+    <li class="ftn-breadcrumb-trail{{#if @last}} ftn-breadcrumb-trail--current{{/if}}">
     {{~#if (and ./url (eq ./urlType 'internal'))~}}
-    <a href="{{{relativize ./url}}}">{{{./content}}}</a>
+    <a class="ftn-breadcrumb-trail-link" href="{{{relativize ./url}}}">{{{./content}}}</a>
     {{~else~}}
-    {{{./content}}}
+    <span class="ftn-breadcrumb-trail-text">{{{./content}}}</span>
     {{~/if~}}
     </li>
     {{/each}}

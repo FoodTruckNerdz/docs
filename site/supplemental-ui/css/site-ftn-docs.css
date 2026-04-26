@@ -35,22 +35,31 @@ pre,
   font-family: "Roboto Mono", ui-monospace, monospace;
 }
 
-/* ——— Site top bar (GitHub + main site) ——— */
-.header.ftn-header .navbar {
+/* ——— Top bar: logo + “Documentation” (left) — GitHub icon (right). Mast is a second row, not in this nav. */
+.header.ftn-header {
+  display: block;
+}
+
+.ftn-site-navbar {
   min-height: 3.5rem;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .header.ftn-header .ftn-topbar,
 .header.ftn-header .ftn-topbar .navbar-end {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   margin-left: auto;
 }
 
-/* Keep GitHub + site links visible without the default Bulma burger menu */
+/* Keep the end links visible: no Bulma burger for this project */
 .header.ftn-header .navbar-menu.ftn-topbar {
   display: flex !important;
+  flex: 0 0 auto;
   max-height: none;
   background: transparent;
   box-shadow: none;
@@ -63,38 +72,108 @@ html.dark-theme .header.ftn-header .ftn-topbar .navbar-end {
   background: transparent;
 }
 
-@media screen and (min-width: 1024px) {
-  .ftn-header .navbar,
-  .ftn-header .navbar .navbar-end {
-    display: flex;
-  }
-  .ftn-header .ftn-topbar,
-  .ftn-header .ftn-topbar .navbar-end {
-    flex: 1 0 auto;
-    justify-content: flex-end;
-  }
-  .ftn-header-brand {
-    min-width: 0;
-  }
+/* Brand: food truck mark (→ main site) + “Documentation” (→ docs home) */
+.ftn-header-brand {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  min-width: 0;
+  flex: 1 1 auto;
 }
 
-a.ftn-external-link {
+.ftn-header-logo-item {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  padding: 0.2rem 0.2rem 0.2rem 0.4rem;
+  line-height: 0;
+  border-radius: 0.2rem;
+  text-decoration: none;
+}
+
+.ftn-header-logo-item:hover,
+.ftn-header-logo-item:focus {
+  background: rgba(0, 0, 0, 0.06);
+  outline: none;
+}
+
+html.dark-theme .ftn-header-logo-item:hover,
+html.dark-theme .ftn-header-logo-item:focus {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ftn-header-logo {
+  display: block;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+a.ftn-header-title,
+.navbar-item.ftn-header-title {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+  padding-left: 0.3rem;
+  text-decoration: none;
+}
+
+a.ftn-header-title:hover,
+a.ftn-header-title:focus {
+  text-decoration: none;
+  opacity: 0.92;
+}
+
+/* GitHub profile (icon only) */
+.ftn-header-github,
+.navbar-item.ftn-header-github {
   color: #fff;
   text-decoration: none;
-  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.4rem;
+  min-height: 2.4rem;
   border-radius: 0.2rem;
-  padding: 0.4rem 0.6rem;
+  padding: 0.35rem 0.6rem;
 }
 
-a.ftn-external-link:hover {
+.ftn-header-github:hover,
+.ftn-header-github:focus {
   background: rgba(255, 255, 255, 0.1);
   text-decoration: none;
 }
 
-a.ftn-external-link-primary {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  margin-left: 0.25rem;
+.ftn-header-github .ftn-ico-github,
+.ftn-header-github-icon .ftn-ico-github {
+  width: 1.3rem;
+  height: 1.3rem;
+  display: block;
+}
+
+html:not(.dark-theme) a.ftn-header-title,
+html:not(.dark-theme) .navbar-item.ftn-header-title,
+html:not(.dark-theme) .ftn-header-github {
+  color: #1a1a1a !important;
+}
+
+html:not(.dark-theme) .ftn-header-github:hover,
+html:not(.dark-theme) .ftn-header-github:focus,
+html:not(.dark-theme) .ftn-header-logo-item:hover,
+html:not(.dark-theme) .ftn-header-logo-item:focus {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+@media screen and (min-width: 1024px) {
+  .ftn-header .ftn-topbar,
+  .ftn-header .ftn-topbar .navbar-end {
+    flex: 0 0 auto;
+  }
+  .ftn-header-brand {
+    min-width: 0;
+  }
 }
 
 /* ——— Doc mast: component, version, breadcrumb trail, edit — not in the content column ——— */
@@ -208,11 +287,22 @@ html.dark-theme .ftn-doc-mast {
   display: none;
 }
 
-.doc .ftn-page-header-edit .edit-this-page a,
-.ftn-article .ftn-page-header-edit .edit-this-page a {
+.doc .ftn-page-header-edit .ftn-edit-this-page-link,
+.ftn-article .ftn-page-header-edit .ftn-edit-this-page-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   white-space: nowrap;
   font-size: 0.9rem;
   font-weight: 500;
+  text-decoration: none;
+}
+
+.doc .ftn-page-header-edit .ftn-edit-github-icon .ftn-ico-github,
+.ftn-article .ftn-page-header-edit .ftn-edit-github-icon .ftn-ico-github {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
 }
 
 .doc .ftn-page-header--no-title .edit-this-page,
@@ -250,16 +340,45 @@ html.dark-theme .ftn-doc-mast {
   flex: 0 0 auto;
 }
 
-.ftn-breadcrumbs > ul > li + li {
-  color: #333;
+/* Trail segments: borrow doc-style link weight (don’t paint parent li +li gray — that hid link color) */
+.ftn-breadcrumb-trail {
+  display: flex;
+  align-items: center;
+  min-height: 1.5rem;
+  line-height: 1.4;
+  font-size: 0.9rem;
+  max-width: 100%;
+  min-width: 0;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  max-width: 100%;
 }
 
-html.dark-theme .ftn-breadcrumbs > ul > li + li {
-  color: #e0e0e0;
+.ftn-breadcrumb-trail .ftn-breadcrumb-trail-link {
+  color: #1565c0;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.ftn-breadcrumb-trail .ftn-breadcrumb-trail-link:hover {
+  text-decoration: underline;
+}
+
+.ftn-breadcrumb-trail--current .ftn-breadcrumb-trail-link,
+.ftn-breadcrumb-trail--current .ftn-breadcrumb-trail-text,
+.ftn-breadcrumb-trail-text {
+  color: #212121;
+  font-weight: 600;
+}
+
+html.dark-theme .ftn-breadcrumb-trail .ftn-breadcrumb-trail-link {
+  color: #4dabf7;
+}
+
+html.dark-theme .ftn-breadcrumb-trail--current .ftn-breadcrumb-trail-link,
+html.dark-theme .ftn-breadcrumb-trail--current .ftn-breadcrumb-trail-text,
+html.dark-theme .ftn-breadcrumb-trail-text {
+  color: #e6e6e6;
 }
 
 .ftn-bc-menu-item a,
@@ -345,14 +464,15 @@ html.dark-theme .ftn-bc-sep {
 
 .ftn-bc-kicker {
   display: inline-flex;
+  align-items: center;
   max-width: 12rem;
-  min-height: 1.4rem;
+  min-height: 1.5rem;
   margin: 0;
-  padding: 0.1rem 0.35rem;
+  padding: 0.15rem 0.4rem;
   font: inherit;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.35;
   text-align: left;
   color: #1976d2;
   background: rgba(0, 0, 0, 0.04);
