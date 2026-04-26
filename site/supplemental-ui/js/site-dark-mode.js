@@ -51,6 +51,7 @@
   function ensureToggleButton() {
     const existingToggle = document.getElementById("theme-toggle");
     if (existingToggle) {
+      existingToggle.classList.add("ftn-header-icon-btn");
       existingToggle.addEventListener("click", toggleTheme);
       updateToggleLabel();
       return;
@@ -61,7 +62,7 @@
 
     const button = document.createElement("button");
     button.id = "theme-toggle";
-    button.className = "navbar-item theme-toggle";
+    button.className = "navbar-item ftn-header-icon-btn theme-toggle";
     button.type = "button";
     button.addEventListener("click", toggleTheme);
 

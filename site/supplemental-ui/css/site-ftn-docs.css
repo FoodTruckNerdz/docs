@@ -69,13 +69,17 @@ pre,
 /* ——— Top bar: light strip in “light” theme, dark strip in dark theme ——— */
 .header.ftn-header {
   display: block;
-  background: var(--ftn-header-bar-bg);
   color: var(--ftn-header-bar-fg);
-  border-bottom: 1px solid var(--ftn-header-bar-border);
   box-sizing: border-box;
+  /* Mast has its own fill and bottom border; top row is .ftn-site-navbar (sticky + opaque). */
+  background: transparent;
 }
 
+/* Sticky first row: must be solid so page content does not show through on scroll. */
 .ftn-site-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 8;
   width: 100%;
   min-height: 3.5rem;
   display: flex;
@@ -85,9 +89,9 @@ pre,
   box-sizing: border-box;
   padding: 0 0.6rem 0 0.5rem;
   column-gap: 0.75rem;
-  /* Let .header.ftn-header own the bar color (bundle .navbar can otherwise paint a dark strip) */
-  background: transparent !important;
+  background: var(--ftn-header-bar-bg) !important;
   color: inherit;
+  border-bottom: 1px solid var(--ftn-header-bar-border);
 }
 
 .header.ftn-header .ftn-topbar,
@@ -186,42 +190,8 @@ a.ftn-header-title:focus {
   opacity: 0.9;
 }
 
-/* Org GitHub profile — img/vcs/github.svg is white; light mode uses --ftn-header-github-icon-filter */
-.ftn-header-github,
-.navbar-item.ftn-header-github {
-  color: var(--ftn-header-bar-fg);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--ftn-header-ctrl);
-  height: var(--ftn-header-ctrl);
-  min-width: var(--ftn-header-ctrl);
-  min-height: var(--ftn-header-ctrl);
-  border-radius: 0.2rem;
-  padding: 0;
-  box-sizing: border-box;
-  flex-shrink: 0;
-}
-
-.ftn-header-github:hover,
-.ftn-header-github:focus {
-  background: var(--ftn-header-bar-hover);
-  text-decoration: none;
-}
-
-.ftn-header-github-img {
-  width: 24px;
-  height: 24px;
-  display: block;
-  object-fit: contain;
-  flex-shrink: 0;
-  pointer-events: none;
-  filter: var(--ftn-header-github-icon-filter, none);
-}
-
-/* Theme toggle: same hit box; stroke uses currentColor — dark on light bar, light on dark bar */
-.header.ftn-header .navbar .navbar-end .theme-toggle {
+/* Header end controls (GitHub, theme) — one shape; beats site-extra .theme-toggle:hover colors. */
+.header.ftn-header .navbar .navbar-end .ftn-header-icon-btn {
   min-width: var(--ftn-header-ctrl) !important;
   min-height: var(--ftn-header-ctrl) !important;
   width: var(--ftn-header-ctrl) !important;
@@ -232,12 +202,47 @@ a.ftn-header-title:focus {
   justify-content: center;
   box-sizing: border-box;
   flex-shrink: 0;
+  border: none;
+  border-radius: 0.2rem;
+  text-decoration: none;
   color: var(--ftn-header-bar-fg) !important;
+  background: transparent !important;
+  cursor: pointer;
 }
 
-.header.ftn-header .navbar .navbar-end .theme-toggle:hover,
-.header.ftn-header .navbar .navbar-end .theme-toggle:focus {
+.header.ftn-header .navbar .navbar-end .ftn-header-icon-btn:hover,
+.header.ftn-header .navbar .navbar-end .ftn-header-icon-btn:focus {
   background: var(--ftn-header-bar-hover) !important;
+  text-decoration: none;
+  outline: none;
+}
+
+/* GitHub mark in light mode needs filter; theme icons use currentColor. */
+.ftn-header-github .ftn-header-github-img,
+.ftn-header-icon-btn.ftn-header-github .ftn-header-github-img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  object-fit: contain;
+  flex-shrink: 0;
+  pointer-events: none;
+  filter: var(--ftn-header-github-icon-filter, none);
+}
+
+.header.ftn-header .ftn-header-icon-btn .theme-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.header.ftn-header .ftn-header-icon-btn .theme-icon path,
+.header.ftn-header .ftn-header-icon-btn .theme-icon circle {
+  fill: none;
 }
 
 @media screen and (min-width: 1024px) {
