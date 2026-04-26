@@ -1,0 +1,183 @@
+(function () {
+  const themeKey = "antora-theme";
+  const html = document.documentElement;
+  const darkThemeClass = "dark-theme";
+
+  function setTheme(theme) {
+    if (theme === "dark") {
+      html.classList.add(darkThemeClass);
+    } else {
+      html.classList.remove(darkThemeClass);
+    }
+    localStorage.setItem(themeKey, theme);
+    updateToggleLabel();
+  }
+
+  function isDark() {
+    return html.classList.contains(darkThemeClass);
+  }
+
+  function updateToggleLabel() {
+    const toggle = document.getElementById("theme-toggle");
+    if (!toggle) return;
+    if (isDark()) {
+      toggle.innerHTML =
+        '<svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
+      toggle.setAttribute("aria-label", "Light mode");
+    } else {
+      toggle.innerHTML =
+        '<svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+      toggle.setAttribute("aria-label", "Dark mode");
+    }
+  }
+
+  function toggleTheme() {
+    setTheme(isDark() ? "light" : "dark");
+  }
+
+  function applyInitialTheme() {
+    const savedTheme = localStorage.getItem(themeKey);
+    if (savedTheme === "dark" || savedTheme === "light") {
+      setTheme(savedTheme);
+      return;
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  }
+
+  function ensureToggleButton() {
+    const existingToggle = document.getElementById("theme-toggle");
+    if (existingToggle) {
+      existingToggle.addEventListener("click", toggleTheme);
+      updateToggleLabel();
+      return;
+    }
+
+    const navbarEnd = document.querySelector(".navbar .navbar-end");
+    if (!navbarEnd) return;
+
+    const button = document.createElement("button");
+    button.id = "theme-toggle";
+    button.className = "navbar-item theme-toggle";
+    button.type = "button";
+    button.addEventListener("click", toggleTheme);
+
+    navbarEnd.insertBefore(button, navbarEnd.firstChild);
+    updateToggleLabel();
+  }
+
+  function detectVcsProvider(repoUrl) {
+    if (!repoUrl) return null;
+    try {
+      const host = new URL(repoUrl).hostname.toLowerCase();
+      if (host === "github.com") return "github";
+      if (host.includes("gitlab")) return "gitlab";
+      if (host === "bitbucket.org") return "bitbucket";
+      if (host.includes("gitea")) return "gitea";
+      if (host === "codeberg.org") return "codeberg";
+      if (host.includes("forgejo")) return "forgejo";
+      if (host.includes("sourcehut") || host.endsWith("sr.ht")) return "sourcehut";
+      return "repo";
+    } catch {
+      return null;
+    }
+  }
+
+  function getRepoUrl() {
+    const meta = document.querySelector('meta[name="antora-repo-url"]');
+    if (meta && meta.content) return meta.content;
+    const editLink = document.querySelector('.navbar-end a[href*="/edit/"], .navbar-end a[href*="/-/edit/"], .navbar-end a[href*="/blob/"]');
+    if (editLink && editLink.href) {
+      try {
+        const u = new URL(editLink.href);
+        const pathParts = u.pathname.split("/").filter(Boolean);
+        if (u.hostname.includes("github") && pathParts.length >= 2) return u.origin + "/" + pathParts.slice(0, 2).join("/");
+        if (u.hostname.includes("gitlab") && pathParts.length >= 2) return u.origin + "/" + pathParts.slice(0, 2).join("/");
+        if (u.hostname.includes("bitbucket") && pathParts.length >= 2) return u.origin + "/" + pathParts.slice(0, 2).join("/");
+        if (pathParts.length >= 2) return u.origin + "/" + pathParts.slice(0, 2).join("/");
+      } catch {}
+    }
+    return null;
+  }
+
+  function getUiBase() {
+    const fromData = document.querySelector("#site-script")?.dataset?.uiRootPath;
+    if (fromData) return fromData;
+    const script = document.currentScript;
+    if (script?.src) {
+      try {
+        const u = new URL(script.src);
+        u.pathname = u.pathname.replace(/\/[^/]*$/, "/");
+        return u.pathname + u.search || ".";
+      } catch (_e) {}
+    }
+    return ".";
+  }
+
+  function buildVcsLogoWidget(repoUrl, provider, base) {
+    const logoFile = provider ? `${provider}.svg` : "repo.svg";
+    const logoUrl = `${base}/img/vcs/${logoFile}`;
+    const wrapper = document.createElement("div");
+    wrapper.className = "navbar-item vcs-repo-logo";
+    const a = document.createElement("a");
+    a.href = repoUrl || "#";
+    a.className = "vcs-repo-link";
+    a.setAttribute("aria-label", repoUrl ? "View repository" : "Repository");
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    const logo = document.createElement("div");
+    logo.className = "vcs-logo";
+    const img = document.createElement("img");
+    img.alt = "";
+    img.width = 24;
+    img.height = 24;
+    img.className = "vcs-logo-img";
+    img.src = logoUrl;
+    img.onerror = function () {
+      this.onerror = null;
+      var dataRoot = document.querySelector("#site-script")?.dataset?.uiRootPath;
+      var fallback = (dataRoot || ".") + "/img/vcs/" + (provider ? provider + ".svg" : "repo.svg");
+      if (fallback !== logoUrl) {
+        this.src = fallback;
+      } else if (!dataRoot) {
+        this.src = "img/vcs/repo.svg";
+      }
+    };
+    logo.appendChild(img);
+    a.appendChild(logo);
+    wrapper.appendChild(a);
+    return wrapper;
+  }
+
+  function replaceDownloadWithVcsLogo() {
+    const downloadLink = document.querySelector(
+      '.navbar .navbar-end a.button[href="#"], .navbar .navbar-end a.button.is-primary'
+    );
+    if (!downloadLink) return;
+    const isDownload = /Download/i.test(downloadLink.textContent || "");
+    if (!isDownload) return;
+    const repoUrl = getRepoUrl();
+    const provider = repoUrl ? detectVcsProvider(repoUrl) : null;
+    const navbarEnd = document.querySelector(".navbar .navbar-end");
+    if (!navbarEnd) return;
+    const base = getUiBase();
+    const widget = buildVcsLogoWidget(repoUrl, provider, base);
+    const toReplace = downloadLink.closest(".control") || downloadLink.closest(".navbar-item") || downloadLink;
+    toReplace.parentNode.replaceChild(widget, toReplace);
+  }
+
+  function init() {
+    applyInitialTheme();
+    ensureToggleButton();
+    replaceDownloadWithVcsLogo();
+  }
+
+  if (document.readyState === "loading") {
+    window.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();

@@ -10,6 +10,8 @@
   --ftn-bc-kicker-fg: #1976d2;
   --ftn-bc-kicker-bg: rgba(0, 0, 0, 0.04);
   --ftn-bc-kicker-border: #ddd;
+  /* Top bar: all controls (logo hit-area, title, theme, org GitHub) share one line height */
+  --ftn-header-ctrl: 2.5rem;
 }
 
 html.dark-theme {
@@ -51,11 +53,15 @@ pre,
 }
 
 .ftn-site-navbar {
+  width: 100%;
   min-height: 3.5rem;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 0.6rem 0 0.5rem;
+  column-gap: 0.75rem;
 }
 
 .header.ftn-header .ftn-topbar,
@@ -64,6 +70,16 @@ pre,
   flex-wrap: nowrap;
   align-items: center;
   margin-left: auto;
+}
+
+.ftn-header-actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  column-gap: 0.15rem;
+  min-height: var(--ftn-header-ctrl);
 }
 
 /* Keep the end links visible: no Bulma burger for this project */
@@ -90,16 +106,24 @@ html.dark-theme .header.ftn-header .ftn-topbar .navbar-end {
   align-items: center;
   min-width: 0;
   flex: 1 1 auto;
+  min-height: var(--ftn-header-ctrl);
+  column-gap: 0.15rem;
 }
 
 .ftn-header-logo-item {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex: 0 0 auto;
-  padding: 0.2rem 0.2rem 0.2rem 0.4rem;
+  width: var(--ftn-header-ctrl);
+  height: var(--ftn-header-ctrl);
+  min-width: var(--ftn-header-ctrl);
+  min-height: var(--ftn-header-ctrl);
+  padding: 0;
   line-height: 0;
   border-radius: 0.2rem;
   text-decoration: none;
+  box-sizing: border-box;
 }
 
 .ftn-header-logo-item:hover,
@@ -115,8 +139,8 @@ html.dark-theme .ftn-header-logo-item:focus {
 
 .ftn-header-logo {
   display: block;
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
 }
 
@@ -126,8 +150,12 @@ a.ftn-header-title,
   font-weight: 600;
   font-size: 1.15rem;
   letter-spacing: 0.01em;
-  padding-left: 0.3rem;
+  padding: 0 0.4rem 0 0.15rem;
+  min-height: var(--ftn-header-ctrl);
+  display: flex;
+  align-items: center;
   text-decoration: none;
+  box-sizing: border-box;
 }
 
 a.ftn-header-title:hover,
@@ -136,7 +164,7 @@ a.ftn-header-title:focus {
   opacity: 0.92;
 }
 
-/* GitHub profile (icon only) */
+/* Org GitHub profile — same 24px asset as the dark-theme VCS chip (img/vcs/github.svg) */
 .ftn-header-github,
 .navbar-item.ftn-header-github {
   color: #fff;
@@ -144,10 +172,14 @@ a.ftn-header-title:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 2.4rem;
-  min-height: 2.4rem;
+  width: var(--ftn-header-ctrl);
+  height: var(--ftn-header-ctrl);
+  min-width: var(--ftn-header-ctrl);
+  min-height: var(--ftn-header-ctrl);
   border-radius: 0.2rem;
-  padding: 0.35rem 0.6rem;
+  padding: 0;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .ftn-header-github:hover,
@@ -156,11 +188,19 @@ a.ftn-header-title:focus {
   text-decoration: none;
 }
 
-.ftn-header-github .ftn-ico-github,
-.ftn-header-github-icon .ftn-ico-github {
-  width: 1.3rem;
-  height: 1.3rem;
+.ftn-header-github-img {
+  width: 24px;
+  height: 24px;
   display: block;
+  object-fit: contain;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+/* White SVG: on light top bars, darken so it’s visible (matches VCS area behavior) */
+html:not(.dark-theme) .ftn-header-github-img {
+  filter: brightness(0);
+  opacity: 0.88;
 }
 
 html:not(.dark-theme) a.ftn-header-title,
@@ -174,6 +214,20 @@ html:not(.dark-theme) .ftn-header-github:focus,
 html:not(.dark-theme) .ftn-header-logo-item:hover,
 html:not(.dark-theme) .ftn-header-logo-item:focus {
   background: rgba(0, 0, 0, 0.05);
+}
+
+/* Theme toggle: same hit box as logo + org GitHub (injected by site-dark-mode.js) */
+.header.ftn-header .navbar .navbar-end .theme-toggle {
+  min-width: var(--ftn-header-ctrl) !important;
+  min-height: var(--ftn-header-ctrl) !important;
+  width: var(--ftn-header-ctrl) !important;
+  height: var(--ftn-header-ctrl) !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 @media screen and (min-width: 1024px) {
