@@ -207,8 +207,8 @@ pre,
   object-fit: contain;
 }
 
-/* Dark-mode FTN header mark: see css/site-header-logo-override.css (separate file for cache
-   busting; removes antora-dark-theme filter on the img, optional light chip via ::before). */
+/* Dark-mode FTN header logo: see css/site-header-logo-override.css (logo link background +
+   no filter on the img; separate file to reduce stale cache). */
 
 a.adt-header-title,
 .navbar-item.adt-header-title {
