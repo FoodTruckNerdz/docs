@@ -1,0 +1,15 @@
+{{#if (and page.fileUri (not env.CI))}}
+    <li class="ftn-breadcrumb-edit" role="presentation">
+      <a class="ftn-edit-inline-link" href="{{page.fileUri}}" title="Edit this page" aria-label="Edit this page">
+        <span class="ftn-edit-github-icon" aria-hidden="true">{{> ftn-icon-github-inline}}</span>
+        <span class="ftn-edit-inline-text">Edit</span>
+      </a>
+    </li>
+{{else if (and page.editUrl (or env.FORCE_SHOW_EDIT_PAGE_LINK (not page.origin.private)))}}
+    <li class="ftn-breadcrumb-edit" role="presentation">
+      <a class="ftn-edit-inline-link" href="{{page.editUrl}}" title="Edit this page" aria-label="Edit this page">
+        <span class="ftn-edit-github-icon" aria-hidden="true">{{> ftn-icon-github-inline}}</span>
+        <span class="ftn-edit-inline-text">Edit</span>
+      </a>
+    </li>
+{{/if}}

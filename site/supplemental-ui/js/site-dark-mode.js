@@ -1,16 +1,44 @@
 (function () {
-  const themeKey = "antora-theme";
+  const MODE_KEY = "antora-theme-mode";
+  const LEGACY_KEY = "antora-theme";
   const html = document.documentElement;
   const darkThemeClass = "dark-theme";
 
-  function setTheme(theme) {
-    if (theme === "dark") {
+  function getMode() {
+    const m = localStorage.getItem(MODE_KEY);
+    if (m === "system" || m === "dark" || m === "light") return m;
+    const leg = localStorage.getItem(LEGACY_KEY);
+    if (leg === "dark" || leg === "light") {
+      localStorage.setItem(MODE_KEY, leg);
+      localStorage.removeItem(LEGACY_KEY);
+      return leg;
+    }
+    return "system";
+  }
+
+  function applyVisibleTheme() {
+    const mode = getMode();
+    let useDark;
+    if (mode === "system") {
+      useDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    } else {
+      useDark = mode === "dark";
+    }
+    if (useDark) {
       html.classList.add(darkThemeClass);
     } else {
       html.classList.remove(darkThemeClass);
     }
-    localStorage.setItem(themeKey, theme);
     updateToggleLabel();
+  }
+
+  function setMode(next) {
+    if (next === "system") {
+      localStorage.setItem(MODE_KEY, "system");
+    } else {
+      localStorage.setItem(MODE_KEY, next);
+    }
+    applyVisibleTheme();
   }
 
   function isDark() {
@@ -23,31 +51,36 @@
     if (isDark()) {
       toggle.innerHTML =
         '<svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
-      toggle.setAttribute("aria-label", "Light mode");
+      toggle.setAttribute("aria-label", "Switch to light mode");
     } else {
       toggle.innerHTML =
         '<svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
-      toggle.setAttribute("aria-label", "Dark mode");
+      toggle.setAttribute("aria-label", "Switch to dark mode");
     }
   }
 
   function toggleTheme() {
-    setTheme(isDark() ? "light" : "dark");
-    // Avoid :focus “stuck” hover look after mouse click (button stays focused)
+    setMode(isDark() ? "light" : "dark");
     const toggle = document.getElementById("theme-toggle");
     if (toggle) toggle.blur();
   }
 
-  function applyInitialTheme() {
-    const savedTheme = localStorage.getItem(themeKey);
-    if (savedTheme === "dark" || savedTheme === "light") {
-      setTheme(savedTheme);
-      return;
-    }
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setTheme("dark");
+  function onSystemThemeChange() {
+    const mode = getMode();
+    if (mode === "system") {
+      applyVisibleTheme();
     } else {
-      setTheme("light");
+      setMode("system");
+    }
+  }
+
+  function applyInitialTheme() {
+    applyVisibleTheme();
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    if (typeof mq.addEventListener === "function") {
+      mq.addEventListener("change", onSystemThemeChange);
+    } else {
+      mq.addListener(onSystemThemeChange);
     }
   }
 
@@ -93,16 +126,26 @@
   function getRepoUrl() {
     const meta = document.querySelector('meta[name="antora-repo-url"]');
     if (meta && meta.content) return meta.content;
-    const editLink = document.querySelector('.navbar-end a[href*="/edit/"], .navbar-end a[href*="/-/edit/"], .navbar-end a[href*="/blob/"]');
+    const editLink = document.querySelector(
+      '.navbar-end a[href*="/edit/"], .navbar-end a[href*="/-/edit/"], .navbar-end a[href*="/blob/"], a.ftn-edit-inline-link[href*="/"]'
+    );
     if (editLink && editLink.href) {
       try {
         const u = new URL(editLink.href);
         const pathParts = u.pathname.split("/").filter(Boolean);
-        if (u.hostname.includes("github") && pathParts.length >= 2) return u.origin + "/" + pathParts.slice(0, 2).join("/");
-        if (u.hostname.includes("gitlab") && pathParts.length >= 2) return u.origin + "/" + pathParts.slice(0, 2).join("/");
-        if (u.hostname.includes("bitbucket") && pathParts.length >= 2) return u.origin + "/" + pathParts.slice(0, 2).join("/");
+        if (u.hostname.includes("github") && pathParts.length >= 2) {
+          return u.origin + "/" + pathParts.slice(0, 2).join("/");
+        }
+        if (u.hostname.includes("gitlab") && pathParts.length >= 2) {
+          return u.origin + "/" + pathParts.slice(0, 2).join("/");
+        }
+        if (u.hostname.includes("bitbucket") && pathParts.length >= 2) {
+          return u.origin + "/" + pathParts.slice(0, 2).join("/");
+        }
         if (pathParts.length >= 2) return u.origin + "/" + pathParts.slice(0, 2).join("/");
-      } catch {}
+      } catch {
+        // ignore
+      }
     }
     return null;
   }
@@ -116,7 +159,9 @@
         const u = new URL(script.src);
         u.pathname = u.pathname.replace(/\/[^/]*$/, "/");
         return u.pathname + u.search || ".";
-      } catch (_e) {}
+      } catch (_e) {
+        // ignore
+      }
     }
     return ".";
   }
