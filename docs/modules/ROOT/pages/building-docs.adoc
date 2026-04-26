@@ -10,11 +10,11 @@ This guide explains how to build the Antora documentation site locally for devel
 
 == Quick Start
 
-. Navigate to the `site` folder in the `docs` repository:
+. Open a shell at the **root of your clone** of the `docs` repository (the folder that contains `antora-playbook.yml` and `package.json`):
 +
 [source,bash]
 ----
-cd docs/site
+cd path/to/docs
 ----
 
 . Install dependencies:
@@ -28,14 +28,14 @@ pnpm install
 +
 [source,bash]
 ----
-npx antora antora-playbook-local.yml
+pnpm exec antora antora-playbook-local.yml
 ----
 +
 Or build from GitHub sources (standard playbook):
 +
 [source,bash]
 ----
-npx antora antora-playbook.yml
+pnpm exec antora antora-playbook.yml
 ----
 
 . Preview the site:
@@ -47,7 +47,7 @@ The site is generated in `build/site/`. You can:
 +
 [source,bash]
 ----
-npx http-server build/site -c-1 -p 8080
+pnpm dlx http-server build/site -c-1 -p 8080
 ----
 
 == Playbook Files
@@ -96,7 +96,6 @@ content:
 **Use this for:**
 * Local development and testing
 * Faster builds (no cloning needed)
-* Offline development
 * Working with uncommitted changes
 
 **Advantages:**
@@ -126,7 +125,7 @@ To build using GitHub URLs (standard playbook):
 
 [source,bash]
 ----
-npx antora antora-playbook.yml
+pnpm exec antora antora-playbook.yml
 ----
 
 This will:
@@ -156,25 +155,26 @@ The build process creates the following structure:
 
 [source]
 ----
-docs/
-├── site/                       # Antora documentation site folder
-│   ├── antora-playbook.yml     # Standard playbook (GitHub URLs)
-│   ├── antora-playbook-local.yml # Local development playbook
-│   ├── build/
-│   │   └── site/               # Generated site output
-│   │       ├── index.html
-│   │       ├── onboarding/
-│   │       ├── food-truck-api/
-│   │       └── ...
-│   ├── supplemental-ui/        # Custom UI overrides
-│   ├── package.json            # Antora dependencies
-│   └── pnpm-lock.yaml          # Lock file
-├── docs/                       # Internal team documentation component
-│   ├── antora.yml              # Component descriptor
+docs/                            # Repository root (clone of FoodTruckNerdz/docs)
+├── antora-playbook.yml          # Standard playbook (GitHub URLs)
+├── antora-playbook-local.yml    # Local paths (git-ignored; copy from .example)
+├── package.json                 # Antora dependencies, `pnpm run build`
+├── pnpm-lock.yaml
+├── build/                       # Created by Antora
+│   └── site/                    # Generated site output
+│       ├── index.html
+│       ├── onboarding/
+│       ├── food-truck-api/
+│       └── ...
+├── site/                        # UI sync + supplemental (not the playbooks)
+│   ├── scripts/                 # e.g. sync-antora-dark-theme.cjs
+│   └── supplemental-ui/       # Custom UI overrides
+├── docs/                        # *Component* for this repository (`start_path: docs` in playbook)
+│   ├── antora.yml
 │   └── modules/
-├── ftn-docs.code-workspace     # Multi-root folder list only (tooling in `.vscode/`)
-├── .vscode/                    # Editor settings & extension recommendations (playbook root only)
-└── README.adoc                 # Repository README
+├── ftn-docs.code-workspace
+├── .vscode/
+└── README.adoc
 ----
 
 == Next Steps
