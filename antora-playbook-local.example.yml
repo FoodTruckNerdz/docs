@@ -1,3 +1,14 @@
+# Local Antora playbook template
+#
+# 1. Copy this file to antora-playbook-local.yml (gitignored; see .gitignore).
+# 2. From the docs repo root: pnpm dlx antora antora-playbook-local.yml
+#
+# Clone sibling repos next to docs/ (same parent folder names as below):
+#   onboarding, food-truck-api, ftn-site, ftn-app, help, developer-portal
+#
+# Content source order matches antora-playbook.yml except URLs are relative
+# and this repo is url: . instead of the GitHub docs.git URL.
+
 site:
   title: Documentation
   url: https://docs.foodtrucknerdz.com
@@ -6,8 +17,10 @@ site:
     site_description: "Multi-component Antora site (unified project documentation)"
     github_profile_url: "https://github.com/FoodTruckNerdz"
     foodtrucknerdz_com: "https://foodtrucknerdz.com"
+    # Shown in footer; match ui.bundle below (becomes site.keys.uiBundle* in the UI model).
     ui_bundle_name: "antora-dark-theme"
     ui_bundle_url: "https://github.com/antora-supplemental/antora-dark-theme"
+    # Browser tab (head-title partial): last segment; middle = each component’s antora.yml `title`.
     title_bar_brand: "Food Truck Nerdz"
 content:
   sources:

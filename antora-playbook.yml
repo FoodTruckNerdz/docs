@@ -25,6 +25,9 @@ content:
     - url: https://github.com/FoodTruckNerdz/ftn-app.git
       branches: HEAD
       start_path: docs
+    - url: https://github.com/FoodTruckNerdz/docs.git
+      branches: HEAD
+      start_path: docs
     - url: https://github.com/FoodTruckNerdz/help.git
       branches: HEAD
       start_path: docs
