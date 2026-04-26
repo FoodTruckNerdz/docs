@@ -1,0 +1,98 @@
+graph TD
+    subgraph Pages
+        Layout(app/layout.tsx)
+        Home(app/page.tsx)
+    end
+
+    subgraph Layout Components
+        Header(components/layout/header.tsx)
+    end
+
+    subgraph Feature Components
+        SearchCard(components/food-trucks/search-card.tsx)
+        LocationCard(components/food-trucks/location-card.tsx)
+        CheckinForm(components/checkin/checkin-form.tsx)
+        MapContainer(components/map/map-container.tsx)
+    end
+
+    subgraph UI Components
+        Notifications(components/ui/notification.tsx)
+        Button(components/ui/button.tsx)
+        Input(components/ui/input.tsx)
+        Card(components/ui/card.tsx)
+        Select(components/ui/select.tsx)
+        Sheet(components/ui/sheet.tsx)
+        Sonner(components/ui/sonner.tsx toast)
+        Badge(components/ui/badge.tsx)
+    end
+
+    subgraph Stores
+        UIStore(store/ui-store.ts)
+        LocationStore(store/location-store.ts)
+        FoodTrucksStore(store/food-trucks-store.ts)
+        CheckinStore(store/checkin-store.ts)
+    end
+
+    subgraph External Libraries/SDKs
+        Next(Next.js - Link, Image)
+        Lucide(Lucide Icons - Menu, Search, MapPin)
+        RadarSDK(Radar SDK)
+    end
+
+    Layout --> Notifications
+    Home --> Layout
+    Home --> Header
+    Home --> SearchCard
+    Home --> LocationCard
+    Home --> CheckinForm
+    Home --> MapContainer
+    Home --> Notifications
+
+    Header --> Button
+    Header --> Sheet
+    Header --> Next
+    Header --> Lucide
+
+    SearchCard --> Card
+    SearchCard --> Input
+    SearchCard --> Button
+    SearchCard --> Lucide
+    SearchCard --> FoodTrucksStore
+
+    LocationCard --> Card
+    LocationCard --> Input
+    LocationCard --> Button
+    LocationCard --> Lucide
+    LocationCard --> LocationStore
+    LocationCard --> UIStore
+
+    CheckinForm --> Card
+    CheckinForm --> Input
+    CheckinForm --> Button
+    CheckinForm --> Select
+    CheckinForm --> Sonner
+    CheckinForm --> CheckinStore
+    CheckinForm --> UIStore
+
+    MapContainer --> Card
+    MapContainer --> LocationStore
+    MapContainer --> FoodTrucksStore
+    MapContainer --> UIStore
+    MapContainer --> RadarSDK
+
+    Notifications --> UIStore
+    UIStore --> Sonner
+
+    classDef page fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef layout fill:#ccf,stroke:#333,stroke-width:2px;
+    classDef feature fill:#cfc,stroke:#333,stroke-width:2px;
+    classDef ui fill:#ffc,stroke:#333,stroke-width:2px;
+    classDef store fill:#fcc,stroke:#333,stroke-width:2px;
+    classDef external fill:#eee,stroke:#333,stroke-width:2px;
+
+    class Layout,Home page;
+    class Header layout;
+    class SearchCard,LocationCard,CheckinForm,MapContainer feature;
+    class Notifications,Button,Input,Card,Select,Sheet,Sonner,Badge ui;
+    class UIStore,LocationStore,FoodTrucksStore,CheckinStore store;
+    class Next,Lucide,RadarSDK external;

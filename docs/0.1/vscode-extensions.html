@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recommended VS Code Extensions :: Docs :: Documentation</title>
+    <link rel="canonical" href="https://docs.foodtrucknerdz.com/docs/0.1/vscode-extensions.html">
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="../../_/css/site-doc-layout.css">
+<meta name="antora-repo-url" content="https://github.com/FoodTruckNerdz/docs">
+<script>
+(function () {
+  const MODE = 'antora-theme-mode'
+  const LEGACY = 'antora-theme'
+  function mode() {
+    const m = localStorage.getItem(MODE)
+    if (m === 'system' || m === 'dark' || m === 'light') return m
+    const o = localStorage.getItem(LEGACY)
+    if (o === 'dark' || o === 'light') return o
+    return 'system'
+  }
+  function isDark() {
+    const m = mode()
+    if (m === 'dark') return true
+    if (m === 'light') return false
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
+  if (isDark()) document.documentElement.classList.add('dark-theme')
+})()
+</script>
+  </head>
+  <body class="article">
+<header class="header adt-header">
+  <nav class="navbar adt-site-navbar" aria-label="Site">
+    <div class="navbar-brand adt-header-brand">
+      <a class="adt-header-logo-item" href="https://foodtrucknerdz.com" rel="noopener" target="_blank" title="foodtrucknerdz.com" aria-label="foodtrucknerdz.com (opens in new tab)">
+        <img class="adt-header-logo" src="../../_/img/foodtrucknerdz.svg" width="34" height="34" alt="" />
+      </a>
+      <a class="navbar-item adt-header-title" href="https://docs.foodtrucknerdz.com">Documentation</a>
+    </div>
+    <div id="topbar-nav" class="navbar-menu adt-topbar" role="navigation" aria-label="External links">
+      <div class="navbar-end adt-header-actions">
+        <a class="navbar-item adt-header-icon-btn adt-header-vcs" href="https://github.com/FoodTruckNerdz/docs" rel="noopener" target="_blank" title="Source repository" aria-label="Source repository (opens in new tab)">
+          <img class="adt-header-vcs-img" src="../../_/img/vcs/code.svg" width="24" height="24" alt="" />
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div class="adt-doc-mast" role="navigation" aria-label="Component and location in documentation">
+  <button class="nav-toggle" type="button" aria-label="Toggle main navigation"></button>
+  <div class="adt-doc-mast-center">
+  <nav class="breadcrumbs adt-breadcrumbs" aria-label="Breadcrumb: component, version, and page path">
+  <ul>
+    <li class="adt-breadcrumb-home">
+      <a href="index.html" class="adt-breadcrumb-home-link" title="Component start page" aria-label="Component start page">
+        <svg class="adt-breadcrumb-home-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+      </a>
+    </li>
+    <li class="adt-breadcrumb-col adt-breadcrumb-masthead">
+      <div class="adt-bc-cluster" role="group" aria-label="Documentation component and version">
+        <div class="adt-bc-menu adt-bc-menu-project">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-proj" aria-haspopup="listbox" aria-expanded="false" aria-label="Switch documentation component">
+            <span class="adt-bc-kicker-label">Docs</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--components" id="adt-bc-proj" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="index.html" class="is-current">Docs</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../food-truck-api/1.0/index.html" class="">Food Truck API</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../ftn-site/index.html" class="">Food Truck Nerdz</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../onboarding/index.html" class="">FoodTruckNerds Onboarding</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../developer-portal/1.0/index.html" class="">FoodTruckNerdz Developer Portal Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../help/1.0/index.html" class="">FoodTruckNerdz Help Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../mobile-apps/index.html" class="">Mobile apps</a>
+            </li>
+          </ul>
+        </div>
+        <span class="adt-bc-sep" aria-hidden="true">|</span>
+        <div class="adt-bc-menu adt-bc-menu-version">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-ver" aria-haspopup="listbox" aria-expanded="false" aria-label="Select documentation version">
+            <span class="adt-bc-kicker-version">0.1</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--version" id="adt-bc-ver" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="index.html" class="adt-bc-version-pill is-current" aria-current="page">0.1</a>
+            </li>
+          </ul>
+                  </div>
+      </div>
+    </li>
+    <li class="adt-breadcrumb-trail adt-breadcrumb-trail--current"><a class="adt-breadcrumb-trail-link" href="vscode-extensions.html">VS Code Extensions</a></li>
+      <li class="adt-breadcrumb-edit" role="presentation">
+      <a class="adt-edit-inline-link" href="https://github.com/FoodTruckNerdz/docs/edit/main/docs/modules/ROOT/pages/vscode-extensions.adoc" title="Edit this page" aria-label="Edit this page">
+        <img class="adt-vcs-icon-img adt-edit-vcs-img" src="../../_/img/vcs/github.svg" width="16" height="16" alt="" />
+        <span class="adt-edit-inline-text">Edit</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+</header>
+<div class="body adt-body">
+<div class="nav-container" data-component="docs" data-version="0.1">
+  <aside class="nav">
+    <div class="panels adt-panels adt-panels-solo">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu nav-tree-only adt-nav-tree-only" aria-label="In this section">
+    <button class="nav-menu-toggle" aria-label="Toggle expand and collapse of all item groups" style="display: none"></button>
+    <p class="adt-nav-component-title"><a href="index.html">Docs</a></p>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="partners.html">Partners &amp; Services</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="vscode-extensions.html">VS Code Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Site build</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="docs-site-management.html">Site management overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="antora-supplemental-comparison.html">Antora Supplemental Comparison</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="building-docs.html">Building Locally</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="redeploying-docs.html">Redeploying the Site</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="antora-attributes.html">Using Antora Attributes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="troubleshooting-antora-builds.html">Troubleshooting Builds</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">CI/CD Details</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="github-actions-antora-setup.html">GitHub Actions Setup</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="action-includes-reference.html">Action Includes Reference</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article adt-article">
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="adt-page-header">
+  <h1 class="page adt-page-title">Recommended VS Code Extensions</h1>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This article covers recommended VS Code extensions that enhance your development workflow. While some projects have specific requirements (e.g., <a href="building-docs.html" class="xref page">Asciidoctor for documentation</a>), these extensions are generally useful across all FoodTruckNerdz and internal projects.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>This article may be out of date.</strong> Extension preferences (e.g., dprint vs Prettier, formatter defaults) change as the templates and workspace configs evolve. To confirm the current canonical list, inspect the source of truth:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Templates repo</strong> — <code>workspaces/_common/common.code-workspace</code> (extensions and defaultFormatter settings): <a href="https://github.com/dev-centr/templates">github.com/dev-centr/templates</a></p>
+</li>
+<li>
+<p><strong>Local path</strong> (if cloned): <code>Z:\code\github.com\dev-centr\templates\workspaces\_common\common.code-workspace</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Compare the <code>extensions.recommendations</code> and <code>settings["editor.defaultFormatter"]</code> (or language overrides) in that file with this page.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_standard_recommendations"><a class="anchor" href="#_standard_recommendations"></a>Standard Recommendations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>These recommendations are gathered from global templates and project workspaces.</p>
+</div>
+<div class="sect2">
+<h3 id="_git_collaboration"><a class="anchor" href="#_git_collaboration"></a>Git &amp; Collaboration</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>github.vscode-pull-request-github</code> — <strong>GitHub Pull Requests and Issues</strong>. Lets you review and manage GitHub PRs and issues directly from VS Code.</p>
+</li>
+<li>
+<p><code>eamodio.gitlens</code> — <strong>GitLens — Git supercharged</strong>. Provides powerful visualization of git history, blame annotations, and more.</p>
+</li>
+<li>
+<p><code>mhutchie.git-graph</code> — <strong>Git Graph</strong>. View a Git Graph of your repository, and easily perform Git actions from the graph.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_formatting_linting"><a class="anchor" href="#_formatting_linting"></a>Formatting &amp; Linting</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>dprint.dprint</code> — <strong>dprint</strong>. Fast, pluggable formatter (default for most languages in our templates).</p>
+</li>
+<li>
+<p><code>biomejs.biome</code> — <strong>Biome</strong>. Fast toolchain for web projects (linting; may format where configured).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_documentation"><a class="anchor" href="#_documentation"></a>Documentation</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>bierner.markdown-mermaid</code> — <strong>Markdown Preview Mermaid Support</strong>. Adds Mermaid diagram support to VS Code&#8217;s built-in markdown preview.</p>
+</li>
+<li>
+<p><code>bpruitt-goddard.mermaid-markdown-syntax-highlighting</code> — <strong>Mermaid Markdown Syntax Highlighting</strong>. Provides syntax highlighting for Mermaid diagrams in markdown files.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_support_for_languages_frameworks"><a class="anchor" href="#_support_for_languages_frameworks"></a>Support for Languages &amp; Frameworks</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>redhat.vscode-yaml</code> — <strong>YAML</strong>. provides comprehensive YAML language support.</p>
+</li>
+<li>
+<p><code>rust-lang.rust-analyzer</code> — <strong>rust-analyzer</strong>. A fast and feature-complete Rust language support extension.</p>
+</li>
+<li>
+<p><code>tamasfe.even-better-toml</code> — <strong>Even Better TOML</strong>. Fully-featured TOML support.</p>
+</li>
+<li>
+<p><code>bradlc.vscode-tailwindcss</code> — <strong>Tailwind CSS IntelliSense</strong>. Autocomplete and syntax highlighting for Tailwind CSS.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_utilities"><a class="anchor" href="#_utilities"></a>Utilities</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>henoc.svgeditor</code> — <strong>SVG Editor</strong>. A simple editor for SVG files.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conflict_analysis_performance"><a class="anchor" href="#_conflict_analysis_performance"></a>Conflict Analysis &amp; Performance</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When using multiple extensions, especially those that provide similar functionality, you may encounter performance degradation or conflicting behavior.</p>
+</div>
+<div class="sect2">
+<h3 id="_git_extensions"><a class="anchor" href="#_git_extensions"></a>Git Extensions</h3>
+<div class="paragraph">
+<p>The following extensions have overlapping features:
+* <code>eamodio.gitlens</code>
+* <code>mhutchie.git-graph</code>
+* <code>github.vscode-pull-request-github</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Potential Conflicts:</strong>
+- <strong>UI Clutter</strong>: Multiple blame annotations or history views.
+- <strong>Performance</strong>: GitLens is a heavy extension. If you experience lag in large repositories, consider disabling "Current Line Blame" or other real-time features.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_formatters_and_linters"><a class="anchor" href="#_formatters_and_linters"></a>Formatters and Linters</h3>
+<div class="paragraph">
+<p>Conflicts often arise between dprint, Biome, and Prettier.</p>
+</div>
+<div class="paragraph">
+<p><strong>Current setup (templates):</strong>
+- <code>dprint.dprint</code> is the default formatter for most languages (JS, TS, JSON, YAML, Markdown, AsciiDoc via plugin, etc.).
+- <code>biomejs.biome</code> is used for linting and may format in projects that opt in.</p>
+</div>
+<div class="paragraph">
+<p><strong>Resolution:</strong>
+The <code>.code-workspace</code> files in the templates repo are configured so dprint wins for most file types:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">"editor.defaultFormatter": "dprint.dprint",
+"[json]": { "editor.defaultFormatter": "dprint.dprint" },
+"[typescript]": { "editor.defaultFormatter": "dprint.dprint" }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Avoid installing conflicting global formatters (e.g. Prettier) that override these project-specific settings. See the templates <code>common.code-workspace</code> for the canonical configuration.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_markdown_tools"><a class="anchor" href="#_markdown_tools"></a>Markdown Tools</h3>
+<div class="paragraph">
+<p><code>bierner.markdown-mermaid</code> and <code>bpruitt-goddard.mermaid-markdown-syntax-highlighting</code> work together: one provides the preview, the other provides the editor syntax highlighting. There are no known performance issues with using both.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>
+    Built with <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> <span class="antora-version">(3.1.14)</span>.
+    Base UI:
+    <a href="https://github.com/antora-supplemental/antora-dark-theme" target="_blank" rel="noopener">antora-dark-theme</a>
+    (<a href="https://www.mozilla.org/MPL/2.0/" target="_blank" rel="noopener">MPL-2.0</a>).
+    FoodTruckNerdz extends the UI (header, layout rails, navigation, styling) in the
+    <a href="https://github.com/FoodTruckNerdz/docs" target="_blank" rel="noopener">docs</a> repository;
+    see <a href="https://github.com/FoodTruckNerdz/docs/blob/main/docs/modules/ROOT/pages/docs-site-management.adoc#ui-bundle" target="_blank" rel="noopener">UI bundle and footer</a>.
+  </p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/site-dark-mode.js"></script>
+<script src="../../_/js/site-adt-accordion.js"></script>
+  </body>
+</html>

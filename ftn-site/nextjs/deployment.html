@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deployment Guide :: Food Truck Nerdz :: Documentation</title>
+    <link rel="canonical" href="https://docs.foodtrucknerdz.com/ftn-site/nextjs/deployment.html">
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="../../_/css/site-doc-layout.css">
+<meta name="antora-repo-url" content="https://github.com/FoodTruckNerdz/ftn-site">
+<script>
+(function () {
+  const MODE = 'antora-theme-mode'
+  const LEGACY = 'antora-theme'
+  function mode() {
+    const m = localStorage.getItem(MODE)
+    if (m === 'system' || m === 'dark' || m === 'light') return m
+    const o = localStorage.getItem(LEGACY)
+    if (o === 'dark' || o === 'light') return o
+    return 'system'
+  }
+  function isDark() {
+    const m = mode()
+    if (m === 'dark') return true
+    if (m === 'light') return false
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
+  if (isDark()) document.documentElement.classList.add('dark-theme')
+})()
+</script>
+  </head>
+  <body class="article">
+<header class="header adt-header">
+  <nav class="navbar adt-site-navbar" aria-label="Site">
+    <div class="navbar-brand adt-header-brand">
+      <a class="adt-header-logo-item" href="https://foodtrucknerdz.com" rel="noopener" target="_blank" title="foodtrucknerdz.com" aria-label="foodtrucknerdz.com (opens in new tab)">
+        <img class="adt-header-logo" src="../../_/img/foodtrucknerdz.svg" width="34" height="34" alt="" />
+      </a>
+      <a class="navbar-item adt-header-title" href="https://docs.foodtrucknerdz.com">Documentation</a>
+    </div>
+    <div id="topbar-nav" class="navbar-menu adt-topbar" role="navigation" aria-label="External links">
+      <div class="navbar-end adt-header-actions">
+        <a class="navbar-item adt-header-icon-btn adt-header-vcs" href="https://github.com/FoodTruckNerdz/ftn-site" rel="noopener" target="_blank" title="Source repository" aria-label="Source repository (opens in new tab)">
+          <img class="adt-header-vcs-img" src="../../_/img/vcs/code.svg" width="24" height="24" alt="" />
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div class="adt-doc-mast" role="navigation" aria-label="Component and location in documentation">
+  <button class="nav-toggle" type="button" aria-label="Toggle main navigation"></button>
+  <div class="adt-doc-mast-center">
+  <nav class="breadcrumbs adt-breadcrumbs" aria-label="Breadcrumb: component, version, and page path">
+  <ul>
+    <li class="adt-breadcrumb-home">
+      <a href="../index.html" class="adt-breadcrumb-home-link" title="Component start page" aria-label="Component start page">
+        <svg class="adt-breadcrumb-home-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+      </a>
+    </li>
+    <li class="adt-breadcrumb-col adt-breadcrumb-masthead">
+      <div class="adt-bc-cluster" role="group" aria-label="Documentation component and version">
+        <div class="adt-bc-menu adt-bc-menu-project">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-proj" aria-haspopup="listbox" aria-expanded="false" aria-label="Switch documentation component">
+            <span class="adt-bc-kicker-label">Food Truck Nerdz</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--components" id="adt-bc-proj" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../docs/0.1/index.html" class="">Docs</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../food-truck-api/1.0/index.html" class="">Food Truck API</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../index.html" class="is-current">Food Truck Nerdz</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../onboarding/index.html" class="">FoodTruckNerds Onboarding</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../developer-portal/1.0/index.html" class="">FoodTruckNerdz Developer Portal Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../help/1.0/index.html" class="">FoodTruckNerdz Help Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../mobile-apps/index.html" class="">Mobile apps</a>
+            </li>
+          </ul>
+        </div>
+        <span class="adt-bc-sep" aria-hidden="true">|</span>
+        <div class="adt-bc-menu adt-bc-menu-version">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-ver" aria-haspopup="listbox" aria-expanded="false" aria-label="Select documentation version">
+            <span class="adt-bc-kicker-version">master</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--version" id="adt-bc-ver" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../index.html" class="adt-bc-version-pill is-current" aria-current="page">master</a>
+            </li>
+          </ul>
+                  </div>
+      </div>
+    </li>
+    <li class="adt-breadcrumb-trail adt-breadcrumb-trail--current"><a class="adt-breadcrumb-trail-link" href="deployment.html">Deployment Guide</a></li>
+    </ul>
+</nav>
+  </div>
+</div>
+</header>
+<div class="body adt-body">
+<div class="nav-container" data-component="ftn-site" data-version="master">
+  <aside class="nav">
+    <div class="panels adt-panels adt-panels-solo">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu nav-tree-only adt-nav-tree-only" aria-label="In this section">
+    <button class="nav-menu-toggle" aria-label="Toggle expand and collapse of all item groups" style="display: none"></button>
+    <p class="adt-nav-component-title"><a href="../index.html">Food Truck Nerdz</a></p>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Getting Started</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="api-reference.html">HTTP API (OpenAPI)</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="manual-setup.html">Manual Setup</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="deployment.html">Deployment Guide</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-architecture.html">Component Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="checkin-system.html">Check-in System</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="events-and-venues.html">Events &amp; Host Venues</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="pos-implementation.html">Point of Sale Implementation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="convex-setup.html">Convex Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="environment-variables.html">Environment Variables</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article adt-article">
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="adt-page-header">
+  <h1 class="page adt-page-title">Deployment Guide</h1>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide covers deploying the Food Truck Nerdz Next.js application to Vercel with Convex backend integration.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>A GitHub account with the repository cloned</p>
+</li>
+<li>
+<p>A Vercel account (sign up at <a href="https://vercel.com">vercel.com</a>)</p>
+</li>
+<li>
+<p>A Convex account (sign up at <a href="https://convex.dev">convex.dev</a>)</p>
+</li>
+<li>
+<p>Node.js 24+ installed locally</p>
+</li>
+<li>
+<p>pnpm installed</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git_remote_configuration"><a class="anchor" href="#_git_remote_configuration"></a>Git Remote Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before deploying, ensure your git remotes are configured correctly:</p>
+</div>
+<div class="sect2">
+<h3 id="_check_current_remotes"><a class="anchor" href="#_check_current_remotes"></a>Check Current Remotes</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git remote -v</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see:
+* <code>origin</code> pointing to your fork (e.g., <code><a href="https://github.com/YourUsername/ftn-site.git" class="bare">https://github.com/YourUsername/ftn-site.git</a></code>)
+* <code>upstream</code> pointing to the original repository (e.g., <code><a href="https://github.com/FoodTruckNerdz/ftn-site.git" class="bare">https://github.com/FoodTruckNerdz/ftn-site.git</a></code>)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_update_remotes_if_needed"><a class="anchor" href="#_update_remotes_if_needed"></a>Update Remotes (if needed)</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Set origin to your fork
+git remote set-url origin https://github.com/YourUsername/ftn-site.git
+
+# Set upstream to the original repository
+git remote set-url upstream {github-org-url}/{repo-ftn-site}.git</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_vercel_project_setup"><a class="anchor" href="#_vercel_project_setup"></a>Vercel Project Setup</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_1_create_a_new_vercel_project"><a class="anchor" href="#_1_create_a_new_vercel_project"></a>1. Create a New Vercel Project</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go to <a href="https://vercel.com/dashboard">Vercel Dashboard</a></p>
+</li>
+<li>
+<p>Click "Add New&#8230;&#8203;" → "Project"</p>
+</li>
+<li>
+<p>Import your GitHub repository</p>
+</li>
+<li>
+<p>Select the repository from the list</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_configure_project_settings"><a class="anchor" href="#_2_configure_project_settings"></a>2. Configure Project Settings</h3>
+<div class="paragraph">
+<p>In the project configuration screen, set the following:</p>
+</div>
+<div class="sect3">
+<h4 id="_root_directory"><a class="anchor" href="#_root_directory"></a>Root Directory</h4>
+<div class="paragraph">
+<p>Set the Root Directory to <code>site-nextjs</code>:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In Vercel project settings, go to "Settings" → "General"</p>
+</li>
+<li>
+<p>Under "Root Directory", enter: <code>site-nextjs</code></p>
+</li>
+<li>
+<p>This tells Vercel to treat the <code>site-nextjs</code> folder as the project root</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_build_output_settings"><a class="anchor" href="#_build_output_settings"></a>Build &amp; Output Settings</h4>
+<div class="paragraph">
+<p>The project includes a <code>vercel.json</code> file in the <code>site-nextjs</code> directory that configures:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Build Command: <code>pnpm convex deploy --cmd 'pnpm build'</code></p>
+</li>
+<li>
+<p>Framework: <code>nextjs</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you need to override these in the Vercel dashboard:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Build Command: <code>pnpm convex deploy --cmd 'pnpm build'</code></p>
+</li>
+<li>
+<p>Output Directory: Leave empty (Vercel auto-detects <code>.next</code> for Next.js)</p>
+</li>
+<li>
+<p>Install Command: <code>pnpm install</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_node_js_version"><a class="anchor" href="#_node_js_version"></a>Node.js Version</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In "Settings" → "General" → "Node.js Version"</p>
+</li>
+<li>
+<p>Set to <code>24.x</code> (matches your <code>package.json</code> engines requirement)</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_convex_deployment_setup"><a class="anchor" href="#_convex_deployment_setup"></a>Convex Deployment Setup</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_1_create_a_production_deployment"><a class="anchor" href="#_1_create_a_production_deployment"></a>1. Create a Production Deployment</h3>
+<div class="paragraph">
+<p>From your local machine, create a production Convex deployment:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd site-nextjs
+pnpm convex deploy</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will:
+* Create a production deployment in your Convex account
+* Deploy your Convex functions and schema
+* Provide a deployment URL</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>--prod</code> flag is not needed when using <code>pnpm convex deploy --cmd</code> in Vercel, as Convex automatically uses the production deployment in CI/CD environments.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_generate_a_convex_deploy_key"><a class="anchor" href="#_2_generate_a_convex_deploy_key"></a>2. Generate a Convex Deploy Key</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go to your <a href="https://dashboard.convex.dev">Convex Dashboard</a></p>
+</li>
+<li>
+<p>Navigate to your project settings</p>
+</li>
+<li>
+<p>Go to "Deploy Keys" or "Settings" → "Deploy Keys"</p>
+</li>
+<li>
+<p>Click "Generate Deploy Key"</p>
+</li>
+<li>
+<p>Copy the generated key (you&#8217;ll need this for Vercel)</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_configure_convex_in_vercel"><a class="anchor" href="#_3_configure_convex_in_vercel"></a>3. Configure Convex in Vercel</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In Vercel, go to your project → "Settings" → "Environment Variables"</p>
+</li>
+<li>
+<p>Add the following environment variable:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Name: <code>CONVEX_DEPLOY_KEY</code></p>
+</li>
+<li>
+<p>Value: Paste the deploy key you generated from Convex</p>
+</li>
+<li>
+<p>Environment: Select "Production" (and "Preview" if you want automatic deployments for preview branches)</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The <code>CONVEX_DEPLOY_KEY</code> is required for Vercel to deploy your Convex functions during the build process.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_how_convex_deployment_works"><a class="anchor" href="#_4_how_convex_deployment_works"></a>4. How Convex Deployment Works</h3>
+<div class="paragraph">
+<p>When Vercel builds your project:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The build command <code>pnpm convex deploy --cmd 'pnpm build'</code> runs</p>
+</li>
+<li>
+<p>Convex deploys your functions from the <code>convex/</code> directory</p>
+</li>
+<li>
+<p>Convex automatically sets <code>NEXT_PUBLIC_CONVEX_URL</code> during the build</p>
+</li>
+<li>
+<p>Your Next.js app builds with the correct Convex URL</p>
+</li>
+<li>
+<p>The frontend connects to your Convex backend automatically</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You do not need to manually set <code>NEXT_PUBLIC_CONVEX_URL</code> in Vercel environment variables, as Convex sets it automatically during deployment. However, you can override it if needed.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_environment_variables"><a class="anchor" href="#_environment_variables"></a>Environment Variables</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_required_environment_variables"><a class="anchor" href="#_required_environment_variables"></a>Required Environment Variables</h3>
+<div class="paragraph">
+<p>Add these in Vercel → "Settings" → "Environment Variables":</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CONVEX_DEPLOY_KEY</code> - Your Convex deploy key (see above)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_optional_environment_variables"><a class="anchor" href="#_optional_environment_variables"></a>Optional Environment Variables</h3>
+<div class="paragraph">
+<p>If you have other API keys or configuration, add them here:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Square API keys (if using Square integration)</p>
+</li>
+<li>
+<p>Radar SDK keys (if using location services)</p>
+</li>
+<li>
+<p>Any other service API keys your app requires</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Set each variable for the appropriate environments:
+* Production: Used for production deployments
+* Preview: Used for preview deployments (pull requests, branches)
+* Development: Used for local development (if using Vercel CLI)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploying"><a class="anchor" href="#_deploying"></a>Deploying</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_first_deployment"><a class="anchor" href="#_first_deployment"></a>First Deployment</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>After configuring all settings, click "Deploy" in Vercel</p>
+</li>
+<li>
+<p>Vercel will:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Install dependencies with <code>pnpm install</code></p>
+</li>
+<li>
+<p>Deploy Convex functions</p>
+</li>
+<li>
+<p>Build your Next.js application</p>
+</li>
+<li>
+<p>Deploy to production</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_subsequent_deployments"><a class="anchor" href="#_subsequent_deployments"></a>Subsequent Deployments</h3>
+<div class="paragraph">
+<p>Vercel automatically deploys when you:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Push to the main/master branch (production)</p>
+</li>
+<li>
+<p>Create a pull request (preview)</p>
+</li>
+<li>
+<p>Push to other branches (preview, if configured)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_manual_deployment_via_cli"><a class="anchor" href="#_manual_deployment_via_cli"></a>Manual Deployment via CLI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you need to force a deployment from your local machine (e.g., after changing the folder structure), you can use the Vercel CLI.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+In a pnpm workspace, the directory context matters. Vercel needs to find the root <code>pnpm-lock.yaml</code> file.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_1_install_vercel_cli"><a class="anchor" href="#_1_install_vercel_cli"></a>1. Install Vercel CLI</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-powershell hljs" data-lang="powershell">pnpm add -g vercel</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_link_your_project"><a class="anchor" href="#_2_link_your_project"></a>2. Link your project</h3>
+<div class="paragraph">
+<p>Run this from the <strong>repository root</strong> (where <code>pnpm-workspace.yaml</code> is):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-powershell hljs" data-lang="powershell">vercel link</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Select your existing project from the list. This creates a <code>.vercel</code> folder at the root.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_force_a_production_deployment"><a class="anchor" href="#_3_force_a_production_deployment"></a>3. Force a Production Deployment</h3>
+<div class="paragraph">
+<p>Run this also from the <strong>repository root</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-powershell hljs" data-lang="powershell">vercel --prod</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When running <code>vercel --prod</code>, the CLI may ask if you want to <strong>"Download Environment Variables for 'production'?"</strong>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Select NO (Reject this option).</strong></p>
+</div>
+<div class="paragraph">
+<p>Pulling environment variables from Vercel can overwrite your local configuration or create <code>.env</code> files that conflict with our project structure (which uses <code>.env.vercel</code> and <code>.env.local</code> for specific purposes). Always manage Vercel variables through the dashboard or manually in <code>.env.vercel</code> if needed for reference.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Vercel will use the <strong>Root Directory</strong> setting you configured in the dashboard (e.g., <code>site-nextjs</code>) to find the actual code, but running it from the repo root ensures all workspace dependencies are correctly uploaded.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_common_pitfalls"><a class="anchor" href="#_common_pitfalls"></a>Common Pitfalls</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Broken Paths</strong>: If you run <code>vercel --prod</code> from inside the <code>site-nextjs</code> folder, the CLI might try to look for <code>site-nextjs/site-nextjs</code> because it applies the dashboard&#8217;s "Root Directory" setting relative to your current path. Always run from the repo root or use the <code>--cwd .</code> flag to override.</p>
+</li>
+<li>
+<p><strong>Node Version Mismatch</strong>: If you get a local warning about Node versions, ensure both your machine and Vercel are set to Node 24.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_monitoring_deployments"><a class="anchor" href="#_monitoring_deployments"></a>Monitoring Deployments</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check the "Deployments" tab in Vercel to see build logs</p>
+</li>
+<li>
+<p>If the build fails, check:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Build logs for errors</p>
+</li>
+<li>
+<p>Environment variables are set correctly</p>
+</li>
+<li>
+<p><code>CONVEX_DEPLOY_KEY</code> is valid</p>
+</li>
+<li>
+<p>Convex deployment completed successfully</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_troubleshooting"><a class="anchor" href="#_troubleshooting"></a>Troubleshooting</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_build_fails_with_convex_deploy_key_not_found"><a class="anchor" href="#_build_fails_with_convex_deploy_key_not_found"></a>Build Fails with "CONVEX_DEPLOY_KEY not found"</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Ensure <code>CONVEX_DEPLOY_KEY</code> is set in Vercel environment variables</p>
+</li>
+<li>
+<p>Verify it&#8217;s available for the environment you&#8217;re deploying to (Production/Preview)</p>
+</li>
+<li>
+<p>Regenerate the key in Convex dashboard if needed</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build_fails_with_next_public_convex_url_is_not_set"><a class="anchor" href="#_build_fails_with_next_public_convex_url_is_not_set"></a>Build Fails with "NEXT_PUBLIC_CONVEX_URL is not set"</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>This usually means Convex deployment failed</p>
+</li>
+<li>
+<p>Check that <code>CONVEX_DEPLOY_KEY</code> is correct</p>
+</li>
+<li>
+<p>Verify your Convex project is properly configured</p>
+</li>
+<li>
+<p>Check build logs for Convex-specific errors</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_convex_functions_not_deploying"><a class="anchor" href="#_convex_functions_not_deploying"></a>Convex Functions Not Deploying</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Ensure <code>convex/</code> directory exists in <code>site-nextjs/</code></p>
+</li>
+<li>
+<p>Verify your <code>vercel.json</code> has the correct build command</p>
+</li>
+<li>
+<p>Check that Convex CLI is available (it&#8217;s installed as a dependency)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build_command_issues"><a class="anchor" href="#_build_command_issues"></a>Build Command Issues</h3>
+<div class="paragraph">
+<p>If you see errors about the build command:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Verify <code>vercel.json</code> exists in <code>site-nextjs/</code> directory</p>
+</li>
+<li>
+<p>Check that the build command is: <code>pnpm convex deploy --cmd 'pnpm build'</code></p>
+</li>
+<li>
+<p>Ensure Root Directory is set to <code>site-nextjs</code> in Vercel settings</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_best_practices"><a class="anchor" href="#_best_practices"></a>Best Practices</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_separate_deployments"><a class="anchor" href="#_separate_deployments"></a>Separate Deployments</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Use a separate Convex production deployment for Vercel (not your dev deployment)</p>
+</li>
+<li>
+<p>Keep dev deployments for local development</p>
+</li>
+<li>
+<p>This ensures production data is isolated</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_environment_specific_configuration"><a class="anchor" href="#_environment_specific_configuration"></a>Environment-Specific Configuration</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Use different Convex deployments for Production vs Preview if needed</p>
+</li>
+<li>
+<p>Set environment-specific variables in Vercel</p>
+</li>
+<li>
+<p>Test preview deployments before merging to main</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_monitoring"><a class="anchor" href="#_monitoring"></a>Monitoring</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Monitor Convex dashboard for function usage and errors</p>
+</li>
+<li>
+<p>Check Vercel analytics for frontend performance</p>
+</li>
+<li>
+<p>Set up error tracking (e.g., Sentry) for production issues</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_next_steps"><a class="anchor" href="#_next_steps"></a>Next Steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After successful deployment:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Test your production URL</p>
+</li>
+<li>
+<p>Verify Convex functions are working</p>
+</li>
+<li>
+<p>Check that all API integrations are functioning</p>
+</li>
+<li>
+<p>Monitor for any errors or issues</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For local development setup, see <a href="getting-started.html" class="xref page">Getting Started</a>.</p>
+</div>
+<div class="paragraph">
+<p>For Convex-specific setup details, see <a href="convex-setup.html" class="xref page">Convex Setup</a>.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>
+    Built with <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> <span class="antora-version">(3.1.14)</span>.
+    Base UI:
+    <a href="https://github.com/antora-supplemental/antora-dark-theme" target="_blank" rel="noopener">antora-dark-theme</a>
+    (<a href="https://www.mozilla.org/MPL/2.0/" target="_blank" rel="noopener">MPL-2.0</a>).
+    FoodTruckNerdz extends the UI (header, layout rails, navigation, styling) in the
+    <a href="https://github.com/FoodTruckNerdz/docs" target="_blank" rel="noopener">docs</a> repository;
+    see <a href="https://github.com/FoodTruckNerdz/docs/blob/main/docs/modules/ROOT/pages/docs-site-management.adoc#ui-bundle" target="_blank" rel="noopener">UI bundle and footer</a>.
+  </p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/site-dark-mode.js"></script>
+<script src="../../_/js/site-adt-accordion.js"></script>
+  </body>
+</html>

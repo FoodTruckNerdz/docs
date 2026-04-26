@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Building the Antora Documentation Site Locally :: Docs :: Documentation</title>
+    <link rel="canonical" href="https://docs.foodtrucknerdz.com/docs/0.1/building-docs.html">
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="../../_/css/site-doc-layout.css">
+<meta name="antora-repo-url" content="https://github.com/FoodTruckNerdz/docs">
+<script>
+(function () {
+  const MODE = 'antora-theme-mode'
+  const LEGACY = 'antora-theme'
+  function mode() {
+    const m = localStorage.getItem(MODE)
+    if (m === 'system' || m === 'dark' || m === 'light') return m
+    const o = localStorage.getItem(LEGACY)
+    if (o === 'dark' || o === 'light') return o
+    return 'system'
+  }
+  function isDark() {
+    const m = mode()
+    if (m === 'dark') return true
+    if (m === 'light') return false
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
+  if (isDark()) document.documentElement.classList.add('dark-theme')
+})()
+</script>
+  </head>
+  <body class="article">
+<header class="header adt-header">
+  <nav class="navbar adt-site-navbar" aria-label="Site">
+    <div class="navbar-brand adt-header-brand">
+      <a class="adt-header-logo-item" href="https://foodtrucknerdz.com" rel="noopener" target="_blank" title="foodtrucknerdz.com" aria-label="foodtrucknerdz.com (opens in new tab)">
+        <img class="adt-header-logo" src="../../_/img/foodtrucknerdz.svg" width="34" height="34" alt="" />
+      </a>
+      <a class="navbar-item adt-header-title" href="https://docs.foodtrucknerdz.com">Documentation</a>
+    </div>
+    <div id="topbar-nav" class="navbar-menu adt-topbar" role="navigation" aria-label="External links">
+      <div class="navbar-end adt-header-actions">
+        <a class="navbar-item adt-header-icon-btn adt-header-vcs" href="https://github.com/FoodTruckNerdz/docs" rel="noopener" target="_blank" title="Source repository" aria-label="Source repository (opens in new tab)">
+          <img class="adt-header-vcs-img" src="../../_/img/vcs/code.svg" width="24" height="24" alt="" />
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div class="adt-doc-mast" role="navigation" aria-label="Component and location in documentation">
+  <button class="nav-toggle" type="button" aria-label="Toggle main navigation"></button>
+  <div class="adt-doc-mast-center">
+  <nav class="breadcrumbs adt-breadcrumbs" aria-label="Breadcrumb: component, version, and page path">
+  <ul>
+    <li class="adt-breadcrumb-home">
+      <a href="index.html" class="adt-breadcrumb-home-link" title="Component start page" aria-label="Component start page">
+        <svg class="adt-breadcrumb-home-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+      </a>
+    </li>
+    <li class="adt-breadcrumb-col adt-breadcrumb-masthead">
+      <div class="adt-bc-cluster" role="group" aria-label="Documentation component and version">
+        <div class="adt-bc-menu adt-bc-menu-project">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-proj" aria-haspopup="listbox" aria-expanded="false" aria-label="Switch documentation component">
+            <span class="adt-bc-kicker-label">Docs</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--components" id="adt-bc-proj" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="index.html" class="is-current">Docs</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../food-truck-api/1.0/index.html" class="">Food Truck API</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../ftn-site/index.html" class="">Food Truck Nerdz</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../onboarding/index.html" class="">FoodTruckNerds Onboarding</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../developer-portal/1.0/index.html" class="">FoodTruckNerdz Developer Portal Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../help/1.0/index.html" class="">FoodTruckNerdz Help Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../mobile-apps/index.html" class="">Mobile apps</a>
+            </li>
+          </ul>
+        </div>
+        <span class="adt-bc-sep" aria-hidden="true">|</span>
+        <div class="adt-bc-menu adt-bc-menu-version">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-ver" aria-haspopup="listbox" aria-expanded="false" aria-label="Select documentation version">
+            <span class="adt-bc-kicker-version">0.1</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--version" id="adt-bc-ver" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="index.html" class="adt-bc-version-pill is-current" aria-current="page">0.1</a>
+            </li>
+          </ul>
+                  </div>
+      </div>
+    </li>
+    <li class="adt-breadcrumb-trail"><span class="adt-breadcrumb-trail-text">Site build</span></li>
+    <li class="adt-breadcrumb-trail adt-breadcrumb-trail--current"><a class="adt-breadcrumb-trail-link" href="building-docs.html">Building Locally</a></li>
+      <li class="adt-breadcrumb-edit" role="presentation">
+      <a class="adt-edit-inline-link" href="https://github.com/FoodTruckNerdz/docs/edit/main/docs/modules/ROOT/pages/building-docs.adoc" title="Edit this page" aria-label="Edit this page">
+        <img class="adt-vcs-icon-img adt-edit-vcs-img" src="../../_/img/vcs/github.svg" width="16" height="16" alt="" />
+        <span class="adt-edit-inline-text">Edit</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+</header>
+<div class="body adt-body">
+<div class="nav-container" data-component="docs" data-version="0.1">
+  <aside class="nav">
+    <div class="panels adt-panels adt-panels-solo">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu nav-tree-only adt-nav-tree-only" aria-label="In this section">
+    <button class="nav-menu-toggle" aria-label="Toggle expand and collapse of all item groups" style="display: none"></button>
+    <p class="adt-nav-component-title"><a href="index.html">Docs</a></p>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="partners.html">Partners &amp; Services</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="vscode-extensions.html">VS Code Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Site build</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="docs-site-management.html">Site management overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="antora-supplemental-comparison.html">Antora Supplemental Comparison</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="building-docs.html">Building Locally</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="redeploying-docs.html">Redeploying the Site</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="antora-attributes.html">Using Antora Attributes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="troubleshooting-antora-builds.html">Troubleshooting Builds</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">CI/CD Details</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="github-actions-antora-setup.html">GitHub Actions Setup</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="action-includes-reference.html">Action Includes Reference</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article adt-article">
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="adt-page-header">
+  <h1 class="page adt-page-title">Building the Antora Documentation Site Locally</h1>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide explains how to build the Antora documentation site locally for development and testing purposes.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Node.js (LTS version recommended)</p>
+</li>
+<li>
+<p>pnpm package manager</p>
+</li>
+<li>
+<p>All component repositories cloned locally in the parent directory</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_quick_start"><a class="anchor" href="#_quick_start"></a>Quick Start</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a shell at the <strong>root of your clone</strong> of the <code>docs</code> repository (the folder that contains <code>antora-playbook.yml</code> and <code>package.json</code>):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd path/to/docs</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Install dependencies:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pnpm install</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Build the site locally:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pnpm exec antora antora-playbook-local.yml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or build from GitHub sources (standard playbook):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pnpm exec antora antora-playbook.yml</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Preview the site:</p>
+<div class="paragraph">
+<p>The site is generated in <code>build/site/</code>. You can:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Open <code>build/site/index.html</code> directly in your browser</p>
+</li>
+<li>
+<p>Or use a local server:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pnpm dlx http-server build/site -c-1 -p 8080</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_playbook_files"><a class="anchor" href="#_playbook_files"></a>Playbook Files</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The documentation repository contains two Antora playbook files:</p>
+</div>
+<div class="sect2">
+<h3 id="_antora_playbook_yml_github_urls"><a class="anchor" href="#_antora_playbook_yml_github_urls"></a>antora-playbook.yml (GitHub URLs)</h3>
+<div class="paragraph">
+<p>This is the standard Antora playbook that uses GitHub URLs, following Antora&#8217;s conventional naming:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">content:
+  sources:
+    - url: {github-org-url}/example-component.git
+      branches: HEAD
+      start_path: docs
+    # ... other sources</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Use this for:</strong>
+* CI/CD builds
+* Production deployments
+* When you want to build from the latest published content on GitHub
+* Following Antora&#8217;s standard tutorial conventions</p>
+</div>
+<div class="paragraph">
+<p><strong>Limitations:</strong>
+* Requires network access to clone repositories
+* Slower builds (clones repositories)
+* May not work if local repository remotes don&#8217;t match the GitHub URLs</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_antora_playbook_local_yml_local_paths"><a class="anchor" href="#_antora_playbook_local_yml_local_paths"></a>antora-playbook-local.yml (Local Paths)</h3>
+<div class="paragraph">
+<p>This is the local development playbook that uses local filesystem paths:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">content:
+  sources:
+    - url: ../example-component
+      branches: HEAD
+      start_path: docs
+    # ... other sources</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Use this for:</strong>
+* Local development and testing
+* Faster builds (no cloning needed)
+* Working with uncommitted changes</p>
+</div>
+<div class="paragraph">
+<p><strong>Advantages:</strong>
+* Faster builds (uses local files directly)
+* Works offline
+* Reflects your current working directory state
+* Better for iterative development</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_two_playbooks"><a class="anchor" href="#_why_two_playbooks"></a>Why Two Playbooks?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The two playbook files serve different purposes:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Standard Convention</strong>: The <code>antora-playbook.yml</code> follows Antora&#8217;s standard naming convention and uses GitHub URLs, matching Antora tutorials and CI/CD workflows.</p>
+</li>
+<li>
+<p><strong>Local Development</strong>: The <code>antora-playbook-local.yml</code> uses local paths for faster iteration and testing of documentation changes without needing to commit and push to GitHub.</p>
+</li>
+<li>
+<p><strong>Repository Structure</strong>: Some local repositories may have different remote URLs than what&#8217;s specified in the GitHub playbook. The local playbook works around this by using filesystem paths.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_building_with_github_urls"><a class="anchor" href="#_building_with_github_urls"></a>Building with GitHub URLs</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For GitHub URLs to work locally, your local repositories must have matching remote URLs. If they don&#8217;t match, Antora will attempt to clone from GitHub, which requires network access.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To build using GitHub URLs (standard playbook):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pnpm exec antora antora-playbook.yml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will:
+* Clone repositories from GitHub if they don&#8217;t exist locally
+* Use local git repositories if they match the remote URL
+* Fail if repositories don&#8217;t exist locally and network access is unavailable</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The <code>antora-playbook.yml</code> file follows Antora&#8217;s standard naming convention used in official tutorials.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_troubleshooting"><a class="anchor" href="#_troubleshooting"></a>Troubleshooting</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_missing_antora_yml_in_components"><a class="anchor" href="#_missing_antora_yml_in_components"></a>Missing antora.yml in Components</h3>
+<div class="paragraph">
+<p>If you see an error like <code>antora.yml not found</code>, ensure each component repository has an <code>antora.yml</code> file in its <code>docs/</code> directory.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_extension_errors"><a class="anchor" href="#_extension_errors"></a>Extension Errors</h3>
+<div class="paragraph">
+<p>If you encounter errors about AsciiDoc extensions (like <code>asciidoctor-emoji</code>), the extension may need to be installed separately or the configuration may need adjustment. Check the playbook&#8217;s <code>asciidoc.extensions</code> section.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_broken_cross_references"><a class="anchor" href="#_broken_cross_references"></a>Broken Cross-References</h3>
+<div class="paragraph">
+<p>Warnings about missing xref targets indicate broken cross-references in the documentation. These are documentation issues, not build failures, but should be fixed for better documentation quality.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_file_structure"><a class="anchor" href="#_file_structure"></a>File Structure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The build process creates the following structure:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">docs/                            # Repository root (clone of FoodTruckNerdz/docs)
+├── antora-playbook.yml          # Standard playbook (GitHub URLs)
+├── antora-playbook-local.yml    # Local paths (git-ignored; copy from .example)
+├── package.json                 # Antora dependencies, `pnpm run build`
+├── pnpm-lock.yaml
+├── build/                       # Created by Antora
+│   └── site/                    # Generated site output
+│       ├── index.html
+│       ├── onboarding/
+│       ├── food-truck-api/
+│       └── ...
+├── site/                        # UI sync + supplemental (not the playbooks)
+│   ├── scripts/                 # e.g. sync-antora-dark-theme.cjs
+│   └── supplemental-ui/       # Custom UI overrides
+├── docs/                        # *Component* for this repository (`start_path: docs` in playbook)
+│   ├── antora.yml
+│   └── modules/
+├── ftn-docs.code-workspace
+├── .vscode/
+└── README.adoc</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_next_steps"><a class="anchor" href="#_next_steps"></a>Next Steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After building locally:
+* Review the generated site in <code>build/site/</code>
+* Make changes to AsciiDoc files in component repositories
+* Rebuild to see changes
+* Commit and push changes when ready</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>
+    Built with <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> <span class="antora-version">(3.1.14)</span>.
+    Base UI:
+    <a href="https://github.com/antora-supplemental/antora-dark-theme" target="_blank" rel="noopener">antora-dark-theme</a>
+    (<a href="https://www.mozilla.org/MPL/2.0/" target="_blank" rel="noopener">MPL-2.0</a>).
+    FoodTruckNerdz extends the UI (header, layout rails, navigation, styling) in the
+    <a href="https://github.com/FoodTruckNerdz/docs" target="_blank" rel="noopener">docs</a> repository;
+    see <a href="https://github.com/FoodTruckNerdz/docs/blob/main/docs/modules/ROOT/pages/docs-site-management.adoc#ui-bundle" target="_blank" rel="noopener">UI bundle and footer</a>.
+  </p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/site-dark-mode.js"></script>
+<script src="../../_/js/site-adt-accordion.js"></script>
+  </body>
+</html>

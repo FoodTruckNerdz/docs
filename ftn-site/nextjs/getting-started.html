@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Getting Started :: Food Truck Nerdz :: Documentation</title>
+    <link rel="canonical" href="https://docs.foodtrucknerdz.com/ftn-site/nextjs/getting-started.html">
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="../../_/css/site-doc-layout.css">
+<meta name="antora-repo-url" content="https://github.com/FoodTruckNerdz/ftn-site">
+<script>
+(function () {
+  const MODE = 'antora-theme-mode'
+  const LEGACY = 'antora-theme'
+  function mode() {
+    const m = localStorage.getItem(MODE)
+    if (m === 'system' || m === 'dark' || m === 'light') return m
+    const o = localStorage.getItem(LEGACY)
+    if (o === 'dark' || o === 'light') return o
+    return 'system'
+  }
+  function isDark() {
+    const m = mode()
+    if (m === 'dark') return true
+    if (m === 'light') return false
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
+  if (isDark()) document.documentElement.classList.add('dark-theme')
+})()
+</script>
+  </head>
+  <body class="article">
+<header class="header adt-header">
+  <nav class="navbar adt-site-navbar" aria-label="Site">
+    <div class="navbar-brand adt-header-brand">
+      <a class="adt-header-logo-item" href="https://foodtrucknerdz.com" rel="noopener" target="_blank" title="foodtrucknerdz.com" aria-label="foodtrucknerdz.com (opens in new tab)">
+        <img class="adt-header-logo" src="../../_/img/foodtrucknerdz.svg" width="34" height="34" alt="" />
+      </a>
+      <a class="navbar-item adt-header-title" href="https://docs.foodtrucknerdz.com">Documentation</a>
+    </div>
+    <div id="topbar-nav" class="navbar-menu adt-topbar" role="navigation" aria-label="External links">
+      <div class="navbar-end adt-header-actions">
+        <a class="navbar-item adt-header-icon-btn adt-header-vcs" href="https://github.com/FoodTruckNerdz/ftn-site" rel="noopener" target="_blank" title="Source repository" aria-label="Source repository (opens in new tab)">
+          <img class="adt-header-vcs-img" src="../../_/img/vcs/code.svg" width="24" height="24" alt="" />
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div class="adt-doc-mast" role="navigation" aria-label="Component and location in documentation">
+  <button class="nav-toggle" type="button" aria-label="Toggle main navigation"></button>
+  <div class="adt-doc-mast-center">
+  <nav class="breadcrumbs adt-breadcrumbs" aria-label="Breadcrumb: component, version, and page path">
+  <ul>
+    <li class="adt-breadcrumb-home">
+      <a href="../index.html" class="adt-breadcrumb-home-link" title="Component start page" aria-label="Component start page">
+        <svg class="adt-breadcrumb-home-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+      </a>
+    </li>
+    <li class="adt-breadcrumb-col adt-breadcrumb-masthead">
+      <div class="adt-bc-cluster" role="group" aria-label="Documentation component and version">
+        <div class="adt-bc-menu adt-bc-menu-project">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-proj" aria-haspopup="listbox" aria-expanded="false" aria-label="Switch documentation component">
+            <span class="adt-bc-kicker-label">Food Truck Nerdz</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--components" id="adt-bc-proj" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../docs/0.1/index.html" class="">Docs</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../food-truck-api/1.0/index.html" class="">Food Truck API</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../index.html" class="is-current">Food Truck Nerdz</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../onboarding/index.html" class="">FoodTruckNerds Onboarding</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../developer-portal/1.0/index.html" class="">FoodTruckNerdz Developer Portal Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../help/1.0/index.html" class="">FoodTruckNerdz Help Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../mobile-apps/index.html" class="">Mobile apps</a>
+            </li>
+          </ul>
+        </div>
+        <span class="adt-bc-sep" aria-hidden="true">|</span>
+        <div class="adt-bc-menu adt-bc-menu-version">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-ver" aria-haspopup="listbox" aria-expanded="false" aria-label="Select documentation version">
+            <span class="adt-bc-kicker-version">master</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--version" id="adt-bc-ver" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../index.html" class="adt-bc-version-pill is-current" aria-current="page">master</a>
+            </li>
+          </ul>
+                  </div>
+      </div>
+    </li>
+    <li class="adt-breadcrumb-trail adt-breadcrumb-trail--current"><a class="adt-breadcrumb-trail-link" href="getting-started.html">Getting Started</a></li>
+    </ul>
+</nav>
+  </div>
+</div>
+</header>
+<div class="body adt-body">
+<div class="nav-container" data-component="ftn-site" data-version="master">
+  <aside class="nav">
+    <div class="panels adt-panels adt-panels-solo">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu nav-tree-only adt-nav-tree-only" aria-label="In this section">
+    <button class="nav-menu-toggle" aria-label="Toggle expand and collapse of all item groups" style="display: none"></button>
+    <p class="adt-nav-component-title"><a href="../index.html">Food Truck Nerdz</a></p>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Getting Started</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="api-reference.html">HTTP API (OpenAPI)</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="manual-setup.html">Manual Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="deployment.html">Deployment Guide</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-architecture.html">Component Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="checkin-system.html">Check-in System</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="events-and-venues.html">Events &amp; Host Venues</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="pos-implementation.html">Point of Sale Implementation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="convex-setup.html">Convex Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="environment-variables.html">Environment Variables</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article adt-article">
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="adt-page-header">
+  <h1 class="page adt-page-title">Getting Started</h1>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Node.js 24+</strong> - Download from <a href="https://nodejs.org/">nodejs.org</a></p>
+</li>
+<li>
+<p><strong>pnpm 10+</strong> - Install via <code>npm install -g pnpm</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Your system is using Corepack to manage package managers. Corepack acts as a wrapper that ensures the version of pnpm used matches what the project expects.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>PowerShell 5.1+</strong> (comes with Windows 10/11)</p>
+</li>
+<li>
+<p>Sign up for a <a href="https://developer.squareup.com/us/en">Square Developer</a> account</p>
+</li>
+<li>
+<p>Sign up for a <a href="https://docs.radar.com/sdk">Radar SDK</a> account (required for location services)</p>
+</li>
+<li>
+<p>Map Tiles: We use <a href="https://openfreemap.org/">OpenFreeMap</a> by default (no account required)</p>
+</li>
+<li>
+<p>Sign up for a <a href="https://convex.dev">Convex</a> account</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_quick_start"><a class="anchor" href="#_quick_start"></a>Quick Start</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_1_clone_the_repository"><a class="anchor" href="#_1_clone_the_repository"></a>1. Clone the repository</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-powershell hljs" data-lang="powershell">git clone &lt;repo_url&gt;
+cd ftn-site</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_install_dependencies"><a class="anchor" href="#_2_install_dependencies"></a>2. Install dependencies</h3>
+<div class="paragraph">
+<p>Run this in the root directory:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-powershell hljs" data-lang="powershell">pnpm install</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_configure_environment_variables"><a class="anchor" href="#_3_configure_environment_variables"></a>3. Configure environment variables</h3>
+<div class="paragraph">
+<p>Navigate to the <code>site-nextjs</code> directory and copy the template files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-powershell hljs" data-lang="powershell">cd site-nextjs
+cp .env.example .env.local</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Populate <code>.env.local</code> with your personal API keys. See <a href="environment-variables.html" class="xref page">Environment Variables</a> for details.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_start_convex_dev_server"><a class="anchor" href="#_4_start_convex_dev_server"></a>4. Start Convex dev server</h3>
+<div class="paragraph">
+<p>Start the Convex development server in a separate terminal from the <code>site-nextjs</code> directory:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-powershell hljs" data-lang="powershell"># Ensure you are in site-nextjs
+pnpm exec convex dev</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will sync your schema and functions to Convex and start a local proxy.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5_start_the_development_server"><a class="anchor" href="#_5_start_the_development_server"></a>5. Start the development server</h3>
+<div class="paragraph">
+<p>Back in your main terminal (inside <code>site-nextjs</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-powershell hljs" data-lang="powershell">pnpm dev</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_open_your_browser"><a class="anchor" href="#_6_open_your_browser"></a>6. Open your browser</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Navigate to <a href="http://localhost:3000" class="bare">http://localhost:3000</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_available_scripts_in_site_nextjs"><a class="anchor" href="#_available_scripts_in_site_nextjs"></a>Available Scripts (in site-nextjs)</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>pnpm dev</code> - Start development server with Turbopack</p>
+</li>
+<li>
+<p><code>pnpm build</code> - Build the application for production</p>
+</li>
+<li>
+<p><code>pnpm start</code> - Start the production server</p>
+</li>
+<li>
+<p><code>pnpm lint</code> - Run ESLint</p>
+</li>
+<li>
+<p><code>pnpm format</code> - Run Biome formatter</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_new_events_venues_and_social_previews"><a class="anchor" href="#_new_events_venues_and_social_previews"></a>New: events, venues, and social previews</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After pulling updates that add Convex tables (<code>publicEvents</code>, <code>hostVenues</code>, etc.), keep <strong><code>pnpm exec convex dev</code></strong> running locally (or deploy Convex in your pipeline) so <code>pnpm build</code> and runtime queries match the deployment.</p>
+</div>
+<div class="paragraph">
+<p>For link previews (Open Graph / Twitter cards), set <strong><code>NEXT_PUBLIC_APP_URL</code></strong> in <code>site-nextjs</code> to your real site origin — see <a href="environment-variables.html" class="xref page">Environment Variables</a>.</p>
+</div>
+<div class="paragraph">
+<p>Feature overview and fairness notes: <a href="events-and-venues.html" class="xref page">Events &amp; Host Venues</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_manual_setup"><a class="anchor" href="#_manual_setup"></a>Manual Setup</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you prefer manual setup or encounter issues with the workspace, see <a href="manual-setup.html" class="xref page">Manual Setup</a> for step-by-step instructions.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>
+    Built with <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> <span class="antora-version">(3.1.14)</span>.
+    Base UI:
+    <a href="https://github.com/antora-supplemental/antora-dark-theme" target="_blank" rel="noopener">antora-dark-theme</a>
+    (<a href="https://www.mozilla.org/MPL/2.0/" target="_blank" rel="noopener">MPL-2.0</a>).
+    FoodTruckNerdz extends the UI (header, layout rails, navigation, styling) in the
+    <a href="https://github.com/FoodTruckNerdz/docs" target="_blank" rel="noopener">docs</a> repository;
+    see <a href="https://github.com/FoodTruckNerdz/docs/blob/main/docs/modules/ROOT/pages/docs-site-management.adoc#ui-bundle" target="_blank" rel="noopener">UI bundle and footer</a>.
+  </p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/site-dark-mode.js"></script>
+<script src="../../_/js/site-adt-accordion.js"></script>
+  </body>
+</html>

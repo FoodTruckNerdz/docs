@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Events, host venues, and fair procurement :: Food Truck Nerdz :: Documentation</title>
+    <link rel="canonical" href="https://docs.foodtrucknerdz.com/ftn-site/nextjs/events-and-venues.html">
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="../../_/css/site-doc-layout.css">
+<meta name="antora-repo-url" content="https://github.com/FoodTruckNerdz/ftn-site">
+<script>
+(function () {
+  const MODE = 'antora-theme-mode'
+  const LEGACY = 'antora-theme'
+  function mode() {
+    const m = localStorage.getItem(MODE)
+    if (m === 'system' || m === 'dark' || m === 'light') return m
+    const o = localStorage.getItem(LEGACY)
+    if (o === 'dark' || o === 'light') return o
+    return 'system'
+  }
+  function isDark() {
+    const m = mode()
+    if (m === 'dark') return true
+    if (m === 'light') return false
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
+  if (isDark()) document.documentElement.classList.add('dark-theme')
+})()
+</script>
+  </head>
+  <body class="article">
+<header class="header adt-header">
+  <nav class="navbar adt-site-navbar" aria-label="Site">
+    <div class="navbar-brand adt-header-brand">
+      <a class="adt-header-logo-item" href="https://foodtrucknerdz.com" rel="noopener" target="_blank" title="foodtrucknerdz.com" aria-label="foodtrucknerdz.com (opens in new tab)">
+        <img class="adt-header-logo" src="../../_/img/foodtrucknerdz.svg" width="34" height="34" alt="" />
+      </a>
+      <a class="navbar-item adt-header-title" href="https://docs.foodtrucknerdz.com">Documentation</a>
+    </div>
+    <div id="topbar-nav" class="navbar-menu adt-topbar" role="navigation" aria-label="External links">
+      <div class="navbar-end adt-header-actions">
+        <a class="navbar-item adt-header-icon-btn adt-header-vcs" href="https://github.com/FoodTruckNerdz/ftn-site" rel="noopener" target="_blank" title="Source repository" aria-label="Source repository (opens in new tab)">
+          <img class="adt-header-vcs-img" src="../../_/img/vcs/code.svg" width="24" height="24" alt="" />
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div class="adt-doc-mast" role="navigation" aria-label="Component and location in documentation">
+  <button class="nav-toggle" type="button" aria-label="Toggle main navigation"></button>
+  <div class="adt-doc-mast-center">
+  <nav class="breadcrumbs adt-breadcrumbs" aria-label="Breadcrumb: component, version, and page path">
+  <ul>
+    <li class="adt-breadcrumb-home">
+      <a href="../index.html" class="adt-breadcrumb-home-link" title="Component start page" aria-label="Component start page">
+        <svg class="adt-breadcrumb-home-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+      </a>
+    </li>
+    <li class="adt-breadcrumb-col adt-breadcrumb-masthead">
+      <div class="adt-bc-cluster" role="group" aria-label="Documentation component and version">
+        <div class="adt-bc-menu adt-bc-menu-project">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-proj" aria-haspopup="listbox" aria-expanded="false" aria-label="Switch documentation component">
+            <span class="adt-bc-kicker-label">Food Truck Nerdz</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--components" id="adt-bc-proj" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../docs/0.1/index.html" class="">Docs</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../food-truck-api/1.0/index.html" class="">Food Truck API</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../index.html" class="is-current">Food Truck Nerdz</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../onboarding/index.html" class="">FoodTruckNerds Onboarding</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../developer-portal/1.0/index.html" class="">FoodTruckNerdz Developer Portal Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../help/1.0/index.html" class="">FoodTruckNerdz Help Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../mobile-apps/index.html" class="">Mobile apps</a>
+            </li>
+          </ul>
+        </div>
+        <span class="adt-bc-sep" aria-hidden="true">|</span>
+        <div class="adt-bc-menu adt-bc-menu-version">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-ver" aria-haspopup="listbox" aria-expanded="false" aria-label="Select documentation version">
+            <span class="adt-bc-kicker-version">master</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--version" id="adt-bc-ver" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../index.html" class="adt-bc-version-pill is-current" aria-current="page">master</a>
+            </li>
+          </ul>
+                  </div>
+      </div>
+    </li>
+    <li class="adt-breadcrumb-trail adt-breadcrumb-trail--current"><a class="adt-breadcrumb-trail-link" href="events-and-venues.html">Events &amp; Host Venues</a></li>
+    </ul>
+</nav>
+  </div>
+</div>
+</header>
+<div class="body adt-body">
+<div class="nav-container" data-component="ftn-site" data-version="master">
+  <aside class="nav">
+    <div class="panels adt-panels adt-panels-solo">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu nav-tree-only adt-nav-tree-only" aria-label="In this section">
+    <button class="nav-menu-toggle" aria-label="Toggle expand and collapse of all item groups" style="display: none"></button>
+    <p class="adt-nav-component-title"><a href="../index.html">Food Truck Nerdz</a></p>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Getting Started</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="api-reference.html">HTTP API (OpenAPI)</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="manual-setup.html">Manual Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="deployment.html">Deployment Guide</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-architecture.html">Component Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="checkin-system.html">Check-in System</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="events-and-venues.html">Events &amp; Host Venues</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="pos-implementation.html">Point of Sale Implementation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="convex-setup.html">Convex Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="environment-variables.html">Environment Variables</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article adt-article">
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="adt-page-header">
+  <h1 class="page adt-page-title">Events, host venues, and fair procurement</h1>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This page describes <strong>public events</strong> (one-off gigs where trucks apply) and <strong>host venues</strong> (recurring locations that publish a weekly truck schedule).
+It also explains <strong>procurement models</strong> and how we try to reduce power imbalance between organizers with budgets and cash-strapped truck operators.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_data_model_convex"><a class="anchor" href="#_data_model_convex"></a>Data model (Convex)</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>publicEvents</code></strong> — Organizer-owned listings with time range, location text, and a procurement model.
+Draft events become visible only after <strong>Publish</strong> (status <code>published</code>).</p>
+</li>
+<li>
+<p><strong><code>publicEventApplications</code></strong> — A truck owner applies with an optional message and, depending on model, a <strong>bid / ask</strong> in cents.
+Bid amounts are shown <strong>only to the organizer</strong> in the management UI — they are not exposed on public event pages or in public API summaries.</p>
+</li>
+<li>
+<p><strong><code>hostVenues</code></strong> — A named place (brewery lot, campus, office park) with optional address/coordinates.</p>
+</li>
+<li>
+<p><strong><code>hostVenueSlots</code></strong> — Recurring weekday + time range + <strong>your</strong> food truck.
+Custodians may only attach trucks where <code>foodTrucks.userId</code> matches their account (same Square business tenant), so random operators cannot be listed without consent.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_open_graph_social_previews"><a class="anchor" href="#_open_graph_social_previews"></a>Open Graph / social previews</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dynamic preview images are generated for:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>/</code> — homepage (<code>app/opengraph-image.tsx</code>)</p>
+</li>
+<li>
+<p><code>/trucks/[id]</code> — truck profile</p>
+</li>
+<li>
+<p><code>/events/[id]</code> — public event</p>
+</li>
+<li>
+<p><code>/venues/[id]</code> — host venue</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Canonical URLs and image links require a correct site origin.
+Set <strong><code>NEXT_PUBLIC_APP_URL</code></strong> in production (see <a href="environment-variables.html" class="xref page">Environment Variables</a>).</p>
+</div>
+<div class="paragraph">
+<p>After schema changes, deploy Convex before expecting sitemap or OG routes that query new tables to succeed in production.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_procurement_models"><a class="anchor" href="#_procurement_models"></a>Procurement models</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Organizers choose one of three modes when creating an event:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong><code>fixed_stipend</code></strong> (recommended for operator fairness)</dt>
+<dd>
+<p>The organizer posts a <strong>guaranteed flat fee</strong> up front (in cents in the database; UI uses dollars).
+Trucks apply knowing exactly what is on the table — no bidding war, no race to the bottom.</p>
+</dd>
+<dt class="hdlist1"><strong><code>budget_band</code></strong></dt>
+<dd>
+<p>The organizer commits to a <strong>minimum and/or maximum</strong> budget band.
+Trucks may optionally state a desired compensation within that band; the amount is still <strong>organizer-only</strong> on the wire for listings (public pages do not list individual asks).</p>
+</dd>
+<dt class="hdlist1"><strong><code>competitive_bids</code></strong></dt>
+<dd>
+<p>Trucks submit a <strong>bid</strong>; the organizer compares offers privately.
+This can still pressure small vendors.
+The product keeps amounts <strong>off public pages</strong> so operators are not publicly undercutting each other in real time.
+We still recommend <strong>fixed stipend</strong> or <strong>budget band</strong> when the goal is predictable, fair pay.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_power_dynamics_product_stance"><a class="anchor" href="#_power_dynamics_product_stance"></a>Power dynamics (product stance)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Food truck owners are often <strong>margin-thin</strong> and <strong>time-constrained</strong>.
+Event organizers usually hold more leverage (access to crowd, permits, parking).</p>
+</div>
+<div class="paragraph">
+<p>The platform bias is:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Prefer <strong>transparent, upfront economics</strong> (<code>fixed_stipend</code>, clear <code>budget_band</code>).</p>
+</li>
+<li>
+<p>Keep <strong>bid/ask numbers private</strong> on the public site to avoid public auctions.</p>
+</li>
+<li>
+<p>Encourage organizers to post <strong>requirements</strong> (<code>requirementsText</code>) and realistic <strong>guest counts</strong> so trucks can self-screen before applying.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This is <strong>not legal or labor advice</strong>; it is a design direction for the software.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_user_flows"><a class="anchor" href="#_user_flows"></a>User flows</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_organizer"><a class="anchor" href="#_organizer"></a>Organizer</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Sign in.</p>
+</li>
+<li>
+<p>Open <strong>Manage → Manage events</strong>.</p>
+</li>
+<li>
+<p>Create a <strong>draft</strong> (title, location name, times, procurement model, optional stipend/budget).</p>
+</li>
+<li>
+<p><strong>Publish</strong> when ready — the event appears on <code>/events</code> and gains a shareable URL and OG image.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Applications are reviewed under <strong>Manage events → Applications</strong> for that event.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_truck_operator"><a class="anchor" href="#_truck_operator"></a>Truck operator</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Connect Square and register an <strong>active</strong> truck (existing flow).</p>
+</li>
+<li>
+<p>Open a public event on <code>/events/[id]</code>.</p>
+</li>
+<li>
+<p>Submit an application (and bid where required).</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_host_venue_custodian"><a class="anchor" href="#_host_venue_custodian"></a>Host venue custodian</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Sign in.</p>
+</li>
+<li>
+<p><strong>Manage → Manage venues</strong> — create a venue and mark it public if it should appear on <code>/venues</code>.</p>
+</li>
+<li>
+<p>Add <strong>weekly slots</strong> only for trucks you operate (same business tenant).</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bootstrap_and_deploy_checklist"><a class="anchor" href="#_bootstrap_and_deploy_checklist"></a>Bootstrap and deploy checklist</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When pulling new code:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run <code>pnpm install</code> at the repo root.</p>
+</li>
+<li>
+<p>In <code>site-nextjs</code>, run <code>pnpm exec convex dev</code> (local) or deploy Convex in CI so <strong><code>hostVenues</code></strong>, <strong><code>hostVenueSlots</code></strong>, <strong><code>publicEvents</code></strong>, and <strong><code>publicEventApplications</code></strong> exist in your deployment.</p>
+</li>
+<li>
+<p>Set <strong><code>NEXT_PUBLIC_APP_URL</code></strong> on Vercel (or your host) to the production origin so metadata, sitemaps, and social cards use absolute URLs.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>See <a href="getting-started.html" class="xref page">Getting Started</a> and <a href="convex-setup.html" class="xref page">Convex Setup</a> for the usual dev loop.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_future_work_not_implemented_here"><a class="anchor" href="#_future_work_not_implemented_here"></a>Future work (not implemented here)</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Venue address geocoding and map embeds.</p>
+</li>
+<li>
+<p>Multi-truck acceptance per event (today one organizer can accept multiple applications manually; closing the event is manual).</p>
+</li>
+<li>
+<p>Truck-owner consent flow for third-party venues listing a truck they do not operate.</p>
+</li>
+<li>
+<p>Payments / contracts — out of scope; this module is discovery + applications only.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>
+    Built with <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> <span class="antora-version">(3.1.14)</span>.
+    Base UI:
+    <a href="https://github.com/antora-supplemental/antora-dark-theme" target="_blank" rel="noopener">antora-dark-theme</a>
+    (<a href="https://www.mozilla.org/MPL/2.0/" target="_blank" rel="noopener">MPL-2.0</a>).
+    FoodTruckNerdz extends the UI (header, layout rails, navigation, styling) in the
+    <a href="https://github.com/FoodTruckNerdz/docs" target="_blank" rel="noopener">docs</a> repository;
+    see <a href="https://github.com/FoodTruckNerdz/docs/blob/main/docs/modules/ROOT/pages/docs-site-management.adoc#ui-bundle" target="_blank" rel="noopener">UI bundle and footer</a>.
+  </p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/site-dark-mode.js"></script>
+<script src="../../_/js/site-adt-accordion.js"></script>
+  </body>
+</html>

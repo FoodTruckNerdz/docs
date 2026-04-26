@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Troubleshooting Antora Build Errors :: Docs :: Documentation</title>
+    <link rel="canonical" href="https://docs.foodtrucknerdz.com/docs/0.1/troubleshooting-antora-builds.html">
+    <meta name="description" content="Diagnosing and debugging common Antora build errors, especially path and repository issues">
+    <meta name="keywords" content="antora, troubleshooting, debugging, errors, pnpm, build failures">
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="../../_/css/site-doc-layout.css">
+<meta name="antora-repo-url" content="https://github.com/FoodTruckNerdz/docs">
+<script>
+(function () {
+  const MODE = 'antora-theme-mode'
+  const LEGACY = 'antora-theme'
+  function mode() {
+    const m = localStorage.getItem(MODE)
+    if (m === 'system' || m === 'dark' || m === 'light') return m
+    const o = localStorage.getItem(LEGACY)
+    if (o === 'dark' || o === 'light') return o
+    return 'system'
+  }
+  function isDark() {
+    const m = mode()
+    if (m === 'dark') return true
+    if (m === 'light') return false
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
+  if (isDark()) document.documentElement.classList.add('dark-theme')
+})()
+</script>
+  </head>
+  <body class="article">
+<header class="header adt-header">
+  <nav class="navbar adt-site-navbar" aria-label="Site">
+    <div class="navbar-brand adt-header-brand">
+      <a class="adt-header-logo-item" href="https://foodtrucknerdz.com" rel="noopener" target="_blank" title="foodtrucknerdz.com" aria-label="foodtrucknerdz.com (opens in new tab)">
+        <img class="adt-header-logo" src="../../_/img/foodtrucknerdz.svg" width="34" height="34" alt="" />
+      </a>
+      <a class="navbar-item adt-header-title" href="https://docs.foodtrucknerdz.com">Documentation</a>
+    </div>
+    <div id="topbar-nav" class="navbar-menu adt-topbar" role="navigation" aria-label="External links">
+      <div class="navbar-end adt-header-actions">
+        <a class="navbar-item adt-header-icon-btn adt-header-vcs" href="https://github.com/FoodTruckNerdz/docs" rel="noopener" target="_blank" title="Source repository" aria-label="Source repository (opens in new tab)">
+          <img class="adt-header-vcs-img" src="../../_/img/vcs/code.svg" width="24" height="24" alt="" />
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div class="adt-doc-mast" role="navigation" aria-label="Component and location in documentation">
+  <button class="nav-toggle" type="button" aria-label="Toggle main navigation"></button>
+  <div class="adt-doc-mast-center">
+  <nav class="breadcrumbs adt-breadcrumbs" aria-label="Breadcrumb: component, version, and page path">
+  <ul>
+    <li class="adt-breadcrumb-home">
+      <a href="index.html" class="adt-breadcrumb-home-link" title="Component start page" aria-label="Component start page">
+        <svg class="adt-breadcrumb-home-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+      </a>
+    </li>
+    <li class="adt-breadcrumb-col adt-breadcrumb-masthead">
+      <div class="adt-bc-cluster" role="group" aria-label="Documentation component and version">
+        <div class="adt-bc-menu adt-bc-menu-project">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-proj" aria-haspopup="listbox" aria-expanded="false" aria-label="Switch documentation component">
+            <span class="adt-bc-kicker-label">Docs</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--components" id="adt-bc-proj" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="index.html" class="is-current">Docs</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../food-truck-api/1.0/index.html" class="">Food Truck API</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../ftn-site/index.html" class="">Food Truck Nerdz</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../onboarding/index.html" class="">FoodTruckNerds Onboarding</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../developer-portal/1.0/index.html" class="">FoodTruckNerdz Developer Portal Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../help/1.0/index.html" class="">FoodTruckNerdz Help Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../mobile-apps/index.html" class="">Mobile apps</a>
+            </li>
+          </ul>
+        </div>
+        <span class="adt-bc-sep" aria-hidden="true">|</span>
+        <div class="adt-bc-menu adt-bc-menu-version">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-ver" aria-haspopup="listbox" aria-expanded="false" aria-label="Select documentation version">
+            <span class="adt-bc-kicker-version">0.1</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--version" id="adt-bc-ver" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="index.html" class="adt-bc-version-pill is-current" aria-current="page">0.1</a>
+            </li>
+          </ul>
+                  </div>
+      </div>
+    </li>
+    <li class="adt-breadcrumb-trail"><span class="adt-breadcrumb-trail-text">Site build</span></li>
+    <li class="adt-breadcrumb-trail adt-breadcrumb-trail--current"><a class="adt-breadcrumb-trail-link" href="troubleshooting-antora-builds.html">Troubleshooting Builds</a></li>
+      <li class="adt-breadcrumb-edit" role="presentation">
+      <a class="adt-edit-inline-link" href="https://github.com/FoodTruckNerdz/docs/edit/main/docs/modules/ROOT/pages/troubleshooting-antora-builds.adoc" title="Edit this page" aria-label="Edit this page">
+        <img class="adt-vcs-icon-img adt-edit-vcs-img" src="../../_/img/vcs/github.svg" width="16" height="16" alt="" />
+        <span class="adt-edit-inline-text">Edit</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+</header>
+<div class="body adt-body">
+<div class="nav-container" data-component="docs" data-version="0.1">
+  <aside class="nav">
+    <div class="panels adt-panels adt-panels-solo">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu nav-tree-only adt-nav-tree-only" aria-label="In this section">
+    <button class="nav-menu-toggle" aria-label="Toggle expand and collapse of all item groups" style="display: none"></button>
+    <p class="adt-nav-component-title"><a href="index.html">Docs</a></p>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="partners.html">Partners &amp; Services</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="vscode-extensions.html">VS Code Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Site build</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="docs-site-management.html">Site management overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="antora-supplemental-comparison.html">Antora Supplemental Comparison</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="building-docs.html">Building Locally</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="redeploying-docs.html">Redeploying the Site</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="antora-attributes.html">Using Antora Attributes</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="troubleshooting-antora-builds.html">Troubleshooting Builds</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">CI/CD Details</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="github-actions-antora-setup.html">GitHub Actions Setup</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="action-includes-reference.html">Action Includes Reference</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article adt-article">
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="adt-page-header">
+  <h1 class="page adt-page-title">Troubleshooting Antora Build Errors</h1>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide helps you diagnose and fix common errors when running <code>pnpm exec antora</code> builds, particularly issues involving incorrect paths, missing documentation, or repository synchronization problems.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_quick_diagnosis_flowchart"><a class="anchor" href="#_quick_diagnosis_flowchart"></a>Quick Diagnosis Flowchart</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use this flowchart to quickly identify the type of error you&#8217;re experiencing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>@startuml
+!theme plain
+skinparam backgroundColor transparent
+skinparam defaultFontName Segoe UI
+
+title Antora Build Error Diagnosis
+
+start
+
+:Build fails with error;
+
+if (Error mentions\n"start path does not exist"?) then (yes)
+  :Go to **Path Does Not Exist**\nsection below;
+  stop
+elseif (Error mentions\n"authentication" or\n"could not read Username"?) then (yes)
+  :Check **GIT_CREDENTIALS**\nin your workflow;
+  :See xref:github-actions-antora-setup.adoc[];
+  stop
+elseif (Error mentions\n"antora.yml not found"?) then (yes)
+  :Go to **Missing antora.yml**\nsection below;
+  stop
+elseif (Error mentions\n"could not resolve"?) then (yes)
+  :Go to **Branch/Tag Resolution**\nsection below;
+  stop
+else (other)
+  :Check the **Other Errors**\nsection below;
+  stop
+endif
+
+@enduml</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_start_path_does_not_exist_error"><a class="anchor" href="#_the_start_path_does_not_exist_error"></a>The "Start Path Does Not Exist" Error</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is the most common error in multi-repository Antora setups:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">[05:20:21.257] FATAL (antora): the start path 'docs' does not exist in {github-org-url}/{repo-ftn-site}.git (branch: main)</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_this_error_means"><a class="anchor" href="#_what_this_error_means"></a>What This Error Means</h3>
+<div class="paragraph">
+<p>Antora is trying to fetch documentation from a repository, but the specified <code>start_path</code> directory doesn&#8217;t exist in that repository at the specified branch.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_common_causes"><a class="anchor" href="#_common_causes"></a>Common Causes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Cause</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Unpushed changes</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A team member created the <code>docs</code> folder locally but hasn&#8217;t pushed to the remote branch</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Push local changes to the repository</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Wrong branch</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The playbook specifies a branch that doesn&#8217;t have the documentation (e.g., <code>main</code> vs <code>develop</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Update the playbook or push docs to the correct branch</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Typo in path</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>start_path</code> in the playbook doesn&#8217;t match the actual directory name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correct the path in <code>antora-playbook.yml</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Repository reorganization</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The documentation was moved to a different location</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Update the <code>start_path</code> in the playbook</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Missing directory</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>docs</code> structure was never created in that repository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Create the required Antora component structure</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_diagnosis_steps"><a class="anchor" href="#_diagnosis_steps"></a>Diagnosis Steps</h3>
+<div class="sect3">
+<h4 id="_step_1_identify_the_failing_repository"><a class="anchor" href="#_step_1_identify_the_failing_repository"></a>Step 1: Identify the Failing Repository</h4>
+<div class="paragraph">
+<p>From the error message, note:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Repository</strong>: <code><a href="https://github.com/FoodTruckNerdz/ftn.git" class="bare">https://github.com/FoodTruckNerdz/ftn.git</a></code></p>
+</li>
+<li>
+<p><strong>Branch</strong>: <code>main</code></p>
+</li>
+<li>
+<p><strong>Path</strong>: <code>docs</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_step_2_verify_the_path_exists_remotely"><a class="anchor" href="#_step_2_verify_the_path_exists_remotely"></a>Step 2: Verify the Path Exists Remotely</h4>
+<div class="exampleblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">GitHub Web UI</dt>
+<dd>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go to the repository: <a href="https://github.com/FoodTruckNerdz/ftn-site" class="bare">https://github.com/FoodTruckNerdz/ftn-site</a></p>
+</li>
+<li>
+<p>Switch to the branch mentioned in the error (<code>main</code>)</p>
+</li>
+<li>
+<p>Navigate to <code>docs/</code></p>
+</li>
+<li>
+<p>Verify the <code>antora.yml</code> file exists</p>
+</li>
+</ol>
+</div>
+</dd>
+<dt class="hdlist1">Command Line</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># List the remote branch contents directly
+git ls-remote --heads {github-org-url}/{repo-ftn-site}.git main
+
+# Or clone and check
+git clone --depth 1 --branch main {github-org-url}/{repo-ftn-site}.git temp-check
+ls temp-check/docs/</code></pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_step_3_check_for_local_vs_remote_mismatch"><a class="anchor" href="#_step_3_check_for_local_vs_remote_mismatch"></a>Step 3: Check for Local vs Remote Mismatch</h4>
+<div class="paragraph">
+<p>If you have the repository cloned locally:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Navigate to the repository
+cd path/to/ftn-site
+
+# Check if local docs exist
+ls -la docs/
+
+# Check if local changes are pushed
+git status
+git log origin/main..HEAD --oneline</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If <code>git status</code> shows uncommitted changes or <code>git log</code> shows unpushed commits that include the docs folder, you&#8217;ve found the problem.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_step_4_verify_playbook_configuration"><a class="anchor" href="#_step_4_verify_playbook_configuration"></a>Step 4: Verify Playbook Configuration</h4>
+<div class="paragraph">
+<p>Check your <code>antora-playbook.yml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">content:
+  sources:
+    - url: {github-org-url}/{repo-ftn-site}.git
+      branches: HEAD  <i class="conum" data-value="1"></i><b>(1)</b>
+      start_path: docs  <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>HEAD</code> means "default branch" — verify this is the branch with your docs</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Ensure this path exactly matches the directory structure (case-sensitive!)</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fix_push_missing_changes"><a class="anchor" href="#_fix_push_missing_changes"></a>Fix: Push Missing Changes</h3>
+<div class="paragraph">
+<p>If a team member has local changes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd path/to/repository
+
+# Stage and commit docs
+git add docs/
+git commit -m "Add Antora documentation component"
+
+# Push to main
+git push origin main</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fix_create_missing_antora_structure"><a class="anchor" href="#_fix_create_missing_antora_structure"></a>Fix: Create Missing Antora Structure</h3>
+<div class="paragraph">
+<p>If the repository truly doesn&#8217;t have the documentation structure:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd path/to/repository
+
+# Create the Antora component structure
+mkdir -p docs/modules/ROOT/pages
+
+# Create minimal antora.yml
+cat &gt; docs/antora.yml &lt;&lt; 'EOF'
+name: your-component-name
+version: '1.0'
+title: Your Component Title
+nav:
+- modules/ROOT/nav.adoc
+EOF
+
+# Create navigation
+cat &gt; docs/modules/ROOT/nav.adoc &lt;&lt; 'EOF'
+* xref:index.adoc[Home]
+EOF
+
+# Create index page
+cat &gt; docs/modules/ROOT/pages/index.adoc &lt;&lt; 'EOF'
+= Component Documentation
+
+Welcome to the documentation.
+EOF
+
+# Commit and push
+git add docs/
+git commit -m "Initialize Antora documentation structure"
+git push origin main</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_branchtag_resolution_errors"><a class="anchor" href="#_branchtag_resolution_errors"></a>Branch/Tag Resolution Errors</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">FATAL (antora): could not resolve reference 'refs/heads/main' for https://github.com/org/repo.git</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_causes"><a class="anchor" href="#_causes"></a>Causes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>The specified branch doesn&#8217;t exist</p>
+</li>
+<li>
+<p>The branch was renamed (e.g., <code>master</code> → <code>main</code>)</p>
+</li>
+<li>
+<p>Network issues prevented fetching the branch</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_diagnosis"><a class="anchor" href="#_diagnosis"></a>Diagnosis</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># List all remote branches
+git ls-remote --heads https://github.com/org/repo.git
+
+# Check if branch exists
+git ls-remote --heads https://github.com/org/repo.git main</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fix"><a class="anchor" href="#_fix"></a>Fix</h3>
+<div class="paragraph">
+<p>Update your playbook to use the correct branch:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">content:
+  sources:
+    - url: https://github.com/org/repo.git
+      branches: main  # or whatever the correct branch is</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Using <code>branches: HEAD</code> tells Antora to use the repository&#8217;s default branch, which adapts automatically if the default branch is renamed.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_missing_antora_yml_error"><a class="anchor" href="#_missing_antora_yml_error"></a>Missing <code>antora.yml</code> Error</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">FATAL (antora): antora.yml not found in https://github.com/org/repo.git at path docs</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_this_means"><a class="anchor" href="#_what_this_means"></a>What This Means</h3>
+<div class="paragraph">
+<p>The directory exists, but Antora can&#8217;t find the required <code>antora.yml</code> component descriptor file.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_diagnosis_2"><a class="anchor" href="#_diagnosis_2"></a>Diagnosis</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Verify the file exists at <code>docs/antora.yml</code></p>
+</li>
+<li>
+<p>Check for case sensitivity issues (<code>Antora.yml</code> vs <code>antora.yml</code>)</p>
+</li>
+<li>
+<p>Ensure the file is committed and pushed</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fix_2"><a class="anchor" href="#_fix_2"></a>Fix</h3>
+<div class="paragraph">
+<p>Create the component descriptor:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># docs/antora.yml
+name: component-name  # Unique identifier, lowercase, no spaces
+version: '1.0'        # Version string (quoted to prevent YAML issues)
+title: Component Title
+nav:
+- modules/ROOT/nav.adoc</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_authentication_errors"><a class="anchor" href="#_authentication_errors"></a>Authentication Errors</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">fatal: could not read Username for 'https://github.com': terminal prompts disabled</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This indicates the <code>GIT_CREDENTIALS</code> environment variable is missing or incorrectly formatted.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="github-actions-antora-setup.html#understanding-the-git_credentials-format" class="xref page">Understanding the GIT_CREDENTIALS Format</a> for the correct setup.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_multi_repository_sync_issues"><a class="anchor" href="#_multi_repository_sync_issues"></a>Multi-Repository Sync Issues</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When your Antora site aggregates documentation from multiple repositories, keeping them in sync becomes critical.</p>
+</div>
+<div class="sect2">
+<h3 id="_the_sync_problem"><a class="anchor" href="#_the_sync_problem"></a>The Sync Problem</h3>
+<div class="listingblock">
+<div class="content">
+<pre>@startuml
+!theme plain
+skinparam backgroundColor transparent
+skinparam defaultFontName Segoe UI
+
+title Multi-Repository Synchronization
+
+rectangle "CI/CD Build" as ci {
+  rectangle "antora-playbook.yml" as playbook
+}
+
+rectangle "GitHub Repositories" as repos {
+  rectangle "onboarding\nmain: docs ✓" as repo1 #lightgreen
+  rectangle "ftn-site\nmain: docs ✗" as repo3 #lightcoral
+  rectangle "food-truck-api\nmain: docs ✓" as repo4 #lightgreen
+}
+
+playbook --&gt; repo1 : fetch
+playbook --&gt; repo3 : fetch\n**FAILS**
+playbook --&gt; repo4 : fetch
+
+note bottom of repo3
+  Team member working locally
+  but hasn't pushed changes yet
+end note
+
+@enduml</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_prevention_strategies"><a class="anchor" href="#_prevention_strategies"></a>Prevention Strategies</h3>
+<div class="sect3">
+<h4 id="_1_use_branch_protection_rules"><a class="anchor" href="#_1_use_branch_protection_rules"></a>1. Use Branch Protection Rules</h4>
+<div class="paragraph">
+<p>Configure branch protection on your repositories to require:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pull request reviews before merging</p>
+</li>
+<li>
+<p>Status checks to pass (including Antora build verification)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_2_set_up_repository_level_antora_checks"><a class="anchor" href="#_2_set_up_repository_level_antora_checks"></a>2. Set Up Repository-Level Antora Checks</h4>
+<div class="paragraph">
+<p>Add a simple check workflow to each component repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># .github/workflows/verify-docs.yml
+name: Verify Documentation
+
+on:
+  push:
+    paths:
+      - 'docs/**'
+  pull_request:
+    paths:
+      - 'docs/**'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify antora.yml exists
+        run: |
+          if [ ! -f "docs/antora.yml" ]; then
+            echo "::error::Missing docs/antora.yml"
+            exit 1
+          fi
+
+      - name: Verify required structure
+        run: |
+          required_paths=(
+            "docs/modules/ROOT/pages"
+            "docs/modules/ROOT/nav.adoc"
+          )
+          for path in "${required_paths[@]}"; do
+            if [ ! -e "$path" ]; then
+              echo "::error::Missing required path: $path"
+              exit 1
+            fi
+          done
+          echo "Documentation structure verified ✓"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_3_use_scheduled_builds"><a class="anchor" href="#_3_use_scheduled_builds"></a>3. Use Scheduled Builds</h4>
+<div class="paragraph">
+<p>Run your documentation build on a schedule to catch sync issues early:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 6 * * *'  # Daily at 6 AM UTC
+  workflow_dispatch:</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_debugging_with_stack_traces"><a class="anchor" href="#_debugging_with_stack_traces"></a>Debugging with Stack Traces</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Always use the <code>--stacktrace</code> flag when debugging:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pnpm exec antora --stacktrace antora-playbook.yml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This provides detailed error information including:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The full call stack</p>
+</li>
+<li>
+<p>The exact step that failed</p>
+</li>
+<li>
+<p>Additional context about the operation</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_understanding_stack_traces"><a class="anchor" href="#_understanding_stack_traces"></a>Understanding Stack Traces</h3>
+<div class="paragraph">
+<p>A typical Antora stack trace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">[10:23:45.123] FATAL (antora): the start path 'docs' does not exist in {github-org-url}/{repo-ftn-site}.git (branch: main)
+    at validateStartPath (/node_modules/@antora/content-aggregator/lib/aggregate-content.js:234:11)
+    at processContentSource (/node_modules/@antora/content-aggregator/lib/aggregate-content.js:167:5)
+    at async aggregateContent (/node_modules/@antora/content-aggregator/lib/aggregate-content.js:45:3)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Key information:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>FATAL</strong>: This is a critical error that stops the build</p>
+</li>
+<li>
+<p><strong>the start path&#8230;&#8203;</strong>: The specific error message</p>
+</li>
+<li>
+<p><strong>validateStartPath</strong>: The function that detected the error</p>
+</li>
+<li>
+<p><strong>aggregate-content.js</strong>: The Antora module involved</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_common_error_reference_table"><a class="anchor" href="#_common_error_reference_table"></a>Common Error Reference Table</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 42.8571%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Error Message Pattern</th>
+<th class="tableblock halign-left valign-top">Likely Cause</th>
+<th class="tableblock halign-left valign-top">Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>start path 'X' does not exist</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path missing from repository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Push changes or fix <code>start_path</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>could not resolve reference</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch/tag doesn&#8217;t exist</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check branch name, use <code>HEAD</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>antora.yml not found</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Missing component descriptor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Create <code>antora.yml</code> file</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>could not read Username</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Missing or wrong <code>GIT_CREDENTIALS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fix credentials format</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ECONNREFUSED</code> or <code>ETIMEDOUT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Network issue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check connectivity, retry</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>permission denied</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PAT lacks required permissions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Update PAT scopes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>duplicate component version</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Same component/version in multiple sources</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use unique versions or components</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_quick_reference_verification_commands"><a class="anchor" href="#_quick_reference_verification_commands"></a>Quick Reference: Verification Commands</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_check_all_remote_repositories"><a class="anchor" href="#_check_all_remote_repositories"></a>Check All Remote Repositories</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/bin/bash
+# verify-repos.sh - Check if all repos have the expected docs structure
+
+repos=(
+  "onboarding"
+  "food-truck-api"
+  "ftn-site"
+  "docs"
+  "help"
+  "developer-portal"
+)
+
+org="FoodTruckNerdz"
+path="docs/antora.yml"
+
+echo "Checking documentation structure in all repositories..."
+echo "========================================================"
+
+for repo in "${repos[@]}"; do
+  url="https://raw.githubusercontent.com/$org/$repo/main/$path"
+  if curl --silent --fail "$url" &gt; /dev/null 2&gt;&amp;1; then
+    echo "✓ $repo - docs/antora.yml exists"
+  else
+    echo "✗ $repo - MISSING docs/antora.yml"
+  fi
+done</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_check_local_vs_remote_sync"><a class="anchor" href="#_check_local_vs_remote_sync"></a>Check Local vs Remote Sync</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Run in each component repository
+git fetch origin
+echo "Commits not pushed to origin/main:"
+git log origin/main..HEAD --oneline
+
+echo "Uncommitted changes:"
+git status --short</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_related_documentation"><a class="anchor" href="#_related_documentation"></a>Related Documentation</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="github-actions-antora-setup.html" class="xref page">Setting Up GitHub Actions for Antora with Private Repositories</a> — Complete CI/CD setup guide</p>
+</li>
+<li>
+<p><a href="action-includes-reference.html" class="xref page">GitHub Action Includes Reference</a> — GitHub Action details</p>
+</li>
+<li>
+<p><a href="building-docs.html" class="xref page">Building the Antora Documentation Site Locally</a> — Local build instructions</p>
+</li>
+<li>
+<p><a href="https://docs.antora.org/antora/latest/playbook/content-source-url/" target="_blank" rel="noopener">Antora: URLs for Content Sources</a></p>
+</li>
+<li>
+<p><a href="https://docs.antora.org/antora/latest/component-version-start-path/" target="_blank" rel="noopener">Antora: Component Version Start Path</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>
+    Built with <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> <span class="antora-version">(3.1.14)</span>.
+    Base UI:
+    <a href="https://github.com/antora-supplemental/antora-dark-theme" target="_blank" rel="noopener">antora-dark-theme</a>
+    (<a href="https://www.mozilla.org/MPL/2.0/" target="_blank" rel="noopener">MPL-2.0</a>).
+    FoodTruckNerdz extends the UI (header, layout rails, navigation, styling) in the
+    <a href="https://github.com/FoodTruckNerdz/docs" target="_blank" rel="noopener">docs</a> repository;
+    see <a href="https://github.com/FoodTruckNerdz/docs/blob/main/docs/modules/ROOT/pages/docs-site-management.adoc#ui-bundle" target="_blank" rel="noopener">UI bundle and footer</a>.
+  </p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/site-dark-mode.js"></script>
+<script src="../../_/js/site-adt-accordion.js"></script>
+  </body>
+</html>

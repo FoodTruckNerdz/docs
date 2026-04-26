@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<sitemap>
+<loc>https://docs.foodtrucknerdz.com/sitemap-developer-portal.xml</loc>
+</sitemap>
+<sitemap>
+<loc>https://docs.foodtrucknerdz.com/sitemap-docs.xml</loc>
+</sitemap>
+<sitemap>
+<loc>https://docs.foodtrucknerdz.com/sitemap-food-truck-api.xml</loc>
+</sitemap>
+<sitemap>
+<loc>https://docs.foodtrucknerdz.com/sitemap-ftn-site.xml</loc>
+</sitemap>
+<sitemap>
+<loc>https://docs.foodtrucknerdz.com/sitemap-help.xml</loc>
+</sitemap>
+<sitemap>
+<loc>https://docs.foodtrucknerdz.com/sitemap-mobile-apps.xml</loc>
+</sitemap>
+<sitemap>
+<loc>https://docs.foodtrucknerdz.com/sitemap-onboarding.xml</loc>
+</sitemap>
+</sitemapindex>

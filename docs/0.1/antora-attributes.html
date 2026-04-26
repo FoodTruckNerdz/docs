@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Using Antora Attributes :: Docs :: Documentation</title>
+    <link rel="canonical" href="https://docs.foodtrucknerdz.com/docs/0.1/antora-attributes.html">
+    <meta name="description" content="Guide to using global Antora attributes for consistent repository and URL references">
+    <meta name="keywords" content="antora, attributes, asciidoc, documentation, configuration">
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="../../_/css/site-doc-layout.css">
+<meta name="antora-repo-url" content="https://github.com/FoodTruckNerdz/docs">
+<script>
+(function () {
+  const MODE = 'antora-theme-mode'
+  const LEGACY = 'antora-theme'
+  function mode() {
+    const m = localStorage.getItem(MODE)
+    if (m === 'system' || m === 'dark' || m === 'light') return m
+    const o = localStorage.getItem(LEGACY)
+    if (o === 'dark' || o === 'light') return o
+    return 'system'
+  }
+  function isDark() {
+    const m = mode()
+    if (m === 'dark') return true
+    if (m === 'light') return false
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
+  if (isDark()) document.documentElement.classList.add('dark-theme')
+})()
+</script>
+  </head>
+  <body class="article">
+<header class="header adt-header">
+  <nav class="navbar adt-site-navbar" aria-label="Site">
+    <div class="navbar-brand adt-header-brand">
+      <a class="adt-header-logo-item" href="https://foodtrucknerdz.com" rel="noopener" target="_blank" title="foodtrucknerdz.com" aria-label="foodtrucknerdz.com (opens in new tab)">
+        <img class="adt-header-logo" src="../../_/img/foodtrucknerdz.svg" width="34" height="34" alt="" />
+      </a>
+      <a class="navbar-item adt-header-title" href="https://docs.foodtrucknerdz.com">Documentation</a>
+    </div>
+    <div id="topbar-nav" class="navbar-menu adt-topbar" role="navigation" aria-label="External links">
+      <div class="navbar-end adt-header-actions">
+        <a class="navbar-item adt-header-icon-btn adt-header-vcs" href="https://github.com/FoodTruckNerdz/docs" rel="noopener" target="_blank" title="Source repository" aria-label="Source repository (opens in new tab)">
+          <img class="adt-header-vcs-img" src="../../_/img/vcs/code.svg" width="24" height="24" alt="" />
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div class="adt-doc-mast" role="navigation" aria-label="Component and location in documentation">
+  <button class="nav-toggle" type="button" aria-label="Toggle main navigation"></button>
+  <div class="adt-doc-mast-center">
+  <nav class="breadcrumbs adt-breadcrumbs" aria-label="Breadcrumb: component, version, and page path">
+  <ul>
+    <li class="adt-breadcrumb-home">
+      <a href="index.html" class="adt-breadcrumb-home-link" title="Component start page" aria-label="Component start page">
+        <svg class="adt-breadcrumb-home-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+      </a>
+    </li>
+    <li class="adt-breadcrumb-col adt-breadcrumb-masthead">
+      <div class="adt-bc-cluster" role="group" aria-label="Documentation component and version">
+        <div class="adt-bc-menu adt-bc-menu-project">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-proj" aria-haspopup="listbox" aria-expanded="false" aria-label="Switch documentation component">
+            <span class="adt-bc-kicker-label">Docs</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--components" id="adt-bc-proj" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="index.html" class="is-current">Docs</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../food-truck-api/1.0/index.html" class="">Food Truck API</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../ftn-site/index.html" class="">Food Truck Nerdz</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../onboarding/index.html" class="">FoodTruckNerds Onboarding</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../developer-portal/1.0/index.html" class="">FoodTruckNerdz Developer Portal Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../help/1.0/index.html" class="">FoodTruckNerdz Help Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../mobile-apps/index.html" class="">Mobile apps</a>
+            </li>
+          </ul>
+        </div>
+        <span class="adt-bc-sep" aria-hidden="true">|</span>
+        <div class="adt-bc-menu adt-bc-menu-version">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-ver" aria-haspopup="listbox" aria-expanded="false" aria-label="Select documentation version">
+            <span class="adt-bc-kicker-version">0.1</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--version" id="adt-bc-ver" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="index.html" class="adt-bc-version-pill is-current" aria-current="page">0.1</a>
+            </li>
+          </ul>
+                  </div>
+      </div>
+    </li>
+    <li class="adt-breadcrumb-trail"><span class="adt-breadcrumb-trail-text">Site build</span></li>
+    <li class="adt-breadcrumb-trail adt-breadcrumb-trail--current"><a class="adt-breadcrumb-trail-link" href="antora-attributes.html">Using Antora Attributes</a></li>
+      <li class="adt-breadcrumb-edit" role="presentation">
+      <a class="adt-edit-inline-link" href="https://github.com/FoodTruckNerdz/docs/edit/main/docs/modules/ROOT/pages/antora-attributes.adoc" title="Edit this page" aria-label="Edit this page">
+        <img class="adt-vcs-icon-img adt-edit-vcs-img" src="../../_/img/vcs/github.svg" width="16" height="16" alt="" />
+        <span class="adt-edit-inline-text">Edit</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+</header>
+<div class="body adt-body">
+<div class="nav-container" data-component="docs" data-version="0.1">
+  <aside class="nav">
+    <div class="panels adt-panels adt-panels-solo">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu nav-tree-only adt-nav-tree-only" aria-label="In this section">
+    <button class="nav-menu-toggle" aria-label="Toggle expand and collapse of all item groups" style="display: none"></button>
+    <p class="adt-nav-component-title"><a href="index.html">Docs</a></p>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="partners.html">Partners &amp; Services</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="vscode-extensions.html">VS Code Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Site build</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="docs-site-management.html">Site management overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="antora-supplemental-comparison.html">Antora Supplemental Comparison</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="building-docs.html">Building Locally</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="redeploying-docs.html">Redeploying the Site</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="antora-attributes.html">Using Antora Attributes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="troubleshooting-antora-builds.html">Troubleshooting Builds</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">CI/CD Details</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="github-actions-antora-setup.html">GitHub Actions Setup</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="action-includes-reference.html">Action Includes Reference</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article adt-article">
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="adt-page-header">
+  <h1 class="page adt-page-title">Using Antora Attributes</h1>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide explains how to use global Antora attributes in this documentation to maintain consistent references to repositories, URLs, and organization information.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_are_antora_attributes"><a class="anchor" href="#_what_are_antora_attributes"></a>What Are Antora Attributes?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Antora attributes are variables defined in the playbook that can be referenced throughout your documentation. They provide a single source of truth for commonly used values like repository URLs, organization names, and site URLs.</p>
+</div>
+<div class="sect2">
+<h3 id="_benefits"><a class="anchor" href="#_benefits"></a>Benefits</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Consistency</strong>: All documentation uses the same values</p>
+</li>
+<li>
+<p><strong>Maintainability</strong>: Update once in the playbook, changes apply everywhere</p>
+</li>
+<li>
+<p><strong>Flexibility</strong>: Easy to change organization names, URLs, or repository names</p>
+</li>
+<li>
+<p><strong>DRY Principle</strong>: Don&#8217;t Repeat Yourself - define values once</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_available_global_attributes"><a class="anchor" href="#_available_global_attributes"></a>Available Global Attributes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following attributes are defined in both <code>antora-playbook.yml</code> and <code>antora-playbook-local.yml</code>:</p>
+</div>
+<div class="sect2">
+<h3 id="_organization_attributes"><a class="anchor" href="#_organization_attributes"></a>Organization Attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attribute</th>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{github-org}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>FoodTruckNerdz</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Organization name only</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{github-org-url}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://github.com/FoodTruckNerdz" class="bare">https://github.com/FoodTruckNerdz</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Full organization URL</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{docs-site-url}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://docs.foodtrucknerdz.com" class="bare">https://docs.foodtrucknerdz.com</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Documentation site URL</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_repository_name_attributes"><a class="anchor" href="#_repository_name_attributes"></a>Repository Name Attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attribute</th>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{repo-docs}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Antora coordination repository (this playbook)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{repo-ftn-site}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ftn-site</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Public website monorepo (SolidStart and Next.js; Antora <strong>Website</strong> component)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{repo-food-truck-api}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>food-truck-api</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API service repository</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{repo-onboarding}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>onboarding</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Developer onboarding repository</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{repo-help}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>help</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Help documentation repository</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{repo-developer-portal}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>developer-portal</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Developer portal repository</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_use_attributes"><a class="anchor" href="#_how_to_use_attributes"></a>How to Use Attributes</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_basic_syntax"><a class="anchor" href="#_basic_syntax"></a>Basic Syntax</h3>
+<div class="paragraph">
+<p>Attributes are referenced using curly braces:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{attribute-name}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_in_links"><a class="anchor" href="#_in_links"></a>In Links</h3>
+<div class="sect3">
+<h4 id="_simple_link"><a class="anchor" href="#_simple_link"></a>Simple Link</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Visit the {github-org-url}[GitHub organization].</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Renders as</strong>: Visit the <a href="https://github.com/FoodTruckNerdz">GitHub organization</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_repository_link"><a class="anchor" href="#_repository_link"></a>Repository Link</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Clone from {github-org-url}/{repo-ftn-site}[ftn-site repository].</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Renders as</strong>: Clone from <a href="https://github.com/FoodTruckNerdz/ftn-site">ftn-site repository</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_documentation_site_link"><a class="anchor" href="#_documentation_site_link"></a>Documentation Site Link</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">See the {docs-site-url}[documentation site] for more information.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Renders as</strong>: See the <a href="https://docs.foodtrucknerdz.com">documentation site</a> for more information.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_in_code_blocks"><a class="anchor" href="#_in_code_blocks"></a>In Code Blocks</h3>
+<div class="paragraph">
+<p>Attributes work in code blocks too:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[source,bash]
+----
+git clone {github-org-url}/{repo-ftn-site}.git
+cd {repo-ftn-site}
+----</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Renders as</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/FoodTruckNerdz/ftn-site.git
+cd ftn-site</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_in_text"><a class="anchor" href="#_in_text"></a>In Text</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">The `{repo-ftn-site}` repository contains the main web application.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Renders as</strong>: The <code>ftn-site</code> repository contains the main web application.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_common_patterns"><a class="anchor" href="#_common_patterns"></a>Common Patterns</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_repository_references"><a class="anchor" href="#_repository_references"></a>Repository References</h3>
+<div class="paragraph">
+<p>When mentioning a repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">For setup instructions, see the {github-org-url}/{repo-onboarding}[onboarding repository].</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_git_commands"><a class="anchor" href="#_git_commands"></a>Git Commands</h3>
+<div class="paragraph">
+<p>When showing git commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[source,bash]
+----
+# Clone the repository
+git clone {github-org-url}/{repo-ftn-site}.git
+
+# Add upstream remote
+git remote add upstream {github-org-url}/{repo-ftn-site}.git
+----</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cross_references_to_documentation"><a class="anchor" href="#_cross_references_to_documentation"></a>Cross-References to Documentation</h3>
+<div class="paragraph">
+<p>When linking to other documentation pages:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Visit {docs-site-url}/docs/getting-started.html for setup instructions.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_best_practices"><a class="anchor" href="#_best_practices"></a>Best Practices</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_do_use_attributes_for_repository_references"><a class="anchor" href="#_do_use_attributes_for_repository_references"></a>DO: Use Attributes for Repository References</h3>
+<div class="paragraph">
+<p>✅ <strong>Good</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Clone from {github-org-url}/{repo-ftn-site}.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>❌ <strong>Avoid</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Clone from https://github.com/FoodTruckNerdz/ftn-site.git</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_do_use_attributes_for_organization_urls"><a class="anchor" href="#_do_use_attributes_for_organization_urls"></a>DO: Use Attributes for Organization URLs</h3>
+<div class="paragraph">
+<p>✅ <strong>Good</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Visit {github-org-url} to see all repositories.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>❌ <strong>Avoid</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Visit https://github.com/FoodTruckNerdz to see all repositories.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_do_use_attributes_for_documentation_site_urls"><a class="anchor" href="#_do_use_attributes_for_documentation_site_urls"></a>DO: Use Attributes for Documentation Site URLs</h3>
+<div class="paragraph">
+<p>✅ <strong>Good</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">See {docs-site-url}/docs/troubleshooting.html</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>❌ <strong>Avoid</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">See https://docs.foodtrucknerdz.com/docs/troubleshooting.html</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dont_use_attributes_in_example_error_messages"><a class="anchor" href="#_dont_use_attributes_in_example_error_messages"></a>DON&#8217;T: Use Attributes in Example Error Messages</h3>
+<div class="paragraph">
+<p>When showing example error output, use literal values for clarity:</p>
+</div>
+<div class="paragraph">
+<p>✅ <strong>Good</strong> (example error message):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[source]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>FATAL: the start path 'docs' does not exist in <a href="https://github.com/FoodTruckNerdz/ftn-site.git" class="bare">https://github.com/FoodTruckNerdz/ftn-site.git</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This helps readers recognize the error pattern.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_adding_new_attributes"><a class="anchor" href="#_adding_new_attributes"></a>Adding New Attributes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you need to add a new global attribute:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open both playbook files:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>site/antora-playbook.yml</code></p>
+</li>
+<li>
+<p><code>site/antora-playbook-local.yml</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Add the attribute under <code>asciidoc.attributes</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">asciidoc:
+  attributes:
+    # Existing attributes...
+    new-attribute-name: value</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Use the attribute in documentation:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{new-attribute-name}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Commit both playbook files together to keep them in sync</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Always update both playbooks</strong>: Changes to attributes must be made in both <code>antora-playbook.yml</code> and <code>antora-playbook-local.yml</code> to ensure consistency between CI/CD builds and local development.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_troubleshooting"><a class="anchor" href="#_troubleshooting"></a>Troubleshooting</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_attribute_not_resolving"><a class="anchor" href="#_attribute_not_resolving"></a>Attribute Not Resolving</h3>
+<div class="paragraph">
+<p>If an attribute shows as <code>{attribute-name}</code> instead of its value:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Check spelling</strong>: Attribute names are case-sensitive</p>
+</li>
+<li>
+<p><strong>Verify definition</strong>: Ensure the attribute is defined in the playbook</p>
+</li>
+<li>
+<p><strong>Rebuild</strong>: Run <code>pnpm exec antora</code> again to pick up changes</p>
+</li>
+<li>
+<p><strong>Check scope</strong>: Attributes defined in the playbook are available globally</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_attribute_shows_wrong_value"><a class="anchor" href="#_attribute_shows_wrong_value"></a>Attribute Shows Wrong Value</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Check playbook file</strong>: Verify you&#8217;re using the correct playbook (<code>antora-playbook.yml</code> vs <code>antora-playbook-local.yml</code>)</p>
+</li>
+<li>
+<p><strong>Clear cache</strong>: Delete <code>build/</code> directory and rebuild</p>
+</li>
+<li>
+<p><strong>Verify YAML syntax</strong>: Ensure proper indentation in the playbook</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_attribute_not_working_in_code_blocks"><a class="anchor" href="#_attribute_not_working_in_code_blocks"></a>Attribute Not Working in Code Blocks</h3>
+<div class="paragraph">
+<p>Attributes work in code blocks, but:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>They must be on their own line or properly spaced</p>
+</li>
+<li>
+<p>They expand at build time, not runtime</p>
+</li>
+<li>
+<p>Verify the code block syntax is correct</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_examples_from_our_documentation"><a class="anchor" href="#_examples_from_our_documentation"></a>Examples from Our Documentation</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_example_1_repository_link_in_readme"><a class="anchor" href="#_example_1_repository_link_in_readme"></a>Example 1: Repository Link in README</h3>
+<div class="paragraph">
+<p>From <code>ftn-site/docs/README.adoc</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">This documentation is aggregated into the unified
+documentation site via the playbook in the
+{github-org-url}/{repo-docs}[docs repository].
+
+Published site: {docs-site-url}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_example_2_git_commands_in_deployment_guide"><a class="anchor" href="#_example_2_git_commands_in_deployment_guide"></a>Example 2: Git Commands in Deployment Guide</h3>
+<div class="paragraph">
+<p>From <code>ftn-site/docs/deployment.adoc</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[source,bash]
+----
+# Set upstream to the original repository
+git remote set-url upstream {github-org-url}/{repo-ftn-site}.git
+----</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_example_3_troubleshooting_documentation"><a class="anchor" href="#_example_3_troubleshooting_documentation"></a>Example 3: Troubleshooting Documentation</h3>
+<div class="paragraph">
+<p>From <code>docs/troubleshooting-antora-builds.adoc</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">. Go to the repository: {github-org-url}/{repo-ftn-site}
+. Switch to the branch mentioned in the error (`main`)
+. Navigate to `docs/`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_related_documentation"><a class="anchor" href="#_related_documentation"></a>Related Documentation</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="building-docs.html" class="xref page">Building the Antora Documentation Site Locally</a> — Building the documentation site locally</p>
+</li>
+<li>
+<p><a href="github-actions-antora-setup.html" class="xref page">Setting Up GitHub Actions for Antora with Private Repositories</a> — CI/CD setup with GitHub Actions</p>
+</li>
+<li>
+<p><a href="https://docs.antora.org/antora/latest/playbook/asciidoc-attributes/" target="_blank" rel="noopener">Antora: AsciiDoc Attributes</a></p>
+</li>
+<li>
+<p><a href="https://docs.asciidoctor.org/asciidoc/latest/attributes/document-attributes/" target="_blank" rel="noopener">AsciiDoc: Document Attributes</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>
+    Built with <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> <span class="antora-version">(3.1.14)</span>.
+    Base UI:
+    <a href="https://github.com/antora-supplemental/antora-dark-theme" target="_blank" rel="noopener">antora-dark-theme</a>
+    (<a href="https://www.mozilla.org/MPL/2.0/" target="_blank" rel="noopener">MPL-2.0</a>).
+    FoodTruckNerdz extends the UI (header, layout rails, navigation, styling) in the
+    <a href="https://github.com/FoodTruckNerdz/docs" target="_blank" rel="noopener">docs</a> repository;
+    see <a href="https://github.com/FoodTruckNerdz/docs/blob/main/docs/modules/ROOT/pages/docs-site-management.adoc#ui-bundle" target="_blank" rel="noopener">UI bundle and footer</a>.
+  </p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/site-dark-mode.js"></script>
+<script src="../../_/js/site-adt-accordion.js"></script>
+  </body>
+</html>

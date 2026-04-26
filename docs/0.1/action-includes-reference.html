@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GitHub Action Includes Reference :: Docs :: Documentation</title>
+    <link rel="canonical" href="https://docs.foodtrucknerdz.com/docs/0.1/action-includes-reference.html">
+    <meta name="description" content="Detailed reference for all GitHub Actions used in the Antora documentation build workflow">
+    <meta name="keywords" content="github actions, actions, checkout, setup-node, pnpm, deploy-pages">
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="../../_/css/site-doc-layout.css">
+<meta name="antora-repo-url" content="https://github.com/FoodTruckNerdz/docs">
+<script>
+(function () {
+  const MODE = 'antora-theme-mode'
+  const LEGACY = 'antora-theme'
+  function mode() {
+    const m = localStorage.getItem(MODE)
+    if (m === 'system' || m === 'dark' || m === 'light') return m
+    const o = localStorage.getItem(LEGACY)
+    if (o === 'dark' || o === 'light') return o
+    return 'system'
+  }
+  function isDark() {
+    const m = mode()
+    if (m === 'dark') return true
+    if (m === 'light') return false
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
+  if (isDark()) document.documentElement.classList.add('dark-theme')
+})()
+</script>
+  </head>
+  <body class="article">
+<header class="header adt-header">
+  <nav class="navbar adt-site-navbar" aria-label="Site">
+    <div class="navbar-brand adt-header-brand">
+      <a class="adt-header-logo-item" href="https://foodtrucknerdz.com" rel="noopener" target="_blank" title="foodtrucknerdz.com" aria-label="foodtrucknerdz.com (opens in new tab)">
+        <img class="adt-header-logo" src="../../_/img/foodtrucknerdz.svg" width="34" height="34" alt="" />
+      </a>
+      <a class="navbar-item adt-header-title" href="https://docs.foodtrucknerdz.com">Documentation</a>
+    </div>
+    <div id="topbar-nav" class="navbar-menu adt-topbar" role="navigation" aria-label="External links">
+      <div class="navbar-end adt-header-actions">
+        <a class="navbar-item adt-header-icon-btn adt-header-vcs" href="https://github.com/FoodTruckNerdz/docs" rel="noopener" target="_blank" title="Source repository" aria-label="Source repository (opens in new tab)">
+          <img class="adt-header-vcs-img" src="../../_/img/vcs/code.svg" width="24" height="24" alt="" />
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div class="adt-doc-mast" role="navigation" aria-label="Component and location in documentation">
+  <button class="nav-toggle" type="button" aria-label="Toggle main navigation"></button>
+  <div class="adt-doc-mast-center">
+  <nav class="breadcrumbs adt-breadcrumbs" aria-label="Breadcrumb: component, version, and page path">
+  <ul>
+    <li class="adt-breadcrumb-home">
+      <a href="index.html" class="adt-breadcrumb-home-link" title="Component start page" aria-label="Component start page">
+        <svg class="adt-breadcrumb-home-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+      </a>
+    </li>
+    <li class="adt-breadcrumb-col adt-breadcrumb-masthead">
+      <div class="adt-bc-cluster" role="group" aria-label="Documentation component and version">
+        <div class="adt-bc-menu adt-bc-menu-project">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-proj" aria-haspopup="listbox" aria-expanded="false" aria-label="Switch documentation component">
+            <span class="adt-bc-kicker-label">Docs</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--components" id="adt-bc-proj" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="index.html" class="is-current">Docs</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../food-truck-api/1.0/index.html" class="">Food Truck API</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../ftn-site/index.html" class="">Food Truck Nerdz</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../onboarding/index.html" class="">FoodTruckNerds Onboarding</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../developer-portal/1.0/index.html" class="">FoodTruckNerdz Developer Portal Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../help/1.0/index.html" class="">FoodTruckNerdz Help Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../mobile-apps/index.html" class="">Mobile apps</a>
+            </li>
+          </ul>
+        </div>
+        <span class="adt-bc-sep" aria-hidden="true">|</span>
+        <div class="adt-bc-menu adt-bc-menu-version">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-ver" aria-haspopup="listbox" aria-expanded="false" aria-label="Select documentation version">
+            <span class="adt-bc-kicker-version">0.1</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--version" id="adt-bc-ver" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="index.html" class="adt-bc-version-pill is-current" aria-current="page">0.1</a>
+            </li>
+          </ul>
+                  </div>
+      </div>
+    </li>
+    <li class="adt-breadcrumb-trail"><span class="adt-breadcrumb-trail-text">Site build</span></li>
+    <li class="adt-breadcrumb-trail"><span class="adt-breadcrumb-trail-text">CI/CD Details</span></li>
+    <li class="adt-breadcrumb-trail adt-breadcrumb-trail--current"><a class="adt-breadcrumb-trail-link" href="action-includes-reference.html">Action Includes Reference</a></li>
+      <li class="adt-breadcrumb-edit" role="presentation">
+      <a class="adt-edit-inline-link" href="https://github.com/FoodTruckNerdz/docs/edit/main/docs/modules/ROOT/pages/action-includes-reference.adoc" title="Edit this page" aria-label="Edit this page">
+        <img class="adt-vcs-icon-img adt-edit-vcs-img" src="../../_/img/vcs/github.svg" width="16" height="16" alt="" />
+        <span class="adt-edit-inline-text">Edit</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+</header>
+<div class="body adt-body">
+<div class="nav-container" data-component="docs" data-version="0.1">
+  <aside class="nav">
+    <div class="panels adt-panels adt-panels-solo">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu nav-tree-only adt-nav-tree-only" aria-label="In this section">
+    <button class="nav-menu-toggle" aria-label="Toggle expand and collapse of all item groups" style="display: none"></button>
+    <p class="adt-nav-component-title"><a href="index.html">Docs</a></p>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="partners.html">Partners &amp; Services</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="vscode-extensions.html">VS Code Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Site build</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="docs-site-management.html">Site management overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="antora-supplemental-comparison.html">Antora Supplemental Comparison</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="building-docs.html">Building Locally</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="redeploying-docs.html">Redeploying the Site</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="antora-attributes.html">Using Antora Attributes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="troubleshooting-antora-builds.html">Troubleshooting Builds</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">CI/CD Details</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="github-actions-antora-setup.html">GitHub Actions Setup</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="action-includes-reference.html">Action Includes Reference</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article adt-article">
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="adt-page-header">
+  <h1 class="page adt-page-title">GitHub Action Includes Reference</h1>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This reference documents each GitHub Action used in the FoodTruckNerdz documentation build workflow, explaining what each action does, its key inputs, and links to official documentation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_actions_overview"><a class="anchor" href="#_actions_overview"></a>Actions Overview</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 50%;">
+<col style="width: 16.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Action</th>
+<th class="tableblock halign-left valign-top">Purpose</th>
+<th class="tableblock halign-left valign-top">Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#checkout">actions/checkout</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Clone repository to runner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">v4</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#configure-pages">actions/configure-pages</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configure GitHub Pages</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">v5</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#pnpm-setup">pnpm/action-setup</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Install pnpm package manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">v4</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#setup-node">actions/setup-node</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set up Node.js environment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">v4</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#upload-pages">actions/upload-pages-artifact</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Upload built site artifact</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">v3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#deploy-pages">actions/deploy-pages</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deploy to GitHub Pages</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">v4</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="checkout"><a class="anchor" href="#checkout"></a>actions/checkout</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Repository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/actions/checkout" target="_blank" rel="noopener">actions/checkout</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Documentation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/actions/checkout#readme" target="_blank" rel="noopener">README</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current Version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">v4</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_what_it_does"><a class="anchor" href="#_what_it_does"></a>What It Does</h3>
+<div class="paragraph">
+<p>The <code>checkout</code> action clones your repository onto the GitHub Actions runner, making your code available for subsequent workflow steps. Without this action, your workflow wouldn&#8217;t have access to any of your repository&#8217;s files.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_it_works"><a class="anchor" href="#_how_it_works"></a>How It Works</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Creates a shallow clone (by default) of your repository</p>
+</li>
+<li>
+<p>Checks out the ref (branch/tag/SHA) that triggered the workflow</p>
+</li>
+<li>
+<p>Configures git authentication for any subsequent git operations</p>
+</li>
+<li>
+<p>Places the repository contents in <code>$GITHUB_WORKSPACE</code></p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>@startuml
+!theme plain
+skinparam backgroundColor transparent
+
+rectangle "GitHub Repository\n(remote)" as remote
+rectangle "Runner Workspace\n($GITHUB_WORKSPACE)" as workspace
+
+remote -down-&gt; workspace : git clone\n(shallow by default)
+
+note right of workspace
+  Your repository files are now
+  available at $GITHUB_WORKSPACE
+  (typically /home/runner/work/repo/repo)
+end note
+
+@enduml</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_usage_in_our_workflow"><a class="anchor" href="#_usage_in_our_workflow"></a>Usage in Our Workflow</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- name: Checkout repository
+  uses: actions/checkout@v4</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We use the simplest form since we only need the current repository&#8217;s code. The default settings are sufficient because:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>We don&#8217;t need full git history (shallow clone is fine)</p>
+</li>
+<li>
+<p>We&#8217;re checking out the branch that triggered the workflow</p>
+</li>
+<li>
+<p>We don&#8217;t need submodules</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_key_inputs"><a class="anchor" href="#_key_inputs"></a>Key Inputs</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Input</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>repository</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current repo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Repository to checkout (owner/repo format)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ref</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Triggering ref</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch, tag, or SHA to checkout</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>token</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${{ github.token }}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PAT for authentication (useful for private repos)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fetch-depth</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of commits to fetch (0 for full history)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>submodules</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to checkout submodules</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_when_youd_use_advanced_options"><a class="anchor" href="#_when_youd_use_advanced_options"></a>When You&#8217;d Use Advanced Options</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># Example: Checkout with full history for version calculations
+- uses: actions/checkout@v4
+  with:
+    fetch-depth: 0
+
+# Example: Checkout a different branch
+- uses: actions/checkout@v4
+  with:
+    ref: develop
+
+# Example: Checkout a private repository
+- uses: actions/checkout@v4
+  with:
+    repository: org/private-repo
+    token: ${{ secrets.PAT }}</code></pre>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configure-pages"><a class="anchor" href="#configure-pages"></a>actions/configure-pages</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Repository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/actions/configure-pages" target="_blank" rel="noopener">actions/configure-pages</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Documentation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/actions/configure-pages#readme" target="_blank" rel="noopener">README</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current Version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">v5</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_what_it_does_2"><a class="anchor" href="#_what_it_does_2"></a>What It Does</h3>
+<div class="paragraph">
+<p>The <code>configure-pages</code> action prepares your repository for GitHub Pages deployment by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Extracting metadata about your Pages configuration</p>
+</li>
+<li>
+<p>Enabling Pages for the repository (if not already enabled)</p>
+</li>
+<li>
+<p>Setting up the required token for Pages deployments</p>
+</li>
+<li>
+<p>Providing outputs for subsequent deployment steps</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_it_works_2"><a class="anchor" href="#_how_it_works_2"></a>How It Works</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Queries the GitHub Pages API for your repository&#8217;s configuration</p>
+</li>
+<li>
+<p>Extracts the base URL, path, and CNAME (if configured)</p>
+</li>
+<li>
+<p>Makes this information available as outputs for later steps</p>
+</li>
+<li>
+<p>Ensures the repository is configured for Pages deployment</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_usage_in_our_workflow_2"><a class="anchor" href="#_usage_in_our_workflow_2"></a>Usage in Our Workflow</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- name: Configure Pages
+  uses: actions/configure-pages@v5</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This step runs early in the workflow to ensure GitHub Pages is properly configured before we build and deploy.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_key_outputs"><a class="anchor" href="#_key_outputs"></a>Key Outputs</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Output</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>base_url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The base URL for GitHub Pages (e.g., <code><a href="https://user.github.io/repo" class="bare">https://user.github.io/repo</a></code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>base_path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The base path if the site is not at root (e.g., <code>/repo</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>origin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The origin URL (e.g., <code><a href="https://user.github.io" class="bare">https://user.github.io</a></code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The host (e.g., <code>user.github.io</code> or custom domain)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_when_youd_use_the_outputs"><a class="anchor" href="#_when_youd_use_the_outputs"></a>When You&#8217;d Use the Outputs</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- name: Configure Pages
+  id: pages
+  uses: actions/configure-pages@v5
+
+- name: Build site
+  run: |
+    echo "Building for base URL: ${{ steps.pages.outputs.base_url }}"
+    # Pass base URL to your build tool if needed</code></pre>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pnpm-setup"><a class="anchor" href="#pnpm-setup"></a>pnpm/action-setup</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Repository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/pnpm/action-setup" target="_blank" rel="noopener">pnpm/action-setup</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Documentation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/pnpm/action-setup#readme" target="_blank" rel="noopener">README</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current Version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">v4</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_what_it_does_3"><a class="anchor" href="#_what_it_does_3"></a>What It Does</h3>
+<div class="paragraph">
+<p>This action installs the <a href="https://pnpm.io/" target="_blank" rel="noopener">pnpm package manager</a> on the GitHub Actions runner. pnpm is a fast, disk-efficient package manager that&#8217;s particularly good for monorepos and workspaces.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_it_works_3"><a class="anchor" href="#_how_it_works_3"></a>How It Works</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Reads the <code>packageManager</code> field from your <code>package.json</code> (if present)</p>
+</li>
+<li>
+<p>Downloads and installs the specified version of pnpm</p>
+</li>
+<li>
+<p>Adds pnpm to the PATH for subsequent steps</p>
+</li>
+<li>
+<p>Optionally runs <code>pnpm install</code> automatically</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_usage_in_our_workflow_3"><a class="anchor" href="#_usage_in_our_workflow_3"></a>Usage in Our Workflow</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- name: Install pnpm
+  uses: pnpm/action-setup@v4
+  with:
+    package_json_file: 'site/package.json'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We specify <code>package_json_file</code> to point to our package.json since it&#8217;s in a subdirectory. The action reads the <code>packageManager</code> field from this file to determine which pnpm version to install.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Why specify <code>package_json_file</code>?</strong></p>
+</div>
+<div class="paragraph">
+<p>Our Antora site configuration lives in the <code>site/</code> subdirectory, not the repository root. By pointing to the correct <code>package.json</code>, the action can read the exact pnpm version we want.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_key_inputs_2"><a class="anchor" href="#_key_inputs_2"></a>Key Inputs</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Input</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>version</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">From <code>package.json</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The version of pnpm to install</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>package_json_file</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>package.json</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to package.json (for reading <code>packageManager</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>run_install</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to run <code>pnpm install</code> automatically</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>standalone</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Install without Node.js (use with <code>actions/setup-node</code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_version_detection"><a class="anchor" href="#_version_detection"></a>Version Detection</h3>
+<div class="paragraph">
+<p>The action determines the pnpm version in this order:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Explicit <code>version</code> input</p>
+</li>
+<li>
+<p><code>packageManager</code> field in <code>package.json</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "packageManager": "pnpm@9.1.0"
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Falls back to latest version</p>
+</li>
+</ol>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setup-node"><a class="anchor" href="#setup-node"></a>actions/setup-node</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Repository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/actions/setup-node" target="_blank" rel="noopener">actions/setup-node</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Documentation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/actions/setup-node#readme" target="_blank" rel="noopener">README</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current Version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">v4</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_what_it_does_4"><a class="anchor" href="#_what_it_does_4"></a>What It Does</h3>
+<div class="paragraph">
+<p>This action sets up a Node.js environment on the GitHub Actions runner. It can:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Install a specific Node.js version</p>
+</li>
+<li>
+<p>Set up caching for package manager dependencies</p>
+</li>
+<li>
+<p>Configure the registry for npm/pnpm/yarn</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_it_works_4"><a class="anchor" href="#_how_it_works_4"></a>How It Works</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Downloads and installs the specified Node.js version</p>
+</li>
+<li>
+<p>Adds Node.js to the PATH</p>
+</li>
+<li>
+<p>Optionally configures dependency caching</p>
+</li>
+<li>
+<p>Optionally sets up registry authentication</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_usage_in_our_workflow_4"><a class="anchor" href="#_usage_in_our_workflow_4"></a>Usage in Our Workflow</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- name: Set up Node.js ${{ matrix.node-version }}
+  uses: actions/setup-node@v4
+  with:
+    node-version: ${{ matrix.node-version }}
+    cache: 'pnpm'
+    cache-dependency-path: 'site/pnpm-lock.yaml'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We configure:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>node-version</code>: Uses the version from our build matrix (Node.js 20)</p>
+</li>
+<li>
+<p><code>cache: 'pnpm'</code>: Enables caching for pnpm dependencies</p>
+</li>
+<li>
+<p><code>cache-dependency-path</code>: Points to our lock file location</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_why_caching_matters"><a class="anchor" href="#_why_caching_matters"></a>Why Caching Matters</h3>
+<div class="listingblock">
+<div class="content">
+<pre>@startuml
+!theme plain
+skinparam backgroundColor transparent
+
+rectangle "Without Cache" as nocache {
+  rectangle "pnpm install" as install1
+  note right: ~45-60 seconds\nDownloads all packages
+}
+
+rectangle "With Cache" as withcache {
+  rectangle "pnpm install" as install2
+  note right: ~5-10 seconds\nRestores from cache
+}
+
+@enduml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Caching can reduce <code>pnpm install</code> time from 45-60 seconds to under 10 seconds by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Storing downloaded packages in GitHub&#8217;s cache</p>
+</li>
+<li>
+<p>Restoring them on subsequent runs</p>
+</li>
+<li>
+<p>Only downloading new/updated packages</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_key_inputs_3"><a class="anchor" href="#_key_inputs_3"></a>Key Inputs</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Input</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>node-version</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None (required)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node.js version to install (e.g., <code>20</code>, <code>20.x</code>, <code>lts/*</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cache</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Package manager for caching: <code>npm</code>, <code>yarn</code>, or <code>pnpm</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cache-dependency-path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Auto-detected</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to dependency lock file(s) for cache key</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>registry-url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional registry URL (for private packages)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_version_specification"><a class="anchor" href="#_version_specification"></a>Version Specification</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># Specific version
+node-version: '20.10.0'
+
+# Major version (latest minor/patch)
+node-version: '20'
+
+# Major.minor (latest patch)
+node-version: '20.10'
+
+# Semantic version range
+node-version: '&gt;=18'
+
+# LTS version
+node-version: 'lts/*'
+
+# From .nvmrc or .node-version file
+node-version-file: '.nvmrc'</code></pre>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="upload-pages"><a class="anchor" href="#upload-pages"></a>actions/upload-pages-artifact</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Repository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/actions/upload-pages-artifact" target="_blank" rel="noopener">actions/upload-pages-artifact</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Documentation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/actions/upload-pages-artifact#readme" target="_blank" rel="noopener">README</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current Version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">v3</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_what_it_does_5"><a class="anchor" href="#_what_it_does_5"></a>What It Does</h3>
+<div class="paragraph">
+<p>This action packages your built static site and uploads it as a GitHub Actions artifact, specifically formatted for GitHub Pages deployment.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_it_works_5"><a class="anchor" href="#_how_it_works_5"></a>How It Works</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Creates a tar archive of your site directory</p>
+</li>
+<li>
+<p>Applies compression to reduce size</p>
+</li>
+<li>
+<p>Uploads the archive as a workflow artifact named <code>github-pages</code></p>
+</li>
+<li>
+<p>Calculates and reports the artifact size</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>@startuml
+!theme plain
+skinparam backgroundColor transparent
+
+rectangle "Build Output\n(site/build/site/)" as build
+rectangle "Tar Archive" as tar
+rectangle "GitHub Artifact\n(github-pages)" as artifact
+rectangle "Deploy Step" as deploy
+
+build -right-&gt; tar : package
+tar -right-&gt; artifact : upload
+artifact -right-&gt; deploy : download
+
+@enduml</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_usage_in_our_workflow_5"><a class="anchor" href="#_usage_in_our_workflow_5"></a>Usage in Our Workflow</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- name: Upload artifact
+  uses: actions/upload-pages-artifact@v3
+  with:
+    path: site/build/site</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We specify the exact path where Antora outputs the built site.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_key_inputs_4"><a class="anchor" href="#_key_inputs_4"></a>Key Inputs</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Input</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None (required)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the directory to upload</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>retention-days</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long to keep the artifact</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_important_notes"><a class="anchor" href="#_important_notes"></a>Important Notes</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Artifact Name</strong>: This action always creates an artifact named <code>github-pages</code>. This specific name is required by <code>actions/deploy-pages</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Size Limits</strong>: GitHub Pages has a size limit of 1GB for the deployed site. Large sites may need optimization.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deploy-pages"><a class="anchor" href="#deploy-pages"></a>actions/deploy-pages</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Repository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/actions/deploy-pages" target="_blank" rel="noopener">actions/deploy-pages</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Documentation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/actions/deploy-pages#readme" target="_blank" rel="noopener">README</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current Version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">v4</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_what_it_does_6"><a class="anchor" href="#_what_it_does_6"></a>What It Does</h3>
+<div class="paragraph">
+<p>This action deploys the uploaded artifact to GitHub Pages. It&#8217;s the final step that makes your site live.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_it_works_6"><a class="anchor" href="#_how_it_works_6"></a>How It Works</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Downloads the <code>github-pages</code> artifact from the upload step</p>
+</li>
+<li>
+<p>Extracts the contents</p>
+</li>
+<li>
+<p>Deploys to GitHub Pages using the Pages API</p>
+</li>
+<li>
+<p>Reports the deployment URL</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_usage_in_our_workflow_6"><a class="anchor" href="#_usage_in_our_workflow_6"></a>Usage in Our Workflow</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">deploy:
+  runs-on: ubuntu-latest
+  needs: build  <i class="conum" data-value="1"></i><b>(1)</b>
+  environment:
+    name: github-pages
+    url: ${{ steps.deployment.outputs.page_url }}  <i class="conum" data-value="2"></i><b>(2)</b>
+  steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>needs: build</code> ensures this job waits for the build job to complete</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The deployed URL is available as an output</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_key_requirements"><a class="anchor" href="#_key_requirements"></a>Key Requirements</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Requirement</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Permissions</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The workflow needs <code>pages: write</code> and <code>id-token: write</code> permissions</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Environment</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Should specify <code>environment: name: github-pages</code> for proper deployment tracking</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Artifact</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Requires the <code>github-pages</code> artifact from <code>upload-pages-artifact</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_outputs"><a class="anchor" href="#_outputs"></a>Outputs</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Output</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>page_url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The URL of the deployed site (e.g., <code><a href="https://docs.foodtrucknerdz.com" class="bare">https://docs.foodtrucknerdz.com</a></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_complete_workflow_reference"><a class="anchor" href="#_complete_workflow_reference"></a>Complete Workflow Reference</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Here&#8217;s how all the actions work together:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>@startuml
+!theme plain
+skinparam backgroundColor transparent
+skinparam defaultFontName Segoe UI
+
+title Complete GitHub Actions Workflow
+
+|Build Job|
+start
+:actions/checkout@v4;
+note right: Clone repository
+:actions/configure-pages@v5;
+note right: Configure Pages settings
+:pnpm/action-setup@v4;
+note right: Install pnpm
+:actions/setup-node@v4;
+note right: Install Node.js + cache
+:pnpm install;
+:pnpm exec antora;
+note right: Build site
+:actions/upload-pages-artifact@v3;
+note right: Package &amp; upload
+
+|Deploy Job|
+:actions/deploy-pages@v4;
+note right: Deploy to Pages
+
+stop
+
+@enduml</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_related_documentation"><a class="anchor" href="#_related_documentation"></a>Related Documentation</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="github-actions-antora-setup.html" class="xref page">Setting Up GitHub Actions for Antora with Private Repositories</a> — Complete CI/CD setup tutorial</p>
+</li>
+<li>
+<p><a href="troubleshooting-antora-builds.html" class="xref page">Troubleshooting Antora Build Errors</a> — Troubleshooting build errors</p>
+</li>
+<li>
+<p><a href="https://docs.github.com/en/actions" target="_blank" rel="noopener">GitHub Actions Documentation</a></p>
+</li>
+<li>
+<p><a href="https://pnpm.io/" target="_blank" rel="noopener">pnpm Documentation</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>
+    Built with <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> <span class="antora-version">(3.1.14)</span>.
+    Base UI:
+    <a href="https://github.com/antora-supplemental/antora-dark-theme" target="_blank" rel="noopener">antora-dark-theme</a>
+    (<a href="https://www.mozilla.org/MPL/2.0/" target="_blank" rel="noopener">MPL-2.0</a>).
+    FoodTruckNerdz extends the UI (header, layout rails, navigation, styling) in the
+    <a href="https://github.com/FoodTruckNerdz/docs" target="_blank" rel="noopener">docs</a> repository;
+    see <a href="https://github.com/FoodTruckNerdz/docs/blob/main/docs/modules/ROOT/pages/docs-site-management.adoc#ui-bundle" target="_blank" rel="noopener">UI bundle and footer</a>.
+  </p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/site-dark-mode.js"></script>
+<script src="../../_/js/site-adt-accordion.js"></script>
+  </body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FTN Antora Setup vs. Antora Supplemental Reference :: Docs :: Documentation</title>
+    <link rel="canonical" href="https://docs.foodtrucknerdz.com/docs/0.1/antora-supplemental-comparison.html">
+    <meta name="description" content="Comparison of FTN's Antora setup with the canonical antora-supplemental reference; links and alignment notes">
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="../../_/css/site-doc-layout.css">
+<meta name="antora-repo-url" content="https://github.com/FoodTruckNerdz/docs">
+<script>
+(function () {
+  const MODE = 'antora-theme-mode'
+  const LEGACY = 'antora-theme'
+  function mode() {
+    const m = localStorage.getItem(MODE)
+    if (m === 'system' || m === 'dark' || m === 'light') return m
+    const o = localStorage.getItem(LEGACY)
+    if (o === 'dark' || o === 'light') return o
+    return 'system'
+  }
+  function isDark() {
+    const m = mode()
+    if (m === 'dark') return true
+    if (m === 'light') return false
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
+  if (isDark()) document.documentElement.classList.add('dark-theme')
+})()
+</script>
+  </head>
+  <body class="article">
+<header class="header adt-header">
+  <nav class="navbar adt-site-navbar" aria-label="Site">
+    <div class="navbar-brand adt-header-brand">
+      <a class="adt-header-logo-item" href="https://foodtrucknerdz.com" rel="noopener" target="_blank" title="foodtrucknerdz.com" aria-label="foodtrucknerdz.com (opens in new tab)">
+        <img class="adt-header-logo" src="../../_/img/foodtrucknerdz.svg" width="34" height="34" alt="" />
+      </a>
+      <a class="navbar-item adt-header-title" href="https://docs.foodtrucknerdz.com">Documentation</a>
+    </div>
+    <div id="topbar-nav" class="navbar-menu adt-topbar" role="navigation" aria-label="External links">
+      <div class="navbar-end adt-header-actions">
+        <a class="navbar-item adt-header-icon-btn adt-header-vcs" href="https://github.com/FoodTruckNerdz/docs" rel="noopener" target="_blank" title="Source repository" aria-label="Source repository (opens in new tab)">
+          <img class="adt-header-vcs-img" src="../../_/img/vcs/code.svg" width="24" height="24" alt="" />
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div class="adt-doc-mast" role="navigation" aria-label="Component and location in documentation">
+  <button class="nav-toggle" type="button" aria-label="Toggle main navigation"></button>
+  <div class="adt-doc-mast-center">
+  <nav class="breadcrumbs adt-breadcrumbs" aria-label="Breadcrumb: component, version, and page path">
+  <ul>
+    <li class="adt-breadcrumb-home">
+      <a href="index.html" class="adt-breadcrumb-home-link" title="Component start page" aria-label="Component start page">
+        <svg class="adt-breadcrumb-home-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+      </a>
+    </li>
+    <li class="adt-breadcrumb-col adt-breadcrumb-masthead">
+      <div class="adt-bc-cluster" role="group" aria-label="Documentation component and version">
+        <div class="adt-bc-menu adt-bc-menu-project">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-proj" aria-haspopup="listbox" aria-expanded="false" aria-label="Switch documentation component">
+            <span class="adt-bc-kicker-label">Docs</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--components" id="adt-bc-proj" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="index.html" class="is-current">Docs</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../food-truck-api/1.0/index.html" class="">Food Truck API</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../ftn-site/index.html" class="">Food Truck Nerdz</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../onboarding/index.html" class="">FoodTruckNerds Onboarding</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../developer-portal/1.0/index.html" class="">FoodTruckNerdz Developer Portal Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../help/1.0/index.html" class="">FoodTruckNerdz Help Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../mobile-apps/index.html" class="">Mobile apps</a>
+            </li>
+          </ul>
+        </div>
+        <span class="adt-bc-sep" aria-hidden="true">|</span>
+        <div class="adt-bc-menu adt-bc-menu-version">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-ver" aria-haspopup="listbox" aria-expanded="false" aria-label="Select documentation version">
+            <span class="adt-bc-kicker-version">0.1</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--version" id="adt-bc-ver" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="index.html" class="adt-bc-version-pill is-current" aria-current="page">0.1</a>
+            </li>
+          </ul>
+                  </div>
+      </div>
+    </li>
+    <li class="adt-breadcrumb-trail"><span class="adt-breadcrumb-trail-text">Site build</span></li>
+    <li class="adt-breadcrumb-trail adt-breadcrumb-trail--current"><a class="adt-breadcrumb-trail-link" href="antora-supplemental-comparison.html">Antora Supplemental Comparison</a></li>
+      <li class="adt-breadcrumb-edit" role="presentation">
+      <a class="adt-edit-inline-link" href="https://github.com/FoodTruckNerdz/docs/edit/main/docs/modules/ROOT/pages/antora-supplemental-comparison.adoc" title="Edit this page" aria-label="Edit this page">
+        <img class="adt-vcs-icon-img adt-edit-vcs-img" src="../../_/img/vcs/github.svg" width="16" height="16" alt="" />
+        <span class="adt-edit-inline-text">Edit</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+</header>
+<div class="body adt-body">
+<div class="nav-container" data-component="docs" data-version="0.1">
+  <aside class="nav">
+    <div class="panels adt-panels adt-panels-solo">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu nav-tree-only adt-nav-tree-only" aria-label="In this section">
+    <button class="nav-menu-toggle" aria-label="Toggle expand and collapse of all item groups" style="display: none"></button>
+    <p class="adt-nav-component-title"><a href="index.html">Docs</a></p>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="partners.html">Partners &amp; Services</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="vscode-extensions.html">VS Code Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Site build</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="docs-site-management.html">Site management overview</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="antora-supplemental-comparison.html">Antora Supplemental Comparison</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="building-docs.html">Building Locally</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="redeploying-docs.html">Redeploying the Site</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="antora-attributes.html">Using Antora Attributes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="troubleshooting-antora-builds.html">Troubleshooting Builds</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">CI/CD Details</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="github-actions-antora-setup.html">GitHub Actions Setup</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="action-includes-reference.html">Action Includes Reference</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article adt-article">
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="adt-page-header">
+  <h1 class="page adt-page-title">FTN Antora Setup vs. Antora Supplemental Reference</h1>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This page compares FoodTruckNerdz&#8217;s Antora documentation setup with the canonical reference maintained by the Antora Supplemental organization. Use it to align FTN&#8217;s approach with recommended practices and to find the authoritative documentation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reference_documentation"><a class="anchor" href="#_reference_documentation"></a>Reference Documentation</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Live site:</strong> <a href="https://antora-supplemental.github.io/docs">antora-supplemental.github.io/docs</a></p>
+</li>
+<li>
+<p><strong>Source (GitHub):</strong> <a href="https://github.com/antora-supplemental/docs">github.com/antora-supplemental/docs</a></p>
+</li>
+<li>
+<p><strong>Modules:</strong> <a href="https://github.com/antora-supplemental/docs/tree/main/docs/modules">Antora Supplemental docs/modules</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_key_comparisons"><a class="anchor" href="#_key_comparisons"></a>Key Comparisons</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_playbook_location_root_layout"><a class="anchor" href="#_playbook_location_root_layout"></a>Playbook location (root layout)</h3>
+<div class="paragraph">
+<p>| Aspect | FTN (current) | Antora Supplemental (reference) |
+|--------|---------------|----------------------------------|
+| Playbook | <code>antora-playbook.yml</code> at the <strong>repository root</strong> | <code>antora-playbook.yml</code> at repository root (root strategy) |
+| Local playbook | <code>antora-playbook-local.yml</code> at root (copy from <code>antora-playbook-local.example.yml</code>; entry git-ignored) | Same idea: local path sources, local file often git-ignored |
+| CI | Default job working directory; <code>pnpm exec antora antora-playbook.yml</code> | <code>antora</code> from repo root; no <code>working-directory</code> under a <code>site/</code> subfolder |</p>
+</div>
+<div class="paragraph">
+<p><strong>Alignment:</strong> The <strong>playbooks and <code>package.json</code> live at the root</strong> of the <code>docs</code> repository. The <a href="https://antora-supplemental.github.io/docs/docs/antora-deployment.html">Antora Deployment</a> guide (root vs. subfolder, CI, GitHub Pages) matches this layout. Custom UI and scripts still sit under <code>site/</code> (e.g. <code>site/supplemental-ui/</code>, <code>site/scripts/</code>), not the playbooks.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_private_repo_authentication"><a class="anchor" href="#_private_repo_authentication"></a>Private Repo Authentication</h3>
+<div class="paragraph">
+<p>| Aspect | FTN | Antora Supplemental |
+|--------|-----|---------------------|
+| Method | <code>GIT_CREDENTIALS</code> env var with <code>x-access-token</code> | Same; also documents <code>git config --global url</code> as Option A |
+| PAT storage | <code>FTN_GITHUB_TOKEN</code> (or org-specific name) | <code>ANTORA_READ_TOKEN</code> or <code>REPO_ACCESS_TOKEN</code> |
+| Gotcha coverage | Documents GITHUB_TOKEN vs PAT, x-access-token | Same; see <a href="https://antora-supplemental.github.io/docs/docs/antora-deployment.html">Antora Deployment</a> (private repos) |</p>
+</div>
+<div class="paragraph">
+<p><strong>Alignment:</strong> FTN&#8217;s github-actions-antora-setup is aligned with antora-supplemental guidance. Both correctly document PAT requirement for private content sources.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_github_pages_deployment"><a class="anchor" href="#_github_pages_deployment"></a>GitHub Pages Deployment</h3>
+<div class="paragraph">
+<p>| Aspect | FTN | Antora Supplemental |
+|--------|-----|---------------------|
+| Pattern | Actions-based (<code>upload-pages-artifact</code> + <code>deploy-pages</code>) | Same (recommended) |
+| Build action | Inline <code>pnpm exec antora</code> in workflow | Recommends <code>antora-build-action</code> or inline |
+| Package manager | pnpm, <code>package.json</code> at repo root | pnpm; <code>antora-build-action</code> can use <code>pnpm dlx antora</code> without a project <code>package.json</code> |</p>
+</div>
+<div class="paragraph">
+<p><strong>Note:</strong> antora-supplemental&#8217;s <code>antora-build-action</code> simplifies the build step. FTN uses a manual install + run; both are valid.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_package_manager_commands"><a class="anchor" href="#_package_manager_commands"></a>Package Manager Commands</h3>
+<div class="paragraph">
+<p>FTN uses <code>npx antora</code> in building-docs; antora-supplemental recommends <code>pnpm dlx antora</code> for one-off runs or <code>pnpm exec antora</code> when Antora is in package.json. See <a href="https://antora-supplemental.github.io/docs/docs/antora-deployment.html">Antora Deployment</a> (package manager run commands) for pnpm vs npm vs yarn.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_inconsistencies_to_resolve"><a class="anchor" href="#_inconsistencies_to_resolve"></a>Inconsistencies to resolve</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>npx vs pnpm:</strong> Some older snippets use <code>npx antora</code>; CI and <code>package.json</code> use <code>pnpm exec antora</code> / <code>pnpm run build</code>. Prefer <code>pnpm exec</code> or <code>pnpm dlx</code> for one-off runs to match the lockfile and org standards.</p>
+</li>
+<li>
+<p><strong>Local playbook extension:</strong> antora-supplemental’s “Best of Both Worlds” uses <code>extends: ./antora-playbook.yml</code> for local overrides. FTN’s <code>antora-playbook-local.yml</code> could be refactored to extend the main playbook if source lists drift.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_related_ftn_pages"><a class="anchor" href="#_related_ftn_pages"></a>Related FTN Pages</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="github-actions-antora-setup.html" class="xref page">GitHub Actions Setup</a> — PAT, GIT_CREDENTIALS, workflow</p>
+</li>
+<li>
+<p><a href="building-docs.html" class="xref page">Building Locally</a> — Local build steps</p>
+</li>
+<li>
+<p><a href="docs-site-management.html" class="xref page">Documentation Site Management</a> — Site overview</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>
+    Built with <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> <span class="antora-version">(3.1.14)</span>.
+    Base UI:
+    <a href="https://github.com/antora-supplemental/antora-dark-theme" target="_blank" rel="noopener">antora-dark-theme</a>
+    (<a href="https://www.mozilla.org/MPL/2.0/" target="_blank" rel="noopener">MPL-2.0</a>).
+    FoodTruckNerdz extends the UI (header, layout rails, navigation, styling) in the
+    <a href="https://github.com/FoodTruckNerdz/docs" target="_blank" rel="noopener">docs</a> repository;
+    see <a href="https://github.com/FoodTruckNerdz/docs/blob/main/docs/modules/ROOT/pages/docs-site-management.adoc#ui-bundle" target="_blank" rel="noopener">UI bundle and footer</a>.
+  </p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/site-dark-mode.js"></script>
+<script src="../../_/js/site-adt-accordion.js"></script>
+  </body>
+</html>

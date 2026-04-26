@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Enhanced Check-in System :: Food Truck Nerdz :: Documentation</title>
+    <link rel="canonical" href="https://docs.foodtrucknerdz.com/ftn-site/nextjs/checkin-system.html">
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="../../_/css/site-doc-layout.css">
+<meta name="antora-repo-url" content="https://github.com/FoodTruckNerdz/ftn-site">
+<script>
+(function () {
+  const MODE = 'antora-theme-mode'
+  const LEGACY = 'antora-theme'
+  function mode() {
+    const m = localStorage.getItem(MODE)
+    if (m === 'system' || m === 'dark' || m === 'light') return m
+    const o = localStorage.getItem(LEGACY)
+    if (o === 'dark' || o === 'light') return o
+    return 'system'
+  }
+  function isDark() {
+    const m = mode()
+    if (m === 'dark') return true
+    if (m === 'light') return false
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
+  if (isDark()) document.documentElement.classList.add('dark-theme')
+})()
+</script>
+  </head>
+  <body class="article">
+<header class="header adt-header">
+  <nav class="navbar adt-site-navbar" aria-label="Site">
+    <div class="navbar-brand adt-header-brand">
+      <a class="adt-header-logo-item" href="https://foodtrucknerdz.com" rel="noopener" target="_blank" title="foodtrucknerdz.com" aria-label="foodtrucknerdz.com (opens in new tab)">
+        <img class="adt-header-logo" src="../../_/img/foodtrucknerdz.svg" width="34" height="34" alt="" />
+      </a>
+      <a class="navbar-item adt-header-title" href="https://docs.foodtrucknerdz.com">Documentation</a>
+    </div>
+    <div id="topbar-nav" class="navbar-menu adt-topbar" role="navigation" aria-label="External links">
+      <div class="navbar-end adt-header-actions">
+        <a class="navbar-item adt-header-icon-btn adt-header-vcs" href="https://github.com/FoodTruckNerdz/ftn-site" rel="noopener" target="_blank" title="Source repository" aria-label="Source repository (opens in new tab)">
+          <img class="adt-header-vcs-img" src="../../_/img/vcs/code.svg" width="24" height="24" alt="" />
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div class="adt-doc-mast" role="navigation" aria-label="Component and location in documentation">
+  <button class="nav-toggle" type="button" aria-label="Toggle main navigation"></button>
+  <div class="adt-doc-mast-center">
+  <nav class="breadcrumbs adt-breadcrumbs" aria-label="Breadcrumb: component, version, and page path">
+  <ul>
+    <li class="adt-breadcrumb-home">
+      <a href="../index.html" class="adt-breadcrumb-home-link" title="Component start page" aria-label="Component start page">
+        <svg class="adt-breadcrumb-home-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+      </a>
+    </li>
+    <li class="adt-breadcrumb-col adt-breadcrumb-masthead">
+      <div class="adt-bc-cluster" role="group" aria-label="Documentation component and version">
+        <div class="adt-bc-menu adt-bc-menu-project">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-proj" aria-haspopup="listbox" aria-expanded="false" aria-label="Switch documentation component">
+            <span class="adt-bc-kicker-label">Food Truck Nerdz</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--components" id="adt-bc-proj" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../docs/0.1/index.html" class="">Docs</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../food-truck-api/1.0/index.html" class="">Food Truck API</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../index.html" class="is-current">Food Truck Nerdz</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../onboarding/index.html" class="">FoodTruckNerds Onboarding</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../developer-portal/1.0/index.html" class="">FoodTruckNerdz Developer Portal Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../help/1.0/index.html" class="">FoodTruckNerdz Help Documentation</a>
+            </li>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../../mobile-apps/index.html" class="">Mobile apps</a>
+            </li>
+          </ul>
+        </div>
+        <span class="adt-bc-sep" aria-hidden="true">|</span>
+        <div class="adt-bc-menu adt-bc-menu-version">
+          <button type="button" class="adt-bc-kicker" data-adt-toggle="adt-bc-ver" aria-haspopup="listbox" aria-expanded="false" aria-label="Select documentation version">
+            <span class="adt-bc-kicker-version">master</span>
+          </button>
+          <ul class="adt-bc-dropdown adt-bc-dropdown--version" id="adt-bc-ver" role="listbox" hidden>
+            <li role="none" class="adt-bc-menu-item">
+              <a href="../index.html" class="adt-bc-version-pill is-current" aria-current="page">master</a>
+            </li>
+          </ul>
+                  </div>
+      </div>
+    </li>
+    <li class="adt-breadcrumb-trail adt-breadcrumb-trail--current"><a class="adt-breadcrumb-trail-link" href="checkin-system.html">Check-in System</a></li>
+    </ul>
+</nav>
+  </div>
+</div>
+</header>
+<div class="body adt-body">
+<div class="nav-container" data-component="ftn-site" data-version="master">
+  <aside class="nav">
+    <div class="panels adt-panels adt-panels-solo">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu nav-tree-only adt-nav-tree-only" aria-label="In this section">
+    <button class="nav-menu-toggle" aria-label="Toggle expand and collapse of all item groups" style="display: none"></button>
+    <p class="adt-nav-component-title"><a href="../index.html">Food Truck Nerdz</a></p>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Getting Started</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="api-reference.html">HTTP API (OpenAPI)</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="manual-setup.html">Manual Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="deployment.html">Deployment Guide</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-architecture.html">Component Architecture</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="checkin-system.html">Check-in System</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="events-and-venues.html">Events &amp; Host Venues</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="pos-implementation.html">Point of Sale Implementation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="convex-setup.html">Convex Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="environment-variables.html">Environment Variables</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article adt-article">
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="adt-page-header">
+  <h1 class="page adt-page-title">Enhanced Check-in System</h1>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The application features an enhanced check-in system that prioritizes ease of use for food truck owners.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The check-in system allows food truck owners to broadcast their current location to customers. It supports two main flows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Default Flow</strong>: GPS-based nearby addresses discovery</p>
+</li>
+<li>
+<p><strong>Secondary Flow</strong>: Advanced map picker for custom locations</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_default_flow_nearby_addresses"><a class="anchor" href="#_default_flow_nearby_addresses"></a>Default Flow: Nearby Addresses</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is the primary, streamlined check-in experience:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User clicks "Check In"</p>
+</li>
+<li>
+<p>GPS location is obtained automatically</p>
+</li>
+<li>
+<p>Radar SDK searches for nearby addresses/places within 500m</p>
+</li>
+<li>
+<p>User selects from 3-5 closest addresses with distance indicators</p>
+</li>
+<li>
+<p>One-click check-in at selected location</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_secondary_flow_advanced_map_picker"><a class="anchor" href="#_secondary_flow_advanced_map_picker"></a>Secondary Flow: Advanced Map Picker</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For situations where the nearby addresses don&#8217;t match the desired location:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User clicks "Choose Different Location"</p>
+</li>
+<li>
+<p>Interactive map opens with search functionality</p>
+</li>
+<li>
+<p>User can search for addresses or click on map</p>
+</li>
+<li>
+<p>Optional notes can be added</p>
+</li>
+<li>
+<p>Check-in with selected location</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_features"><a class="anchor" href="#_features"></a>Features</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">GPS-based Discovery</dt>
+<dd>
+<p>Automatic location detection using the device&#8217;s GPS.</p>
+</dd>
+<dt class="hdlist1">Distance Indicators</dt>
+<dd>
+<p>Shows how far each address is from the current position (e.g., "50m", "0.2km").</p>
+</dd>
+<dt class="hdlist1">Address Types</dt>
+<dd>
+<p>Displays location types such as restaurant, park, business, etc.</p>
+</dd>
+<dt class="hdlist1">Graceful Fallbacks</dt>
+<dd>
+<p>Falls back to map picker if GPS fails or is unavailable.</p>
+</dd>
+<dt class="hdlist1">Error Handling</dt>
+<dd>
+<p>User-friendly error messages with alternatives when issues occur.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_time_span_options"><a class="anchor" href="#_time_span_options"></a>Time Span Options</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Check-ins support automatic checkout with configurable durations:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 Hour</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check out automatically after 1 hour</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2 Hours</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check out automatically after 2 hours</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4 Hours</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check out automatically after 4 hours</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8 Hours</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check out automatically after 8 hours</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All Day</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check out at end of business day (6 PM)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Until Time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check out at a specific time</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom duration in minutes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_checkout_types"><a class="anchor" href="#_checkout_types"></a>Checkout Types</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Check-ins can end in three ways:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Manual</dt>
+<dd>
+<p>Owner manually checks out the truck.</p>
+</dd>
+<dt class="hdlist1">Automatic</dt>
+<dd>
+<p>System automatically checks out when the time span expires.</p>
+</dd>
+<dt class="hdlist1">Superseded</dt>
+<dd>
+<p>A new check-in replaces the previous active one.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_related_components"><a class="anchor" href="#_related_components"></a>Related Components</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>components/food-trucks/truck-checkin.tsx</code> - Main check-in component</p>
+</li>
+<li>
+<p><code>components/food-trucks/truck-checkin-demo.tsx</code> - Demo/testing component</p>
+</li>
+<li>
+<p><code>components/food-trucks/current-location.tsx</code> - Current location display</p>
+</li>
+<li>
+<p><code>components/food-trucks/location-selector.tsx</code> - Location selection UI</p>
+</li>
+<li>
+<p><code>components/map/location-picker.tsx</code> - Interactive map picker</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_api_actions"><a class="anchor" href="#_api_actions"></a>API Actions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The check-in system uses these server actions from <code>app/actions/food-trucks.ts</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>checkInTruck</code> - Create a new check-in</p>
+</li>
+<li>
+<p><code>checkOutTruck</code> - Manually check out</p>
+</li>
+<li>
+<p><code>getTruckCurrentLocation</code> - Get current location with priority resolution</p>
+</li>
+<li>
+<p><code>getTruckCheckInHistory</code> - Get check-in history with pagination</p>
+</li>
+<li>
+<p><code>getTruckCheckInStats</code> - Get check-in statistics</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_location_priority"><a class="anchor" href="#_location_priority"></a>Location Priority</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When resolving a truck&#8217;s current location, the system uses this priority:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Manual check-ins</strong> (highest) - Override all other locations</p>
+</li>
+<li>
+<p><strong>Scheduled locations</strong> - Active during set times</p>
+</li>
+<li>
+<p><strong>Base location</strong> (lowest) - Used when no other location is active</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>
+    Built with <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> <span class="antora-version">(3.1.14)</span>.
+    Base UI:
+    <a href="https://github.com/antora-supplemental/antora-dark-theme" target="_blank" rel="noopener">antora-dark-theme</a>
+    (<a href="https://www.mozilla.org/MPL/2.0/" target="_blank" rel="noopener">MPL-2.0</a>).
+    FoodTruckNerdz extends the UI (header, layout rails, navigation, styling) in the
+    <a href="https://github.com/FoodTruckNerdz/docs" target="_blank" rel="noopener">docs</a> repository;
+    see <a href="https://github.com/FoodTruckNerdz/docs/blob/main/docs/modules/ROOT/pages/docs-site-management.adoc#ui-bundle" target="_blank" rel="noopener">UI bundle and footer</a>.
+  </p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/site-dark-mode.js"></script>
+<script src="../../_/js/site-adt-accordion.js"></script>
+  </body>
+</html>

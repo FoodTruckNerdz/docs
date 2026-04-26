@@ -1,0 +1,969 @@
+openapi: 3.0.3
+info:
+  title: Food Truck Nerdz — Public HTTP API
+  version: 1.0.0
+  license:
+    name: Proprietary
+    url: https://github.com/FoodTruckNerdz
+  description: |
+    HTTP API for the Food Truck Nerdz Next.js application: authentication, **multi-tenant
+    business access**, Square-backed menu data, and related operations.
+
+    ## Who this spec is for
+
+    * **Browser clients** — Typically use Better Auth **session cookies** after OAuth or
+      email sign-in.
+    * **Mobile / SPA / automation** — Use **Bearer tokens**. After a successful email
+      sign-in or sign-up, the server may return a token in the **`set-auth-token`**
+      response header. Send it on subsequent requests as `Authorization: Bearer <token>`.
+
+    ## Mental model: tenants, not “the user id”
+
+    Square data, menus, and trucks are keyed by the **business owner’s** Convex user id
+    (`businessOwnerUserId`), not necessarily the signed-in **actor’s** id.
+
+    * A **business owner** connects Square; their Convex user id becomes the **tenant id**
+      for that business’s data.
+    * **Staff** and **managers** are separate users who access the same tenant via
+      **memberships** (invited by the owner). The API resolves “which tenant am I acting for?” using memberships plus **user preferences** (`activeBusinessOwnerUserId`).
+
+    Endpoints that call `requireBusinessAccess` only see data for the **resolved tenant**
+    (`businessOwnerId` in app code). If the user has multiple memberships, they must have
+    a valid **active business** preference or exactly one membership; otherwise access
+    resolution fails.
+
+    ## Relationship to Better Auth
+
+    Routes under `/api/auth/*` are primarily handled by **Better Auth** (catch-all
+    handler), except for explicitly documented app routes such as `GET /api/auth/me`.
+    This document lists the flows this codebase relies on; for the full set of framework
+    endpoints and edge cases, see the
+    [Better Auth documentation](https://www.better-auth.com/docs).
+
+    ## Errors
+
+    Many routes return JSON `{ "message": "..." }` or `{ "error": "..." }` on failure.
+    Status codes follow usual HTTP semantics (`401` unauthenticated, `403` forbidden,
+    `404` missing resource, `500` server error). Exact bodies may gain fields over time;
+    clients should tolerate unknown properties.
+
+    **Mobile:** A reference Flutter client that consumes this API lives in the separate
+    repository `ftn-flutter` (FoodTruckNerdz org on GitHub).
+
+servers:
+  - url: "{baseUrl}"
+    description: |
+      Replace with your deployment origin (no trailing slash), e.g. production site or
+      `http://localhost:3000` for local dev.
+    variables:
+      baseUrl:
+        default: https://example.foodtrucknerdz.com
+        description: Origin of the Next.js app (scheme + host + optional port).
+
+tags:
+  - name: Session & tenant
+    description: |
+      Application-specific routes that expose the signed-in Convex user and **which
+      business (tenant)** they are acting for, including memberships and preferences.
+  - name: Authentication (Better Auth)
+    description: |
+      Sign-in, sign-up, and sign-out via Better Auth. Additional OAuth-related routes
+      exist (e.g. Square social login); see Better Auth docs for exhaustive paths.
+  - name: Square & menu
+    description: |
+      Operations that read or write Square-linked data for the **resolved tenant**.
+      Requires a session or Bearer token and successful business-access resolution (see
+      tag **Session & tenant**).
+
+paths:
+  /api/auth/me:
+    get:
+      tags:
+        - Session & tenant
+      summary: Current user and business context
+      description: |
+        Returns the authenticated user (Convex-backed profile) plus **tenant resolution**:
+        active `business` (owner id + role), all **memberships** for the actor, and
+        **preferredBusinessOwnerId** from stored preferences.
+
+        Use this endpoint after sign-in to drive UI: which businesses the user can
+        switch between, their role on each, and the currently selected tenant.
+
+        **Authentication:** Session cookie (typical browser) or `Authorization: Bearer`
+        (mobile / API), consistent with Better Auth configuration in this project.
+      operationId: getAuthMe
+      security:
+        - bearerAuth: []
+        - cookieAuth: []
+      responses:
+        "200":
+          description: |
+            Authenticated user with business context. Fields mirror server
+            `getAuthContextAction` (see components `AuthMeResponseAuthenticated`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthMeResponseAuthenticated"
+        "401":
+          description: |
+            No valid session or bearer token, or user could not be mapped to a Convex user.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              examples:
+                notAuthenticated:
+                  value:
+                    error: Not authenticated
+        "500":
+          description: Unexpected server error while loading context.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+
+  /api/auth/sign-in/email:
+    post:
+      tags:
+        - Authentication (Better Auth)
+      summary: Sign in with email and password
+      description: |
+        Better Auth **email/password** sign-in. On success, the **bearer plugin** may
+        issue a token in the **`set-auth-token` response header** for clients that cannot
+        rely on cookies. The response body is defined by Better Auth (session and user
+        fields); consult Better Auth docs for the exact JSON shape.
+
+        **Typical mobile flow:** Read `set-auth-token`, store it securely, then call
+        `GET /api/auth/me` with `Authorization: Bearer <token>`.
+      operationId: betterAuthSignInEmail
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SignInEmailRequest"
+      responses:
+        "200":
+          description: |
+            Sign-in succeeded. Check **`set-auth-token`** header for a bearer token.
+            Response body contains session information per Better Auth.
+          headers:
+            set-auth-token:
+              description: |
+                Opaque bearer token for `Authorization` on subsequent API calls, when
+                the bearer plugin is enabled. Not every deployment may emit this header
+                for every flow.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                description: Better Auth session payload; shape not duplicated here.
+        "401":
+          description: Invalid credentials or sign-in rejected.
+        "422":
+          description: Validation error (e.g. malformed body).
+
+  /api/auth/sign-up/email:
+    post:
+      tags:
+        - Authentication (Better Auth)
+      summary: Register with email and password
+      description: |
+        Creates a Better Auth user and associated records. May also return
+        **`set-auth-token`** when the bearer plugin attaches a token to successful
+        sign-up. Exact response body is defined by Better Auth.
+      operationId: betterAuthSignUpEmail
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SignUpEmailRequest"
+      responses:
+        "200":
+          description: Sign-up succeeded; inspect `set-auth-token` for bearer usage.
+          headers:
+            set-auth-token:
+              description: Bearer token for API clients (when issued).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "422":
+          description: Validation error (password policy, duplicate email, etc.).
+
+  /api/auth/sign-out:
+    post:
+      tags:
+        - Authentication (Better Auth)
+      summary: Sign out (Better Auth)
+      description: |
+        Ends the Better Auth session. **Bearer clients** should send
+        `Authorization: Bearer <token>` so the server can invalidate the correct session
+        when applicable, then delete the token locally.
+      operationId: betterAuthSignOut
+      security:
+        - bearerAuth: []
+        - cookieAuth: []
+      responses:
+        "200":
+          description: Signed out successfully.
+        "401":
+          description: Already unauthenticated or token invalid.
+
+  /api/auth/logout:
+    post:
+      tags:
+        - Authentication (Better Auth)
+      summary: Server-side logout helper (cookie-oriented)
+      description: |
+        App-specific route that calls server `signOut`. Intended for flows where the
+        Next.js server clears the session cookie. Returns `{ "success": true }` on success.
+      operationId: appLogout
+      responses:
+        "200":
+          description: Logout completed.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - success
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                    description: Always true when the handler completes without error.
+        "500":
+          description: Logout failed.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+
+  /api/auth/disconnect:
+    post:
+      tags:
+        - Square & menu
+      summary: Disconnect Square for the business owner
+      description: |
+        Revokes Square tokens (when possible) and deletes stored Square credentials in
+        Convex for the **tenant owner**.
+
+        **Authorization:** Requires the actor to be the **business owner** (not only
+        staff/manager): only the owner may disconnect the integration.
+      operationId: disconnectSquare
+      security:
+        - bearerAuth: []
+        - cookieAuth: []
+      responses:
+        "200":
+          description: Square disconnected and local credentials removed.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+                    example: Square account disconnected successfully.
+                    description: Human-readable result.
+        "403":
+          description: Signed-in user is not the business owner for this tenant.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageBody"
+        "500":
+          description: Revocation or database delete failed.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageBody"
+
+  /api/auth/callback/square:
+    get:
+      tags:
+        - Authentication (Better Auth)
+      summary: Square OAuth callback (browser flow)
+      description: |
+        OAuth **redirect URI** target for Square social login / linking. Accepts
+        `code` and `state` query parameters from Square; on success typically redirects
+        the browser into the app (e.g. manage page). **Not** intended for direct JSON API
+        use from mobile; use Better Auth’s OAuth initiation endpoints instead.
+
+        Errors may redirect or return JSON depending on failure mode.
+      operationId: squareOAuthCallback
+      parameters:
+        - name: code
+          in: query
+          required: false
+          description: Authorization code returned by Square.
+          schema:
+            type: string
+        - name: state
+          in: query
+          required: false
+          description: Opaque state for CSRF protection (Better Auth / app).
+          schema:
+            type: string
+        - name: error
+          in: query
+          required: false
+          description: Error code if Square or the user denied the request.
+          schema:
+            type: string
+        - name: error_description
+          in: query
+          required: false
+          description: Human-readable error detail from Square.
+          schema:
+            type: string
+      responses:
+        "302":
+          description: Redirect back into the app after successful or failed linking.
+        "400":
+          description: Invalid or incomplete callback request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+
+  /api/getSquareItems:
+    get:
+      tags:
+        - Square & menu
+      summary: Fetch catalog snapshot from Square for the tenant
+      description: |
+        Loads menu items and categories from the **Square API** using credentials stored
+        for the resolved **business owner** tenant. Prices in the JSON response are
+        expressed in **major currency units** (e.g. dollars), not cents.
+
+        **Roles:** Requires at least **staff** on the tenant.
+
+        **CORS:** Intended for browser callers; responses may include permissive CORS
+        headers for GET.
+      operationId: getSquareItems
+      security:
+        - bearerAuth: []
+        - cookieAuth: []
+      responses:
+        "200":
+          description: Square catalog snapshot normalized for the app.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SquareItemsResponse"
+        "401":
+          description: |
+            Session invalid, or Square tokens expired and refresh failed (`requiresReauth`
+            may appear in body).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SquareItemsErrorBody"
+        "404":
+          description: No Square credentials configured for this tenant.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageBody"
+        "500":
+          description: Square API or internal error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SquareItemsErrorBody"
+
+  /api/square/menu:
+    get:
+      tags:
+        - Square & menu
+      summary: List menu items from Convex for the tenant
+      description: |
+        Returns **synced** menu items stored in Convex for the active tenant (not a live
+        Square pull). Optional query parameters filter or add sync metadata.
+
+        **Roles:** At least **staff**.
+      operationId: getMenuItems
+      security:
+        - bearerAuth: []
+        - cookieAuth: []
+      parameters:
+        - name: categoryId
+          in: query
+          required: false
+          description: |
+            When set, returns only items belonging to this Square category id (string
+            id from Square / sync pipeline).
+          schema:
+            type: string
+        - name: includeStatus
+          in: query
+          required: false
+          description: |
+            If `true`, includes a `syncStatus` object describing menu sync state for the
+            tenant.
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: Menu items (and optional sync status).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MenuListResponse"
+        "500":
+          description: Query or database error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MenuApiErrorBody"
+
+    patch:
+      tags:
+        - Square & menu
+      summary: Update a single menu item (availability or settings)
+      description: |
+        Applies a small mutation to one menu item. The **`action`** field selects the
+        operation; additional fields depend on the action.
+
+        **Roles:** At least **staff** (same as GET).
+      operationId: patchMenuItem
+      security:
+        - bearerAuth: []
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MenuPatchRequest"
+      responses:
+        "200":
+          description: Update applied; returns updated item envelope.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MenuPatchSuccess"
+        "400":
+          description: Missing `itemId`, invalid `action`, or invalid payload.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageBody"
+        "404":
+          description: Item not found or update no-op.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageBody"
+        "500":
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MenuApiErrorBody"
+
+  /api/square/sync:
+    post:
+      tags:
+        - Square & menu
+      summary: Trigger menu sync from Square into Convex
+      description: |
+        Starts or continues a **menu sync job** for the tenant: pulls Square catalog data
+        and updates Convex. Request body toggles behavior (`forceSync`, `backgroundSync`).
+
+        **Roles:** At least **staff**.
+      operationId: postMenuSync
+      security:
+        - bearerAuth: []
+        - cookieAuth: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MenuSyncRequest"
+      responses:
+        "200":
+          description: Sync completed successfully; includes counts.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MenuSyncSuccess"
+        "500":
+          description: Sync failed; may include `syncJobId` for support.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MenuSyncFailure"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: opaque
+      description: |
+        Token obtained from the **`set-auth-token`** response header after email sign-in
+        or sign-up (Better Auth bearer plugin). Send as `Authorization: Bearer <token>`.
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: session
+      description: |
+        Better Auth session cookie (exact cookie name is configured by Better Auth).
+        Browsers use this automatically after sign-in.
+
+  schemas:
+    ErrorMessage:
+      type: object
+      description: Generic error envelope for JSON responses.
+      additionalProperties: true
+      properties:
+        error:
+          type: string
+          description: Short error code or message.
+        message:
+          type: string
+          description: Alternative error field used by some routes.
+
+    MessageBody:
+      type: object
+      description: Simple message-only JSON body.
+      properties:
+        message:
+          type: string
+          description: Human-readable explanation of the result or failure.
+
+    SignInEmailRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          description: Account email address.
+        password:
+          type: string
+          format: password
+          description: User password (minimum length enforced by Better Auth).
+        rememberMe:
+          type: boolean
+          default: true
+          description: |
+            When false, session may expire when the client closes (Better Auth behavior);
+            mobile clients often set true.
+        callbackURL:
+          type: string
+          description: Optional absolute URL for post-login redirect (browser flows).
+
+    SignUpEmailRequest:
+      type: object
+      required:
+        - email
+        - password
+        - name
+      properties:
+        name:
+          type: string
+          description: Display name stored on the user profile.
+        email:
+          type: string
+          format: email
+          description: Email used as the account identifier.
+        password:
+          type: string
+          format: password
+          description: Initial password; must meet Better Auth policy.
+        image:
+          type: string
+          format: uri
+          description: Optional avatar URL.
+        callbackURL:
+          type: string
+          description: Optional redirect after sign-up (browser flows).
+
+    ConvexUser:
+      type: object
+      required:
+        - _id
+        - email
+        - createdAt
+        - updatedAt
+      description: |
+        Application user stored in **Convex** (`users` table), synchronized from Better
+        Auth. The `_id` is the canonical id used in memberships and tenant keys.
+      properties:
+        _id:
+          type: string
+          description: |
+            Convex document id for this user (string form in JSON). Same value appears
+            in `businessOwnerUserId`, `memberUserId`, etc.
+        email:
+          type: string
+          format: email
+          description: Primary email; unique in Convex for this app.
+        name:
+          type: string
+          description: Optional display name.
+        createdAt:
+          type: integer
+          format: int64
+          description: Unix timestamp (ms) when the user record was created.
+        updatedAt:
+          type: integer
+          format: int64
+          description: Unix timestamp (ms) of last profile update.
+
+    BusinessRole:
+      type: string
+      enum:
+        - owner
+        - manager
+        - staff
+      description: |
+        **owner** — Business owner; connects Square; full control. **manager** — Elevated
+        staff (invited). **staff** — Default invited role; can operate POS-linked data
+        where the API allows.
+
+    BusinessAccessSummary:
+      type: object
+      required:
+        - businessOwnerId
+        - role
+      description: |
+        The **resolved tenant** for this request: which business owner’s data the actor
+        is acting on, and the actor’s **role** in that business. Derived from memberships
+        + user preferences on the server.
+      properties:
+        businessOwnerId:
+          type: string
+          description: |
+            Convex user id of the **owner** whose Square credentials and menu data apply.
+            All tenant-scoped queries use this id internally.
+        role:
+          $ref: "#/components/schemas/BusinessRole"
+
+    MembershipWithOwner:
+      type: object
+      required:
+        - _id
+        - businessOwnerUserId
+        - memberUserId
+        - role
+        - status
+        - createdAt
+        - updatedAt
+      description: |
+        One **business membership** row for the signed-in user, plus an embedded
+        **`owner`** profile (the business owner’s Convex user) when available. Used to
+        render team switchers and explain which businesses the user belongs to.
+      properties:
+        _id:
+          type: string
+          description: Convex id of the membership row.
+        businessOwnerUserId:
+          type: string
+          description: Tenant id (owner’s user id) for this membership.
+        memberUserId:
+          type: string
+          description: The member’s user id (the actor for `/api/auth/me`).
+        role:
+          $ref: "#/components/schemas/BusinessRole"
+        status:
+          type: string
+          enum:
+            - active
+            - revoked
+          description: |
+            **active** memberships grant access; **revoked** are historical.
+        invitedByUserId:
+          type: string
+          description: Convex user id of the inviter, if this membership came from a team invite.
+        createdAt:
+          type: integer
+          format: int64
+          description: When the membership was created (ms).
+        updatedAt:
+          type: integer
+          format: int64
+          description: Last update time (ms).
+        owner:
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/ConvexUser"
+          description: |
+            Owner’s user document for this business. May be null if the join could not
+            load the owner row (unexpected; clients should tolerate null).
+
+    AuthMeResponseAuthenticated:
+      type: object
+      required:
+        - authenticated
+        - user
+        - memberships
+        - preferredBusinessOwnerId
+      description: |
+        Successful **`GET /api/auth/me`** payload when the user is logged in and could be
+        resolved in Convex. **`business`** may be null if memberships/preferences do not
+        resolve to an active tenant (user is authenticated but has no “current business”).
+      properties:
+        authenticated:
+          type: boolean
+          enum: [true]
+          description: Always true for this variant.
+        user:
+          $ref: "#/components/schemas/ConvexUser"
+        business:
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/BusinessAccessSummary"
+          description: |
+            Active tenant and role, or null if the server could not choose a business
+            (e.g. no membership, ambiguous multi-membership without preference).
+        memberships:
+          type: array
+          items:
+            $ref: "#/components/schemas/MembershipWithOwner"
+          description: |
+            All **active** memberships for this user, each with owner profile for UI.
+        preferredBusinessOwnerId:
+          nullable: true
+          type: string
+          description: |
+            From **user preferences**: which `businessOwnerUserId` the user last selected
+            as active. Null if unset.
+
+    SquareVariation:
+      type: object
+      description: One sellable variation (e.g. size) for a catalog item.
+      properties:
+        id:
+          type: string
+          description: Square variation id.
+        name:
+          type: string
+          description: Label shown to customers.
+        price:
+          type: number
+          description: Price in **major units** (e.g. dollars), not cents.
+        currency:
+          type: string
+          description: ISO currency code (e.g. USD).
+        isAvailable:
+          type: boolean
+          description: Whether Square reports this variation as available.
+        sku:
+          type: string
+          description: Optional SKU.
+
+    SquareModifier:
+      type: object
+      description: Modifier option (e.g. add-on) attached to an item in this snapshot.
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+          description: Amount in major units.
+        currency:
+          type: string
+        isRequired:
+          type: boolean
+          description: Whether the modifier must be selected when ordering.
+
+    SquareItemSnapshot:
+      type: object
+      description: Normalized catalog item returned by `GET /api/getSquareItems`.
+      properties:
+        id:
+          type: string
+          description: Square item id.
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        categoryId:
+          type: string
+          nullable: true
+        price:
+          type: number
+          description: |
+            Primary price in major units (first variation’s price / 100 from Square).
+        currency:
+          type: string
+        isAvailable:
+          type: boolean
+        imageUrl:
+          type: string
+          nullable: true
+        variations:
+          type: array
+          items:
+            $ref: "#/components/schemas/SquareVariation"
+        modifiers:
+          type: array
+          items:
+            $ref: "#/components/schemas/SquareModifier"
+
+    SquareItemsResponse:
+      type: object
+      required:
+        - items
+        - categories
+        - totalItems
+        - syncedAt
+      description: Full snapshot from Square for the tenant.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/SquareItemSnapshot"
+        categories:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+            description: |
+              Category objects as returned by the sync layer (structure mirrors Square /
+              internal mapping). Clients should treat unknown keys as forward-compatible.
+        totalItems:
+          type: integer
+          description: Count of items in `items`.
+        syncedAt:
+          type: string
+          description: |
+            ISO-8601 or numeric timestamp string from server indicating snapshot freshness
+            (exact format may vary; treat as opaque if unsure).
+
+    SquareItemsErrorBody:
+      type: object
+      properties:
+        message:
+          type: string
+        error:
+          type: boolean
+          description: Present and true on some error responses.
+        requiresReauth:
+          type: boolean
+          description: |
+            When true, Square tokens are invalid/expired and the owner must reconnect.
+
+    MenuListResponse:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+          description: |
+            Convex `menuItems` documents for the tenant. Schema is defined by Convex;
+            this spec does not fix every field—expect `_id`, Square ids, names, etc.
+        syncStatus:
+          type: object
+          additionalProperties: true
+          description: |
+            Present only when `includeStatus=true` on GET. Describes menu sync progress
+            and errors for operators.
+
+    MenuApiErrorBody:
+      type: object
+      properties:
+        message:
+          type: string
+        error:
+          type: boolean
+
+    MenuPatchRequest:
+      type: object
+      required:
+        - itemId
+        - action
+      description: |
+        Dispatched by `action`. Use **`updateAvailability`** to toggle sold-out style
+        flags; **`updateSettings`** for textual or multi-field edits.
+      properties:
+        itemId:
+          type: string
+          description: Convex `menuItems` document id.
+        action:
+          type: string
+          enum:
+            - updateAvailability
+            - updateSettings
+          description: Which mutation to run server-side.
+        isAvailable:
+          type: boolean
+          description: Required for `updateAvailability`.
+        name:
+          type: string
+          description: Optional new name (`updateSettings`).
+        description:
+          type: string
+          description: Optional new description (`updateSettings`).
+
+    MenuPatchSuccess:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Menu item updated successfully
+        item:
+          type: object
+          additionalProperties: true
+          description: Updated Convex menu item document.
+
+    MenuSyncRequest:
+      type: object
+      description: Optional body; defaults apply when omitted.
+      properties:
+        forceSync:
+          type: boolean
+          default: false
+          description: When true, bypasses some “already synced” short-circuits.
+        backgroundSync:
+          type: boolean
+          default: false
+          description: |
+            When true, schedules or runs sync work without blocking the response as long
+            (behavior depends on Convex action implementation).
+
+    MenuSyncSuccess:
+      type: object
+      properties:
+        message:
+          type: string
+        syncJobId:
+          type: string
+          nullable: true
+        itemsSynced:
+          type: integer
+        categoriesSynced:
+          type: integer
+
+    MenuSyncFailure:
+      type: object
+      properties:
+        message:
+          type: string
+        syncJobId:
+          type: string
+          nullable: true
