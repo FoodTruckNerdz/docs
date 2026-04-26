@@ -1,29 +1,30 @@
-/* Load after site-doc-layout (head-meta). Separate file to avoid long-lived cache on
-   site-doc-layout.css. Target is the *button* (the logo link) background in dark mode,
-   not text — the <a> is img-only, but the hit area must read as a filled control. */
-html.dark-theme a.adt-header-logo-item,
-html.dark-theme .navbar a.adt-header-logo-item,
-html.dark-theme .adt-header-logo-item {
+/* Load after site-doc-layout (head-meta). Markup: navbar-item adt-header-icon-btn adt-header-site-logo
+   (same as other top bar icon buttons) + adt-header-site-logo for per-site / per-logo overrides. */
+/* Dark: light “button” fill so the full control matches the other top bar hit targets. */
+html.dark-theme .header.adt-header .navbar .navbar-item.adt-header-icon-btn.adt-header-site-logo,
+html.dark-theme .header.adt-header .navbar a.adt-header-icon-btn.adt-header-site-logo {
   background: #eef0f3 !important;
   background-color: #eef0f3 !important;
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1) !important;
 }
 
-html.dark-theme a.adt-header-logo-item:hover,
-html.dark-theme a.adt-header-logo-item:focus,
-html.dark-theme .navbar a.adt-header-logo-item:hover,
-html.dark-theme .navbar a.adt-header-logo-item:focus,
-html.dark-theme .adt-header-logo-item:hover,
-html.dark-theme .adt-header-logo-item:focus {
+html.dark-theme .header.adt-header .navbar .adt-header-icon-btn.adt-header-site-logo:hover {
   background: #dde1e6 !important;
   background-color: #dde1e6 !important;
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12) !important;
 }
 
+/* site-doc-layout uses :focus { background: transparent } on all icon btn — re-apply the tile for the site logo. */
+html.dark-theme .header.adt-header .navbar .adt-header-icon-btn.adt-header-site-logo:focus,
+html.dark-theme .header.adt-header .navbar .adt-header-icon-btn.adt-header-site-logo:focus-visible {
+  background: #eef0f3 !important;
+  background-color: #eef0f3 !important;
+}
+
 /* antora-dark-theme: do not recolor the SVG */
-html.dark-theme .adt-header-logo,
-html.dark-theme a.adt-header-logo-item .adt-header-logo,
-html.dark-theme a.adt-header-logo-item > img {
+html.dark-theme .adt-header-site-logo .adt-header-logo,
+html.dark-theme .adt-header-icon-btn.adt-header-site-logo .adt-header-logo,
+html.dark-theme .adt-header-icon-btn.adt-header-site-logo > img {
   filter: none !important;
   opacity: 1 !important;
 }

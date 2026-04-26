@@ -1,7 +1,7 @@
 <header class="header adt-header">
   <nav class="navbar adt-site-navbar" aria-label="Site">
     <div class="navbar-brand adt-header-brand">
-      <a class="adt-header-logo-item" href="{{{or (lookup site.keys 'foodtrucknerdz_com') 'https://foodtrucknerdz.com'}}}" rel="noopener" target="_blank" title="foodtrucknerdz.com" aria-label="foodtrucknerdz.com (opens in new tab)">
+      <a class="navbar-item adt-header-icon-btn adt-header-site-logo" href="{{{or (lookup site.keys 'foodtrucknerdz_com') 'https://foodtrucknerdz.com'}}}" rel="noopener" target="_blank" title="foodtrucknerdz.com" aria-label="foodtrucknerdz.com (opens in new tab)">
         <img class="adt-header-logo" src="{{{uiRootPath}}}/img/foodtrucknerdz.svg" width="34" height="34" alt="" />
       </a>
       <a class="navbar-item adt-header-title" href="{{{or site.url siteRootPath}}}">{{detag (or (lookup site.keys 'title_bar_brand') (or site.title 'FTN Docs'))}}</a>

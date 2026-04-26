@@ -178,33 +178,14 @@ pre,
   column-gap: 0.15rem;
 }
 
-.adt-header-logo-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-  width: var(--adt-header-ctrl);
-  height: var(--adt-header-ctrl);
-  min-width: var(--adt-header-ctrl);
-  min-height: var(--adt-header-ctrl);
-  padding: 0;
-  line-height: 0;
-  border-radius: 0.2rem;
-  text-decoration: none;
-  box-sizing: border-box;
-}
-
-.adt-header-logo-item:hover,
-.adt-header-logo-item:focus {
-  background: var(--adt-header-bar-hover);
-  outline: none;
-}
-
-.adt-header-logo {
+/* Optional hook for the site logo: same as .adt-header-icon-btn (see below) + this class. */
+.adt-header-icon-btn.adt-header-site-logo .adt-header-logo {
   display: block;
   width: 30px;
   height: 30px;
   object-fit: contain;
+  pointer-events: none;
+  flex-shrink: 0;
 }
 
 /* Dark-mode FTN header logo: see css/site-header-logo-override.css (logo link background +
@@ -230,8 +211,8 @@ a.adt-header-title:focus {
   opacity: 0.9;
 }
 
-/* Header end controls (GitHub, theme) — one shape; beats site-extra .theme-toggle:hover colors. */
-.header.adt-header .navbar .navbar-end .adt-header-icon-btn {
+/* Top bar icon controls (logo, GitHub, theme): one shape. Include .navbar-brand, not only .navbar-end. */
+.header.adt-header .navbar .adt-header-icon-btn {
   min-width: var(--adt-header-ctrl) !important;
   min-height: var(--adt-header-ctrl) !important;
   width: var(--adt-header-ctrl) !important;
@@ -251,17 +232,17 @@ a.adt-header-title:focus {
 }
 
 /* :focus (mouse click) would keep the “hover” fill until click-away—use :focus-visible for keyboard. */
-.header.adt-header .navbar .navbar-end .adt-header-icon-btn:hover {
+.header.adt-header .navbar .adt-header-icon-btn:hover {
   background: var(--adt-header-bar-hover) !important;
   text-decoration: none;
 }
 
-.header.adt-header .navbar .navbar-end .adt-header-icon-btn:focus {
+.header.adt-header .navbar .adt-header-icon-btn:focus {
   outline: none;
   background: transparent !important;
 }
 
-.header.adt-header .navbar .navbar-end .adt-header-icon-btn:focus-visible {
+.header.adt-header .navbar .adt-header-icon-btn:focus-visible {
   background: var(--adt-header-bar-hover) !important;
   outline: 2px solid var(--adt-header-bar-fg);
   outline-offset: 2px;
