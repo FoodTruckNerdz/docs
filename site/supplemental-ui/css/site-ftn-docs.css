@@ -21,7 +21,7 @@
   /* Page title (left) + “Contents” TOC label (right): one inset — default Antora uses a fixed
      .toc.sidebar .toc-menu h3 { height: 2.5rem; flex-end } instead of margin; that won’t line up
      with a real margin. Tweak the variable, both rails update. */
-  --ftn-content-rail-top: 1.5rem;
+  --ftn-content-rail-top: 0.75rem;
 }
 
 html.dark-theme {
@@ -38,7 +38,7 @@ html.dark-theme {
 
 @media screen and (min-width: 769px) {
   :root {
-    --ftn-content-rail-top: 2.5rem;
+    --ftn-content-rail-top: 1.25rem;
   }
 }
 
