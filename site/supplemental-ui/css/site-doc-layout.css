@@ -207,6 +207,12 @@ pre,
   object-fit: contain;
 }
 
+/* logo.svg uses currentColor; raster <img> does not inherit — default paint reads as dark on dark bar */
+html.dark-theme .adt-header-logo {
+  filter: brightness(0) invert(1);
+  opacity: 0.92;
+}
+
 a.adt-header-title,
 .navbar-item.adt-header-title {
   color: var(--adt-header-bar-fg) !important;
