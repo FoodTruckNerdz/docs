@@ -1,0 +1,42 @@
+/* Load after site-doc-layout (see head-meta). New filename busts long-lived cache on the
+   monolithic site-doc-layout.css. !important keeps the base antora-dark-theme “invert”
+   filter off the real FTN mark when clients still have an old site-doc-layout cached. */
+html.dark-theme .adt-header-logo,
+html.dark-theme a.adt-header-logo-item .adt-header-logo,
+html.dark-theme a.adt-header-logo-item > img {
+  filter: none !important;
+  opacity: 1 !important;
+  position: relative;
+  z-index: 1;
+}
+
+html.dark-theme a.adt-header-logo-item,
+html.dark-theme .adt-header-logo-item {
+  position: relative;
+}
+
+html.dark-theme a.adt-header-logo-item::before,
+html.dark-theme .adt-header-logo-item::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2rem;
+  height: 2rem;
+  margin: 0;
+  padding: 0;
+  transform: translate(-50%, -50%);
+  background: #eef0f3 !important;
+  border-radius: 0.2rem;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12) !important;
+  z-index: 0;
+  pointer-events: none;
+}
+
+html.dark-theme a.adt-header-logo-item:hover::before,
+html.dark-theme a.adt-header-logo-item:focus::before,
+html.dark-theme .adt-header-logo-item:hover::before,
+html.dark-theme .adt-header-logo-item:focus::before {
+  background: #e2e5ea !important;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.14) !important;
+}
