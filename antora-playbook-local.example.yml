@@ -10,7 +10,7 @@
 # and this repo is url: . instead of the GitHub docs.git URL.
 
 site:
-  title: Documentation
+  title: FTN Docs
   url: https://docs.foodtrucknerdz.com
   start_page: docs::index.adoc
   keys:
@@ -21,7 +21,7 @@ site:
     ui_bundle_name: "antora-dark-theme"
     ui_bundle_url: "https://github.com/antora-supplemental/antora-dark-theme"
     # Browser tab (head-title partial): last segment; middle = each component’s antora.yml `title`.
-    title_bar_brand: "Food Truck Nerdz"
+    title_bar_brand: "FTN Docs"
 content:
   sources:
     - url: ../onboarding

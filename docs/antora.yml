@@ -1,5 +1,5 @@
 name: docs
 version: '0.1'
-title: Docs
+title: Docs site
 nav:
 - modules/ROOT/nav.adoc
