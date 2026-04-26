@@ -770,32 +770,54 @@ html.dark-theme .nav .ftn-nav-component-title a {
   color: #d7d8da;
 }
 
-/* Page tree: smaller + lighter + muted vs. component title */
-nav.nav-menu.nav-tree-only li.nav-item .nav-link,
-nav.nav-menu.ftn-nav-tree-only li.nav-item .nav-link {
-  padding: 0.12rem 0.3rem;
-  min-height: 0;
+/* Page tree: smaller + lighter + muted vs. component title.
+   — Antora draws the caret in a 1em×nav-line-height column; without matching left
+     padding on .nav-link/.nav-text, wrapped lines align to the li edge and sit left
+     of the first line. Reserve the same column on every row so folder labels, leaf
+     links, and multi-line text share one text origin. */
+nav.nav-menu.nav-tree-only .nav-item,
+nav.nav-menu.ftn-nav-tree-only .nav-item {
+  position: relative;
 }
 
-nav.nav-menu.nav-tree-only li.nav-item .nav-text,
-nav.nav-menu.ftn-nav-tree-only li.nav-item .nav-text {
+/* Same label column for links (leaves) and .nav-text (section title without link). */
+nav.nav-menu.nav-tree-only .nav-item > .nav-link,
+nav.nav-menu.ftn-nav-tree-only .nav-item > .nav-link,
+nav.nav-menu.nav-tree-only .nav-item > .nav-text,
+nav.nav-menu.ftn-nav-tree-only .nav-item > .nav-text {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-height: 0;
+  margin: 0;
+  text-indent: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  padding: 0.12rem 0.35rem 0.12rem calc(var(--nav-line-height) * 1em + 0.2rem);
   font-size: 0.75rem;
   font-weight: 400;
   line-height: 1.35;
   color: #6a6a6a;
 }
 
+nav.nav-menu.nav-tree-only .nav-item.is-current-page > .nav-link,
+nav.nav-menu.ftn-nav-tree-only .nav-item.is-current-page > .nav-link,
 nav.nav-menu.nav-tree-only .nav-item.is-current-page > .nav-link .nav-text,
 nav.nav-menu.ftn-nav-tree-only .nav-item.is-current-page > .nav-link .nav-text {
   font-weight: 500;
   color: #1a1a1a;
 }
 
-html.dark-theme nav.nav-menu.nav-tree-only li.nav-item .nav-text,
-html.dark-theme nav.nav-menu.ftn-nav-tree-only li.nav-item .nav-text {
+html.dark-theme nav.nav-menu.nav-tree-only .nav-item > .nav-link,
+html.dark-theme nav.nav-menu.ftn-nav-tree-only .nav-item > .nav-link,
+html.dark-theme nav.nav-menu.nav-tree-only .nav-item > .nav-text,
+html.dark-theme nav.nav-menu.ftn-nav-tree-only .nav-item > .nav-text {
   color: #8f9194;
 }
 
+html.dark-theme nav.nav-menu.nav-tree-only .nav-item.is-current-page > .nav-link,
+html.dark-theme nav.nav-menu.ftn-nav-tree-only .nav-item.is-current-page > .nav-link,
 html.dark-theme nav.nav-menu.nav-tree-only .nav-item.is-current-page > .nav-link .nav-text,
 html.dark-theme nav.nav-menu.ftn-nav-tree-only .nav-item.is-current-page > .nav-link .nav-text {
   color: #d4d4d4;
