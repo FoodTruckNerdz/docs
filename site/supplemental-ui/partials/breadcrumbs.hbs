@@ -15,7 +15,7 @@
           <button type="button" class="ftn-bc-kicker" data-ftn-toggle="ftn-bc-proj" aria-haspopup="listbox" aria-expanded="false" aria-label="Switch documentation component">
             <span class="ftn-bc-kicker-label">{{#if page.component}}{{{page.component.title}}}{{else}}{{{site.title}}}{{/if}}</span>
           </button>
-          <ul class="ftn-bc-dropdown" id="ftn-bc-proj" role="listbox" hidden>
+          <ul class="ftn-bc-dropdown ftn-bc-dropdown--components" id="ftn-bc-proj" role="listbox" hidden>
             {{#each site.components}}
             <li role="none" class="ftn-bc-menu-item">
               <a href="{{{relativize ./url}}}" class="{{#if (eq this @root.page.component)}}is-current{{/if}}">{{{./title}}}</a>
@@ -25,16 +25,23 @@
         </div>
         <span class="ftn-bc-sep" aria-hidden="true">|</span>
         <div class="ftn-bc-menu ftn-bc-menu-version">
-          <button type="button" class="ftn-bc-kicker" data-ftn-toggle="ftn-bc-ver" aria-haspopup="listbox" aria-expanded="false" aria-label="This page in other versions"{{#unless @root.page.versions}} disabled title="No other versions of this page"{{/unless}}>
+          <button type="button" class="ftn-bc-kicker" data-ftn-toggle="ftn-bc-ver" aria-haspopup="listbox" aria-expanded="false" aria-label="Select documentation version">
             <span class="ftn-bc-kicker-version">{{#if @root.page.componentVersion.displayVersion}}{{@root.page.componentVersion.displayVersion}}{{else if @root.page.version}}{{@root.page.version}}{{/if}}</span>
           </button>
           {{#if @root.page.versions}}
-          <ul class="ftn-bc-dropdown" id="ftn-bc-ver" role="listbox" hidden>
+          <ul class="ftn-bc-dropdown ftn-bc-dropdown--version" id="ftn-bc-ver" role="listbox" hidden>
             {{#each @root.page.versions}}
             <li role="none" class="ftn-bc-menu-item">
               <a href="{{{relativize ./url}}}" class="ftn-bc-version-pill{{#if (eq ./version @root.page.version)}} is-current{{/if}}{{#if ./missing}} is-missing{{/if}}"{{#if (eq ./version @root.page.version)}} aria-current="page"{{/if}}>{{./displayVersion}}</a>
             </li>
             {{/each}}
+          </ul>
+          {{else if @root.page.componentVersion}}
+          {{! Antora may omit page.versions on single-version sites — still show one option so the control is not “dead”/disabled. }}
+          <ul class="ftn-bc-dropdown ftn-bc-dropdown--version" id="ftn-bc-ver" role="listbox" hidden>
+            <li role="none" class="ftn-bc-menu-item">
+              <a href="{{{relativize @root.page.componentVersion.url}}}" class="ftn-bc-version-pill is-current" aria-current="page">{{#if @root.page.componentVersion.displayVersion}}{{@root.page.componentVersion.displayVersion}}{{else}}{{@root.page.version}}{{/if}}</a>
+            </li>
           </ul>
           {{/if}}
         </div>
