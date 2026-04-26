@@ -188,8 +188,8 @@ pre,
   flex-shrink: 0;
 }
 
-/* Dark-mode FTN header logo: see css/site-header-logo-override.css (logo link background +
-   no filter on the img; separate file to reduce stale cache). */
+/* Dark-mode FTN header logo: see css/site-header-logo-override.css (strip theme filter on the
+   SVG only; same transparent bar as other .adt-header-icon-btn; file separate for cache). */
 
 a.adt-header-title,
 .navbar-item.adt-header-title {

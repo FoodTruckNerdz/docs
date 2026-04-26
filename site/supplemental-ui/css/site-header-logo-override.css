@@ -1,27 +1,7 @@
-/* Load after site-doc-layout (head-meta). Markup: navbar-item adt-header-icon-btn adt-header-site-logo
-   (same as other top bar icon buttons) + adt-header-site-logo for per-site / per-logo overrides. */
-/* Dark: light “button” fill so the full control matches the other top bar hit targets. */
-html.dark-theme .header.adt-header .navbar .navbar-item.adt-header-icon-btn.adt-header-site-logo,
-html.dark-theme .header.adt-header .navbar a.adt-header-icon-btn.adt-header-site-logo {
-  background: #eef0f3 !important;
-  background-color: #eef0f3 !important;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1) !important;
-}
-
-html.dark-theme .header.adt-header .navbar .adt-header-icon-btn.adt-header-site-logo:hover {
-  background: #dde1e6 !important;
-  background-color: #dde1e6 !important;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12) !important;
-}
-
-/* site-doc-layout uses :focus { background: transparent } on all icon btn — re-apply the tile for the site logo. */
-html.dark-theme .header.adt-header .navbar .adt-header-icon-btn.adt-header-site-logo:focus,
-html.dark-theme .header.adt-header .navbar .adt-header-icon-btn.adt-header-site-logo:focus-visible {
-  background: #eef0f3 !important;
-  background-color: #eef0f3 !important;
-}
-
-/* antora-dark-theme: do not recolor the SVG */
+/* Load after site-doc-layout (head-meta). Markup: navbar-item adt-header-icon-btn
+   adt-header-site-logo — same as other top bar icon buttons. Optional hook: .adt-header-site-logo. */
+/* In dark mode the logo button uses the same transparent bar as GitHub / theme (no light tile). */
+/* antora-dark-theme ships filter on .adt-header-logo; keep the real SVG colors. */
 html.dark-theme .adt-header-site-logo .adt-header-logo,
 html.dark-theme .adt-header-icon-btn.adt-header-site-logo .adt-header-logo,
 html.dark-theme .adt-header-icon-btn.adt-header-site-logo > img {
