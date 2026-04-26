@@ -25,7 +25,11 @@
        stay aligned; theme hackers can offset the article/TOC without moving the left nav). */
   --ftn-global-rail-top: 1rem;
   --ftn-content-rail-top: 0rem;
-  --ftn-global-rail-hpad: 0.75rem;
+  /* Horizontal rail: one value for .ftn-doc-mast, breadcrumb home hit-area, and left nav. Stock UI
+     uses calc(var(--toolbar-height) / 4) for the old in-article toolbar; the mast + sidebar must
+     share the *same* inset so the home icon, component title, and first tree column line up. */
+  --ftn-mast-pad-h: 0.5rem;
+  --ftn-global-rail-hpad: var(--ftn-mast-pad-h);
 }
 
 html.dark-theme {
@@ -279,7 +283,7 @@ a.ftn-header-title:focus {
   align-items: center;
   gap: 0.5rem;
   min-height: var(--ftn-mast-h);
-  padding: 0.35rem 0.5rem 0.35rem 0.5rem;
+  padding: 0.35rem var(--ftn-mast-pad-h) 0.35rem var(--ftn-mast-pad-h);
   position: sticky;
   top: 3.5rem;
   z-index: 3;
@@ -309,12 +313,47 @@ html.dark-theme .ftn-doc-mast {
   min-width: 0;
 }
 
-/* Sticky local nav: sit below the fixed navbar and the document mast */
+/* Left nav: in-flow column fills the same height as main; tree uses overflow only when needed. */
 @media screen and (min-width: 1024px) {
-  .nav {
-    top: var(--ftn-mast-total) !important;
-    height: calc(100vh - var(--ftn-mast-total)) !important;
+  .body.ftn-body {
+    align-items: stretch;
+    min-height: var(--body-min-height);
   }
+
+  .nav-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-self: stretch !important;
+    min-height: 0 !important;
+  }
+
+  .nav {
+    position: static !important;
+    top: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+  }
+
+  .nav .panels {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+  }
+
+  .nav-panel-menu {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    overflow-y: auto !important;
+  }
+}
+
+.nav-panel-menu,
+.nav-panel-explore .components {
+  overflow-y: auto !important;
 }
 
 /* Mobile overlay: account for the mast in addition to the main navbar */
@@ -732,14 +771,22 @@ html.dark-theme .ftn-bc-menu-item a.is-current {
   pointer-events: none;
 }
 
-/* ——— Nav: insets = global rails (same token as .ftn-article .content’s global part).
-   Use nav.nav-menu.nav-tree-only so we win over the bundle’s .nav-menu (no body.ftn-body req). ——— */
+/* ——— Nav: insets = mast horizontal padding so the tree lines up with .ftn-breadcrumb-home.
+   The base ui-bundle’s .nav-menu still sets padding: … calc(toolbar-height/4); dark-theme or load
+   order can restore that, so this rule is !important. Panel wrappers must not add a second inset. ——— */
+body.ftn-body .nav .nav-panel-menu {
+  padding-left: 0;
+  padding-right: 0;
+  box-sizing: border-box;
+}
+
 body.ftn-body .nav nav.nav-menu.nav-tree-only,
 body.ftn-body .nav nav.nav-menu.ftn-nav-tree-only,
 nav.nav-menu.nav-tree-only,
 nav.nav-menu.ftn-nav-tree-only {
-  padding: var(--ftn-global-rail-top) var(--ftn-global-rail-hpad) 0.5rem var(--ftn-global-rail-hpad);
   box-sizing: border-box;
+  padding: var(--ftn-global-rail-top) var(--ftn-global-rail-hpad) 0.5rem
+    var(--ftn-global-rail-hpad) !important;
 }
 
 /* Component label is <p class="ftn-nav-component-title"> — not a heading; avoids .nav-menu h3.title / .doc h3. */

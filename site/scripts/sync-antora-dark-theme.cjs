@@ -1,6 +1,5 @@
 /* Copy selected files from the `antora-dark-theme` npm package into `site/supplemental-ui/`.
-   Antora merges one supplemental directory; this keeps the dark theme assets alongside FTN
-   custom partials, css, and js. */
+   Antora exposes one supplemental path; this pulls dark palette + shared VCS art from the package. */
 const fs = require('node:fs/promises')
 const path = require('node:path')
 
@@ -11,7 +10,9 @@ const src = path.join(repoRoot, 'node_modules', 'antora-dark-theme', 'supplement
 
 const files = [
   ['css', 'site-extra.css'],
-  /* site-dark-mode.js: maintained in this repo (FTN: no per-component VCS in nav) — not copied from the package. */
+  /* site-doc-layout.css, partials, site-dark-mode.js, site-adt-accordion.js: maintained in this repo
+     (FoodTruckNerdz branding: header, footer, truck logo). The package is the debranded baseline;
+     do not prebuild-overwrite the full tree from npm. */
 ]
 
 async function copyIfPresent (fromParts, toParts) {

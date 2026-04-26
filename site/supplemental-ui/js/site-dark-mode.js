@@ -87,7 +87,7 @@
   function ensureToggleButton() {
     const existingToggle = document.getElementById("theme-toggle");
     if (existingToggle) {
-      existingToggle.classList.add("ftn-header-icon-btn");
+      existingToggle.classList.add("adt-header-icon-btn");
       existingToggle.addEventListener("click", toggleTheme);
       updateToggleLabel();
       return;
@@ -98,7 +98,7 @@
 
     const button = document.createElement("button");
     button.id = "theme-toggle";
-    button.className = "navbar-item ftn-header-icon-btn theme-toggle";
+    button.className = "navbar-item adt-header-icon-btn theme-toggle";
     button.type = "button";
     button.addEventListener("click", toggleTheme);
 
@@ -147,21 +147,21 @@
       if (!img || !href) return;
       const id = vcsIconIdFromUrl(href);
       const primary = vcsIconUrl(base, id);
-      img.onerror = function ftnVcsOerr() {
+      img.onerror = function adtVcsOerr() {
         img.onerror = null;
-        if (img.getAttribute("data-ftn-vcs-tried") === "1") return;
-        img.setAttribute("data-ftn-vcs-tried", "1");
+        if (img.getAttribute("data-adt-vcs-tried") === "1") return;
+        img.setAttribute("data-adt-vcs-tried", "1");
         if (!img.src || img.src.indexOf("code.svg") < 0) {
           img.src = vcsIconUrl(base, "code");
         }
       };
       img.src = primary;
     }
-    document.querySelectorAll("a.ftn-edit-inline-link[href]").forEach((a) => {
-      const img = a.querySelector("img.ftn-vcs-icon-img, img.ftn-edit-vcs-img");
+    document.querySelectorAll("a.adt-edit-inline-link[href]").forEach((a) => {
+      const img = a.querySelector("img.adt-vcs-icon-img, img.adt-edit-vcs-img");
       setVcsImage(img, a.href);
     });
-    document.querySelectorAll("a.ftn-header-vcs[href] img.ftn-header-vcs-img").forEach((img) => {
+    document.querySelectorAll("a.adt-header-vcs[href] img.adt-header-vcs-img").forEach((img) => {
       const a = img.closest("a");
       if (a) setVcsImage(img, a.href);
     });
@@ -175,7 +175,7 @@
     const meta = document.querySelector('meta[name="antora-repo-url"]');
     if (meta && meta.content) return meta.content;
     const editLink = document.querySelector(
-      '.navbar-end a[href*="/edit/"], .navbar-end a[href*="/-/edit/"], .navbar-end a[href*="/blob/"], a.ftn-edit-inline-link[href*="/"]'
+      '.navbar-end a[href*="/edit/"], .navbar-end a[href*="/-/edit/"], .navbar-end a[href*="/blob/"], a.adt-edit-inline-link[href*="/"]'
     );
     if (editLink && editLink.href) {
       try {
