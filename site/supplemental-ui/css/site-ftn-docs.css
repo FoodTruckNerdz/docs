@@ -18,11 +18,11 @@
   --ftn-header-bar-border: #d8d8d8;
   --ftn-header-bar-hover: rgba(0, 0, 0, 0.07);
   --ftn-header-github-icon-filter: brightness(0) opacity(0.92);
-  /* All three columns (nav component title, page title, “Contents” h3): one top inset.
-     Default nav stacks .nav-menu padding (smaller top than sides) with .nav-menu h3.title
-     padding-top — drop that; set outer top here only. Tweak the variable once. */
+  /* Three-column top line-up (nav | article + TOC share one value):
+     - Left: padding-top on .nav-menu.ftn-nav-tree-only (nav is outside main).
+     - Center + right: padding-top on main > .content (one box for both columns; not margin
+       on the page header vs TOC h3 — that drifts). */
   --ftn-content-rail-top: 0.75rem;
-  /* Keep nav horizontal padding aligned to the original UI’s side value (0.5 top was smaller). */
   --ftn-content-rail-hpad: 0.75rem;
 }
 
@@ -317,24 +317,28 @@ html.dark-theme .ftn-doc-mast {
   min-width: 0;
 }
 
+/* Inset article + in-page TOC together (same flex row). Nav uses padding on .nav-menu; do not
+   duplicate with margin on .ftn-page-header or TOC h3. */
 .ftn-article .content {
-  padding-top: 0;
+  padding-top: var(--ftn-content-rail-top);
+  box-sizing: border-box;
 }
 
-/* ——— Content rail: same top inset for page title + “Contents” (see --ftn-content-rail-top) ——— */
-/* Default UI: .toc.sidebar .toc-menu h3 uses height:2.5rem + justify-content:flex-end — fake
-   “margin”. Replace with real margin so it matches .ftn-page-header. */
+/* ——— Content rail: TOC h3 (Antora’s fake height/flex) ——— */
 .ftn-article .content .toc .toc-menu h3 {
   display: block;
   height: auto;
   min-height: 0;
   flex-direction: unset;
   justify-content: unset;
-  margin: var(--ftn-content-rail-top) 0 0 0;
+  /* Top inset is .content’s padding; only label↔list gap */
+  margin: 0;
   padding: 0 0 0.25rem 0;
 }
 
 /* ——— Page title + Edit this page: title truncates, edit always visible ——— */
+/* Antora: .doc h1 { margin: 1rem 0 0 } still matches the layout h1 (not only .doc > h1:first-child).
+   Zero it here so the only top inset is .content’s padding. Font/line-height do not add margin. */
 .doc .ftn-page-header,
 .ftn-article .ftn-page-header {
   display: flex;
@@ -343,15 +347,21 @@ html.dark-theme .ftn-doc-mast {
   justify-content: space-between;
   gap: 0.75rem 1rem;
   min-width: 0;
-  margin-top: var(--ftn-content-rail-top);
+  margin-top: 0;
   margin-bottom: 0.35rem;
+  padding-top: 0;
+}
+
+.doc .ftn-page-header h1.page.ftn-page-title,
+.ftn-article .ftn-page-header h1.page.ftn-page-title {
+  margin: 0;
+  padding: 0;
 }
 
 .doc .ftn-page-title,
 .ftn-article .ftn-page-title {
   flex: 1 1 auto;
   min-width: 0;
-  margin: 0;
   line-height: 1.2;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -701,15 +711,15 @@ body.ftn-body .nav .nav-menu.ftn-nav-tree-only {
   box-sizing: border-box;
 }
 
-/* Antora: .nav-menu h3.title { padding: 0.25em 0 0.125em } “compensated” the thin top — remove it */
-body.ftn-body .nav .nav-menu.ftn-nav-tree-only h3.title {
-  margin: 0;
-  padding: 0;
+/* All top offset is .nav-menu padding; kill Antora h3.title padding. Bottom margin: gap above tree. */
+body.ftn-body .nav .nav-menu.ftn-nav-tree-only h3.title.ftn-nav-component-title {
+  margin: 0 0 0.5rem 0;
+  padding: 0 !important;
+  border: none;
 }
 
 /* ——— Sidebar: component root + tree; hide legacy explore ——— */
 .ftn-nav-component-title {
-  margin: 0 0 0.5rem 0;
   font-size: 0.95rem;
   font-weight: 600;
   line-height: 1.3;
