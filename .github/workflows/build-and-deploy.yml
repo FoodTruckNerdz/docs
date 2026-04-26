@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -46,20 +46,28 @@ jobs:
       - name: Build Antora site
         env:
           # Antora requires git credentials to be stored in GIT_CREDENTIALS environment variable
-          # When Antora tries to access a private GitHub repository, it has to make a call to 
+          # When Antora tries to access a private GitHub repository, it has to make a call to
           # using the standard URL format:
           #   https://<username>:<password>@github.com
           # and GitHub specifies using "x-access-token" as the username. For the password,
           # we use the Personal Access Token (PAT) saved into the repository's Secrets manager on
-          # GitHub. In this case, secrets.FTN_GITHUB_TOKEN_ANTORADOCS
+          # GitHub. In this case, secrets.FTN_GITHUB_TOKEN
           GIT_CREDENTIALS: "https://x-access-token:${{ secrets.FTN_GITHUB_TOKEN }}@github.com"
-        run: pnpm exec antora --stacktrace antora-playbook.yml
+        run: pnpm run build
 
-      - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/site
-          publish_branch: gh-pages
-          commit_message: ${{ github.event.head_commit.message }}
+          path: build/site
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
