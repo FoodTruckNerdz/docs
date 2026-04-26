@@ -12,6 +12,10 @@ overrides:
 importers:
 
   .:
+    dependencies:
+      '@chenglou/pretext':
+        specifier: ^0.0.4
+        version: 0.0.4
     devDependencies:
       '@asciidoctor/core':
         specifier: ^3.0.4
@@ -19,6 +23,9 @@ importers:
       antora:
         specifier: ^3.1.14
         version: 3.1.14
+      antora-dark-theme:
+        specifier: ^1.0.6
+        version: 1.0.6
       asciidoctor-emoji:
         specifier: ^0.5.0
         version: 0.5.0(@asciidoctor/core@3.0.4)
@@ -106,6 +113,9 @@ packages:
     resolution: {integrity: sha512-iW7ACahOG0zZft4A/4CqDcc7JX+fWRNjV5tFAVkNCzwZD+EnFolPaUOPYt8jzadc0+Bgd80cQTtRMQnaaV1kkg==}
     engines: {node: '>=16'}
 
+  '@chenglou/pretext@0.0.4':
+    resolution: {integrity: sha512-FnPAFMid1/p1j2V2gRPUVBarGUIb2PhkkC9YNnTOfPtTDgHKh8siO8PP9pCxpFfYlcodWPJpE1UbSHGQqt8pQQ==}
+
   '@iarna/toml@2.2.5':
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
 
@@ -148,6 +158,9 @@ packages:
   ansi-styles@6.2.3:
     resolution: {integrity: sha512-4Dj6M28JB+oAH8kFkTLUo+a2jwOFkuqb3yucU0CANcRRUbxS0cP0nZYCGjcc3BNXwRIsUVmDGgzawme7zvJHvg==}
     engines: {node: '>=12'}
+
+  antora-dark-theme@1.0.6:
+    resolution: {integrity: sha512-LgHiS0GLEPOgiFMhHIae9nouflfA83N+JpXj9030cIdTUjmCCnwVSyWPM3MyG2tCVljPsLjGGggjlsvXP7ak8A==}
 
   antora@3.1.14:
     resolution: {integrity: sha512-z8HshJsT6pUfdDOUJ15RGtpOM9LmL6JXU5JBshoR/9/xd+1qLmKPkOnUv+HrijAk93r1imxZOdkmIqhLcv8B8A==}
@@ -364,6 +377,7 @@ packages:
 
   glob@10.5.0:
     resolution: {integrity: sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   gopd@1.2.0:
@@ -934,6 +948,8 @@ snapshots:
       glob: 10.5.0
       unxhr: 1.2.0
 
+  '@chenglou/pretext@0.0.4': {}
+
   '@iarna/toml@2.2.5': {}
 
   '@isaacs/cliui@8.0.2':
@@ -973,6 +989,8 @@ snapshots:
       color-convert: 2.0.1
 
   ansi-styles@6.2.3: {}
+
+  antora-dark-theme@1.0.6: {}
 
   antora@3.1.14:
     dependencies:

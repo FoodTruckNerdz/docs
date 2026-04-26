@@ -1,6 +1,6 @@
-= FoodTruckNerdz Documentation
+= Documentation (Antora)
 
-This repository coordinates the documentation for all FoodTruckNerdz projects. It contains an Antora playbook that pulls Antora-structured documentation from the other repositories and compiles it into a static website.
+This repository coordinates the unified documentation. It contains an Antora playbook that pulls Antora-structured documentation from the other repositories and compiles it into a static website.
 
 == Documentation Site
 
@@ -40,16 +40,15 @@ docker run --rm -v "${PWD}:/antora" -u "$(id -u):$(id -g)" antora/antora antora-
 This playbook coordinates documentation from multiple repositories. Each repository contains its own Antora documentation component in a `docs/` folder:
 
 * **food-truck-api** - Located in the `food-truck-api` repository (`docs/`)
-* **ftn-site** - Located in the `ftn-site` repository (`docs/`)
-* **ftn-site-old** - Located in the `ftn-site-old` repository (`docs/`)
+* **ftn-site** - Located in the `ftn-site` repository (`docs/`). Antora component *Documentation*; the archived site stack is the *Old website* module in that repo, not a separate content source. Antora is built only from *this* `FoodTruckNerdz/docs` repository (no nested `docs-site` inside `ftn-site`).
 * **docs** - Internal team documentation (this repository, `docs/`)
 * **help** - Customer-facing help documentation (`docs/`)
 * **developer-portal** - External developer API documentation (`docs/`)
 * **Standard Templates** - Industry-standard project and workspace templates (available at link:https://github.com/the-dev-center/templates[the-dev-center/templates])
 
-Each component contains an `antora.yml` descriptor file (which defines the component name) and its documentation pages organized in the `modules/ROOT/` structure. The playbook pulls from each repository's Git source to build the unified documentation site.
+Each component contains an `antora.yml` descriptor file (which defines the component `name` and `title`) and its documentation pages organized in the `modules/ROOT/` structure. The playbook pulls from each repository's Git source to build the unified documentation site. Short `title` values used in the component switcher: `ftn-site` → *Docs*; this *docs* repository’s meta component → *Docs*; `onboarding` → *Onboarding*; `food-truck-api` → *API*; `help` → *Public Help Portal*; `developer-portal` → *Developer Portal*.
 
-The `site/supplemental-ui/` directory holds custom Handlebars partials, CSS, and JavaScript (mast bar, sidebar tree, Outfit font, header links, breadcrumb component/version pickers, etc.). Before every build, `site/scripts/sync-antora-dark-theme.cjs` copies the current `antora-dark-theme` npm package assets into that folder, because Antora exposes only a single `ui.supplemental_files` path. The playbook `ui.bundle` uses link:https://github.com/antora-supplemental/antora-dark-theme[antora-supplemental/antora-dark-theme] release `ui-bundle.zip` as the base, with these supplemental files applied on top. Playbook `site.keys` and footer credits are documented in link:https://github.com/FoodTruckNerdz/docs/blob/main/docs/modules/ROOT/pages/docs-site-management.adoc#ui-bundle[Documentation Site Management] (section *UI bundle*); the published page is link:https://docs.foodtrucknerdz.com/docs/docs-site-management.html#ui-bundle[docs.foodtrucknerdz.com].
+The `site/supplemental-ui/` directory holds custom Handlebars partials, CSS, and JavaScript (mast bar, sidebar tree, Outfit font, header links, breadcrumb component/version pickers, etc.). Before every build, `site/scripts/sync-antora-dark-theme.cjs` copies `site-extra.css` and images from the current `antora-dark-theme` npm package into that folder, because Antora exposes only a single `ui.supplemental_files` path. `css/site-doc-layout.css`, `partials/`, and the layout scripts in this repository are *not* fully overwritten from npm on prebuild (only `site-extra.css` and `img/` sync; see `site/scripts/sync-antora-dark-theme.cjs`). The playbook `ui.bundle` uses link:https://github.com/antora-supplemental/antora-dark-theme[antora-supplemental/antora-dark-theme] release `ui-bundle.zip` as the base, with these supplemental files applied on top. Playbook `site.keys` and footer credits are documented in link:https://github.com/FoodTruckNerdz/docs/blob/main/docs/modules/ROOT/pages/docs-site-management.adoc#ui-bundle[Documentation Site Management] (section *UI bundle*); the published page is link:https://docs.foodtrucknerdz.com/docs/docs-site-management.html#ui-bundle[docs.foodtrucknerdz.com].
 
 == Documentation Sites
 

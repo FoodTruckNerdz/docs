@@ -10,10 +10,10 @@ site/package.json
 site/pnpm-lock.yaml
 site/package-lock.json
 
-# Local Antora configs
-antora-playbook-offline.yml
-antora-playbook-offline-*.yml
-!antora-playbook-offline*.example.yml
+# Local Antora configs (copy from antora-playbook-local.example.yml)
+antora-playbook-local.yml
+antora-playbook-local-*.yml
+!antora-playbook-local*.example.yml
 
 # Editor/IDE
 .idea/

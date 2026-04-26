@@ -10,11 +10,7 @@
     },
     {
       "path": "../ftn-site/docs",
-      "name": "ftn-site docs"
-    },
-    {
-      "path": "../ftn-site-old/docs",
-      "name": "ftn-site-old docs"
+      "name": "ftn-site docs (Website)"
     },
     {
       "path": "../onboarding/docs",
