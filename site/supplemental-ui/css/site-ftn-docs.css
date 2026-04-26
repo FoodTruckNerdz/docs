@@ -18,12 +18,13 @@
   --ftn-header-bar-border: #d8d8d8;
   --ftn-header-bar-hover: rgba(0, 0, 0, 0.07);
   --ftn-header-github-icon-filter: brightness(0) opacity(0.92);
-  /* Three-column top line-up (nav | article + TOC share one value):
-     - Left: padding-top on .nav-menu.ftn-nav-tree-only (nav is outside main).
-     - Center + right: padding-top on main > .content (one box for both columns; not margin
-       on the page header vs TOC h3 — that drifts). */
-  --ftn-content-rail-top: 0.75rem;
-  --ftn-content-rail-hpad: 0.75rem;
+  /* Top rails (nav is outside main; .content is main > .content):
+     - --ftn-global-rail-top: shared baseline (nav + main row).
+     - --ftn-content-rail-top: optional *extra* top padding for .content only (0 = nav and .content
+       stay aligned; theme hackers can offset the article/TOC without moving the left nav). */
+  --ftn-global-rail-top: 1rem;
+  --ftn-content-rail-top: 0rem;
+  --ftn-global-rail-hpad: 0.75rem;
 }
 
 html.dark-theme {
@@ -36,12 +37,6 @@ html.dark-theme {
   --ftn-header-bar-border: #2c2e33;
   --ftn-header-bar-hover: rgba(255, 255, 255, 0.1);
   --ftn-header-github-icon-filter: none;
-}
-
-@media screen and (min-width: 769px) {
-  :root {
-    --ftn-content-rail-top: 1.25rem;
-  }
 }
 
 html {
@@ -317,10 +312,9 @@ html.dark-theme .ftn-doc-mast {
   min-width: 0;
 }
 
-/* Inset article + in-page TOC together (same flex row). Nav uses padding on .nav-menu; do not
-   duplicate with margin on .ftn-page-header or TOC h3. */
+/* Inset article + in-page TOC. padding-top = global + optional content-only rail. */
 .ftn-article .content {
-  padding-top: var(--ftn-content-rail-top);
+  padding-top: calc(var(--ftn-global-rail-top) + var(--ftn-content-rail-top));
   box-sizing: border-box;
 }
 
@@ -705,9 +699,9 @@ html.dark-theme .ftn-bc-menu-item a.is-current {
   pointer-events: none;
 }
 
-/* ——— Nav rail: first line lines up with page title + Contents (see --ftn-content-rail-top) ——— */
+/* ——— Nav: same *global* top as main row; sides use --ftn-global-rail-hpad ——— */
 body.ftn-body .nav .nav-menu.ftn-nav-tree-only {
-  padding: var(--ftn-content-rail-top) var(--ftn-content-rail-hpad) 0.5rem var(--ftn-content-rail-hpad);
+  padding: var(--ftn-global-rail-top) var(--ftn-global-rail-hpad) 0.5rem var(--ftn-global-rail-hpad);
   box-sizing: border-box;
 }
 
