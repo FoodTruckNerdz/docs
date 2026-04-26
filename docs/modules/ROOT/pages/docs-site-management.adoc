@@ -19,6 +19,16 @@ This repository (`docs`) contains the core configuration for the documentation s
 * Custom UI overrides and supplemental files
 * Documentation about building and maintaining the documentation site itself
 
+[[ui-bundle]]
+== UI bundle
+
+The published site uses link:https://github.com/antora-supplemental/antora-dark-theme[antora-supplemental/antora-dark-theme] as the base Antora UI bundle (`ui.bundle.url` in the playbook; use the `releases/latest/download/ui-bundle.zip` asset). FoodTruckNerdz layers custom partials, CSS, and scripts on top via `site/supplemental-ui/`. The `package.json` `prebuild` step runs `site/scripts/sync-antora-dark-theme.cjs`, which copies selected files from the `antora-dark-theme` npm package into that folder, because Antora accepts only a single `ui.supplemental_files` directory.
+
+Optional `site.keys` in the playbook control the footer label and link for the base theme (keep them aligned with the bundle you reference in `ui.bundle`):
+
+* `ui_bundle_name` — display name (exposed as `uiBundleName` in the UI)
+* `ui_bundle_url` — project URL (exposed as `uiBundleUrl`)
+
 == Building Locally
 
 To build and preview the documentation site locally, see the xref:building-docs.adoc[Building Docs Locally] guide.

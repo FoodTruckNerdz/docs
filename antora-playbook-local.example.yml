@@ -6,8 +6,8 @@ site:
     site_description: "Food Truck Nerdz documentation (multi-component Antora site)"
     github_profile_url: "https://github.com/FoodTruckNerdz"
     foodtrucknerdz_com: "https://foodtrucknerdz.com"
-    ui_bundle_name: "antora-dark-theme (the-dev-center)"
-    ui_bundle_url: "https://github.com/the-dev-center/antora-dark-theme"
+    ui_bundle_name: "antora-dark-theme"
+    ui_bundle_url: "https://github.com/antora-supplemental/antora-dark-theme"
 content:
   sources:
     - url: ../onboarding
@@ -33,7 +33,7 @@ content:
       start_path: docs
 ui:
   bundle:
-    url: https://github.com/the-dev-center/antora-dark-theme/releases/latest/download/ui-bundle.zip
+    url: https://github.com/antora-supplemental/antora-dark-theme/releases/latest/download/ui-bundle.zip
     snapshot: true
   supplemental_files: ./site/supplemental-ui
 asciidoc:

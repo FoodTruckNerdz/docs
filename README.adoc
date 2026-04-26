@@ -15,14 +15,14 @@ To build and preview the documentation locally:
 # Install dependencies
 pnpm install
 
-# Setup local playback (creates antora-playbook-offline.yml from example)
-cp antora-playbook-offline.example.yml antora-playbook-offline.yml
+# Local sibling repos: copy the example playbook, then build with local paths
+cp antora-playbook-local.example.yml antora-playbook-local.yml
 
-# Build using offline playbook (uses local folder references)
-pnpm exec antora antora-playbook-offline.yml
+# Build (runs `node site/scripts/sync-antora-dark-theme.cjs` first, then Antora)
+pnpm run build:local
 
 # Or build using standard playbook (uses GitHub URLs)
-pnpm exec antora antora-playbook.yml
+pnpm run build
 
 # Preview the site
 pnpm exec http-server build/site -c-1 -p 8080
@@ -48,6 +48,8 @@ This playbook coordinates documentation from multiple repositories. Each reposit
 * **Standard Templates** - Industry-standard project and workspace templates (available at link:https://github.com/the-dev-center/templates[the-dev-center/templates])
 
 Each component contains an `antora.yml` descriptor file (which defines the component name) and its documentation pages organized in the `modules/ROOT/` structure. The playbook pulls from each repository's Git source to build the unified documentation site.
+
+The `site/supplemental-ui/` directory holds custom Handlebars partials, CSS, and JavaScript (mast bar, sidebar tree, Outfit font, header links, breadcrumb component/version pickers, etc.). Before every build, `site/scripts/sync-antora-dark-theme.cjs` copies the current `antora-dark-theme` npm package assets into that folder, because Antora exposes only a single `ui.supplemental_files` path. The playbook `ui.bundle` uses link:https://github.com/antora-supplemental/antora-dark-theme[antora-supplemental/antora-dark-theme] release `ui-bundle.zip` as the base, with these supplemental files applied on top. Playbook `site.keys` and footer credits are documented in link:https://github.com/FoodTruckNerdz/docs/blob/main/docs/modules/ROOT/pages/docs-site-management.adoc#ui-bundle[Documentation Site Management] (section *UI bundle*); the published page is link:https://docs.foodtrucknerdz.com/docs/docs-site-management.html#ui-bundle[docs.foodtrucknerdz.com].
 
 == Documentation Sites
 

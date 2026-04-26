@@ -1,21 +1,5 @@
 {
-    "assets": [
-        {
-            "apiUrl": "https://api.github.com/repos/the-dev-center/antora-dark-theme/releases/assets/347621877",
-            "contentType": "application/octet-stream",
-            "createdAt": "2026-01-29T10:38:43Z",
-            "digest": "sha256:eba1113f94c1a47c4b338745a4db59ec08af5a9799f83fc54a4b4423f2be7912",
-            "downloadCount": 0,
-            "id": "RA_kwDORBW50M4UuEn1",
-            "label": "",
-            "name": "antora-dark-theme-0.1.0.tgz",
-            "size": 7736,
-            "state": "uploaded",
-            "updatedAt": "2026-01-29T10:38:43Z",
-            "url": "https://github.com/the-dev-center/antora-dark-theme/releases/download/v0.1.0/antora-dark-theme-0.1.0.tgz"
-        }
-    ],
-    "isPrerelease": false,
-    "tagName": "v0.1.0",
-    "url": "https://github.com/the-dev-center/antora-dark-theme/releases/tag/v0.1.0"
+  "isPrerelease": false,
+  "tagName": "v0.1.6",
+  "url": "https://github.com/antora-supplemental/antora-dark-theme/releases/tag/v0.1.6"
 }

@@ -7,8 +7,8 @@ site:
     github_profile_url: "https://github.com/FoodTruckNerdz"
     foodtrucknerdz_com: "https://foodtrucknerdz.com"
     # Shown in footer; match ui.bundle in this file (becomes site.keys.uiBundle* in the UI model).
-    ui_bundle_name: "antora-dark-theme (the-dev-center)"
-    ui_bundle_url: "https://github.com/the-dev-center/antora-dark-theme"
+    ui_bundle_name: "antora-dark-theme"
+    ui_bundle_url: "https://github.com/antora-supplemental/antora-dark-theme"
 content:
   sources:
     - url: https://github.com/FoodTruckNerdz/onboarding.git
@@ -31,7 +31,7 @@ content:
       start_path: docs
 ui:
   bundle:
-    url: https://github.com/the-dev-center/antora-dark-theme/releases/latest/download/ui-bundle.zip
+    url: https://github.com/antora-supplemental/antora-dark-theme/releases/latest/download/ui-bundle.zip
     snapshot: true
   supplemental_files: ./site/supplemental-ui
 asciidoc:
