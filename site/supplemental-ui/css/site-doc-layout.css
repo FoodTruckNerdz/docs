@@ -207,15 +207,36 @@ pre,
   object-fit: contain;
 }
 
-/* FTN header mark is a fixed-palette SVG (not currentColor). Do not use CSS invert — use a light tile
-   on the dark top bar until a dedicated light/dark asset exists. */
+/* FTN mark: fixed-palette SVG — do not set filters on .adt-header-logo. Optional light chip
+   sits behind the graphic only; .adt-header-logo-item keeps the same dark top bar. */
 html.dark-theme .adt-header-logo-item {
-  background: #eef0f3;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  position: relative;
 }
 
-html.dark-theme .adt-header-logo-item:hover,
-html.dark-theme .adt-header-logo-item:focus {
+html.dark-theme .adt-header-logo-item::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2rem;
+  height: 2rem;
+  margin: 0;
+  padding: 0;
+  transform: translate(-50%, -50%);
+  background: #eef0f3;
+  border-radius: 0.2rem;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  z-index: 0;
+  pointer-events: none;
+}
+
+html.dark-theme .adt-header-logo {
+  position: relative;
+  z-index: 1;
+}
+
+html.dark-theme .adt-header-logo-item:hover::before,
+html.dark-theme .adt-header-logo-item:focus::before {
   background: #e2e5ea;
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.14);
 }
