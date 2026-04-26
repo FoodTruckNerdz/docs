@@ -1,0 +1,11 @@
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu ftn-nav-tree-only" aria-label="In this section">
+    <button class="nav-menu-toggle" aria-label="Toggle expand and collapse of all item groups" style="display: none"></button>
+    {{#with @root.page.componentVersion}}
+    <h3 class="title ftn-nav-component-title"><a href="{{{relativize ./url}}}">{{./title}}</a></h3>
+    {{/with}}
+    {{#with page.navigation}}
+    {{> nav-tree navigation=this}}
+    {{/with}}
+  </nav>
+</div>

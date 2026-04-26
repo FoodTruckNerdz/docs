@@ -1,0 +1,12 @@
+<header class="header ftn-header">
+  <nav class="navbar" aria-label="Site">
+    <div class="navbar-brand ftn-header-brand">
+      <a class="navbar-item" href="{{{or site.url siteRootPath}}}">{{site.title}}</a>
+    </div>
+    <div id="topbar-nav" class="navbar-menu ftn-topbar">
+      <div class="navbar-end ftn-header-actions">
+        <a class="navbar-item ftn-external-link ftn-external-link-primary" href="{{{or (lookup site.keys 'foodtrucknerdz_com') 'https://foodtrucknerdz.com'}}}" rel="noopener" target="_blank" title="foodtrucknerdz.com">foodtrucknerdz.com</a>
+      </div>
+    </div>
+  </nav>
+</header>
