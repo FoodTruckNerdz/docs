@@ -28,10 +28,10 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Install pnpm
-        uses: pnpm/action-setup/@v4
+        uses: pnpm/action-setup@v4
         with:
-          version: 10
-          package_json_file: "package.json"
+          # Omit version: use package.json "packageManager" only (pnpm/action-setup rejects both)
+          package_json_file: package.json
 
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v5
