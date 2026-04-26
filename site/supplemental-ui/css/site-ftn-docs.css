@@ -12,12 +12,24 @@
   --ftn-bc-kicker-border: #ddd;
   /* Top bar: all controls (logo hit-area, title, theme, org GitHub) share one line height */
   --ftn-header-ctrl: 2.5rem;
+  /* Light theme (default): light header strip — not a black bar */
+  --ftn-header-bar-bg: #f2f3f5;
+  --ftn-header-bar-fg: #1a1a1a;
+  --ftn-header-bar-border: #d8d8d8;
+  --ftn-header-bar-hover: rgba(0, 0, 0, 0.07);
+  --ftn-header-github-icon-filter: brightness(0) opacity(0.92);
 }
 
 html.dark-theme {
   --ftn-bc-kicker-fg: #8ec5ff;
   --ftn-bc-kicker-bg: rgba(255, 255, 255, 0.06);
   --ftn-bc-kicker-border: rgba(255, 255, 255, 0.12);
+  /* Dark header: keep white foreground on dark bar (GitHub mark stays white; no filter) */
+  --ftn-header-bar-bg: #141517;
+  --ftn-header-bar-fg: #f1f3f5;
+  --ftn-header-bar-border: #2c2e33;
+  --ftn-header-bar-hover: rgba(255, 255, 255, 0.1);
+  --ftn-header-github-icon-filter: none;
 }
 
 html {
@@ -47,9 +59,13 @@ pre,
   font-family: "Roboto Mono", ui-monospace, monospace;
 }
 
-/* ——— Top bar: logo + “Documentation” (left) — GitHub icon (right). Mast is a second row, not in this nav. */
+/* ——— Top bar: light strip in “light” theme, dark strip in dark theme ——— */
 .header.ftn-header {
   display: block;
+  background: var(--ftn-header-bar-bg);
+  color: var(--ftn-header-bar-fg);
+  border-bottom: 1px solid var(--ftn-header-bar-border);
+  box-sizing: border-box;
 }
 
 .ftn-site-navbar {
@@ -62,6 +78,9 @@ pre,
   box-sizing: border-box;
   padding: 0 0.6rem 0 0.5rem;
   column-gap: 0.75rem;
+  /* Let .header.ftn-header own the bar color (bundle .navbar can otherwise paint a dark strip) */
+  background: transparent !important;
+  color: inherit;
 }
 
 .header.ftn-header .ftn-topbar,
@@ -93,8 +112,9 @@ pre,
   overflow: visible;
 }
 
-html.dark-theme .header.ftn-header .ftn-topbar,
-html.dark-theme .header.ftn-header .ftn-topbar .navbar-end {
+.header.ftn-header .ftn-topbar,
+.header.ftn-header .ftn-topbar .navbar-end {
+  color: inherit;
   background: transparent;
 }
 
@@ -128,13 +148,8 @@ html.dark-theme .header.ftn-header .ftn-topbar .navbar-end {
 
 .ftn-header-logo-item:hover,
 .ftn-header-logo-item:focus {
-  background: rgba(0, 0, 0, 0.06);
+  background: var(--ftn-header-bar-hover);
   outline: none;
-}
-
-html.dark-theme .ftn-header-logo-item:hover,
-html.dark-theme .ftn-header-logo-item:focus {
-  background: rgba(255, 255, 255, 0.08);
 }
 
 .ftn-header-logo {
@@ -146,7 +161,7 @@ html.dark-theme .ftn-header-logo-item:focus {
 
 a.ftn-header-title,
 .navbar-item.ftn-header-title {
-  color: #fff !important;
+  color: var(--ftn-header-bar-fg) !important;
   font-weight: 600;
   font-size: 1.15rem;
   letter-spacing: 0.01em;
@@ -161,13 +176,13 @@ a.ftn-header-title,
 a.ftn-header-title:hover,
 a.ftn-header-title:focus {
   text-decoration: none;
-  opacity: 0.92;
+  opacity: 0.9;
 }
 
-/* Org GitHub profile — same 24px asset as the dark-theme VCS chip (img/vcs/github.svg) */
+/* Org GitHub profile — img/vcs/github.svg is white; light mode uses --ftn-header-github-icon-filter */
 .ftn-header-github,
 .navbar-item.ftn-header-github {
-  color: #fff;
+  color: var(--ftn-header-bar-fg);
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -184,7 +199,7 @@ a.ftn-header-title:focus {
 
 .ftn-header-github:hover,
 .ftn-header-github:focus {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--ftn-header-bar-hover);
   text-decoration: none;
 }
 
@@ -195,28 +210,10 @@ a.ftn-header-title:focus {
   object-fit: contain;
   flex-shrink: 0;
   pointer-events: none;
+  filter: var(--ftn-header-github-icon-filter, none);
 }
 
-/* White SVG: on light top bars, darken so it’s visible (matches VCS area behavior) */
-html:not(.dark-theme) .ftn-header-github-img {
-  filter: brightness(0);
-  opacity: 0.88;
-}
-
-html:not(.dark-theme) a.ftn-header-title,
-html:not(.dark-theme) .navbar-item.ftn-header-title,
-html:not(.dark-theme) .ftn-header-github {
-  color: #1a1a1a !important;
-}
-
-html:not(.dark-theme) .ftn-header-github:hover,
-html:not(.dark-theme) .ftn-header-github:focus,
-html:not(.dark-theme) .ftn-header-logo-item:hover,
-html:not(.dark-theme) .ftn-header-logo-item:focus {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-/* Theme toggle: same hit box as logo + org GitHub (injected by site-dark-mode.js) */
+/* Theme toggle: same hit box; stroke uses currentColor — dark on light bar, light on dark bar */
 .header.ftn-header .navbar .navbar-end .theme-toggle {
   min-width: var(--ftn-header-ctrl) !important;
   min-height: var(--ftn-header-ctrl) !important;
@@ -228,6 +225,12 @@ html:not(.dark-theme) .ftn-header-logo-item:focus {
   justify-content: center;
   box-sizing: border-box;
   flex-shrink: 0;
+  color: var(--ftn-header-bar-fg) !important;
+}
+
+.header.ftn-header .navbar .navbar-end .theme-toggle:hover,
+.header.ftn-header .navbar .navbar-end .theme-toggle:focus {
+  background: var(--ftn-header-bar-hover) !important;
 }
 
 @media screen and (min-width: 1024px) {
