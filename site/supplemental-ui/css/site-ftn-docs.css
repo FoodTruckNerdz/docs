@@ -22,7 +22,7 @@
      - --ftn-global-rail-top: shared baseline (nav + main row).
      - --ftn-content-rail-top: optional *extra* top padding for .content only (0 = nav and .content
        stay aligned; theme hackers can offset the article/TOC without moving the left nav). */
-  --ftn-global-rail-top: 0.5rem;
+  --ftn-global-rail-top: 1rem;
   --ftn-content-rail-top: 0rem;
   --ftn-global-rail-hpad: 0.75rem;
 }
