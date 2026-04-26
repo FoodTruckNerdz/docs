@@ -18,6 +18,10 @@
   --ftn-header-bar-border: #d8d8d8;
   --ftn-header-bar-hover: rgba(0, 0, 0, 0.07);
   --ftn-header-github-icon-filter: brightness(0) opacity(0.92);
+  /* Page title (left) + “Contents” TOC label (right): one inset — default Antora uses a fixed
+     .toc.sidebar .toc-menu h3 { height: 2.5rem; flex-end } instead of margin; that won’t line up
+     with a real margin. Tweak the variable, both rails update. */
+  --ftn-content-rail-top: 1.5rem;
 }
 
 html.dark-theme {
@@ -30,6 +34,12 @@ html.dark-theme {
   --ftn-header-bar-border: #2c2e33;
   --ftn-header-bar-hover: rgba(255, 255, 255, 0.1);
   --ftn-header-github-icon-filter: none;
+}
+
+@media screen and (min-width: 769px) {
+  :root {
+    --ftn-content-rail-top: 2.5rem;
+  }
 }
 
 html {
@@ -309,9 +319,20 @@ html.dark-theme .ftn-doc-mast {
   padding-top: 0;
 }
 
+/* ——— Content rail: same top inset for page title + “Contents” (see --ftn-content-rail-top) ——— */
+/* Default UI: .toc.sidebar .toc-menu h3 uses height:2.5rem + justify-content:flex-end — fake
+   “margin”. Replace with real margin so it matches .ftn-page-header. */
+.ftn-article .content .toc .toc-menu h3 {
+  display: block;
+  height: auto;
+  min-height: 0;
+  flex-direction: unset;
+  justify-content: unset;
+  margin: var(--ftn-content-rail-top) 0 0 0;
+  padding: 0 0 0.25rem 0;
+}
+
 /* ——— Page title + Edit this page: title truncates, edit always visible ——— */
-/* Match antora default .doc > h1.page:first-child (wrapper breaks that selector):
-   1.5rem top mobile, 2.5rem ≥769px — aligns with the in-page “Contents” column rhythm */
 .doc .ftn-page-header,
 .ftn-article .ftn-page-header {
   display: flex;
@@ -320,15 +341,8 @@ html.dark-theme .ftn-doc-mast {
   justify-content: space-between;
   gap: 0.75rem 1rem;
   min-width: 0;
-  margin-top: 1.5rem;
+  margin-top: var(--ftn-content-rail-top);
   margin-bottom: 0.35rem;
-}
-
-@media screen and (min-width: 769px) {
-  .doc .ftn-page-header,
-  .ftn-article .ftn-page-header {
-    margin-top: 2.5rem;
-  }
 }
 
 .doc .ftn-page-title,
