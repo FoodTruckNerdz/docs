@@ -699,8 +699,12 @@ html.dark-theme .ftn-bc-menu-item a.is-current {
   pointer-events: none;
 }
 
-/* ——— Nav: same *global* top as main row; sides use --ftn-global-rail-hpad ——— */
-body.ftn-body .nav .nav-menu.ftn-nav-tree-only {
+/* ——— Nav: insets = global rails (same token as .ftn-article .content’s global part).
+   Use nav.nav-menu.nav-tree-only so we win over the bundle’s .nav-menu (no body.ftn-body req). ——— */
+body.ftn-body .nav nav.nav-menu.nav-tree-only,
+body.ftn-body .nav nav.nav-menu.ftn-nav-tree-only,
+nav.nav-menu.nav-tree-only,
+nav.nav-menu.ftn-nav-tree-only {
   padding: var(--ftn-global-rail-top) var(--ftn-global-rail-hpad) 0.5rem var(--ftn-global-rail-hpad);
   box-sizing: border-box;
 }
@@ -739,6 +743,7 @@ html.dark-theme .nav .ftn-nav-component-title a {
   min-height: 0;
 }
 
+.nav-tree-only .nav-menu-toggle,
 .ftn-nav-tree-only .nav-menu-toggle {
   display: none !important;
 }
