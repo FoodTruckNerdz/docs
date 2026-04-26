@@ -282,20 +282,29 @@ a.adt-header-title:focus {
   filter: var(--adt-header-vcs-icon-filter, none);
 }
 
+/* Sun/moon toggle: moon uses a filled path; sun uses stroked circle + lines — do not set fill:none on all paths */
 .header.adt-header .adt-header-icon-btn .theme-icon {
   width: 18px;
   height: 18px;
   display: block;
-  fill: none;
+  fill: currentColor;
   stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.header.adt-header .adt-header-icon-btn .theme-icon path,
 .header.adt-header .adt-header-icon-btn .theme-icon circle {
   fill: none;
+}
+
+.header.adt-header .adt-header-icon-btn .theme-icon line {
+  stroke: currentColor;
+}
+
+.header.adt-header .adt-header-icon-btn .theme-icon path {
+  fill: currentColor;
+  stroke: none;
 }
 
 @media screen and (min-width: 1024px) {

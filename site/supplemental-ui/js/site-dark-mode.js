@@ -138,7 +138,12 @@
 
   function vcsIconUrl(base, id) {
     const root = (base || ".").replace(/\/?$/, "/");
-    return `${root}img/vcs/${id}.svg`;
+    const rel = `${root}img/vcs/${id}.svg`;
+    try {
+      return new URL(rel, window.location.href).href;
+    } catch {
+      return rel;
+    }
   }
 
   function applyVcsIcons() {

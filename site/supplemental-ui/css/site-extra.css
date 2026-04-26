@@ -428,16 +428,24 @@ html.dark-theme .home-link {
   width: 18px;
   height: 18px;
   display: block;
-  fill: none;
+  fill: currentColor;
   stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.theme-toggle .theme-icon path,
 .theme-toggle .theme-icon circle {
   fill: none;
+}
+
+.theme-toggle .theme-icon line {
+  stroke: currentColor;
+}
+
+.theme-toggle .theme-icon path {
+  fill: currentColor;
+  stroke: none;
 }
 
 /* Hide default Download button until JS replaces it (prevents flash on load) */

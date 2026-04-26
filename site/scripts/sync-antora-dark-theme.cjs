@@ -9,7 +9,8 @@ const destRoot = path.join(siteRoot, 'supplemental-ui')
 const src = path.join(repoRoot, 'node_modules', 'antora-dark-theme', 'supplemental-ui')
 
 const files = [
-  ['css', 'site-extra.css'],
+  /* Do not copy site-extra.css from npm: CI prebuild would overwrite FTN card/tile + theme fixes.
+     Merge upstream dark-theme changes from node_modules/antora-dark-theme/supplemental-ui/css/ manually. */
   /* site-doc-layout.css, partials, site-dark-mode.js, site-adt-accordion.js: maintained in this repo
      (FoodTruckNerdz branding: header, footer, truck logo, sticky-footer block at top of
      site-doc-layout.css). The package is the debranded baseline; do not prebuild-overwrite the full

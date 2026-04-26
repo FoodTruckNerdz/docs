@@ -1,5 +1,5 @@
 site:
-  title: Documentation
+  title: Food Truck Nerdz
   url: https://docs.foodtrucknerdz.com
   start_page: docs::index.adoc
   keys:
