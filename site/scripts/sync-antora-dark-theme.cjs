@@ -11,8 +11,10 @@ const src = path.join(repoRoot, 'node_modules', 'antora-dark-theme', 'supplement
 const files = [
   ['css', 'site-extra.css'],
   /* site-doc-layout.css, partials, site-dark-mode.js, site-adt-accordion.js: maintained in this repo
-     (FoodTruckNerdz branding: header, footer, truck logo). The package is the debranded baseline;
-     do not prebuild-overwrite the full tree from npm. */
+     (FoodTruckNerdz branding: header, footer, truck logo, sticky-footer block at top of
+     site-doc-layout.css). The package is the debranded baseline; do not prebuild-overwrite the full
+     tree from npm. When bumping antora-dark-theme, merge :root / layout token changes from the
+     package’s supplemental-ui/css/site-doc-layout.css (e.g. --adt-mast-pad-h) into this copy. */
 ]
 
 async function copyIfPresent (fromParts, toParts) {

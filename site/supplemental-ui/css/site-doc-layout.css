@@ -54,7 +54,7 @@ body > .footer {
   /* Horizontal rail: one value for .adt-doc-mast, breadcrumb home hit-area, and left nav. Stock UI
      uses calc(var(--toolbar-height) / 4) for the old in-article toolbar; the mast + sidebar must
      share the *same* inset so the home icon, component title, and first tree column line up. */
-  --adt-mast-pad-h: 0.5rem;
+  --adt-mast-pad-h: 1rem;
   --adt-global-rail-hpad: var(--adt-mast-pad-h);
 }
 
