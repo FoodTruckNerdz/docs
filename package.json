@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@antora/lunr-extension": "^1.0.0-alpha.13",
     "@asciidoctor/core": "^3.0.4",
     "antora": "^3.1.14",
     "antora-dark-theme": "^1.0.9",

@@ -8,6 +8,13 @@
     </div>
     <div id="topbar-nav" class="navbar-menu adt-topbar" role="navigation" aria-label="External links">
       <div class="navbar-end adt-header-actions">
+        {{#if env.SITE_SEARCH_PROVIDER}}
+        <div class="navbar-item search hide-for-print adt-header-search">
+          <div id="search-field" class="field">
+            <input id="search-input" type="search" placeholder="Search the docs" aria-label="Search the docs"{{#if page.home}} autofocus{{/if}}>
+          </div>
+        </div>
+        {{/if}}
         {{#if (and @root.page.origin @root.page.origin.webUrl)}}
         <a class="navbar-item adt-header-icon-btn adt-header-vcs" href="{{{@root.page.origin.webUrl}}}" rel="noopener" target="_blank" title="Source repository" aria-label="Source repository (opens in new tab)">
           <img class="adt-header-vcs-img" src="{{{uiRootPath}}}/img/vcs/github.svg" width="24" height="24" alt="" />

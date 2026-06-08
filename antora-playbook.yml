@@ -55,3 +55,6 @@ asciidoc:
     repo-onboarding: onboarding
     repo-help: help
     repo-developer-portal: developer-portal
+antora:
+  extensions:
+    - '@antora/lunr-extension'
