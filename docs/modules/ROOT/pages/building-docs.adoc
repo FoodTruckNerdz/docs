@@ -166,9 +166,8 @@ docs/                            # Repository root (clone of FoodTruckNerdz/docs
 │       ├── onboarding/
 │       ├── food-truck-api/
 │       └── ...
-├── site/                        # UI sync + supplemental (not the playbooks)
-│   ├── scripts/                 # e.g. sync-antora-dark-theme.cjs
-│   └── supplemental-ui/       # Custom UI overrides
+├── site/                        # Supplemental UI (not the playbooks)
+│   └── supplemental-ui/       # Custom UI overrides layered on ui-bundle.zip
 ├── docs/                        # *Component* for this repository (`start_path: docs` in playbook)
 │   ├── antora.yml
 │   └── modules/

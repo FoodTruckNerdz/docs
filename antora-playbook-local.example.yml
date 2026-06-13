@@ -18,8 +18,8 @@ site:
     github_profile_url: "https://github.com/FoodTruckNerdz"
     foodtrucknerdz_com: "https://foodtrucknerdz.com"
     # Shown in footer; match ui.bundle below (becomes site.keys.uiBundle* in the UI model).
-    ui_bundle_name: "antora-dark-theme"
-    ui_bundle_url: "https://github.com/antora-supplemental/antora-dark-theme"
+    ui_bundle_name: "valentus-theme"
+    ui_bundle_url: "https://github.com/antora-supplemental/valentus-theme"
     # Browser tab (head-title partial): last segment; middle = each component’s antora.yml `title`.
     title_bar_brand: "FTN Docs"
 content:
@@ -47,7 +47,7 @@ content:
       start_path: docs
 ui:
   bundle:
-    url: https://github.com/antora-supplemental/antora-dark-theme/releases/latest/download/ui-bundle.zip
+    url: https://github.com/antora-supplemental/valentus-theme/releases/download/v1/ui-bundle.zip
     snapshot: true
   supplemental_files: ./site/supplemental-ui
 asciidoc:

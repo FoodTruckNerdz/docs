@@ -18,7 +18,7 @@ pnpm install
 # Local sibling repos: copy the example playbook, then build with local paths
 cp antora-playbook-local.example.yml antora-playbook-local.yml
 
-# Build (runs `node site/scripts/sync-antora-dark-theme.cjs` first, then Antora)
+# Build
 pnpm run build:local
 
 # Or build using standard playbook (uses GitHub URLs)
@@ -48,7 +48,7 @@ This playbook coordinates documentation from multiple repositories. Each reposit
 
 Each component contains an `antora.yml` descriptor file (which defines the component `name` and `title`) and its documentation pages organized in the `modules/ROOT/` structure. The playbook pulls from each repository's Git source to build the unified documentation site. Short `title` values used in the component switcher: `ftn-site` → *Docs*; this *docs* repository’s meta component → *Docs site*; `onboarding` → *Onboarding*; `food-truck-api` → *API*; `help` → *Public Help Portal*; `developer-portal` → *Developer Portal*.
 
-The `site/supplemental-ui/` directory holds custom Handlebars partials, CSS, and JavaScript (mast bar, sidebar tree, Outfit font, header links, breadcrumb component/version pickers, etc.). Before every build, `site/scripts/sync-antora-dark-theme.cjs` copies only `img/` (VCS icons, etc.) from the `antora-dark-theme` npm package into that folder, because Antora exposes only a single `ui.supplemental_files` path. `css/site-extra.css`, `css/site-doc-layout.css`, `partials/`, and the layout scripts are maintained in this repository; merge upstream theme CSS from the package when you bump `antora-dark-theme` (see `site/scripts/sync-antora-dark-theme.cjs`). The playbook `ui.bundle` uses link:https://github.com/antora-supplemental/antora-dark-theme[antora-supplemental/antora-dark-theme] release `ui-bundle.zip` as the base, with these supplemental files applied on top. Playbook `site.keys` and footer credits are documented in link:https://github.com/FoodTruckNerdz/docs/blob/main/docs/modules/ROOT/pages/docs-site-management.adoc#ui-bundle[Documentation Site Management] (section *UI bundle*); the published page is link:https://docs.foodtrucknerdz.com/docs/docs-site-management.html#ui-bundle[docs.foodtrucknerdz.com].
+The `site/supplemental-ui/` directory holds custom Handlebars partials, CSS, JavaScript, and branding assets (mast bar, sidebar tree, Outfit font, header links, breadcrumb component/version pickers, `foodtrucknerdz.svg`, etc.). The playbook `ui.bundle` uses link:https://github.com/antora-supplemental/valentus-theme[antora-supplemental/valentus-theme] release `ui-bundle.zip` as the base (VCS icons and other theme static assets ship in the bundle); these supplemental files are layered on top. Playbook `site.keys` and footer credits are documented in link:https://github.com/FoodTruckNerdz/docs/blob/main/docs/modules/ROOT/pages/docs-site-management.adoc#ui-bundle[Documentation Site Management] (section *UI bundle*); the published page is link:https://docs.foodtrucknerdz.com/docs/docs-site-management.html#ui-bundle[docs.foodtrucknerdz.com].
 
 == Documentation Sites
 

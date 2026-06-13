@@ -26,9 +26,6 @@ importers:
       antora:
         specifier: ^3.1.14
         version: 3.1.14
-      antora-dark-theme:
-        specifier: ^1.0.9
-        version: 1.0.9
       asciidoctor-emoji:
         specifier: ^0.5.0
         version: 0.5.0(@asciidoctor/core@3.0.4)
@@ -165,10 +162,6 @@ packages:
   ansi-styles@6.2.3:
     resolution: {integrity: sha512-4Dj6M28JB+oAH8kFkTLUo+a2jwOFkuqb3yucU0CANcRRUbxS0cP0nZYCGjcc3BNXwRIsUVmDGgzawme7zvJHvg==}
     engines: {node: '>=12'}
-
-  antora-dark-theme@1.0.9:
-    resolution: {integrity: sha512-wjmdCmqG2sutFiIjI8CAJTpjpRokqsk5VGv0lgTlARBcBOeWd4rb3M130TeD7U04IOmBGpghRO4YHq6WI70+dA==}
-    deprecated: RETIRED — Do not install. Open README tab or use GitHub ui-bundle.zip (see releases).
 
   antora@3.1.14:
     resolution: {integrity: sha512-z8HshJsT6pUfdDOUJ15RGtpOM9LmL6JXU5JBshoR/9/xd+1qLmKPkOnUv+HrijAk93r1imxZOdkmIqhLcv8B8A==}
@@ -1029,8 +1022,6 @@ snapshots:
       color-convert: 2.0.1
 
   ansi-styles@6.2.3: {}
-
-  antora-dark-theme@1.0.9: {}
 
   antora@3.1.14:
     dependencies:
