@@ -31,7 +31,7 @@ xref:food-truck-api::index.adoc[API reference]
 [.title]
 🌐 Website
 
-Documentation for the public site (SolidStart and Next.js in the `ftn-site` repo) and Vercel deployment. Historical notes for the retired stack: xref:website:old-website:index.adoc[Old website].
+Documentation for the public site (Next.js in the `ftn-site` repo; SolidStart is on hold) and Vercel deployment. Historical notes for the retired stack: xref:website:old-website:index.adoc[Old website].
 
 xref:website::index.adoc[Website docs]
 ====
