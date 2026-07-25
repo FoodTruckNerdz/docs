@@ -1,5 +1,6 @@
 {
   "name": "valentus-theme",
-  "version": "1.1.0",
-  "url": "https://github.com/antora-supplemental/valentus-theme/releases/download/v1/ui-bundle.zip"
+  "version": "2",
+  "label": "2.0.1+antora.3",
+  "url": "https://github.com/antora-supplemental/valentus-theme/releases/download/v2/ui-bundle.zip"
 }
