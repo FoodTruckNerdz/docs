@@ -4,7 +4,7 @@
 # 2. From the docs repo root: pnpm dlx antora antora-playbook-local.yml
 #
 # Clone sibling repos next to docs/ (same parent folder names as below):
-#   onboarding, food-truck-api, ftn-site, ftn-app, help, developer-portal
+#   onboarding, food-truck-api, ftn-site, ftn-app, help, developer-portal, infra
 #
 # Content source order matches antora-playbook.yml except URLs are relative
 # and this repo is url: . instead of the GitHub docs.git URL.
@@ -50,6 +50,9 @@ content:
     - url: ../developer-portal
       branches: HEAD
       start_path: docs
+    - url: ../infra
+      branches: HEAD
+      start_path: docs
 ui:
   bundle:
     url: https://github.com/antora-supplemental/valentus-theme/releases/download/v2/ui-bundle.zip
@@ -71,6 +74,7 @@ asciidoc:
     repo-onboarding: onboarding
     repo-help: help
     repo-developer-portal: developer-portal
+    repo-infra: infra
 antora:
   extensions:
     - '@antora/lunr-extension'
