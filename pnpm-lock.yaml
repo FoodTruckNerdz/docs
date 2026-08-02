@@ -17,6 +17,9 @@ importers:
         specifier: ^0.0.4
         version: 0.0.4
     devDependencies:
+      '@antora-supplemental/unversioned-component-urls':
+        specifier: github:antora-supplemental/antora-unversioned-component-urls#v2.1.0
+        version: https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/f10190dfe30c6ccbbae3188f5bc4b7ca0eb26f3b(@antora/site-generator@3.1.14)
       '@antora/lunr-extension':
         specifier: ^1.0.0-alpha.13
         version: 1.0.0-alpha.13
@@ -31,6 +34,13 @@ importers:
         version: 0.5.0(@asciidoctor/core@3.0.4)
 
 packages:
+
+  '@antora-supplemental/unversioned-component-urls@https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/f10190dfe30c6ccbbae3188f5bc4b7ca0eb26f3b':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/f10190dfe30c6ccbbae3188f5bc4b7ca0eb26f3b}
+    version: 2.1.0
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@antora/site-generator': '>=3.1.0'
 
   '@antora/asciidoc-loader@3.1.14':
     resolution: {integrity: sha512-4xxisnoBFrlLNY6f3xZtyyfgm+tBLsqesTcEStfc8jtXUMYJ4b2DWIzo1vULmxvZ7yY5+Q7YqEvS5o6kIWAG0A==}
@@ -812,6 +822,10 @@ packages:
     resolution: {integrity: sha512-phENi2PLiHnHb6QBVot+dJnaAZ0xosj7p3fWl+znIjBDlnMI2PsZCJZ306BPTFOaHf5qdDEI8x5qFrSOBN5vrw==}
 
 snapshots:
+
+  '@antora-supplemental/unversioned-component-urls@https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/f10190dfe30c6ccbbae3188f5bc4b7ca0eb26f3b(@antora/site-generator@3.1.14)':
+    dependencies:
+      '@antora/site-generator': 3.1.14
 
   '@antora/asciidoc-loader@3.1.14':
     dependencies:

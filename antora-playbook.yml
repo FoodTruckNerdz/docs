@@ -67,3 +67,4 @@ asciidoc:
 antora:
   extensions:
     - '@antora/lunr-extension'
+    - require: '@antora-supplemental/unversioned-component-urls'
