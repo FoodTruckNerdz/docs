@@ -1,12 +1,57 @@
+ifndef::env-github[:icons: font]
+:toc: preamble
+:toclevels: 2
+:sectanchors:
+
+ifndef::env-github[]
+image:https://img.shields.io/github/contributors/FoodTruckNerdz/docs.svg?style=for-the-badge[Contributors,link=https://github.com/FoodTruckNerdz/docs/graphs/contributors]
+image:https://img.shields.io/github/forks/FoodTruckNerdz/docs.svg?style=for-the-badge[Forks,link=https://github.com/FoodTruckNerdz/docs/network/members]
+image:https://img.shields.io/github/stars/FoodTruckNerdz/docs.svg?style=for-the-badge[Stars,link=https://github.com/FoodTruckNerdz/docs/stargazers]
+image:https://img.shields.io/github/issues/FoodTruckNerdz/docs.svg?style=for-the-badge[Issues,link=https://github.com/FoodTruckNerdz/docs/issues]
+endif::[]
+
+ifdef::env-github[]
+image:https://img.shields.io/github/contributors/FoodTruckNerdz/docs.svg?style=for-the-badge[Contributors]
+image:https://img.shields.io/github/forks/FoodTruckNerdz/docs.svg?style=for-the-badge[Forks]
+image:https://img.shields.io/github/stars/FoodTruckNerdz/docs.svg?style=for-the-badge[Stars]
+image:https://img.shields.io/github/issues/FoodTruckNerdz/docs.svg?style=for-the-badge[Issues]
+endif::[]
+
 = Documentation (Antora)
+
+FTN team's internal documentation hub — Antora playbook coordinating docs from multiple repositories.
+
+link:https://docs.foodtrucknerdz.com[Explore the docs] ·
+link:https://github.com/FoodTruckNerdz/docs/issues[Report Bug]
+
+== About The Project
 
 This repository coordinates the unified documentation. It contains an Antora playbook that pulls Antora-structured documentation from the other repositories and compiles it into a static website.
 
-== Documentation Site
-
 The published documentation is available at: https://docs.foodtrucknerdz.com
 
-== Building the Documentation
+=== Structure
+
+This playbook coordinates documentation from multiple repositories. Each repository contains its own Antora documentation component in a `docs/` folder:
+
+* **food-truck-api** - Located in the `food-truck-api` repository (`docs/`)
+* **ftn-site** - Located in the `ftn-site` repository (`docs/`). Antora component *Documentation*; the archived site stack is the *Old website* module in that repo, not a separate content source. Antora is built only from *this* `FoodTruckNerdz/docs` repository (no nested `docs-site` inside `ftn-site`).
+* **docs** - Internal team documentation (this repository, `docs/`)
+* **help** - Customer-facing help documentation (`docs/`)
+* **developer-portal** - External developer API documentation (`docs/`)
+* **Standard Templates** - Industry-standard project and workspace templates (available at link:https://github.com/the-dev-center/templates[the-dev-center/templates])
+
+Each component contains an `antora.yml` descriptor file (which defines the component `name` and `title`) and its documentation pages organized in the `modules/ROOT/` structure. The playbook pulls from each repository's Git source to build the unified documentation site. Short `title` values used in the component switcher: `ftn-site` → *Docs*; this *docs* repository's meta component → *Docs site*; `onboarding` → *Onboarding*; `food-truck-api` → *API*; `help` → *Public Help Portal*; `developer-portal` → *Developer Portal*.
+
+The `site/supplemental-ui/` directory holds a thin overlay on link:https://github.com/antora-supplemental/valentus-theme[valentus-theme] (brand mark + custom footer). The playbook pins the rolling `v2` `ui-bundle.zip` (`snapshot: true`). Branding uses Valentus `site.keys` rather than forked chrome partials. Playbook `site.keys` and footer credits are documented in link:https://github.com/FoodTruckNerdz/docs/blob/main/docs/modules/ROOT/pages/docs-site-management.adoc#ui-bundle[Documentation Site Management] (section *UI bundle*); the published page is link:https://docs.foodtrucknerdz.com/docs/docs-site-management.html#ui-bundle[docs.foodtrucknerdz.com].
+
+=== Documentation Sites
+
+* **Internal Team Docs**: `docs.foodtrucknerdz.com` - This Antora site
+* **Customer Help**: `help.foodtrucknerdz.com` - Astro + Starlight (also includes Antora component)
+* **Developer Portal**: `developer.foodtrucknerdz.com` - Astro + Starlight (also includes Antora component)
+
+== Installation
 
 To build and preview the documentation locally:
 
@@ -35,23 +80,9 @@ Or use the Antora Docker image:
 docker run --rm -v "${PWD}:/antora" -u "$(id -u):$(id -g)" antora/antora antora-playbook.yml
 ----
 
-== Structure
+== Contact
 
-This playbook coordinates documentation from multiple repositories. Each repository contains its own Antora documentation component in a `docs/` folder:
+Food Truck Nerdz — support@foodtrucknerdz.com
 
-* **food-truck-api** - Located in the `food-truck-api` repository (`docs/`)
-* **ftn-site** - Located in the `ftn-site` repository (`docs/`). Antora component *Documentation*; the archived site stack is the *Old website* module in that repo, not a separate content source. Antora is built only from *this* `FoodTruckNerdz/docs` repository (no nested `docs-site` inside `ftn-site`).
-* **docs** - Internal team documentation (this repository, `docs/`)
-* **help** - Customer-facing help documentation (`docs/`)
-* **developer-portal** - External developer API documentation (`docs/`)
-* **Standard Templates** - Industry-standard project and workspace templates (available at link:https://github.com/the-dev-center/templates[the-dev-center/templates])
-
-Each component contains an `antora.yml` descriptor file (which defines the component `name` and `title`) and its documentation pages organized in the `modules/ROOT/` structure. The playbook pulls from each repository's Git source to build the unified documentation site. Short `title` values used in the component switcher: `ftn-site` → *Docs*; this *docs* repository’s meta component → *Docs site*; `onboarding` → *Onboarding*; `food-truck-api` → *API*; `help` → *Public Help Portal*; `developer-portal` → *Developer Portal*.
-
-The `site/supplemental-ui/` directory holds a thin overlay on link:https://github.com/antora-supplemental/valentus-theme[valentus-theme] (brand mark + custom footer). The playbook pins the rolling `v2` `ui-bundle.zip` (`snapshot: true`). Branding uses Valentus `site.keys` rather than forked chrome partials. Playbook `site.keys` and footer credits are documented in link:https://github.com/FoodTruckNerdz/docs/blob/main/docs/modules/ROOT/pages/docs-site-management.adoc#ui-bundle[Documentation Site Management] (section *UI bundle*); the published page is link:https://docs.foodtrucknerdz.com/docs/docs-site-management.html#ui-bundle[docs.foodtrucknerdz.com].
-
-== Documentation Sites
-
-* **Internal Team Docs**: `docs.foodtrucknerdz.com` - This Antora site
-* **Customer Help**: `help.foodtrucknerdz.com` - Astro + Starlight (also includes Antora component)
-* **Developer Portal**: `developer.foodtrucknerdz.com` - Astro + Starlight (also includes Antora component)
+* Project: https://github.com/FoodTruckNerdz/docs
+* Site: https://www.foodtrucknerdz.com/
