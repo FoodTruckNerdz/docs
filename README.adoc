@@ -3,19 +3,11 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-ifndef::env-github[]
+[[readme-top]]
 image:https://img.shields.io/github/contributors/FoodTruckNerdz/docs.svg?style=for-the-badge[Contributors,link=https://github.com/FoodTruckNerdz/docs/graphs/contributors]
 image:https://img.shields.io/github/forks/FoodTruckNerdz/docs.svg?style=for-the-badge[Forks,link=https://github.com/FoodTruckNerdz/docs/network/members]
 image:https://img.shields.io/github/stars/FoodTruckNerdz/docs.svg?style=for-the-badge[Stars,link=https://github.com/FoodTruckNerdz/docs/stargazers]
 image:https://img.shields.io/github/issues/FoodTruckNerdz/docs.svg?style=for-the-badge[Issues,link=https://github.com/FoodTruckNerdz/docs/issues]
-endif::[]
-
-ifdef::env-github[]
-image:https://img.shields.io/github/contributors/FoodTruckNerdz/docs.svg?style=for-the-badge[Contributors]
-image:https://img.shields.io/github/forks/FoodTruckNerdz/docs.svg?style=for-the-badge[Forks]
-image:https://img.shields.io/github/stars/FoodTruckNerdz/docs.svg?style=for-the-badge[Stars]
-image:https://img.shields.io/github/issues/FoodTruckNerdz/docs.svg?style=for-the-badge[Issues]
-endif::[]
 
 = Documentation (Antora)
 
@@ -51,6 +43,8 @@ The `site/supplemental-ui/` directory holds a thin overlay on link:https://githu
 * **Customer Help**: `help.foodtrucknerdz.com` - Astro + Starlight (also includes Antora component)
 * **Developer Portal**: `developer.foodtrucknerdz.com` - Astro + Starlight (also includes Antora component)
 
+link:#readme-top[back to top]
+
 == Installation
 
 To build and preview the documentation locally:
@@ -80,9 +74,13 @@ Or use the Antora Docker image:
 docker run --rm -v "${PWD}:/antora" -u "$(id -u):$(id -g)" antora/antora antora-playbook.yml
 ----
 
+link:#readme-top[back to top]
+
 == Contact
 
 Food Truck Nerdz — support@foodtrucknerdz.com
 
 * Project: https://github.com/FoodTruckNerdz/docs
 * Site: https://www.foodtrucknerdz.com/
+
+link:#readme-top[back to top]
