@@ -3,7 +3,27 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-[[readme-top]]
+ifdef::env-github[]
+++++
+<a id="readme-top"></a>
+<div align="center">
+<a href="https://github.com/FoodTruckNerdz/docs/graphs/contributors"><img src="https://img.shields.io/github/contributors/FoodTruckNerdz/docs.svg?style=for-the-badge" alt="Contributors"></a>
+<a href="https://github.com/FoodTruckNerdz/docs/network/members"><img src="https://img.shields.io/github/forks/FoodTruckNerdz/docs.svg?style=for-the-badge" alt="Forks"></a>
+<a href="https://github.com/FoodTruckNerdz/docs/stargazers"><img src="https://img.shields.io/github/stars/FoodTruckNerdz/docs.svg?style=for-the-badge" alt="Stars"></a>
+<a href="https://github.com/FoodTruckNerdz/docs/issues"><img src="https://img.shields.io/github/issues/FoodTruckNerdz/docs.svg?style=for-the-badge" alt="Issues"></a>
+<br />
+<h3 align="center">Documentation (Antora)</h3>
+<p align="center">
+FTN team's internal documentation hub — Antora playbook coordinating docs from multiple repositories.<br /><br />
+<a href="https://docs.foodtrucknerdz.com">Explore the docs</a>
+&middot;
+<a href="https://github.com/FoodTruckNerdz/docs/issues">Report Bug</a>
+</p>
+</div>
+++++
+endif::[]
+
+ifndef::env-github[]
 image:https://img.shields.io/github/contributors/FoodTruckNerdz/docs.svg?style=for-the-badge[Contributors,link=https://github.com/FoodTruckNerdz/docs/graphs/contributors]
 image:https://img.shields.io/github/forks/FoodTruckNerdz/docs.svg?style=for-the-badge[Forks,link=https://github.com/FoodTruckNerdz/docs/network/members]
 image:https://img.shields.io/github/stars/FoodTruckNerdz/docs.svg?style=for-the-badge[Stars,link=https://github.com/FoodTruckNerdz/docs/stargazers]
@@ -13,8 +33,10 @@ image:https://img.shields.io/github/issues/FoodTruckNerdz/docs.svg?style=for-the
 
 FTN team's internal documentation hub — Antora playbook coordinating docs from multiple repositories.
 
-link:https://docs.foodtrucknerdz.com[Explore the docs] ·
+link:https://docs.foodtrucknerdz.com[Explore the docs] 
+· 
 link:https://github.com/FoodTruckNerdz/docs/issues[Report Bug]
+endif::[]
 
 == About The Project
 
@@ -43,7 +65,9 @@ The `site/supplemental-ui/` directory holds a thin overlay on link:https://githu
 * **Customer Help**: `help.foodtrucknerdz.com` - Astro + Starlight (also includes Antora component)
 * **Developer Portal**: `developer.foodtrucknerdz.com` - Astro + Starlight (also includes Antora component)
 
-link:#readme-top[back to top]
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 
 == Installation
 
@@ -74,7 +98,9 @@ Or use the Antora Docker image:
 docker run --rm -v "${PWD}:/antora" -u "$(id -u):$(id -g)" antora/antora antora-playbook.yml
 ----
 
-link:#readme-top[back to top]
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 
 == Contact
 
@@ -83,4 +109,6 @@ Food Truck Nerdz — support@foodtrucknerdz.com
 * Project: https://github.com/FoodTruckNerdz/docs
 * Site: https://www.foodtrucknerdz.com/
 
-link:#readme-top[back to top]
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
