@@ -1,4 +1,5 @@
 * xref:index.adoc[Home]
+* xref:business-resources.adoc[Business resources]
 * xref:partners.adoc[Partners & Services]
 * xref:vscode-extensions.adoc[VS Code Extensions]
 * Site build

@@ -57,6 +57,10 @@ xref:developer-portal::index.adoc[Developer portal]
 ====
 --
 
+== Ops bootstrap
+
+Org support systems (scheduling, design, vaults, email lanes) are summarized on xref:business-resources.adoc[Business resources], with strategy on https://docs.devcentr.org/business-bootstrap/[Dev-Centr Business Bootstrap]. Product marketplace partners stay on xref:partners.adoc[Partners & Services].
+
 == Docs tooling
 
 How this site is built and maintained, including local development and CI/CD, is covered on the xref:docs-site-management.adoc[documentation site management] page.

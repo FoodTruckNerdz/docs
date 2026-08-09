@@ -3,6 +3,8 @@
 
 To provide a comprehensive experience for food truck operators and customers, the Food Truck Nerdz (FTN) app can integrate with various third-party services. These partnerships enhance operational efficiency, marketing reach, and customer satisfaction.
 
+Org bootstrap tools (Cal.com, Penpot, Bitwarden/Vaultwarden, email lanes) are documented separately on xref:business-resources.adoc[Business resources], not here.
+
 == Point of Sale (POS) Systems
 
 POS integrations are critical for synchronizing menu items, inventory, and sales data directly with the FTN tracker.
