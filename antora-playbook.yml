@@ -51,6 +51,7 @@ asciidoc:
   extensions:
     - asciidoctor-emoji
   attributes:
+    stem: latexmath
     # Organization URLs
     github-org: FoodTruckNerdz
     github-org-url: https://github.com/FoodTruckNerdz
