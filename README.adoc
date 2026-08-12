@@ -61,7 +61,8 @@ The `site/supplemental-ui/` directory holds a thin overlay on link:https://githu
 
 === Documentation Sites
 
-* **Internal Team Docs**: `docs.foodtrucknerdz.com` - This Antora site
+* **Public docs hub**: `docs.foodtrucknerdz.com` — This Antora site
+* **Member-only team docs**: `team.docs.foodtrucknerdz.com` — Private sister Antora site (`FoodTruckNerdz/team-docs`)
 * **Customer Help**: `help.foodtrucknerdz.com` - Astro + Starlight (also includes Antora component)
 * **Developer Portal**: `developer.foodtrucknerdz.com` - Astro + Starlight (also includes Antora component)
 

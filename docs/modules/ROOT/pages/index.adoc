@@ -57,6 +57,13 @@ xref:developer-portal::index.adoc[Developer portal]
 ====
 --
 
+== Team documentation (members only)
+
+FoodTruckNerdz maintains a **private sister Antora site** for org-member SOPs and internal runbooks — not aggregated into this public hub.
+
+* **URL:** link:https://team.docs.foodtrucknerdz.com[team.docs.foodtrucknerdz.com]
+* **Aggregator:** link:https://github.com/FoodTruckNerdz/team-docs[`FoodTruckNerdz/team-docs`] (private repository)
+
 == Ops bootstrap
 
 Org support systems (scheduling, design, vaults, email lanes) are summarized on xref:business-resources.adoc[Business resources], with strategy on https://docs.devcentr.org/business-bootstrap/[Dev-Centr Business Bootstrap]. Product marketplace partners stay on xref:partners.adoc[Partners & Services].
