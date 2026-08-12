@@ -15,7 +15,9 @@ ifdef::env-github[]
 <h3 align="center">Documentation (Antora)</h3>
 <p align="center">
 FTN team's internal documentation hub — Antora playbook coordinating docs from multiple repositories.<br /><br />
-<a href="https://docs.foodtrucknerdz.com">Explore the docs</a>
+<a href="https://docs.foodtrucknerdz.com"><strong>Explore the docs »</strong></a>
+&middot;
+<a href="https://team.docs.foodtrucknerdz.com">Team docs</a>
 &middot;
 <a href="https://github.com/FoodTruckNerdz/docs/issues">Report Bug</a>
 </p>
@@ -33,8 +35,10 @@ image:https://img.shields.io/github/issues/FoodTruckNerdz/docs.svg?style=for-the
 
 FTN team's internal documentation hub — Antora playbook coordinating docs from multiple repositories.
 
-link:https://docs.foodtrucknerdz.com[Explore the docs] 
-· 
+https://docs.foodtrucknerdz.com[*Explore the docs »*]
+·
+link:https://team.docs.foodtrucknerdz.com[Team docs]
+·
 link:https://github.com/FoodTruckNerdz/docs/issues[Report Bug]
 endif::[]
 
@@ -61,8 +65,8 @@ The `site/supplemental-ui/` directory holds a thin overlay on link:https://githu
 
 === Documentation Sites
 
-* **Public docs hub**: `docs.foodtrucknerdz.com` — This Antora site
-* **Member-only team docs**: `team.docs.foodtrucknerdz.com` — Private sister Antora site (`FoodTruckNerdz/team-docs`)
+* **Public docs hub**: https://docs.foodtrucknerdz.com[*docs.foodtrucknerdz.com*] — This Antora site
+* **Member-only team docs**: https://team.docs.foodtrucknerdz.com[team.docs.foodtrucknerdz.com] — Sister Antora site (`FoodTruckNerdz/team-docs`)
 * **Customer Help**: `help.foodtrucknerdz.com` - Astro + Starlight (also includes Antora component)
 * **Developer Portal**: `developer.foodtrucknerdz.com` - Astro + Starlight (also includes Antora component)
 

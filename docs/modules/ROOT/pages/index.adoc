@@ -55,14 +55,17 @@ Resources for external developers integrating with the platform.
 
 xref:developer-portal::index.adoc[Developer portal]
 ====
+
+[.tile]
+====
+[.title]
+🔒 Team docs
+
+Member-only SOPs and internal runbooks (sister Antora site). Access-gated; the URL is public on purpose.
+
+link:https://team.docs.foodtrucknerdz.com[team.docs.foodtrucknerdz.com]
+====
 --
-
-== Team documentation (members only)
-
-FoodTruckNerdz maintains a **private sister Antora site** for org-member SOPs and internal runbooks — not aggregated into this public hub.
-
-* **URL:** link:https://team.docs.foodtrucknerdz.com[team.docs.foodtrucknerdz.com]
-* **Aggregator:** link:https://github.com/FoodTruckNerdz/team-docs[`FoodTruckNerdz/team-docs`] (private repository)
 
 == Ops bootstrap
 

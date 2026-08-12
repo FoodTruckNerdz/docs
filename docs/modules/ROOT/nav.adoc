@@ -1,4 +1,5 @@
 * xref:index.adoc[Home]
+* link:https://team.docs.foodtrucknerdz.com[Team docs (members)]
 * xref:business-resources.adoc[Business resources]
 * xref:partners.adoc[Partners & Services]
 * xref:vscode-extensions.adoc[VS Code Extensions]
