@@ -68,4 +68,9 @@ asciidoc:
 antora:
   extensions:
     - '@antora/lunr-extension'
+    # Bare /component/ → version chooser (selector). Unversioned (version: ~)
+    # components are skipped. short_circuit_single: false so even a single
+    # numbered version gets a chooser page instead of aliasing straight through.
     - require: '@antora-supplemental/unversioned-component-urls'
+      mode: selector
+      short_circuit_single: false
