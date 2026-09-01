@@ -74,3 +74,4 @@ antora:
     - require: '@antora-supplemental/unversioned-component-urls'
       mode: selector
       short_circuit_single: false
+    - '@antora-supplemental/build-stack'

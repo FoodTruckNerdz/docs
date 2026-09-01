@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@antora-supplemental/build-stack": "github:antora-supplemental/build-stack#main",
     "@antora-supplemental/unversioned-component-urls": "github:antora-supplemental/antora-unversioned-component-urls#v2.1.2",
     "@antora/lunr-extension": "^1.0.0-alpha.13",
     "@asciidoctor/core": "^3.0.4",
