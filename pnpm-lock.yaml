@@ -17,6 +17,9 @@ importers:
         specifier: ^0.0.4
         version: 0.0.4
     devDependencies:
+      '@antora-supplemental/build-stack':
+        specifier: github:antora-supplemental/build-stack#main
+        version: https://codeload.github.com/antora-supplemental/build-stack/tar.gz/84875b509693847d123c066d815af3269dd3054c(@antora/site-generator@3.1.14)
       '@antora-supplemental/unversioned-component-urls':
         specifier: github:antora-supplemental/antora-unversioned-component-urls#v2.1.2
         version: https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/98b806dbae2a655a37219cdd9fea9b31b95b04c0(@antora/site-generator@3.1.14)
@@ -34,6 +37,13 @@ importers:
         version: 0.5.0(@asciidoctor/core@3.0.4)
 
 packages:
+
+  '@antora-supplemental/build-stack@https://codeload.github.com/antora-supplemental/build-stack/tar.gz/84875b509693847d123c066d815af3269dd3054c':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/build-stack/tar.gz/84875b509693847d123c066d815af3269dd3054c}
+    version: 0.1.2
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@antora/site-generator': '>=3.1.0'
 
   '@antora-supplemental/unversioned-component-urls@https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/98b806dbae2a655a37219cdd9fea9b31b95b04c0':
     resolution: {tarball: https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/98b806dbae2a655a37219cdd9fea9b31b95b04c0}
@@ -822,6 +832,10 @@ packages:
     resolution: {integrity: sha512-phENi2PLiHnHb6QBVot+dJnaAZ0xosj7p3fWl+znIjBDlnMI2PsZCJZ306BPTFOaHf5qdDEI8x5qFrSOBN5vrw==}
 
 snapshots:
+
+  '@antora-supplemental/build-stack@https://codeload.github.com/antora-supplemental/build-stack/tar.gz/84875b509693847d123c066d815af3269dd3054c(@antora/site-generator@3.1.14)':
+    dependencies:
+      '@antora/site-generator': 3.1.14
 
   '@antora-supplemental/unversioned-component-urls@https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/98b806dbae2a655a37219cdd9fea9b31b95b04c0(@antora/site-generator@3.1.14)':
     dependencies:
