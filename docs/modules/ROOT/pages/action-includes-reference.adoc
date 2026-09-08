@@ -59,25 +59,7 @@ The `checkout` action clones your repository onto the GitHub Actions runner, mak
 . Configures git authentication for any subsequent git operations
 . Places the repository contents in `$GITHUB_WORKSPACE`
 
-[plantuml, checkout-flow, svg]
-----
-@startuml
-!theme plain
-skinparam backgroundColor transparent
-
-rectangle "GitHub Repository\n(remote)" as remote
-rectangle "Runner Workspace\n($GITHUB_WORKSPACE)" as workspace
-
-remote -down-> workspace : git clone\n(shallow by default)
-
-note right of workspace
-  Your repository files are now
-  available at $GITHUB_WORKSPACE
-  (typically /home/runner/work/repo/repo)
-end note
-
-@enduml
-----
+image::diagrams/checkout-flow/checkout-flow.svg[alt="Checkout copies the repository into the runner workspace",role=themed-svg,width=720]
 
 === Usage in Our Workflow
 
@@ -340,24 +322,7 @@ We configure:
 
 === Why Caching Matters
 
-[plantuml, cache-benefit, svg]
-----
-@startuml
-!theme plain
-skinparam backgroundColor transparent
-
-rectangle "Without Cache" as nocache {
-  rectangle "pnpm install" as install1
-  note right: ~45-60 seconds\nDownloads all packages
-}
-
-rectangle "With Cache" as withcache {
-  rectangle "pnpm install" as install2
-  note right: ~5-10 seconds\nRestores from cache
-}
-
-@enduml
-----
+image::diagrams/cache-benefit/cache-benefit.svg[alt="Package installation with and without a restored cache",role=themed-svg,width=720]
 
 Caching can reduce `pnpm install` time from 45-60 seconds to under 10 seconds by:
 
@@ -434,23 +399,7 @@ This action packages your built static site and uploads it as a GitHub Actions a
 . Uploads the archive as a workflow artifact named `github-pages`
 . Calculates and reports the artifact size
 
-[plantuml, upload-artifact-flow, svg]
-----
-@startuml
-!theme plain
-skinparam backgroundColor transparent
-
-rectangle "Build Output\n(site/build/site/)" as build
-rectangle "Tar Archive" as tar
-rectangle "GitHub Artifact\n(github-pages)" as artifact
-rectangle "Deploy Step" as deploy
-
-build -right-> tar : package
-tar -right-> artifact : upload
-artifact -right-> deploy : download
-
-@enduml
-----
+image::diagrams/upload-artifact-flow/upload-artifact-flow.svg[alt="Build output packaging and GitHub Pages artifact upload",role=themed-svg,width=720]
 
 === Usage in Our Workflow
 
@@ -560,39 +509,7 @@ deploy:
 
 Here's how all the actions work together:
 
-[plantuml, complete-workflow, svg]
-----
-@startuml
-!theme plain
-skinparam backgroundColor transparent
-skinparam defaultFontName Segoe UI
-
-title Complete GitHub Actions Workflow
-
-|Build Job|
-start
-:actions/checkout@v4;
-note right: Clone repository
-:actions/configure-pages@v5;
-note right: Configure Pages settings
-:pnpm/action-setup@v4;
-note right: Install pnpm
-:actions/setup-node@v4;
-note right: Install Node.js + cache
-:pnpm install;
-:pnpm exec antora;
-note right: Build site
-:actions/upload-pages-artifact@v3;
-note right: Package & upload
-
-|Deploy Job|
-:actions/deploy-pages@v4;
-note right: Deploy to Pages
-
-stop
-
-@enduml
-----
+image::diagrams/complete-workflow/complete-workflow.svg[alt="Complete GitHub Actions documentation workflow",role=themed-svg,width=720]
 
 == Related Documentation
 

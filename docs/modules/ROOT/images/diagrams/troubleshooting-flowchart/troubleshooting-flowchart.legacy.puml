@@ -1,0 +1,30 @@
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+skinparam defaultFontName Segoe UI
+
+title Antora Build Error Diagnosis
+
+start
+
+:Build fails with error;
+
+if (Error mentions\n"start path does not exist"?) then (yes)
+  :Go to **Path Does Not Exist**\nsection below;
+  stop
+elseif (Error mentions\n"authentication" or\n"could not read Username"?) then (yes)
+  :Check **GIT_CREDENTIALS**\nin your workflow;
+  :See xref:github-actions-antora-setup.adoc[];
+  stop
+elseif (Error mentions\n"antora.yml not found"?) then (yes)
+  :Go to **Missing antora.yml**\nsection below;
+  stop
+elseif (Error mentions\n"could not resolve"?) then (yes)
+  :Go to **Branch/Tag Resolution**\nsection below;
+  stop
+else (other)
+  :Check the **Other Errors**\nsection below;
+  stop
+endif
+
+@enduml

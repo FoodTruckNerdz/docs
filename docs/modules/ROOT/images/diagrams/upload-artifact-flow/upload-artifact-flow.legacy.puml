@@ -1,0 +1,14 @@
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+
+rectangle "Build Output\n(site/build/site/)" as build
+rectangle "Tar Archive" as tar
+rectangle "GitHub Artifact\n(github-pages)" as artifact
+rectangle "Deploy Step" as deploy
+
+build -right-> tar : package
+tar -right-> artifact : upload
+artifact -right-> deploy : download
+
+@enduml

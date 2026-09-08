@@ -1,0 +1,16 @@
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+
+rectangle "GitHub Repository\n(remote)" as remote
+rectangle "Runner Workspace\n($GITHUB_WORKSPACE)" as workspace
+
+remote -down-> workspace : git clone\n(shallow by default)
+
+note right of workspace
+  Your repository files are now
+  available at $GITHUB_WORKSPACE
+  (typically /home/runner/work/repo/repo)
+end note
+
+@enduml

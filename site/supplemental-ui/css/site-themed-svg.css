@@ -1,0 +1,36 @@
+:root {
+  --themed-svg-ftn-diagram-color-canvas: #fffaf0;
+  --themed-svg-ftn-diagram-color-surface-primary: #ffffff;
+  --themed-svg-ftn-diagram-color-surface-secondary: #fff1cf;
+  --themed-svg-ftn-diagram-color-surface-accent: #ffe08a;
+  --themed-svg-ftn-diagram-color-surface-success: #e9f7ee;
+  --themed-svg-ftn-diagram-color-surface-warning: #fff4df;
+  --themed-svg-ftn-diagram-color-surface-danger: #fde8e7;
+  --themed-svg-ftn-diagram-color-text-primary: #171717;
+  --themed-svg-ftn-diagram-color-text-muted: #4b5563;
+  --themed-svg-ftn-diagram-color-border-primary: #4b5563;
+  --themed-svg-ftn-diagram-color-edge: #374151;
+  --themed-svg-ftn-diagram-color-edge-label: #171717;
+  --themed-svg-ftn-diagram-color-accent-primary: #c71f2d;
+}
+
+html.dark-theme {
+  --themed-svg-ftn-diagram-color-canvas: #171717;
+  --themed-svg-ftn-diagram-color-surface-primary: #262626;
+  --themed-svg-ftn-diagram-color-surface-secondary: #3a3020;
+  --themed-svg-ftn-diagram-color-surface-accent: #4a3b16;
+  --themed-svg-ftn-diagram-color-surface-success: #183928;
+  --themed-svg-ftn-diagram-color-surface-warning: #493616;
+  --themed-svg-ftn-diagram-color-surface-danger: #4b2024;
+  --themed-svg-ftn-diagram-color-text-primary: #fffaf0;
+  --themed-svg-ftn-diagram-color-text-muted: #d1d5db;
+  --themed-svg-ftn-diagram-color-border-primary: #d1d5db;
+  --themed-svg-ftn-diagram-color-edge: #e5e7eb;
+  --themed-svg-ftn-diagram-color-edge-label: #fffaf0;
+  --themed-svg-ftn-diagram-color-accent-primary: #ff5a66;
+}
+
+themed-svg[data-themed-svg-upgrade] {
+  display: block;
+  max-width: 100%;
+}

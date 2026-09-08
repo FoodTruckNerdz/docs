@@ -1,0 +1,10 @@
+= Adaptive documentation diagrams
+:page-audience: FoodTruckNerdz documentation readers and maintainers
+:page-usage-context: Understanding the September 2026 diagram delivery migration
+:page-orig-author: Ryan Johnson
+:page-last-author: Cursor agent on behalf of Ryan Johnson
+:page-last-edited: 2026-09-08
+
+The seven PlantUML build-flow figures were redrawn as canonical Mermaid sources. Each source has an explicit semantic theme manifest, an adaptive SVG for direct and no-JavaScript use, and a host SVG loaded through the sanitized Themed SVG runtime.
+
+The original PlantUML text remains beside each diagram as a legacy provenance source.

@@ -1,0 +1,15 @@
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+
+rectangle "Without Cache" as nocache {
+  rectangle "pnpm install" as install1
+  note right: ~45-60 seconds\nDownloads all packages
+}
+
+rectangle "With Cache" as withcache {
+  rectangle "pnpm install" as install2
+  note right: ~5-10 seconds\nRestores from cache
+}
+
+@enduml

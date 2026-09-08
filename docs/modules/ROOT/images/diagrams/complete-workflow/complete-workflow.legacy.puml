@@ -1,0 +1,30 @@
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+skinparam defaultFontName Segoe UI
+
+title Complete GitHub Actions Workflow
+
+|Build Job|
+start
+:actions/checkout@v4;
+note right: Clone repository
+:actions/configure-pages@v5;
+note right: Configure Pages settings
+:pnpm/action-setup@v4;
+note right: Install pnpm
+:actions/setup-node@v4;
+note right: Install Node.js + cache
+:pnpm install;
+:pnpm exec antora;
+note right: Build site
+:actions/upload-pages-artifact@v3;
+note right: Package & upload
+
+|Deploy Job|
+:actions/deploy-pages@v4;
+note right: Deploy to Pages
+
+stop
+
+@enduml

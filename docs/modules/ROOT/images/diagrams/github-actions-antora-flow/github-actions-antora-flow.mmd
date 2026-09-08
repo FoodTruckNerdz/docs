@@ -1,0 +1,20 @@
+flowchart LR
+  dev["Developer"] -->|push to main| repo["GitHub repository"]
+  repo -->|trigger workflow| runner["GitHub Actions runner"]
+  runner --> checkout["Checkout and install dependencies"]
+  checkout -->|GIT_CREDENTIALS| private["Private content repositories"]
+  private -->|content sources| build["Build Antora site"]
+  build --> pages["GitHub Pages"]
+  pages -->|site available| dev
+  class dev primary
+  class repo,runner,checkout accent
+  class private secondary
+  class build warning
+  class pages success
+
+  classDef primary fill:#ffffff,stroke:#52606d,color:#172033
+  classDef secondary fill:#e8edf2,stroke:#52606d,color:#172033
+  classDef accent fill:#d9eee9,stroke:#0f7a73,color:#172033
+  classDef success fill:#e9f7ee,stroke:#2f855a,color:#172033
+  classDef warning fill:#fff4df,stroke:#b7791f,color:#172033
+  classDef danger fill:#fde8e7,stroke:#c53030,color:#172033
