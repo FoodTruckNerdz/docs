@@ -31,6 +31,10 @@ writeFileSync(configPath, JSON.stringify({
   securityLevel: 'strict',
   theme: 'default',
 }))
+const puppeteerConfigPath = join(temp, 'puppeteer-config.json')
+writeFileSync(puppeteerConfigPath, JSON.stringify({
+  args: ['--no-sandbox', '--disable-setuid-sandbox'],
+}))
 
 let stale = false
 for (const [name, title, description] of diagrams) {
@@ -56,6 +60,7 @@ for (const [name, title, description] of diagrams) {
     '-o', raw,
     '-b', 'transparent',
     '-c', configPath,
+    ...(process.env.CI ? ['-p', puppeteerConfigPath] : []),
   ], { encoding: 'utf8', env })
   if (rendered.status !== 0) throw new Error(rendered.stderr || rendered.stdout)
 
