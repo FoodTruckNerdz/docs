@@ -43,6 +43,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Install Mermaid browser
+        run: pnpm exec puppeteer browsers install chrome-headless-shell
+
       - name: Build Antora site
         env:
           # Antora requires git credentials to be stored in GIT_CREDENTIALS environment variable
