@@ -1,0 +1,32 @@
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+skinparam defaultFontName Segoe UI
+
+title GitHub Actions Antora Build Flow
+
+actor Developer as dev
+participant "GitHub\nRepository" as repo
+participant "GitHub Actions\nRunner" as runner
+participant "Private Repos\n(content sources)" as private
+participant "GitHub Pages" as pages
+
+dev -> repo : Push to main branch
+activate repo
+repo -> runner : Trigger workflow
+activate runner
+
+runner -> runner : Checkout repository
+runner -> runner : Install pnpm & dependencies
+runner -> private : Fetch content\n(using GIT_CREDENTIALS)
+note right: PAT stored in\nGIT_CREDENTIALS env var
+private --> runner : Return content sources
+
+runner -> runner : Build Antora site
+runner -> pages : Deploy artifact
+
+pages --> dev : Site available at\ndocs.foodtrucknerdz.com
+
+deactivate runner
+deactivate repo
+@enduml

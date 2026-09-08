@@ -1,0 +1,23 @@
+flowchart TB
+  subgraph build["Build job"]
+    checkout["actions/checkout@v4"] --> pages["actions/configure-pages@v5"]
+    pages --> pnpm["pnpm/action-setup@v4"]
+    pnpm --> node["actions/setup-node@v4<br/>Node.js and cache"]
+    node --> install["pnpm install"]
+    install --> antora["pnpm exec antora"]
+    antora --> upload["actions/upload-pages-artifact@v3"]
+  end
+  subgraph deployjob["Deploy job"]
+    deploy["actions/deploy-pages@v4"]
+  end
+  upload --> deploy
+  class checkout,pages,pnpm,node,install,antora primary
+  class upload accent
+  class deploy success
+
+  classDef primary fill:#ffffff,stroke:#52606d,color:#172033
+  classDef secondary fill:#e8edf2,stroke:#52606d,color:#172033
+  classDef accent fill:#d9eee9,stroke:#0f7a73,color:#172033
+  classDef success fill:#e9f7ee,stroke:#2f855a,color:#172033
+  classDef warning fill:#fff4df,stroke:#b7791f,color:#172033
+  classDef danger fill:#fde8e7,stroke:#c53030,color:#172033

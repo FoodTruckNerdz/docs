@@ -1,0 +1,613 @@
+{
+  "$schema": "https://docs.devcentr.org/themed-svg/schemas/themed-svg-manifest-v1.schema.json",
+  "schemaVersion": 1,
+  "namespace": "ftn-diagram",
+  "source": {
+    "kind": "diagram-generator",
+    "uri": "github-actions-antora-flow.mmd",
+    "generator": "mermaid"
+  },
+  "tokens": [
+    {
+      "id": "color.canvas",
+      "description": "canvas"
+    },
+    {
+      "id": "color.surface.primary",
+      "description": "surface primary"
+    },
+    {
+      "id": "color.surface.secondary",
+      "description": "surface secondary"
+    },
+    {
+      "id": "color.surface.accent",
+      "description": "surface accent"
+    },
+    {
+      "id": "color.surface.success",
+      "description": "surface success"
+    },
+    {
+      "id": "color.surface.warning",
+      "description": "surface warning"
+    },
+    {
+      "id": "color.surface.danger",
+      "description": "surface danger"
+    },
+    {
+      "id": "color.text.primary",
+      "description": "text primary"
+    },
+    {
+      "id": "color.text.muted",
+      "description": "text muted"
+    },
+    {
+      "id": "color.border.primary",
+      "description": "border primary"
+    },
+    {
+      "id": "color.edge",
+      "description": "edge"
+    },
+    {
+      "id": "color.edge.label",
+      "description": "edge label"
+    },
+    {
+      "id": "color.accent.primary",
+      "description": "accent primary"
+    }
+  ],
+  "defaultPreset": "light",
+  "presets": {
+    "light": {
+      "color.canvas": "#fffaf0",
+      "color.surface.primary": "#ffffff",
+      "color.surface.secondary": "#fff1cf",
+      "color.surface.accent": "#ffe08a",
+      "color.surface.success": "#e9f7ee",
+      "color.surface.warning": "#fff4df",
+      "color.surface.danger": "#fde8e7",
+      "color.text.primary": "#171717",
+      "color.text.muted": "#4b5563",
+      "color.border.primary": "#4b5563",
+      "color.edge": "#374151",
+      "color.edge.label": "#171717",
+      "color.accent.primary": "#c71f2d"
+    },
+    "dark": {
+      "color.canvas": "#171717",
+      "color.surface.primary": "#262626",
+      "color.surface.secondary": "#3a3020",
+      "color.surface.accent": "#4a3b16",
+      "color.surface.success": "#183928",
+      "color.surface.warning": "#493616",
+      "color.surface.danger": "#4b2024",
+      "color.text.primary": "#fffaf0",
+      "color.text.muted": "#d1d5db",
+      "color.border.primary": "#d1d5db",
+      "color.edge": "#e5e7eb",
+      "color.edge.label": "#fffaf0",
+      "color.accent.primary": "#ff5a66"
+    }
+  },
+  "bindings": [
+    {
+      "kind": "presentation",
+      "selector": ".background",
+      "attribute": "fill",
+      "token": "color.canvas"
+    },
+    {
+      "kind": "presentation",
+      "selector": ".primary > rect, .primary > polygon, .primary > path",
+      "attribute": "fill",
+      "token": "color.surface.primary"
+    },
+    {
+      "kind": "presentation",
+      "selector": ".secondary > rect, .secondary > polygon, .secondary > path",
+      "attribute": "fill",
+      "token": "color.surface.secondary"
+    },
+    {
+      "kind": "presentation",
+      "selector": ".accent > rect, .accent > polygon, .accent > path",
+      "attribute": "fill",
+      "token": "color.surface.accent"
+    },
+    {
+      "kind": "presentation",
+      "selector": ".success > rect, .success > polygon, .success > path",
+      "attribute": "fill",
+      "token": "color.surface.success"
+    },
+    {
+      "kind": "presentation",
+      "selector": ".warning > rect, .warning > polygon, .warning > path",
+      "attribute": "fill",
+      "token": "color.surface.warning"
+    },
+    {
+      "kind": "presentation",
+      "selector": ".danger > rect, .danger > polygon, .danger > path",
+      "attribute": "fill",
+      "token": "color.surface.danger"
+    },
+    {
+      "kind": "presentation",
+      "selector": ".nodeLabel, .cluster-label, .edgeLabel",
+      "attribute": "fill",
+      "token": "color.text.primary"
+    },
+    {
+      "kind": "presentation",
+      "selector": ".node > rect, .node > polygon, .node > path, .cluster > rect",
+      "attribute": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "presentation",
+      "selector": ".flowchart-link",
+      "attribute": "stroke",
+      "token": "color.edge"
+    },
+    {
+      "kind": "presentation",
+      "selector": ".edgeLabel rect",
+      "attribute": "fill",
+      "token": "color.canvas"
+    },
+    {
+      "kind": "presentation",
+      "selector": ".edgeLabel .label",
+      "attribute": "fill",
+      "token": "color.edge.label"
+    },
+    {
+      "kind": "presentation",
+      "selector": "marker path",
+      "attribute": "fill",
+      "token": "color.edge"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".primary rect",
+      "property": "fill",
+      "token": "color.surface.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".primary rect",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".primary polygon",
+      "property": "fill",
+      "token": "color.surface.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".primary polygon",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".primary path",
+      "property": "fill",
+      "token": "color.surface.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".primary path",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".primary circle",
+      "property": "fill",
+      "token": "color.surface.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".primary circle",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".primary ellipse",
+      "property": "fill",
+      "token": "color.surface.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".primary ellipse",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".primary tspan",
+      "property": "fill",
+      "token": "color.text.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".secondary rect",
+      "property": "fill",
+      "token": "color.surface.secondary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".secondary rect",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".secondary polygon",
+      "property": "fill",
+      "token": "color.surface.secondary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".secondary polygon",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".secondary path",
+      "property": "fill",
+      "token": "color.surface.secondary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".secondary path",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".secondary circle",
+      "property": "fill",
+      "token": "color.surface.secondary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".secondary circle",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".secondary ellipse",
+      "property": "fill",
+      "token": "color.surface.secondary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".secondary ellipse",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".secondary tspan",
+      "property": "fill",
+      "token": "color.text.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".accent rect",
+      "property": "fill",
+      "token": "color.surface.accent"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".accent rect",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".accent polygon",
+      "property": "fill",
+      "token": "color.surface.accent"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".accent polygon",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".accent path",
+      "property": "fill",
+      "token": "color.surface.accent"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".accent path",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".accent circle",
+      "property": "fill",
+      "token": "color.surface.accent"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".accent circle",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".accent ellipse",
+      "property": "fill",
+      "token": "color.surface.accent"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".accent ellipse",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".accent tspan",
+      "property": "fill",
+      "token": "color.text.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".success rect",
+      "property": "fill",
+      "token": "color.surface.success"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".success rect",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".success polygon",
+      "property": "fill",
+      "token": "color.surface.success"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".success polygon",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".success path",
+      "property": "fill",
+      "token": "color.surface.success"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".success path",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".success circle",
+      "property": "fill",
+      "token": "color.surface.success"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".success circle",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".success ellipse",
+      "property": "fill",
+      "token": "color.surface.success"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".success ellipse",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".success tspan",
+      "property": "fill",
+      "token": "color.text.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".warning rect",
+      "property": "fill",
+      "token": "color.surface.warning"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".warning rect",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".warning polygon",
+      "property": "fill",
+      "token": "color.surface.warning"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".warning polygon",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".warning path",
+      "property": "fill",
+      "token": "color.surface.warning"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".warning path",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".warning circle",
+      "property": "fill",
+      "token": "color.surface.warning"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".warning circle",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".warning ellipse",
+      "property": "fill",
+      "token": "color.surface.warning"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".warning ellipse",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".warning tspan",
+      "property": "fill",
+      "token": "color.text.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".danger rect",
+      "property": "fill",
+      "token": "color.surface.danger"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".danger rect",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".danger polygon",
+      "property": "fill",
+      "token": "color.surface.danger"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".danger polygon",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".danger path",
+      "property": "fill",
+      "token": "color.surface.danger"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".danger path",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".danger circle",
+      "property": "fill",
+      "token": "color.surface.danger"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".danger circle",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".danger ellipse",
+      "property": "fill",
+      "token": "color.surface.danger"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".danger ellipse",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".danger tspan",
+      "property": "fill",
+      "token": "color.text.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".flowchart-link",
+      "property": "stroke",
+      "token": "color.edge"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".marker",
+      "property": "fill",
+      "token": "color.edge"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".marker",
+      "property": "stroke",
+      "token": "color.edge"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": ".edgeLabel rect",
+      "property": "fill",
+      "token": "color.canvas"
+    },
+    {
+      "kind": "inline-style",
+      "selector": ".node .label",
+      "property": "color",
+      "token": "color.text.primary"
+    },
+    {
+      "kind": "inline-style",
+      "selector": ".node text",
+      "property": "fill",
+      "token": "color.text.primary"
+    }
+  ],
+  "fallback": {
+    "unresolvedToken": "error",
+    "missingTarget": "warn"
+  }
+}

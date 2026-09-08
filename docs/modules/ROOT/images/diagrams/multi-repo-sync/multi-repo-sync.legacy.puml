@@ -1,0 +1,27 @@
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+skinparam defaultFontName Segoe UI
+
+title Multi-Repository Synchronization
+
+rectangle "CI/CD Build" as ci {
+  rectangle "antora-playbook.yml" as playbook
+}
+
+rectangle "GitHub Repositories" as repos {
+  rectangle "onboarding\nmain: docs ✓" as repo1 #lightgreen
+  rectangle "ftn-site\nmain: docs ✗" as repo3 #lightcoral
+  rectangle "food-truck-api\nmain: docs ✓" as repo4 #lightgreen
+}
+
+playbook --> repo1 : fetch
+playbook --> repo3 : fetch\n**FAILS**
+playbook --> repo4 : fetch
+
+note bottom of repo3
+  Team member working locally
+  but hasn't pushed changes yet
+end note
+
+@enduml

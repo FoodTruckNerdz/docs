@@ -1,0 +1,8 @@
+= Changelog
+:description: Reader-facing history of FoodTruckNerdz documentation hub changes
+
+== 2026-09-08 -- Adaptive documentation diagrams
+
+Seven build and troubleshooting diagrams now ship as editable Mermaid source, portable light/dark SVGs, and host-themed SVGs. The Antora hub progressively applies the current Valentus theme while retaining the adaptive image fallback.
+
+See xref:changelog-details/2026-09-08--adaptive-documentation-diagrams.adoc[details].

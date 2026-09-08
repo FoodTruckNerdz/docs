@@ -1,0 +1,20 @@
+flowchart TB
+  fail["Build fails with error"] --> path{"Start path<br/>does not exist?"}
+  path -->|yes| pathfix["Read Path Does Not Exist"]
+  path -->|no| auth{"Authentication or<br/>username error?"}
+  auth -->|yes| authfix["Check GIT_CREDENTIALS"]
+  auth -->|no| config{"antora.yml<br/>not found?"}
+  config -->|yes| configfix["Read Missing antora.yml"]
+  config -->|no| branch{"Could not<br/>resolve?"}
+  branch -->|yes| branchfix["Read Branch or Tag Resolution"]
+  branch -->|no| other["Read Other Errors"]
+  class fail danger
+  class path,auth,config,branch warning
+  class pathfix,authfix,configfix,branchfix,other success
+
+  classDef primary fill:#ffffff,stroke:#52606d,color:#172033
+  classDef secondary fill:#e8edf2,stroke:#52606d,color:#172033
+  classDef accent fill:#d9eee9,stroke:#0f7a73,color:#172033
+  classDef success fill:#e9f7ee,stroke:#2f855a,color:#172033
+  classDef warning fill:#fff4df,stroke:#b7791f,color:#172033
+  classDef danger fill:#fde8e7,stroke:#c53030,color:#172033
