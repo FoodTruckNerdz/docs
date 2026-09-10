@@ -34,8 +34,8 @@ importers:
         specifier: ^3.0.4
         version: 3.0.4
       '@dev-centr/mermaid-svg-css-vars':
-        specifier: 0.1.2
-        version: 0.1.2
+        specifier: 0.1.3
+        version: 0.1.3
       '@dev-centr/themed-svg':
         specifier: file:../../dev-centr/themed-svg
         version: file:../../dev-centr/themed-svg
@@ -180,8 +180,8 @@ packages:
   '@chevrotain/types@11.1.2':
     resolution: {integrity: sha512-U+HFai5+zmJCkK86QsaJtoITlboZHBqrVketcO2ROv865xfCMSFpELQoz1GkX5GzME8pTa+3kbKrZHQtI0gdbw==}
 
-  '@dev-centr/mermaid-svg-css-vars@0.1.2':
-    resolution: {integrity: sha512-XRpbCIGhcWTfAovb0I7JlV2EsJOEn/dJd3RVQSiVFVGbsweMmj1qOZ8ozmmQSNVo+y2eSJFDQEynjUUQgkofOg==}
+  '@dev-centr/mermaid-svg-css-vars@0.1.3':
+    resolution: {integrity: sha512-3M5VF6AOmdLmFkzq6HRsCQ73vY5FKfCKKYDInBUwPT/cQd/r+R8r5kjivmBU2BH4tAFkmoYjkGHpIauFZDdQTA==}
     engines: {node: '>=20'}
     hasBin: true
 
@@ -2070,7 +2070,7 @@ snapshots:
 
   '@chevrotain/types@11.1.2': {}
 
-  '@dev-centr/mermaid-svg-css-vars@0.1.2':
+  '@dev-centr/mermaid-svg-css-vars@0.1.3':
     dependencies:
       '@dev-centr/themed-svg': file:../../dev-centr/themed-svg
 
