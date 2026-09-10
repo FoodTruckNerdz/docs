@@ -1,6 +1,15 @@
 = Changelog
 :description: Reader-facing history of FoodTruckNerdz documentation hub changes
 
+== 2026-09-10 -- Host diagram fills follow dark mode
+
+Mermaid host SVGs now rewrite inline `fill`/`stroke` `!important` paints to
+`var(--themed-svg-ftn-diagram-…)` so Valentus dark mode can recolor nodes after
+the Themed SVG runtime upgrade. Diagram builds pin local `@dev-centr/themed-svg`
+0.2.2 for the transform.
+
+See xref:changelog-details/2026-09-10--host-diagram-css-vars.adoc[details].
+
 == 2026-09-08 -- Adaptive documentation diagrams
 
 Seven build and troubleshooting diagrams now ship as editable Mermaid source, portable light/dark SVGs, and host-themed SVGs. The Antora hub progressively applies the current Valentus theme while retaining the adaptive image fallback.

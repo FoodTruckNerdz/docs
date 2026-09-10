@@ -60,9 +60,15 @@ for (const [name, title, description] of diagrams) {
     '-o', raw,
     '-b', 'transparent',
     '-c', configPath,
-    ...(process.env.CI ? ['-p', puppeteerConfigPath] : []),
-  ], { encoding: 'utf8', env })
-  if (rendered.status !== 0) throw new Error(rendered.stderr || rendered.stdout)
+    '-p', puppeteerConfigPath,
+  ], { encoding: 'utf8', env, maxBuffer: 20 * 1024 * 1024 })
+  if (rendered.status !== 0) {
+    const detail = rendered.error?.message
+      || rendered.stderr
+      || rendered.stdout
+      || `mmdc exited with status ${rendered.status}`
+    throw new Error(typeof detail === 'string' ? detail : JSON.stringify(detail))
+  }
 
   const manifest = JSON.parse(readFileSync(join(directory, `${name}.theme.json`), 'utf8'))
   const result = prepareThemedMermaidSvgDualOutput(readFileSync(raw, 'utf8'), manifest, {
