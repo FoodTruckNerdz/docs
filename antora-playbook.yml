@@ -1,6 +1,10 @@
 site:
   title: FTN Docs
   url: https://docs.foodtrucknerdz.com
+  robots: |
+    User-agent: *
+    Allow: /
+    Sitemap: https://docs.foodtrucknerdz.com/sitemap.xml
   start_page: docs::index.adoc
   keys:
     site_description: "Multi-component Antora site (unified project documentation)"
@@ -71,7 +75,7 @@ antora:
     # Bare /component/ → version chooser (selector). Unversioned (version: ~)
     # components are skipped. short_circuit_single: false so even a single
     # numbered version gets a chooser page instead of aliasing straight through.
-    - require: '@antora-supplemental/unversioned-component-urls'
+    - require: '@antora-supplemental/unversioned-component-urls'
     - '@antora-supplemental/page-edit'
       mode: selector
       short_circuit_single: false
