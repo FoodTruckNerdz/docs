@@ -1,6 +1,10 @@
 = Changelog
 :description: Reader-facing history of FoodTruckNerdz documentation hub changes
 
+== 2026-09-10 -- Publish robots.txt with sitemap
+
+* Antora `site.robots` now emits `/robots.txt` with an absolute `Sitemap:` line for the production host.
+
 == 2026-09-10 -- Host diagram fills follow dark mode
 
 Mermaid host SVGs now rewrite inline `fill`/`stroke` `!important` paints to
