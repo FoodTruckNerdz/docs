@@ -6,7 +6,7 @@
     "@antora/lunr-extension": "^1.0.0-alpha.13",
     "@asciidoctor/core": "^3.0.4",
     "@dev-centr/mermaid-svg-css-vars": "0.1.2",
-    "@dev-centr/themed-svg": "0.1.1",
+    "@dev-centr/themed-svg": "file:../../dev-centr/themed-svg",
     "@mermaid-js/mermaid-cli": "11.12.0",
     "antora": "^3.1.14",
     "asciidoctor-emoji": "^0.5.0",
@@ -24,6 +24,7 @@
       "puppeteer"
     ],
     "overrides": {
+      "@dev-centr/themed-svg": "file:../../dev-centr/themed-svg",
       "inflight": "npm:lru-cache@^10.0.0",
       "glob": "^10.0.0",
       "punycode": "^2.3.1"

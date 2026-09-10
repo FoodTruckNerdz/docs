@@ -1,0 +1,14 @@
+= Host diagram fills follow dark mode
+:page-audience: FoodTruckNerdz documentation readers and maintainers
+:page-usage-context: Understanding the September 2026 Mermaid host SVG recolor fix
+:page-orig-author: Ryan Johnson
+:page-last-author: Cursor agent on behalf of Ryan Johnson
+:page-last-edited: 2026-09-10
+
+Host Mermaid diagrams kept light-theme node fills after the Themed SVG runtime
+could apply dark host CSS namespaces. Inline Mermaid `style="fill:#… !important"`
+beat the namespaced stylesheet variables.
+
+Diagrams were regenerated with `@dev-centr/themed-svg` 0.2.2 so stylesheet
+bindings rewrite those inline paints to `var(--themed-svg-ftn-diagram-…)` with
+fallbacks. Dark mode now recolors nodes when the runtime upgrades the image.
