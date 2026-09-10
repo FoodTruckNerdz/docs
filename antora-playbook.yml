@@ -76,7 +76,7 @@ antora:
     # components are skipped. short_circuit_single: false so even a single
     # numbered version gets a chooser page instead of aliasing straight through.
     - require: '@antora-supplemental/unversioned-component-urls'
-    - '@antora-supplemental/page-edit'
       mode: selector
       short_circuit_single: false
+    - '@antora-supplemental/page-edit'
     - '@antora-supplemental/build-stack'
