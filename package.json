@@ -24,7 +24,6 @@
       "puppeteer"
     ],
     "overrides": {
-      "@dev-centr/themed-svg": "file:../../dev-centr/themed-svg",
       "inflight": "npm:lru-cache@^10.0.0",
       "glob": "^10.0.0",
       "punycode": "^2.3.1"
