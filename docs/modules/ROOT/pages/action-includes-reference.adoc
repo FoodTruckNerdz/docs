@@ -66,7 +66,7 @@ image::diagrams/checkout-flow/checkout-flow.svg[alt="Checkout copies the reposit
 [source,yaml]
 ----
 - name: Checkout repository
-  uses: actions/checkout@v4
+  uses: actions/checkout@v7
 ----
 
 We use the simplest form since we only need the current repository's code. The default settings are sufficient because:
@@ -107,17 +107,17 @@ We use the simplest form since we only need the current repository's code. The d
 [source,yaml]
 ----
 # Example: Checkout with full history for version calculations
-- uses: actions/checkout@v4
+- uses: actions/checkout@v7
   with:
     fetch-depth: 0
 
 # Example: Checkout a different branch
-- uses: actions/checkout@v4
+- uses: actions/checkout@v7
   with:
     ref: develop
 
 # Example: Checkout a private repository
-- uses: actions/checkout@v4
+- uses: actions/checkout@v7
   with:
     repository: org/private-repo
     token: ${{ secrets.PAT }}
@@ -156,7 +156,7 @@ The `configure-pages` action prepares your repository for GitHub Pages deploymen
 [source,yaml]
 ----
 - name: Configure Pages
-  uses: actions/configure-pages@v5
+  uses: actions/configure-pages@v6
 ----
 
 This step runs early in the workflow to ensure GitHub Pages is properly configured before we build and deploy.
@@ -186,7 +186,7 @@ This step runs early in the workflow to ensure GitHub Pages is properly configur
 ----
 - name: Configure Pages
   id: pages
-  uses: actions/configure-pages@v5
+  uses: actions/configure-pages@v6
 
 - name: Build site
   run: |
@@ -222,7 +222,7 @@ This action installs the https://pnpm.io/[pnpm package manager^] on the GitHub A
 [source,yaml]
 ----
 - name: Install pnpm
-  uses: pnpm/action-setup@v4
+  uses: pnpm/action-setup@v6
   with:
     package_json_file: 'site/package.json'
 ----
@@ -307,7 +307,7 @@ This action sets up a Node.js environment on the GitHub Actions runner. It can:
 [source,yaml]
 ----
 - name: Set up Node.js ${{ matrix.node-version }}
-  uses: actions/setup-node@v4
+  uses: actions/setup-node@v7
   with:
     node-version: ${{ matrix.node-version }}
     cache: 'pnpm'
@@ -338,7 +338,7 @@ Caching can reduce `pnpm install` time from 45-60 seconds to under 10 seconds by
 
 |`node-version`
 |None (required)
-|Node.js version to install (e.g., `20`, `20.x`, `lts/*`)
+|Node.js version to install (e.g., `24`, `24.x`, `lts/*`)
 
 |`cache`
 |None
@@ -358,16 +358,16 @@ Caching can reduce `pnpm install` time from 45-60 seconds to under 10 seconds by
 [source,yaml]
 ----
 # Specific version
-node-version: '20.10.0'
+node-version: '24.14.0'
 
 # Major version (latest minor/patch)
-node-version: '20'
+node-version: '24'
 
 # Major.minor (latest patch)
-node-version: '20.10'
+node-version: '24.14'
 
 # Semantic version range
-node-version: '>=18'
+node-version: '>=22.13'
 
 # LTS version
 node-version: 'lts/*'
@@ -406,7 +406,7 @@ image::diagrams/upload-artifact-flow/upload-artifact-flow.svg[alt="Build output 
 [source,yaml]
 ----
 - name: Upload artifact
-  uses: actions/upload-pages-artifact@v3
+  uses: actions/upload-pages-artifact@v5
   with:
     path: site/build/site
 ----
@@ -473,7 +473,7 @@ deploy:
   steps:
     - name: Deploy to GitHub Pages
       id: deployment
-      uses: actions/deploy-pages@v4
+      uses: actions/deploy-pages@v5
 ----
 
 <1> `needs: build` ensures this job waits for the build job to complete
