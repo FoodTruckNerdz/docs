@@ -316,7 +316,7 @@ This action sets up a Node.js environment on the GitHub Actions runner. It can:
 
 We configure:
 
-* `node-version`: Uses the version from our build matrix (Node.js 20)
+* `node-version`: Uses the version from our build matrix (Node.js 24)
 * `cache: 'pnpm'`: Enables caching for pnpm dependencies
 * `cache-dependency-path`: Points to our lock file location
 
