@@ -26,8 +26,13 @@ const diagrams = [
 
 const configPath = join(temp, 'mermaid-config.json')
 writeFileSync(configPath, JSON.stringify({
+  // Mermaid 12 defaults flowcharts to ELK layout, the neo look, and a 120px label
+  // wrapping width (labels split mid-word); keep the Mermaid 11 dagre/classic
+  // rendering and 200px wrapping the Themed SVG manifests were tuned against.
+  layout: 'dagre',
+  look: 'classic',
   htmlLabels: false,
-  flowchart: { htmlLabels: false, curve: 'basis' },
+  flowchart: { htmlLabels: false, curve: 'basis', wrappingWidth: 200 },
   securityLevel: 'strict',
   theme: 'default',
 }))

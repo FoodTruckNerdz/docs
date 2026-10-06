@@ -1,6 +1,13 @@
 = Changelog
 :description: Reader-facing history of FoodTruckNerdz documentation hub changes
 
+== 2026-10-06 -- Diagram toolchain on Mermaid CLI 12 and Node.js 24
+
+The seven documentation diagrams are rebuilt with `@mermaid-js/mermaid-cli` 12
+(Puppeteer 25) on Node.js 24. The build pins Mermaid 12 to the previous dagre
+layout, classic look, and 200px label wrapping, so the diagrams keep their
+existing appearance in light and dark mode.
+
 == 2026-09-10 -- Publish robots.txt with sitemap
 
 * Antora `site.robots` now emits `/robots.txt` with an absolute `Sitemap:` line for the production host.
