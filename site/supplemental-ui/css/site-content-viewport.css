@@ -1,0 +1,40 @@
+/* Wide AsciiDoc tables scroll inside the article column.
+   Overflow is on the wrapper, not the <table> (Antora users-channel guidance).
+   Slipstream until the Valentus v2 bundle includes the same rules. */
+main.adt-article,
+main.adt-article > .content {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.doc .tablecontainer,
+.doc .adt-table-scroll {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.doc .tablecontainer > table.tableblock,
+.doc .adt-table-scroll > table.tableblock {
+  max-width: none;
+}
+
+.doc table.tableblock th,
+.doc table.tableblock td {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.doc table.tableblock code,
+.doc table.tableblock .literal {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.doc .listingblock > .content,
+.doc .literalblock > .content {
+  max-width: 100%;
+  overflow-x: auto;
+}
