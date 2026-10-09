@@ -71,8 +71,8 @@ asciidoc:
     repo-infra: infra
 antora:
   extensions:
-    # lunr, page-edit, and build-stack are installed by @antora-supplemental/facto-stack.
-    # Antora loads only the names listed here; unversioned-component-urls is not part of Facto.
+    # Installed by @antora-supplemental/facto-stack. Antora loads only the names listed here.
+    # short_circuit_single: false keeps a chooser even when a component has one numbered version.
     - '@antora/lunr-extension'
     # Bare /component/ → version chooser (selector). Unversioned (version: ~)
     # components are skipped. short_circuit_single: false so even a single

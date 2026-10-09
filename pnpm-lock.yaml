@@ -19,10 +19,7 @@ importers:
     devDependencies:
       '@antora-supplemental/facto-stack':
         specifier: github:antora-supplemental/facto-stack#main
-        version: https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/c5e0e36f2158cb389c14fb29c200ed90ac0208bf(@antora/site-generator@3.1.14)(@asciidoctor/core@3.0.4)
-      '@antora-supplemental/unversioned-component-urls':
-        specifier: github:antora-supplemental/antora-unversioned-component-urls#v2.1.2
-        version: https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/98b806dbae2a655a37219cdd9fea9b31b95b04c0(@antora/site-generator@3.1.14)
+        version: https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/3f0260892d5850b46592685d778b770669852c7a(@antora/site-generator@3.1.14)(@asciidoctor/core@3.0.4)
       '@asciidoctor/core':
         specifier: ^3.0.4
         version: 3.0.4
@@ -38,9 +35,6 @@ importers:
       antora:
         specifier: ^3.1.14
         version: 3.1.14
-      asciidoctor-emoji:
-        specifier: ^0.5.0
-        version: 0.5.0(@asciidoctor/core@3.0.4)
       puppeteer:
         specifier: 25.12.0
         version: 25.12.0(yauzl@2.10.0)
@@ -94,8 +88,8 @@ packages:
       '@antora/site-generator':
         optional: true
 
-  '@antora-supplemental/facto-stack@https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/c5e0e36f2158cb389c14fb29c200ed90ac0208bf':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/c5e0e36f2158cb389c14fb29c200ed90ac0208bf}
+  '@antora-supplemental/facto-stack@https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/3f0260892d5850b46592685d778b770669852c7a':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/3f0260892d5850b46592685d778b770669852c7a}
     version: 0.1.0
 
   '@antora-supplemental/link-validator@https://codeload.github.com/antora-supplemental/link-validator/tar.gz/f7732e7c2a1b7838c629286ea4f6c6bf717f69be':
@@ -1285,6 +1279,10 @@ packages:
     resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
     hasBin: true
 
+  js-yaml@4.3.2:
+    resolution: {integrity: sha512-SFNOvSJ+Dgf/9An904Yx+CgSlIPCkIpao4qo51lpee25TIRejdH3rhR4EZMGoNx3/TP3O+wzWuiTFl4sqbltzA==}
+    hasBin: true
+
   json5@2.2.3:
     resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
     engines: {node: '>=6'}
@@ -1839,7 +1837,7 @@ snapshots:
 
   '@antora-supplemental/asciidoc-link-validator@https://codeload.github.com/antora-supplemental/asciidoc-link-validator/tar.gz/a6d7bcd847ff03930c0b1c592454a230b7492d77':
     dependencies:
-      js-yaml: 4.1.0
+      js-yaml: 4.3.2
 
   '@antora-supplemental/build-stack@https://codeload.github.com/antora-supplemental/build-stack/tar.gz/b692315ea9c5bcea7c1d7a3fc181a537ea36a72e(@antora/site-generator@3.1.14)':
     dependencies:
@@ -1847,7 +1845,7 @@ snapshots:
 
   '@antora-supplemental/deep-link-contracts@https://codeload.github.com/antora-supplemental/deep-link-contracts/tar.gz/771c9a6d7152c41d760aac13c57ade2dd1849fed':
     dependencies:
-      js-yaml: 4.1.0
+      js-yaml: 4.3.2
 
   '@antora-supplemental/diagram-engines-shared@https://codeload.github.com/antora-supplemental/antora-diagram-engines/tar.gz/2a1a79b1525c1eeb2a5113ed819a6c0409a77dcd#path:packages/shared': {}
 
@@ -1861,7 +1859,7 @@ snapshots:
     optionalDependencies:
       '@antora/site-generator': 3.1.14
 
-  '@antora-supplemental/facto-stack@https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/c5e0e36f2158cb389c14fb29c200ed90ac0208bf(@antora/site-generator@3.1.14)(@asciidoctor/core@3.0.4)':
+  '@antora-supplemental/facto-stack@https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/3f0260892d5850b46592685d778b770669852c7a(@antora/site-generator@3.1.14)(@asciidoctor/core@3.0.4)':
     dependencies:
       '@antora-supplemental/build-stack': https://codeload.github.com/antora-supplemental/build-stack/tar.gz/b692315ea9c5bcea7c1d7a3fc181a537ea36a72e(@antora/site-generator@3.1.14)
       '@antora-supplemental/deep-link-contracts': https://codeload.github.com/antora-supplemental/deep-link-contracts/tar.gz/771c9a6d7152c41d760aac13c57ade2dd1849fed
@@ -1877,8 +1875,10 @@ snapshots:
       '@antora-supplemental/playbook-pin-auditor': https://codeload.github.com/antora-supplemental/playbook-pin-auditor/tar.gz/e69ed07331a20705efc3671a360c372224722e81
       '@antora-supplemental/stale-page': https://codeload.github.com/antora-supplemental/stale-page/tar.gz/05efa1d95840aa27b7c84d5d57cce7f8c1d659fa
       '@antora-supplemental/triage-ux-kit': https://codeload.github.com/antora-supplemental/triage-ux-kit/tar.gz/4673deee28bb41133497a0f92fc0d7174043c0a7
+      '@antora-supplemental/unversioned-component-urls': https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/98b806dbae2a655a37219cdd9fea9b31b95b04c0(@antora/site-generator@3.1.14)
       '@antora/lunr-extension': 1.0.0-alpha.13
       antora: 3.1.14
+      asciidoctor-emoji: 0.5.0(@asciidoctor/core@3.0.4)
       asciidoctor-kroki: 0.18.1(@asciidoctor/core@3.0.4)
     transitivePeerDependencies:
       - '@antora/site-generator'
@@ -1922,7 +1922,7 @@ snapshots:
 
   '@antora-supplemental/playbook-pin-auditor@https://codeload.github.com/antora-supplemental/playbook-pin-auditor/tar.gz/e69ed07331a20705efc3671a360c372224722e81':
     dependencies:
-      js-yaml: 4.1.0
+      js-yaml: 4.3.2
 
   '@antora-supplemental/stale-page@https://codeload.github.com/antora-supplemental/stale-page/tar.gz/05efa1d95840aa27b7c84d5d57cce7f8c1d659fa':
     dependencies:
@@ -3143,6 +3143,10 @@ snapshots:
   joycon@3.1.1: {}
 
   js-yaml@4.1.0:
+    dependencies:
+      argparse: 2.0.1
+
+  js-yaml@4.3.2:
     dependencies:
       argparse: 2.0.1
 
