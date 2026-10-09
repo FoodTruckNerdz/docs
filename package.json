@@ -1,9 +1,7 @@
 {
   "devDependencies": {
-    "@antora-supplemental/build-stack": "github:antora-supplemental/build-stack#main",
-    "@antora-supplemental/page-edit": "github:antora-supplemental/page-edit#v0.2.3",
+    "@antora-supplemental/facto-stack": "github:antora-supplemental/facto-stack#main",
     "@antora-supplemental/unversioned-component-urls": "github:antora-supplemental/antora-unversioned-component-urls#v2.1.2",
-    "@antora/lunr-extension": "^1.0.0-alpha.13",
     "@asciidoctor/core": "^3.0.4",
     "@dev-centr/mermaid-svg-css-vars": "0.1.3",
     "@dev-centr/themed-svg": "0.2.3",
@@ -22,6 +20,11 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "puppeteer"
+    ],
+    "publicHoistPattern": [
+      "@antora/lunr-extension",
+      "@antora-supplemental/page-edit",
+      "@antora-supplemental/build-stack"
     ],
     "overrides": {
       "inflight": "npm:lru-cache@^10.0.0",
