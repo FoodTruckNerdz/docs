@@ -19,7 +19,7 @@ importers:
     devDependencies:
       '@antora-supplemental/facto-stack':
         specifier: github:antora-supplemental/facto-stack#main
-        version: https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/3f0260892d5850b46592685d778b770669852c7a(@antora/site-generator@3.1.14)(@asciidoctor/core@3.0.4)
+        version: https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/519fda36c74817901e9b717ee03d4eacacd2842e(@antora/site-generator@3.1.14)(@asciidoctor/core@3.0.4)
       '@asciidoctor/core':
         specifier: ^3.0.4
         version: 3.0.4
@@ -49,6 +49,13 @@ packages:
     version: 0.2.1
     engines: {node: '>=18'}
     hasBin: true
+
+  '@antora-supplemental/asciidoctor-emoji-literals@https://codeload.github.com/antora-supplemental/asciidoctor-emoji-literals/tar.gz/353b32fba85bcced2c635fa96b59348f45d43315':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/asciidoctor-emoji-literals/tar.gz/353b32fba85bcced2c635fa96b59348f45d43315}
+    version: 0.1.0
+    peerDependencies:
+      '@asciidoctor/core': '>=2.2 <4.0'
+      asciidoctor-emoji: '>=0.5.0 <1.0.0'
 
   '@antora-supplemental/build-stack@https://codeload.github.com/antora-supplemental/build-stack/tar.gz/b692315ea9c5bcea7c1d7a3fc181a537ea36a72e':
     resolution: {tarball: https://codeload.github.com/antora-supplemental/build-stack/tar.gz/b692315ea9c5bcea7c1d7a3fc181a537ea36a72e}
@@ -88,8 +95,8 @@ packages:
       '@antora/site-generator':
         optional: true
 
-  '@antora-supplemental/facto-stack@https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/3f0260892d5850b46592685d778b770669852c7a':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/3f0260892d5850b46592685d778b770669852c7a}
+  '@antora-supplemental/facto-stack@https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/519fda36c74817901e9b717ee03d4eacacd2842e':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/519fda36c74817901e9b717ee03d4eacacd2842e}
     version: 0.1.0
 
   '@antora-supplemental/link-validator@https://codeload.github.com/antora-supplemental/link-validator/tar.gz/f7732e7c2a1b7838c629286ea4f6c6bf717f69be':
@@ -1839,6 +1846,11 @@ snapshots:
     dependencies:
       js-yaml: 4.3.2
 
+  '@antora-supplemental/asciidoctor-emoji-literals@https://codeload.github.com/antora-supplemental/asciidoctor-emoji-literals/tar.gz/353b32fba85bcced2c635fa96b59348f45d43315(@asciidoctor/core@3.0.4)(asciidoctor-emoji@0.5.0(@asciidoctor/core@3.0.4))':
+    dependencies:
+      '@asciidoctor/core': 3.0.4
+      asciidoctor-emoji: 0.5.0(@asciidoctor/core@3.0.4)
+
   '@antora-supplemental/build-stack@https://codeload.github.com/antora-supplemental/build-stack/tar.gz/b692315ea9c5bcea7c1d7a3fc181a537ea36a72e(@antora/site-generator@3.1.14)':
     dependencies:
       '@antora/site-generator': 3.1.14
@@ -1859,8 +1871,9 @@ snapshots:
     optionalDependencies:
       '@antora/site-generator': 3.1.14
 
-  '@antora-supplemental/facto-stack@https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/3f0260892d5850b46592685d778b770669852c7a(@antora/site-generator@3.1.14)(@asciidoctor/core@3.0.4)':
+  '@antora-supplemental/facto-stack@https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/519fda36c74817901e9b717ee03d4eacacd2842e(@antora/site-generator@3.1.14)(@asciidoctor/core@3.0.4)':
     dependencies:
+      '@antora-supplemental/asciidoctor-emoji-literals': https://codeload.github.com/antora-supplemental/asciidoctor-emoji-literals/tar.gz/353b32fba85bcced2c635fa96b59348f45d43315(@asciidoctor/core@3.0.4)(asciidoctor-emoji@0.5.0(@asciidoctor/core@3.0.4))
       '@antora-supplemental/build-stack': https://codeload.github.com/antora-supplemental/build-stack/tar.gz/b692315ea9c5bcea7c1d7a3fc181a537ea36a72e(@antora/site-generator@3.1.14)
       '@antora-supplemental/deep-link-contracts': https://codeload.github.com/antora-supplemental/deep-link-contracts/tar.gz/771c9a6d7152c41d760aac13c57ade2dd1849fed
       '@antora-supplemental/diagram-lightbox': https://codeload.github.com/antora-supplemental/antora-diagram-engines/tar.gz/dbdca5920074ef1559bdd263f874270292df9558#path:packages/diagram-lightbox(@antora/site-generator@3.1.14)

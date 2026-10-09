@@ -60,6 +60,7 @@ ui:
   supplemental_files: ./site/supplemental-ui
 asciidoc:
   extensions:
+    - '@antora-supplemental/asciidoctor-emoji-literals'
     - asciidoctor-emoji
   attributes:
     # Organization URLs
