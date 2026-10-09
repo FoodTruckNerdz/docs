@@ -24,6 +24,7 @@
       "@antora-supplemental/page-edit",
       "@antora-supplemental/build-stack",
       "@antora-supplemental/unversioned-component-urls",
+      "@antora-supplemental/asciidoctor-emoji-literals",
       "asciidoctor-emoji"
     ],
     "overrides": {
