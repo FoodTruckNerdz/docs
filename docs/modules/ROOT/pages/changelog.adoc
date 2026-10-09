@@ -3,7 +3,7 @@
 
 == 2026-10-09 -- Facto stack supplies shared Antora extensions
 
-Lunr, page-edit, and build-stack now come in with `@antora-supplemental/facto-stack` instead of separate package pins. The playbook still names those extensions. Unversioned component URLs and asciidoctor-emoji stay direct dependencies, because Facto does not include them.
+Lunr, page-edit, build-stack, unversioned component URLs, and asciidoctor-emoji now come in with `@antora-supplemental/facto-stack` instead of separate package pins. The playbook still names those extensions. This site keeps `short_circuit_single: false`, so a component with one numbered version still shows a version chooser.
 
 == 2026-10-06 -- Wide tables scroll inside the article
 
