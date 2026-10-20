@@ -18,8 +18,8 @@ importers:
         version: 0.0.4
     devDependencies:
       '@antora-supplemental/facto-stack':
-        specifier: github:antora-supplemental/facto-stack#v0.2.37
-        version: https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/f9201ac7a44614a1a2df7f0ba3669dbeae20f548(@antora/site-generator@3.1.14)(@asciidoctor/core@3.0.4)
+        specifier: github:antora-supplemental/facto-stack#v0.2.38
+        version: https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/f0aabc22bb546ed530f750863f541d2d3585b88d(@antora/site-generator@3.1.14)(@asciidoctor/core@3.0.4)
       '@asciidoctor/core':
         specifier: ^3.0.4
         version: 3.0.4
@@ -44,9 +44,9 @@ packages:
   '@antfu/install-pkg@2.0.1':
     resolution: {integrity: sha512-iCKVQcIC0e3oDxEfs3SHQGW+ovhBMZmS1TE+bTk50rVyMCBmCfClv7Qi3HQKlumYwvjb/iIMeWCW2i67q6kFfQ==}
 
-  '@antora-supplemental/antora-local-content-sources@https://codeload.github.com/antora-supplemental/antora-local-content-sources/tar.gz/252a3ea80f2e5b198ef430de1d1ac7d53835f3af':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/antora-local-content-sources/tar.gz/252a3ea80f2e5b198ef430de1d1ac7d53835f3af}
-    version: 0.2.6
+  '@antora-supplemental/antora-local-content-sources@https://codeload.github.com/antora-supplemental/antora-local-content-sources/tar.gz/5e020d3d489e93578588149537879298e4be62be':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/antora-local-content-sources/tar.gz/5e020d3d489e93578588149537879298e4be62be}
+    version: 0.2.7
     engines: {node: '>=18'}
 
   '@antora-supplemental/antora-search-chat@https://codeload.github.com/antora-supplemental/antora-search-chat/tar.gz/c66eee32107191ba94378856a1e6ddb72bc25b7d':
@@ -107,9 +107,9 @@ packages:
       '@antora/site-generator':
         optional: true
 
-  '@antora-supplemental/facto-stack@https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/f9201ac7a44614a1a2df7f0ba3669dbeae20f548':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/f9201ac7a44614a1a2df7f0ba3669dbeae20f548}
-    version: 0.2.37
+  '@antora-supplemental/facto-stack@https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/f0aabc22bb546ed530f750863f541d2d3585b88d':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/f0aabc22bb546ed530f750863f541d2d3585b88d}
+    version: 0.2.38
     hasBin: true
 
   '@antora-supplemental/link-validator@https://codeload.github.com/antora-supplemental/link-validator/tar.gz/0f5e4aee160448b85064e62b94ce2e00e94f38d4':
@@ -1892,7 +1892,7 @@ snapshots:
       package-manager-detector: 1.8.0
       tinyexec: 1.3.1
 
-  '@antora-supplemental/antora-local-content-sources@https://codeload.github.com/antora-supplemental/antora-local-content-sources/tar.gz/252a3ea80f2e5b198ef430de1d1ac7d53835f3af':
+  '@antora-supplemental/antora-local-content-sources@https://codeload.github.com/antora-supplemental/antora-local-content-sources/tar.gz/5e020d3d489e93578588149537879298e4be62be':
     dependencies:
       yaml: 2.9.1
 
@@ -1929,9 +1929,9 @@ snapshots:
     optionalDependencies:
       '@antora/site-generator': 3.1.14
 
-  '@antora-supplemental/facto-stack@https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/f9201ac7a44614a1a2df7f0ba3669dbeae20f548(@antora/site-generator@3.1.14)(@asciidoctor/core@3.0.4)':
+  '@antora-supplemental/facto-stack@https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/f0aabc22bb546ed530f750863f541d2d3585b88d(@antora/site-generator@3.1.14)(@asciidoctor/core@3.0.4)':
     dependencies:
-      '@antora-supplemental/antora-local-content-sources': https://codeload.github.com/antora-supplemental/antora-local-content-sources/tar.gz/252a3ea80f2e5b198ef430de1d1ac7d53835f3af
+      '@antora-supplemental/antora-local-content-sources': https://codeload.github.com/antora-supplemental/antora-local-content-sources/tar.gz/5e020d3d489e93578588149537879298e4be62be
       '@antora-supplemental/antora-search-chat': https://codeload.github.com/antora-supplemental/antora-search-chat/tar.gz/c66eee32107191ba94378856a1e6ddb72bc25b7d(@antora/lunr-extension@1.0.0-alpha.13)
       '@antora-supplemental/asciidoctor-emoji-literals': https://codeload.github.com/antora-supplemental/asciidoctor-emoji-literals/tar.gz/353b32fba85bcced2c635fa96b59348f45d43315(@asciidoctor/core@3.0.4)(asciidoctor-emoji@0.5.0(@asciidoctor/core@3.0.4))
       '@antora-supplemental/build-stack': https://codeload.github.com/antora-supplemental/build-stack/tar.gz/5ae83ffe23fdcb1a90a07280d300fcb72ce44cf5(@antora/site-generator@3.1.14)
