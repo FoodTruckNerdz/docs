@@ -1,6 +1,10 @@
 = Changelog
 :description: Reader-facing history of FoodTruckNerdz documentation hub changes
 
+== 2026-10-20 -- Search dock layout
+
+* Pin `@antora-supplemental/facto-stack` **v0.2.40** (search bar stays on screen above the footer).
+
 == 2026-10-20 -- pnpm antora follows the lockfile
 
 * `pnpm antora` installs when the lockfile is newer than node_modules (git tag bumps). It does not move the facto-stack pin by itself; pull the repo first.
