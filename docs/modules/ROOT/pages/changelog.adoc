@@ -1,6 +1,10 @@
 = Changelog
 :description: Reader-facing history of FoodTruckNerdz documentation hub changes
 
+== 2026-10-20 -- pnpm antora follows the lockfile
+
+* `pnpm antora` installs when the lockfile is newer than node_modules (git tag bumps). It does not move the facto-stack pin by itself; pull the repo first.
+
 == 2026-10-20 -- Desktop disk-search dialog
 
 * Pin `@antora-supplemental/facto-stack` **v0.2.39** (Windows disk search uses a dialog instead of the Y/n banner).
