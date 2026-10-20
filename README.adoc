@@ -83,13 +83,7 @@ To build and preview the documentation locally:
 # Install dependencies
 pnpm install
 
-# Local sibling repos: copy the example playbook, then build with local paths
-cp antora-playbook-local.example.yml antora-playbook-local.yml
-
-# Build
-pnpm run build:local
-
-# Or build using standard playbook (uses GitHub URLs)
+# Build (CI and local — facto-stack resolves local clones when .antora-source-id markers exist)
 pnpm run build
 
 # Preview the site

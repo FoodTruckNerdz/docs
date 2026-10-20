@@ -70,16 +70,26 @@ asciidoc:
     repo-help: help
     repo-developer-portal: developer-portal
     repo-infra: infra
+urls:
+  html_extension_style: indexify
+
 antora:
   extensions:
-    # Installed by @antora-supplemental/facto-stack. Antora loads only the names listed here.
-    # short_circuit_single: false keeps a chooser even when a component has one numbered version.
-    - '@antora/lunr-extension'
-    # Bare /component/ → version chooser (selector). Unversioned (version: ~)
-    # components are skipped. short_circuit_single: false so even a single
-    # numbered version gets a chooser page instead of aliasing straight through.
-    - require: '@antora-supplemental/unversioned-component-urls'
-      mode: selector
-      short_circuit_single: false
-    - '@antora-supplemental/page-edit'
-    - '@antora-supplemental/build-stack'
+    - require: '@antora-supplemental/facto-stack'
+      profile: hub
+      omit:
+        - '@antora-supplemental/antora-search-chat'
+        - '@antora-supplemental/site-nav-tree'
+        - '@antora-supplemental/nav-typology'
+        - '@antora-supplemental/nav-typology-diataxis'
+        - '@antora-supplemental/link-validator'
+        - '@antora-supplemental/linkinator'
+        - '@antora-supplemental/soft-nav-page-toc'
+        - '@antora-supplemental/extension-lister'
+        - '@antora-supplemental/orphan-finder/extension'
+        - '@antora-supplemental/page-context/antora'
+        - '@antora-supplemental/mermaid-client/antora'
+        - '@antora-supplemental/diagram-lightbox'
+      unversionedComponentUrls:
+        mode: selector
+        short_circuit_single: false
