@@ -87,3 +87,15 @@ antora:
       unversionedComponentUrls:
         mode: selector
         short_circuit_single: false
+      # Link every page to the members-only team site (top + footer) and generate /docs/related-docs/.
+      relatedDocs:
+        label: Related docs sites
+        top: true
+        footer: true
+        sites:
+          - name: FTN Team Docs
+            url: https://team.docs.foodtrucknerdz.com
+            audience: team
+            description: Internal engineering, operations, and product docs for FoodTruckNerdz members.
+            requires_login: true
+            login_note: Sign in with GitHub; FoodTruckNerdz org membership required.
