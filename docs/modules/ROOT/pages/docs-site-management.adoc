@@ -61,11 +61,32 @@ The generated documentation site is output to `build/site/` and includes:
 * Search functionality
 * Responsive design for all devices
 
+[[repo-gitignore]]
+== Allow-list `.gitignore`
+
+This repository (the docs *playbook* repo) uses an allow-list `.gitignore`: everything is ignored unless explicitly un-ignored. That keeps accidental local artifacts (playbook copies, editor scratch files, one-off exports) out of commits while still tracking the Antora playbook, `docs/` component, `site/` overlay, and CI config.
+
+The file starts with `*` and `!*/`, then lists allowed root paths (for example `!/docs/**`, `!/site/**`). Generated and machine-local paths are re-ignored afterward (`node_modules/`, `build/`, `antora-playbook-local.yml`, and similar).
+
+=== When you add files at the repository root
+
+If `git status` does not list a new root file you expect to commit, add a matching allow entry next to the other `!/` lines at the top of `.gitignore`:
+
+* Single root file — `!/filename` (for example `!/AGENTS.md`)
+* New top-level directory — `!/dirname/**` (the `!*/` rule already exposes directories, but an explicit `!` documents intent and matches how this repo is maintained)
+
+Nested paths under an already allowed tree (for example a new page under `docs/modules/ROOT/pages/`) do not need a `.gitignore` change.
+
+=== Playbook repo vs component repos
+
+Component repositories (`ftn-site`, `food-truck-api`, and others) maintain their own `.gitignore` rules. Only change *this* playbook repo when you are editing `FoodTruckNerdz/docs` itself.
+
 == Contributing to Documentation
 
 When adding or updating documentation:
 
-1. Make changes in the appropriate component repository's `docs/` directory
+1. Make changes in the appropriate component repository's `docs/` directory (or in this repo's `docs/` for meta documentation)
 2. Build the site locally using `antora-playbook-local.yml` to preview changes
-3. Commit changes to the component repository
-4. Manually trigger a site redeploy (see xref:redeploying-docs.adoc[Redeploying the Site]) to see your changes online
+3. If you added a new tracked file at the root of *this* playbook repo, update `.gitignore` allow entries (see <<repo-gitignore>>)
+4. Commit changes to the component repository (or this repo for meta docs)
+5. Manually trigger a site redeploy (see xref:redeploying-docs.adoc[Redeploying the Site]) to see your changes online
