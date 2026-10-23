@@ -1,0 +1,7 @@
+# Internal (members-only) docs for this repo. Built by FoodTruckNerdz/team-docs only;
+# NOT in the public docs.foodtrucknerdz.com playbook (which reads start_path: docs).
+name: docs-internal
+title: Org (internal)
+version: ~
+nav:
+  - modules/ROOT/nav.adoc

@@ -1,0 +1,2 @@
+.Org (internal)
+* xref:business-resources.adoc[Business resources]
