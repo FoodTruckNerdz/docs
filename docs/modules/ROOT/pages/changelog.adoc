@@ -1,6 +1,10 @@
 = Changelog
 :description: Reader-facing history of FoodTruckNerdz documentation hub changes
 
+== 2026-10-23 -- Allow-list `.gitignore`
+
+* The playbook repo `.gitignore` is now an allow-list so stray local files are not committed by accident. New root-level paths need an explicit `!` entry; see xref:docs-site-management.adoc#repo-gitignore[Documentation Site Management].
+
 == 2026-10-20 -- Search dock layout
 
 * Pin `@antora-supplemental/facto-stack` **v0.2.40** (search bar stays on screen above the footer).
