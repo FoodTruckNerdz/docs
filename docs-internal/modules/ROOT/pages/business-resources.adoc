@@ -33,11 +33,11 @@ https://docs.devcentr.org/business-bootstrap/reference/business-resources.html[S
 
 == Related on this hub
 
-* xref:partners.adoc[Partners & Services] — product integrations (POS, delivery, discovery), not org bootstrap tools
+* link:https://docs.foodtrucknerdz.com/docs/partners/[Partners & Services] — product integrations (POS, delivery, discovery), not org bootstrap tools
 * Website: private docs & team secrets (Bitwarden / ESC) in the `website` component
 * Infra: org Pulumi stacks — vendor strategy stays on Dev-Centr; this org encodes DNS
 
 == Anti-patterns
 
 * Duplicating the full Cal.com / Penpot / Vaultwarden essays in FTN docs — link out; keep FTN pages for *our* hostnames and credentials.
-* Treating xref:partners.adoc[Partners] as the place for Bitwarden or Penpot — different job.
+* Treating link:https://docs.foodtrucknerdz.com/docs/partners/[Partners] as the place for Bitwarden or Penpot — different job.

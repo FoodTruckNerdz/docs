@@ -22,9 +22,6 @@ site:
     title_bar_brand: "FTN Docs"
 content:
   sources:
-    - url: https://github.com/FoodTruckNerdz/onboarding.git
-      branches: HEAD
-      start_path: docs
     - url: https://github.com/FoodTruckNerdz/food-truck-api.git
       branches: HEAD
       start_path: docs
@@ -41,9 +38,6 @@ content:
       branches: HEAD
       start_path: docs
     - url: https://github.com/FoodTruckNerdz/developer-portal.git
-      branches: HEAD
-      start_path: docs
-    - url: https://github.com/FoodTruckNerdz/infra.git
       branches: HEAD
       start_path: docs
 ui:
