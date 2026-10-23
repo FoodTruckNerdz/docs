@@ -1,35 +1,51 @@
-# Package manager artifacts
+# Allow-list gitignore: everything is ignored unless explicitly un-ignored.
+# When adding a new root file or directory, add a `!` entry here.
+
+*
+!*/
+
+# Tracked root files and directories
+!/.antora-source-id
+!/.editorconfig
+!/.gitattributes
+!/.github/**
+!/.gitignore
+!/.hintrc
+!/.vscode/**
+!/antora-playbook.yml
+!/biome.json
+!/docs/**
+!/dprint.jsonc
+!/ftn-docs.code-workspace
+!/notes/**
+!/package.json
+!/pnpm-lock.yaml
+!/pnpm-workspace.yaml
+!/README.adoc
+!/scripts/**
+!/site/**
+
+# Re-ignore generated and local files inside allowed directories
 node_modules/
 .pnpm-store/
-
-# Build output
 build/
 site/build/
 site/node_modules/
 site/package.json
 site/pnpm-lock.yaml
 site/package-lock.json
-
-# Local Antora configs (copy from antora-playbook-local.example.yml)
 antora-playbook-local.yml
 antora-playbook-local-*.yml
 !antora-playbook-local*.example.yml
-
-# Editor/IDE
 .idea/
 *.swp
 *.swo
 *~
-
-# OS artifacts
 .DS_Store
 Thumbs.db
 desktop.ini
-
-# Logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-
