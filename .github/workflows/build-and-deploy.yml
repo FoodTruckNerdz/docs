@@ -1,8 +1,9 @@
 name: Build and Deploy Documentation
 
 on:
+  # Every commit on every branch, plus PRs. The links job gates build and deploy.
   push:
-    branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -15,7 +16,13 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # Fast first job: sparse checkout of .adoc and attribute files, no pnpm install.
+  # A failing scan stops the Antora build and Pages deploy from starting.
+  links:
+    uses: antora-supplemental/link-registry/.github/workflows/check.yml@v0
+
   build:
+    needs: links
     strategy:
       matrix:
         node-version: [24]
@@ -66,7 +73,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    if: github.ref == 'refs/heads/main'
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

@@ -456,7 +456,7 @@ git status --short
 * xref:github-actions-antora-setup.adoc[] — Complete CI/CD setup guide
 * xref:action-includes-reference.adoc[] — GitHub Action details
 * xref:building-docs.adoc[] — Local build instructions
-* https://docs.antora.org/antora/latest/playbook/content-source-url/[Antora: URLs for Content Sources^]
+* {url-antora-content-source-url}[Antora: URLs for Content Sources^]
 * https://docs.antora.org/antora/latest/component-version-start-path/[Antora: Component Version Start Path^]
 
 

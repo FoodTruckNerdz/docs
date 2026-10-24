@@ -63,7 +63,7 @@ xref:developer-portal::index.adoc[Developer portal]
 
 Member-only SOPs and internal runbooks (sister Antora site). Access-gated; the URL is public on purpose.
 
-link:https://team.docs.foodtrucknerdz.com[team.docs.foodtrucknerdz.com]
+link:{url-ftn-team-docs}[team.docs.foodtrucknerdz.com]
 ====
 --
 

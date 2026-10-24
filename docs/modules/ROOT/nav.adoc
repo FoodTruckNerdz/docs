@@ -1,6 +1,6 @@
 * xref:index.adoc[Home]
 * xref:changelog.adoc[Changelog]
-* link:https://team.docs.foodtrucknerdz.com[Team docs (members)]
+* link:{url-ftn-team-docs}[Team docs (members)]
 * xref:partners.adoc[Partners & Services]
 * xref:vscode-extensions.adoc[VS Code Extensions]
 * Site build

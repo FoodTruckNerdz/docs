@@ -3,3 +3,22 @@ version: '0.1'
 title: Docs site
 nav:
 - modules/ROOT/nav.adoc
+asciidoc:
+  attributes:
+    # Link registry: outside URLs used more than once. Write {url-name}[text] in pages,
+    # not the literal URL. CI (links job) rejects literals; run `pnpm links:fix` to rewrite.
+    # https://antora-supplemental.github.io/docs/link-registry/index.html
+    url-ftn-docs: https://docs.foodtrucknerdz.com
+    url-ftn-team-docs: https://team.docs.foodtrucknerdz.com
+    url-ftn-github: https://github.com/FoodTruckNerdz
+    url-supplemental-docs: https://antora-supplemental.github.io/docs
+    url-supplemental-deploy-guide: https://antora-supplemental.github.io/docs/docs/antora-deployment.html
+    url-antora-content-source-url: https://docs.antora.org/antora/latest/playbook/content-source-url/
+    url-antora-private-repo-auth: https://docs.antora.org/antora/latest/playbook/private-repository-auth/
+    url-pnpm: https://pnpm.io/
+    url-gha-checkout: https://github.com/actions/checkout
+    url-gha-configure-pages: https://github.com/actions/configure-pages
+    url-gha-deploy-pages: https://github.com/actions/deploy-pages
+    url-gha-setup-node: https://github.com/actions/setup-node
+    url-gha-upload-pages-artifact: https://github.com/actions/upload-pages-artifact
+    url-gha-pnpm-setup: https://github.com/pnpm/action-setup

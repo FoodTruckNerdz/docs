@@ -1,0 +1,39 @@
+= Link registry changes
+:page-orig-author: link-registry
+:description: Automatic rewrites from literal URLs to registered link attributes.
+
+Written by `links:fix` (`link-registry fix`). Each entry records when a literal URL was replaced by its registered attribute, where, and which name was used. Separate from the project changelog.
+
+== 2026-10-24
+
+* `+docs/modules/ROOT/nav.adoc:3+` - `+https://team.docs.foodtrucknerdz.com+` -> `+{url-ftn-team-docs}+`
+* `+docs/modules/ROOT/pages/action-includes-reference.adoc:46+` - `+https://github.com/actions/checkout+` -> `+{url-gha-checkout}+`
+* `+docs/modules/ROOT/pages/action-includes-reference.adoc:47+` - `+https://github.com/actions/checkout#readme+` -> `+{url-gha-checkout}#readme+`
+* `+docs/modules/ROOT/pages/action-includes-reference.adoc:133+` - `+https://github.com/actions/configure-pages+` -> `+{url-gha-configure-pages}+`
+* `+docs/modules/ROOT/pages/action-includes-reference.adoc:134+` - `+https://github.com/actions/configure-pages#readme+` -> `+{url-gha-configure-pages}#readme+`
+* `+docs/modules/ROOT/pages/action-includes-reference.adoc:204+` - `+https://github.com/pnpm/action-setup+` -> `+{url-gha-pnpm-setup}+`
+* `+docs/modules/ROOT/pages/action-includes-reference.adoc:205+` - `+https://github.com/pnpm/action-setup#readme+` -> `+{url-gha-pnpm-setup}#readme+`
+* `+docs/modules/ROOT/pages/action-includes-reference.adoc:211+` - `+https://pnpm.io/+` -> `+{url-pnpm}+`
+* `+docs/modules/ROOT/pages/action-includes-reference.adoc:285+` - `+https://github.com/actions/setup-node+` -> `+{url-gha-setup-node}+`
+* `+docs/modules/ROOT/pages/action-includes-reference.adoc:286+` - `+https://github.com/actions/setup-node#readme+` -> `+{url-gha-setup-node}#readme+`
+* `+docs/modules/ROOT/pages/action-includes-reference.adoc:386+` - `+https://github.com/actions/upload-pages-artifact+` -> `+{url-gha-upload-pages-artifact}+`
+* `+docs/modules/ROOT/pages/action-includes-reference.adoc:387+` - `+https://github.com/actions/upload-pages-artifact#readme+` -> `+{url-gha-upload-pages-artifact}#readme+`
+* `+docs/modules/ROOT/pages/action-includes-reference.adoc:447+` - `+https://github.com/actions/deploy-pages+` -> `+{url-gha-deploy-pages}+`
+* `+docs/modules/ROOT/pages/action-includes-reference.adoc:448+` - `+https://github.com/actions/deploy-pages#readme+` -> `+{url-gha-deploy-pages}#readme+`
+* `+docs/modules/ROOT/pages/action-includes-reference.adoc:505+` - `+https://docs.foodtrucknerdz.com+` -> `+{url-ftn-docs}+`
+* `+docs/modules/ROOT/pages/action-includes-reference.adoc:519+` - `+https://pnpm.io/+` -> `+{url-pnpm}+`
+* `+docs/modules/ROOT/pages/antora-attributes.adoc:36+` - `+https://github.com/FoodTruckNerdz+` -> `+{url-ftn-github}+`
+* `+docs/modules/ROOT/pages/antora-attributes.adoc:40+` - `+https://docs.foodtrucknerdz.com+` -> `+{url-ftn-docs}+`
+* `+docs/modules/ROOT/pages/antora-attributes.adoc:95+` - `+https://github.com/FoodTruckNerdz+` -> `+{url-ftn-github}+`
+* `+docs/modules/ROOT/pages/antora-attributes.adoc:113+` - `+https://docs.foodtrucknerdz.com+` -> `+{url-ftn-docs}+`
+* `+docs/modules/ROOT/pages/antora-supplemental-comparison.adoc:9+` - `+https://antora-supplemental.github.io/docs+` -> `+{url-supplemental-docs}+`
+* `+docs/modules/ROOT/pages/antora-supplemental-comparison.adoc:23+` - `+https://antora-supplemental.github.io/docs/docs/antora-deployment.html+` -> `+{url-supplemental-deploy-guide}+`
+* `+docs/modules/ROOT/pages/antora-supplemental-comparison.adoc:31+` - `+https://antora-supplemental.github.io/docs/docs/antora-deployment.html+` -> `+{url-supplemental-deploy-guide}+`
+* `+docs/modules/ROOT/pages/antora-supplemental-comparison.adoc:47+` - `+https://antora-supplemental.github.io/docs/docs/antora-deployment.html+` -> `+{url-supplemental-deploy-guide}+`
+* `+docs/modules/ROOT/pages/docs-site-management.adoc:13+` - `+https://antora-supplemental.github.io/docs+` -> `+{url-supplemental-docs}+`
+* `+docs/modules/ROOT/pages/github-actions-antora-setup.adoc:282+` - `+https://docs.antora.org/antora/latest/playbook/private-repository-auth/+` -> `+{url-antora-private-repo-auth}+`
+* `+docs/modules/ROOT/pages/github-actions-antora-setup.adoc:387+` - `+https://docs.antora.org/antora/latest/playbook/private-repository-auth/+` -> `+{url-antora-private-repo-auth}+`
+* `+docs/modules/ROOT/pages/github-actions-antora-setup.adoc:389+` - `+https://docs.antora.org/antora/latest/playbook/content-source-url/+` -> `+{url-antora-content-source-url}+`
+* `+docs/modules/ROOT/pages/index.adoc:66+` - `+https://team.docs.foodtrucknerdz.com+` -> `+{url-ftn-team-docs}+`
+* `+docs/modules/ROOT/pages/redeploying-docs.adoc:22+` - `+https://docs.foodtrucknerdz.com+` -> `+{url-ftn-docs}+`
+* `+docs/modules/ROOT/pages/troubleshooting-antora-builds.adoc:459+` - `+https://docs.antora.org/antora/latest/playbook/content-source-url/+` -> `+{url-antora-content-source-url}+`

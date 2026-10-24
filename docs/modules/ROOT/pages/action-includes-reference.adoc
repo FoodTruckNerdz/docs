@@ -43,8 +43,8 @@ This reference documents each GitHub Action used in the FoodTruckNerdz documenta
 
 [cols="1,3"]
 |===
-|Repository |https://github.com/actions/checkout[actions/checkout^]
-|Documentation |https://github.com/actions/checkout#readme[README^]
+|Repository |{url-gha-checkout}[actions/checkout^]
+|Documentation |{url-gha-checkout}#readme[README^]
 |Current Version |v4
 |===
 
@@ -130,8 +130,8 @@ We use the simplest form since we only need the current repository's code. The d
 
 [cols="1,3"]
 |===
-|Repository |https://github.com/actions/configure-pages[actions/configure-pages^]
-|Documentation |https://github.com/actions/configure-pages#readme[README^]
+|Repository |{url-gha-configure-pages}[actions/configure-pages^]
+|Documentation |{url-gha-configure-pages}#readme[README^]
 |Current Version |v5
 |===
 
@@ -201,14 +201,14 @@ This step runs early in the workflow to ensure GitHub Pages is properly configur
 
 [cols="1,3"]
 |===
-|Repository |https://github.com/pnpm/action-setup[pnpm/action-setup^]
-|Documentation |https://github.com/pnpm/action-setup#readme[README^]
+|Repository |{url-gha-pnpm-setup}[pnpm/action-setup^]
+|Documentation |{url-gha-pnpm-setup}#readme[README^]
 |Current Version |v4
 |===
 
 === What It Does
 
-This action installs the https://pnpm.io/[pnpm package manager^] on the GitHub Actions runner. pnpm is a fast, disk-efficient package manager that's particularly good for monorepos and workspaces.
+This action installs the {url-pnpm}[pnpm package manager^] on the GitHub Actions runner. pnpm is a fast, disk-efficient package manager that's particularly good for monorepos and workspaces.
 
 === How It Works
 
@@ -282,8 +282,8 @@ The action determines the pnpm version in this order:
 
 [cols="1,3"]
 |===
-|Repository |https://github.com/actions/setup-node[actions/setup-node^]
-|Documentation |https://github.com/actions/setup-node#readme[README^]
+|Repository |{url-gha-setup-node}[actions/setup-node^]
+|Documentation |{url-gha-setup-node}#readme[README^]
 |Current Version |v4
 |===
 
@@ -383,8 +383,8 @@ node-version-file: '.nvmrc'
 
 [cols="1,3"]
 |===
-|Repository |https://github.com/actions/upload-pages-artifact[actions/upload-pages-artifact^]
-|Documentation |https://github.com/actions/upload-pages-artifact#readme[README^]
+|Repository |{url-gha-upload-pages-artifact}[actions/upload-pages-artifact^]
+|Documentation |{url-gha-upload-pages-artifact}#readme[README^]
 |Current Version |v3
 |===
 
@@ -444,8 +444,8 @@ We specify the exact path where Antora outputs the built site.
 
 [cols="1,3"]
 |===
-|Repository |https://github.com/actions/deploy-pages[actions/deploy-pages^]
-|Documentation |https://github.com/actions/deploy-pages#readme[README^]
+|Repository |{url-gha-deploy-pages}[actions/deploy-pages^]
+|Documentation |{url-gha-deploy-pages}#readme[README^]
 |Current Version |v4
 |===
 
@@ -502,7 +502,7 @@ deploy:
 |Output |Description
 
 |`page_url`
-|The URL of the deployed site (e.g., `https://docs.foodtrucknerdz.com`)
+|The URL of the deployed site (e.g., `{url-ftn-docs}`)
 |===
 
 == Complete Workflow Reference
@@ -516,7 +516,7 @@ image::diagrams/complete-workflow/complete-workflow.svg[alt="Complete GitHub Act
 * xref:github-actions-antora-setup.adoc[] — Complete CI/CD setup tutorial
 * xref:troubleshooting-antora-builds.adoc[] — Troubleshooting build errors
 * https://docs.github.com/en/actions[GitHub Actions Documentation^]
-* https://pnpm.io/[pnpm Documentation^]
+* {url-pnpm}[pnpm Documentation^]
 
 
 

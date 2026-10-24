@@ -6,7 +6,7 @@ This page compares FoodTruckNerdz's Antora documentation setup with the canonica
 
 == Reference Documentation
 
-* *Live site:* link:https://antora-supplemental.github.io/docs[antora-supplemental.github.io/docs]
+* *Live site:* link:{url-supplemental-docs}[antora-supplemental.github.io/docs]
 * *Source (GitHub):* link:https://github.com/antora-supplemental/docs[github.com/antora-supplemental/docs]
 * *Modules:* link:https://github.com/antora-supplemental/docs/tree/main/docs/modules[Antora Supplemental docs/modules]
 
@@ -20,7 +20,7 @@ This page compares FoodTruckNerdz's Antora documentation setup with the canonica
 | Local playbook | `antora-playbook-local.yml` at root (copy from `antora-playbook-local.example.yml`; entry git-ignored) | Same idea: local path sources, local file often git-ignored |
 | CI | Default job working directory; `pnpm exec antora antora-playbook.yml` | `antora` from repo root; no `working-directory` under a `site/` subfolder |
 
-*Alignment:* The **playbooks and `package.json` live at the root** of the `docs` repository. The link:https://antora-supplemental.github.io/docs/docs/antora-deployment.html[Antora Deployment] guide (root vs. subfolder, CI, GitHub Pages) matches this layout. Custom UI and scripts still sit under `site/` (e.g. `site/supplemental-ui/`, `site/scripts/`), not the playbooks.
+*Alignment:* The **playbooks and `package.json` live at the root** of the `docs` repository. The link:{url-supplemental-deploy-guide}[Antora Deployment] guide (root vs. subfolder, CI, GitHub Pages) matches this layout. Custom UI and scripts still sit under `site/` (e.g. `site/supplemental-ui/`, `site/scripts/`), not the playbooks.
 
 === Private Repo Authentication
 
@@ -28,7 +28,7 @@ This page compares FoodTruckNerdz's Antora documentation setup with the canonica
 |--------|-----|---------------------|
 | Method | `GIT_CREDENTIALS` env var with `x-access-token` | Same; also documents `git config --global url` as Option A |
 | PAT storage | `FTN_GITHUB_TOKEN` (or org-specific name) | `ANTORA_READ_TOKEN` or `REPO_ACCESS_TOKEN` |
-| Gotcha coverage | Documents GITHUB_TOKEN vs PAT, x-access-token | Same; see link:https://antora-supplemental.github.io/docs/docs/antora-deployment.html[Antora Deployment] (private repos) |
+| Gotcha coverage | Documents GITHUB_TOKEN vs PAT, x-access-token | Same; see link:{url-supplemental-deploy-guide}[Antora Deployment] (private repos) |
 
 *Alignment:* FTN's github-actions-antora-setup is aligned with antora-supplemental guidance. Both correctly document PAT requirement for private content sources.
 
@@ -44,7 +44,7 @@ This page compares FoodTruckNerdz's Antora documentation setup with the canonica
 
 === Package Manager Commands
 
-FTN uses `npx antora` in building-docs; antora-supplemental recommends `pnpm dlx antora` for one-off runs or `pnpm exec antora` when Antora is in package.json. See link:https://antora-supplemental.github.io/docs/docs/antora-deployment.html[Antora Deployment] (package manager run commands) for pnpm vs npm vs yarn.
+FTN uses `npx antora` in building-docs; antora-supplemental recommends `pnpm dlx antora` for one-off runs or `pnpm exec antora` when Antora is in package.json. See link:{url-supplemental-deploy-guide}[Antora Deployment] (package manager run commands) for pnpm vs npm vs yarn.
 
 == Inconsistencies to resolve
 

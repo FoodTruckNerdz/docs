@@ -279,7 +279,7 @@ When Antora encounters a private repository URL in your playbook, it:
 . Injects the credentials into the Git clone operation
 . Clones the repository content
 
-For detailed technical information, see the https://docs.antora.org/antora/latest/playbook/private-repository-auth/[Antora Private Repository Authentication documentation^].
+For detailed technical information, see the {url-antora-private-repo-auth}[Antora Private Repository Authentication documentation^].
 
 == Gotchas and Common Issues
 
@@ -384,9 +384,9 @@ pnpm exec antora --stacktrace antora-playbook.yml
 
 === Antora Documentation
 
-* https://docs.antora.org/antora/latest/playbook/private-repository-auth/[Private Repository Authentication^]
+* {url-antora-private-repo-auth}[Private Repository Authentication^]
 * https://docs.antora.org/antora/latest/playbook/git-credentials-path-and-contents/[Git Credentials Path and Contents^]
-* https://docs.antora.org/antora/latest/playbook/content-source-url/[URLs for Content Sources^]
+* {url-antora-content-source-url}[URLs for Content Sources^]
 
 === GitHub Documentation
 

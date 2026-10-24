@@ -33,11 +33,11 @@ The following attributes are defined in both `antora-playbook.yml` and `antora-p
 |Organization name only
 
 |`\{github-org-url}`
-|`https://github.com/FoodTruckNerdz`
+|`{url-ftn-github}`
 |Full organization URL
 
 |`\{docs-site-url}`
-|`https://docs.foodtrucknerdz.com`
+|`{url-ftn-docs}`
 |Documentation site URL
 |===
 
@@ -92,7 +92,7 @@ Attributes are referenced using curly braces:
 Visit the {github-org-url}[GitHub organization].
 ----
 
-**Renders as**: Visit the https://github.com/FoodTruckNerdz[GitHub organization].
+**Renders as**: Visit the {url-ftn-github}[GitHub organization].
 
 ==== Repository Link
 
@@ -110,7 +110,7 @@ Clone from {github-org-url}/{repo-ftn-site}[ftn-site repository].
 See the {docs-site-url}[documentation site] for more information.
 ----
 
-**Renders as**: See the https://docs.foodtrucknerdz.com[documentation site] for more information.
+**Renders as**: See the {url-ftn-docs}[documentation site] for more information.
 
 === In Code Blocks
 

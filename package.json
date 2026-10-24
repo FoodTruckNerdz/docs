@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@antora-supplemental/facto-stack": "github:antora-supplemental/facto-stack#v0.2",
+    "@antora-supplemental/link-registry": "github:antora-supplemental/link-registry#v0.1.1",
     "@asciidoctor/core": "^3.0.4",
     "@dev-centr/mermaid-svg-css-vars": "0.1.3",
     "@dev-centr/themed-svg": "0.2.3",
@@ -9,9 +10,11 @@
     "puppeteer": "25.12.0"
   },
   "scripts": {
-    "build": "pnpm diagrams:check && antora --fetch antora-playbook.yml",
+    "build": "pnpm links:check && pnpm diagrams:check && antora --fetch antora-playbook.yml",
     "diagrams": "node scripts/build-diagrams.mjs",
-    "diagrams:check": "node scripts/build-diagrams.mjs --check"
+    "diagrams:check": "node scripts/build-diagrams.mjs --check",
+    "links:check": "link-registry check",
+    "links:fix": "link-registry fix"
   },
   "packageManager": "pnpm@10.24.0+sha512.01ff8ae71b4419903b65c60fb2dc9d34cf8bb6e06d03bde112ef38f7a34d6904c424ba66bea5cdcf12890230bf39f9580473140ed9c946fef328b6e5238a345a",
   "pnpm": {
@@ -26,5 +29,11 @@
   },
   "dependencies": {
     "@chenglou/pretext": "^0.0.4"
+  },
+  "linkRegistry": {
+    "registry": "docs/antora.yml",
+    "roots": [
+      "docs"
+    ]
   }
 }

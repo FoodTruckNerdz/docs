@@ -19,7 +19,7 @@ To update the documentation site with changes from a content repository, you mus
 .  Ensure the **Branch** is set to `main`.
 .  Click the green **Run workflow** button.
 
-The site will take a few minutes to build and deploy. You can monitor the progress on the Actions page. Once completed, your changes will be live at https://docs.foodtrucknerdz.com.
+The site will take a few minutes to build and deploy. You can monitor the progress on the Actions page. Once completed, your changes will be live at {url-ftn-docs}.
 
 == When to Redeploy
 

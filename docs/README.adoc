@@ -13,4 +13,5 @@ This folder is an Antora documentation component for the main docs repository.
 
 This documentation, along with components from the other project repositories, is aggregated into the unified site via the playbooks in the `site/` folder (parent repository).
 
+// link-registry: ignore-next-line (README renders on GitHub, where Antora attributes do not resolve)
 Published site: https://docs.foodtrucknerdz.com

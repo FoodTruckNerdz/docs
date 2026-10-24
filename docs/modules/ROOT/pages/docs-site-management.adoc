@@ -10,7 +10,7 @@ A **private sister site** (`team.docs.foodtrucknerdz.com`, repo `FoodTruckNerdz/
 
 == Reference: Antora Supplemental
 
-For canonical Antora setup guidance (Root vs. Subfolder strategy, GitHub Pages, private repos), see link:https://antora-supplemental.github.io/docs[antora-supplemental.github.io/docs]. A comparison of FTN's current setup with that reference is at xref:antora-supplemental-comparison.adoc[Antora Supplemental Comparison].
+For canonical Antora setup guidance (Root vs. Subfolder strategy, GitHub Pages, private repos), see link:{url-supplemental-docs}[antora-supplemental.github.io/docs]. A comparison of FTN's current setup with that reference is at xref:antora-supplemental-comparison.adoc[Antora Supplemental Comparison].
 
 == Site Specifics
 
